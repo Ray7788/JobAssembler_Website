@@ -20,7 +20,7 @@ $forename = $_REQUEST["forename"];
 $surname = $_REQUEST["surname"];
 
 #Username must be 6-30 alphanumeric characters
-if (!preg_match('^[A-Za-z\d]{6,30}$', $username)) {
+if (!preg_match('/^[A-Za-z\d\-]{6,30}$/', $username)) {
     ApiResponseGenerator::generate_error_json(400, "Invalid username given. Must be 6-30 alphanumeric characters.");
 }
 #Password must be greater than 8 characters long
@@ -35,11 +35,11 @@ if (strlen($password) > 1024) {
 if (strlen($forename) < 1 || strlen($surname) < 1) {
     ApiResponseGenerator::generate_error_json(400, "Invalid name given. Both a forename and surname must be given.");
 }
-#Forenames and surnames must be fewer than 255 bytes long (63 characters or fewer for UTF-8)
-if (strlen($forename) > 63){
+#Forenames and surnames must be fewer than 255 bytes long
+if (strlen($forename) > 255){
     ApiResponseGenerator::generate_error_json(400, "Invalid forename given. Forename not be more than 63 characters long.");
 }
-if (strlen($surname) > 63){
+if (strlen($surname) > 255){
     ApiResponseGenerator::generate_error_json(400, "Invalid surname given. Surname not be more than 63 characters long.");
 }
 #Username must not already be taken.

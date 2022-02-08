@@ -32,8 +32,18 @@ class User
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public static function create_user(PDO $pdo, string $username, string $password, string $forename, string $surname): bool {
-        $hash = password_hash($password, "PASSWORD_BCRYPT");
+        $pre_hash = hash("sha256", $password);
+        #Pepper used to give some protection against password shucking
+        $pepper = "v6uAX32o";
+        $to_hash = $pre_hash . $pepper;
+        if (strlen($to_hash) > 72) {
+            throw new Exception("Fatal error hashing password.");
+        }
+        $hash = password_hash($to_hash, PASSWORD_BCRYPT);
         $query = "INSERT INTO `UserAccounts` (`Username`, `Forename`, `Surname`, `Biography`, `PasswordHash`) VALUES (:username, :forename, :surname, '', :hash)";
         $statement = $pdo->prepare($query);
         return $statement->execute([
@@ -42,7 +52,6 @@ class User
             "surname" => $surname,
             "hash" => $hash
         ]);
-
     }
 
     function __construct(PDO $pdo) {
