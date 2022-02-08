@@ -20,7 +20,9 @@ class Database {
         $database_name = self::$database_name;
         try {
             $this->pdo = new PDO("mysql:host=$database_host;dbname=$database_name", $database_user, $database_pass);
-        } catch (PDOException $exception) {http_response_code(500);
+        } catch (PDOException $exception) {
+            http_response_code(500);
+            var_dump($exception);
             echo(json_encode(array("message" => "There was an error connecting to the database. {$exception->errorInfo}. Please try again later.")));
             die(1);
         }
