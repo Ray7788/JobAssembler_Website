@@ -1,3 +1,4 @@
-config.ini.php
+config.inc.php
 .idea/*
 php_info.php
+/config.inc.php
