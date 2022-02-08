@@ -19,7 +19,7 @@ class User
         return $count > 0;
     }
 
-    public static function get_user_id(PDO $pdo, int $username): int {
+    public static function get_user_id(PDO $pdo, string $username): int {
         $query = "SELECT UserID FROM `UserAccounts` WHERE Username = ?";
         $statement = $pdo->prepare($query);
         $statement->execute([$username]);
