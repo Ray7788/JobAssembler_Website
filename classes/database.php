@@ -1,5 +1,5 @@
 <?php
-require_once("../config.ini.php");
+require_once("../../config.ini.php");
 if (!isset($database_host) || !isset($database_user) || !isset($database_pass) || !isset($group_dbnames)){
     http_response_code(500);
     echo(json_encode(array("message" => "There was an error with the website configuration. Please try again later.")));
