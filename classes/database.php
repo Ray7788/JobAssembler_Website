@@ -19,7 +19,7 @@ class Database {
         try {
             $this->pdo = new PDO("mysql:host=$database_host;dbname=$database_name", $database_user, $database_pass);
         } catch (PDOException $exception) {
-            ApiResponseGenerator::generate_error_json(500, "There was an error connecting to the database. {$exception->errorInfo}. Please try again later.");
+            ApiResponseGenerator::generate_error_json(500, "There was an error connecting to the database. {$exception->getMessage()}. Please try again later.");
         }
         return $this->pdo;
     }
