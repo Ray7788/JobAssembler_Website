@@ -1,5 +1,5 @@
 <?php
-
+require_once ("prevent_direct_access.php");
 use JetBrains\PhpStorm\NoReturn;
 
 class ApiResponseGenerator

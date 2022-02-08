@@ -1,4 +1,5 @@
 <?php
+require_once("prevent_direct_access.php");
 require_once("../config.inc.php");
 require_once("../classes/api_response_generator.php");
 

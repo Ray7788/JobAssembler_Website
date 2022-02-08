@@ -1,4 +1,5 @@
 <?php
+require_once("prevent_direct_access.php");
 
 class User
 {
