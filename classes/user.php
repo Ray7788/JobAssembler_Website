@@ -8,7 +8,7 @@ class User
     public string $username;
     public string $forename;
     public string $surname;
-    public string $biography;
+    public string $biography = "";
 
     public static function check_username_exists(PDO $pdo, string $username): bool {
         if (strlen($username) == 0) return true;
@@ -20,7 +20,7 @@ class User
     }
 
     public static function get_user_id(PDO $pdo, string $username): int {
-        $query = "SELECT UserID FROM `UserAccounts` WHERE Username = ?";
+        $query = "SELECT `UserID` FROM `UserAccounts` WHERE Username = ?";
         $statement = $pdo->prepare($query);
         $statement->execute([$username]);
         $result = $statement->fetch();
@@ -30,6 +30,19 @@ class User
         else {
             return intval($result[0]);
         }
+    }
+
+    public static function create_user(PDO $pdo, string $username, string $password, string $forename, string $surname): bool {
+        $hash = password_hash($password, "PASSWORD_BCRYPT");
+        $query = "INSERT INTO `UserAccounts` (`Username`, `Forename`, `Surname`, `Biography`, `PasswordHash`) VALUES (:username, :forename, :surname, '', :hash)";
+        $statement = $pdo->prepare($query);
+        return $statement->execute([
+            "username" => $username,
+            "forename" => $forename,
+            "surname" => $surname,
+            "hash" => $hash
+        ]);
+
     }
 
     function __construct(PDO $pdo) {
