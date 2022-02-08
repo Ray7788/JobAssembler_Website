@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 }
 $database = new Database();
 $connection = $database->connect();
-$required_params = array("username", "password", "forename", "surname");
+$required_params = ["username", "password", "forename", "surname"];
 foreach ($required_params as $param) {
     if (!isset($_REQUEST[$param])) {
         ApiResponseGenerator::generate_error_json(400, "Parameter $param not set.");
@@ -45,4 +45,15 @@ if (strlen($surname) > 63){
 #Username must not already be taken.
 if (User::check_username_exists($connection, $username)) {
     ApiResponseGenerator::generate_error_json(400, "Invalid username given. Username is already in use, please choose another.");
+}
+try {
+    $result = User::create_user($connection, $username, $password, $forename, $surname);
+    if (!$result) {
+        ApiResponseGenerator::generate_error_json(500, "There was an error with the database. Please try again later.");
+    }
+    else {
+        ApiResponseGenerator::generate_response_json(201, ["message" => "Successfully created user."]);
+    }
+} catch (Exception $exception) {
+    ApiResponseGenerator::generate_error_json(500, "There was an error with the database. {$exception->getMessage()} Please try again later.");
 }
