@@ -10,8 +10,8 @@ class User
     public string $surname;
     public string $biography;
 
-    public static function check_username(PDO $pdo, string $username): bool {
-        if (strlen($username) == 0) return false;
+    public static function check_username_exists(PDO $pdo, string $username): bool {
+        if (strlen($username) == 0) return true;
         $query = "SELECT COUNT(*) FROM `UserAccounts` WHERE Username = ?";
         $statement = $pdo->prepare($query);
         $statement->execute([$username]);
@@ -23,12 +23,12 @@ class User
         $query = "SELECT UserID FROM `UserAccounts` WHERE Username = ?";
         $statement = $pdo->prepare($query);
         $statement->execute([$username]);
-        $result = $statement->fetch()[0];
-        if (is_null($result)) {
+        $result = $statement->fetch();
+        if ($result == false) {
             return -1;
         }
         else {
-            return intval($result);
+            return intval($result[0]);
         }
     }
 
