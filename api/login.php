@@ -28,11 +28,13 @@ if ($id < 0) {
 $user = new User($connection);
 $success = $user->authenticate($id, $password);
 if ($success) {
+    session_destroy();
+    session_set_cookie_params(0, httponly: true);
+    session_start();
+    $_SESSION["user"] = $user;
+    #session_set_cookie_params(0, secure: true, httponly: true);
     ApiResponseGenerator::generate_response_json(200, [
-        "username" => $user->username,
-        "forename" => $user->forename,
-        "surname" => $user->username,
-        "biography" => $user->biography
+        "message" => "Login successful."
     ]);
 }
 else {
