@@ -6,8 +6,6 @@ require_once("../classes/user.php");
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     ApiResponseGenerator::generate_error_json(405, "{$_SERVER["REQUEST_METHOD"]} method not allowed");
 }
-$database = new Database();
-$connection = $database->connect();
 $required_params = ["username", "password", "forename", "surname"];
 foreach ($required_params as $param) {
     if (!isset($_REQUEST[$param])) {
@@ -43,11 +41,11 @@ if (strlen($surname) > 255){
     ApiResponseGenerator::generate_error_json(400, "Invalid surname given. Surname not be more than 63 characters long.");
 }
 #Username must not already be taken.
-if (User::check_username_exists($connection, $username)) {
+if (User::check_username_exists($username)) {
     ApiResponseGenerator::generate_error_json(400, "Invalid username given. Username is already in use, please choose another.");
 }
 try {
-    $result = User::create_user($connection, $username, $password, $forename, $surname);
+    $result = User::create_user($username, $password, $forename, $surname);
     if (!$result) {
         ApiResponseGenerator::generate_error_json(500, "There was an error with the database. Please try again later.");
     }

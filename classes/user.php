@@ -3,7 +3,6 @@ require_once("prevent_direct_access.php");
 
 class User
 {
-    private PDO $pdo;
     private bool $authenticated = false;
 
     public int $user_id;
@@ -15,7 +14,8 @@ class User
     #Pepper used in password hashing to give some protection against password shucking. https://www.youtube.com/watch?v=OQD3qDYMyYQ
     private static string $pepper = "v6uAX32o";
 
-    public static function check_username_exists(PDO $pdo, string $username): bool {
+    public static function check_username_exists(string $username): bool {
+        $pdo = Database::connect();
         if (strlen($username) == 0) return true;
         $query = "SELECT COUNT(*) FROM `UserAccounts` WHERE Username = ?";
         $statement = $pdo->prepare($query);
@@ -24,7 +24,8 @@ class User
         return $count > 0;
     }
 
-    public static function get_user_id(PDO $pdo, string $username): int {
+    public static function get_user_id(string $username): int {
+        $pdo = Database::connect();
         $query = "SELECT `UserID` FROM `UserAccounts` WHERE Username = ?";
         $statement = $pdo->prepare($query);
         $statement->execute([$username]);
@@ -40,7 +41,8 @@ class User
     /**
      * @throws Exception
      */
-    public static function create_user(PDO $pdo, string $username, string $password, string $forename, string $surname): bool {
+    public static function create_user(string $username, string $password, string $forename, string $surname): bool {
+        $pdo = Database::connect();
         $pre_hash = hash("sha256", $password);
         $to_hash = $pre_hash . User::$pepper;
         if (strlen($to_hash) > 72) {
@@ -57,7 +59,8 @@ class User
         ]);
     }
 
-    public static function check_password(PDO $pdo, int $id, string $password): bool {
+    public static function check_password(int $id, string $password): bool {
+        $pdo = Database::connect();
         $query = "SELECT `PasswordHash` FROM `UserAccounts` WHERE UserID = ?";
         $statement = $pdo->prepare($query);
         $statement->execute([$id]);
@@ -69,25 +72,27 @@ class User
         return password_verify($to_check, $hash);
     }
 
-    function __construct(PDO $pdo) {
-        $this->pdo = $pdo;
-    }
-
     public function authenticate($id, $password): bool {
+        $pdo = Database::connect();
         $this->user_id = $id;
-        $verified = User::check_password($this->pdo, $id, $password);
+        $verified = User::check_password($id, $password);
         if (!$verified) return false;$query = "SELECT * FROM `UserAccounts` WHERE UserID = ?";
-        $statement = $this->pdo->prepare($query);
+        $statement = $pdo->prepare($query);
         $statement->execute([$id]);
         $result = $statement->fetch();
         $this->username = $result["Username"];
         $this->forename = $result["Forename"];
         $this->surname = $result["Surname"];
         $this->biography = $result["Biography"];
+        $this->authenticated = true;
         return true;
     }
 
     public function is_authenticated(): bool {
         return $this->authenticated;
+    }
+
+    public function revoke_auth(): void {
+        $this->authenticated = false;
     }
 }
