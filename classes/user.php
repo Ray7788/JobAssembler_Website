@@ -10,6 +10,7 @@ class User
     public string $forename;
     public string $surname;
     public string $biography = "";
+    public string $image_url;
 
     #Pepper used in password hashing to give some protection against password shucking. https://www.youtube.com/watch?v=OQD3qDYMyYQ
     private static string $pepper = "v6uAX32o";
@@ -84,6 +85,7 @@ class User
         $this->forename = $result["Forename"];
         $this->surname = $result["Surname"];
         $this->biography = $result["Biography"];
+        $this->image_url = $result["ProfileImage"];
         $this->authenticated = true;
         return true;
     }
