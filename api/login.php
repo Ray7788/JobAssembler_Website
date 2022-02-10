@@ -2,6 +2,7 @@
 require_once("../classes/database.php");
 require_once("../classes/api_response_generator.php");
 require_once("../classes/user.php");
+header("Access-Control-Allow-Origin: localhost");
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     ApiResponseGenerator::generate_error_json(405, "{$_SERVER["REQUEST_METHOD"]} method not allowed");
 }
