@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Registration</title>
+        <title>Sign-Up Page</title>
         <style type="text/css">
             .container{
                 justify-content:center;
@@ -19,11 +19,50 @@
                 float:left;
             }
         </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script>
+            function ValidateForm(){
+                //JAMES can do this bit
+                return true;
+            }
+
+            $(document).ready(function(){
+                $("#signUpForm").submit(function (e){  
+                    e.preventDefault();     //Stops the normal HTML form behaviour of changing files
+                    //Clear Error messages gets rid of any alerts after where it is put.
+                    //CURRENTLY THINKING THE ERROR IS TO DO WITH TH URL
+                    var validForm = ValidateForm();
+                    if(validForm){
+                        $.ajax({
+                            type:"POST",
+                            url:"https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/register.php",
+                            data: $(this).serialize(),
+                            success: function(data){
+                                window.location = "https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/login_page.php"  //Where to go if successful
+                                alert("Success");
+                            },
+                            error: function(xhr){
+                                alert($(this).serialize);
+                                var obj = xhr.responseJSON;
+                                alert("An error occured: " + xhr.status + " " + xhr.statusText);
+                                if(Object.keys(obj).includes("message")){
+                                    alert(obj["message"]);
+                                }else{
+                                    alert("An unknown error has occurred. Please try again later.");
+                                }
+                            }
+
+                        })
+                    }
+                })
+            })
+
+        </script>
     </head>
 
     <body>
         <div class="container">
-            <form action="https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/register.php" method="POST">
+            <form id="signUpForm" name="signUpForm">
                     <h3>Job Assembler</h3>
                     <label for="username">Username:</label>
                     <input type="text" name="username" id="username" class="inputBox">
@@ -40,59 +79,13 @@
                     <label for="confirmPassword">Confirm Password:</label>
                     <input type="password" name="confirmPassword" id="confirmPassword" class="inputBox">
                     <br><br>
-                    <input type="submit" value="Submit" class="button" name="submitButton">
+                    <input type="submit">
 
                     <?php
                         ini_set('error_reporting', E_ALL);
                         ini_set('display_errors', 1);
-
-                        if(isset($_REQUEST['submitButton'])){
-                            $password = $_POST['password'];
-                            $confirmPassword = $_POST['confirmPassword'];
-                            $username = $_POST['username'];
-                            $forename = $_POST['forename'];
-                            $surname = $_POST['surname'];
-                            if($password != $confirmPassword){
-                                $warningMsg = "Please ensure both passwords are the same.";
-                            }
-                            #Username must be 6-30 alphanumeric characters
-                            if (!preg_match('/^[A-Za-z\d\-]{6,30}$/', $username)) {
-                                $warningMsg = "Invalid username given. Must be 6-30 alphanumeric characters.";
-                            }
-                            #Password must be greater than 8 characters long
-                            if (strlen($password) < 8) {
-                                $warningMsg = "Invalid password given. Must be at least 8 characters long.";
-                            }
-                            #Password must be fewer than 1024 characters long
-                            if (strlen($password) > 1024) {
-                                $warningMsg = "Invalid password given. Must not be more than 1024 characters long.";
-                            }
-                            #Forename and surname must be at least one character long
-                            if (strlen($forename) < 1 || strlen($surname) < 1) {
-                                $warningMsg = "Invalid name given. Both a forename and surname must be given.";
-                            }
-                            #Forenames and surnames must be fewer than 255 bytes long
-                            if (strlen($forename) > 255){
-                                $warningMsg = "Invalid forename given. Forename not be more than 63 characters long.";
-                            }
-                            if (strlen($surname) > 255){
-                                $warningMsg = "Invalid surname given. Surname not be more than 63 characters long.";
-                            }
-                            #Username must not already be taken.
-                            if (User::check_username_exists($connection, $username)) {
-                                $warningMsg = "Invalid username given. Username is already in use, please choose another.";
-                            }
-                            try {
-                                $result = User::create_user($connection, $username, $password, $forename, $surname);
-                                if (!$result) {
-                                    $warningMsg = "There was an error with the database. Please try again later.";
-                                }
-                            } catch (Exception $exception) {
-                                $warningMsg = "There was an error with the database. {$exception->getMessage()} Please try again later.";
-                            }
-
-                            echo("<br>" . $warningMsg);
-                        }
+                        
+                        
                     ?>
             </form>
 
