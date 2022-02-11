@@ -21,24 +21,43 @@
         </style>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
-            function ValidateForm(){
-                //JAMES can do this bit
-                return true;
+            function ValidateForm(username, forename, surname, password, confirmPassword){
+                //Change message in the sign up screen
+                let warning = document.getElementById("validationMsg");
+                warning.innerHTML = ""; //Set it to blank first in case the user got the validation wrong first time round.
+                if(/^[0-9a-z]+$/i.test(username.value) == false || username.length > 30 || username.length < 6){
+    	            warning.innerHTML = "Username must be 6-30 alphanumeric characters.";
+                }else if(password != confirmPassword){
+                    warning.innerHTML = "Make sure you've typed the same password twice.";
+                }else if(password.length < 8 || password.length > 1024){
+                    warning.innerHTML = "Password must be between 8 and 1024 characters long.";
+                }else if(forename.length < 1 || surname.length < 1){
+                    warning.innerHTML = "Invalid name given. Both forename and surname must be given.";
+                }else if(forename.length > 63){
+                    warning.innerHTML = "Invalid forename given. Make sure it's less than 64 characters long.";
+                }else if(surname.length > 63){
+                    warning.innerHTML = "Invalid surname given. Make sure it's less than 64 characters long.";
+                }
+                if(warning.innerHTML != ""){
+                    return false;
+                }else{
+                    return true;
+                }
             }
 
             $(document).ready(function(){
                 $("#signUpForm").submit(function (e){  
+                    ClearErrorMessages();
                     e.preventDefault();     //Stops the normal HTML form behaviour of changing files
-                    //Clear Error messages gets rid of any alerts after where it is put.
-                    //CURRENTLY THINKING THE ERROR IS TO DO WITH TH URL
-                    var validForm = ValidateForm();
+                    let form = document.getElementById('signUpForm');
+                    var validForm = ValidateForm(form.elements[0], form.elements[1], form.elements[2], form.elements[3], form.elements[4]);
                     if(validForm){
                         $.ajax({
                             type:"POST",
                             url:"https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/register.php",
                             data: $(this).serialize(),
                             success: function(data){
-                                window.location = "https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/login_page.php"  //Where to go if successful
+                                window.location = "https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/login_page.php"  //Where to go if successful
                                 alert("Success");
                             },
                             error: function(xhr){
@@ -80,6 +99,8 @@
                     <input type="password" name="confirmPassword" id="confirmPassword" class="inputBox">
                     <br><br>
                     <input type="submit">
+                    <br><br>
+                    <p id="validationMsg"></p>
 
                     <?php
                         ini_set('error_reporting', E_ALL);
