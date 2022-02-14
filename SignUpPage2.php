@@ -27,7 +27,7 @@
                 warning.innerHTML = ""; //Set it to blank first in case the user got the validation wrong first time round.
                 if(/^[0-9a-z]+$/i.test(username.value) == false || username.length > 30 || username.length < 6){
     	            warning.innerHTML = "Username must be 6-30 alphanumeric characters.";
-                }else if(password != confirmPassword){
+                }else if(password.value != confirmPassword.value){
                     warning.innerHTML = "Make sure you've typed the same password twice.";
                 }else if(password.length < 8 || password.length > 1024){
                     warning.innerHTML = "Password must be between 8 and 1024 characters long.";
@@ -47,7 +47,6 @@
 
             $(document).ready(function(){
                 $("#signUpForm").submit(function (e){  
-                    ClearErrorMessages();
                     e.preventDefault();     //Stops the normal HTML form behaviour of changing files
                     let form = document.getElementById('signUpForm');
                     var validForm = ValidateForm(form.elements[0], form.elements[1], form.elements[2], form.elements[3], form.elements[4]);
