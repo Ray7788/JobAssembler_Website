@@ -36,4 +36,25 @@ class company
         $this->description = $result["Description"];
         $this->image_url = $result["CompanyImage"];
     }
+
+    public static function check_company_exists(string $name){
+        $pdo = Database::connect();
+        if(strlen($name)==0) return true;
+        $query = "SELECT COUNT(*) FROM Companies WHERE Username = ?";
+        $statement = $pdo->prepare($query);
+        $statement->execute([$name]);
+        $count = intval($statement->fetch()[0]);
+        return $count > 0;
+    }
+
+    public static function create_company(string $name, string $description): bool{
+        $pdo = Database::connect();
+        $query = "INSERT INTO 'Companies' ('Name', 'Description') VALUES (:name, :description)";
+        $statement = $pdo->prepare($query);
+        return $statement->execute([
+            "name" => $name,
+            "description" => $description
+        ]);
+
+    }
 }

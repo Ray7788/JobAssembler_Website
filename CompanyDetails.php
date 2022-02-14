@@ -22,14 +22,12 @@
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
-            function ValidateForm(companyName, description){
-                //Change message in the sign up screen
-                let warning = document.getElementById("validationMsg");
+            function ValidateForm(name, description, warning){
                 warning.innerHTML = ""; //Set it to blank first in case the user got the validation wrong first time round.
-                if(/^[0-9a-z]+$/i.test(companyName.value) == false || companyName.length > 30 || companyName.length < 6){
-    	            warning.innerHTML = "Username must be 6-30 alphanumeric characters.";
-                }else if(description.length < 20){
-                    warning.innerHTML = "Please ensure you've added an appropriate description.";
+                if(/^[0-9a-z]+$/i.test(name.value) == false || name.value.length > 64 || name.value.length < 3){
+    	            warning.innerHTML = "Company name must be between 3 and 64 alphanumeric characters.";
+                }else if(description.value.length < 20){
+                    warning.innerHTML = "Please ensure you've added an appropriate description (over 20 characters long).";
                 }
                 if(warning.innerHTML != ""){
                     return false;
@@ -40,27 +38,27 @@
 
             $(document).ready(function(){
                 $("#companyForm").submit(function (e){  
-                    ClearErrorMessages();
+                    let warning = document.getElementById("validationMsg");
                     e.preventDefault();     //Stops the normal HTML form behaviour of changing files
                     let form = document.getElementById('companyForm');
-                    var validForm = ValidateForm(form.elements[0], form.elements[1]);
+                    var validForm = ValidateForm(form.elements[0], form.elements[1], warning);
                     if(validForm){
                         $.ajax({
                             type:"POST",
                             url:"https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/companyRegister.php",
                             data: $(this).serialize(),
                             success: function(data){
-                                window.location = "https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/login_page.php"  //Where to go if successful
+                                window.location = "login_page.php"  //Where to go if successful (Needs changing to the main screen)
                                 alert("Success");
                             },
                             error: function(xhr){
-                                alert($(this).serialize);
+                                //alert($(this).serialize);
                                 var obj = xhr.responseJSON;
-                                alert("An error occured: " + xhr.status + " " + xhr.statusText);
+                                //alert("An error occured: " + xhr.status + " " + xhr.statusText);
                                 if(Object.keys(obj).includes("message")){
-                                    alert(obj["message"]);
+                                    warning.innerHTML = obj["message"];
                                 }else{
-                                    alert("An unknown error has occurred. Please try again later.");
+                                    warning.innerHTML = "An unknown error has occurred. Please try again later.";
                                 }
                             }
 
@@ -76,8 +74,8 @@
         <div class="container">
             <form id="companyForm" name="companyForm">
                 <h3>Company Details</h3>
-                <label for="companyName">Company Name:</label>
-                <input type="text" name="companyName" id="companyName" class="inputBox">
+                <label for="name">Company Name:</label>
+                <input type="text" name="name" id="name" class="inputBox">
                 <br><br>
                 <label for="description">Description:</label><br>
                 <textarea id="description" rows="4" cols="50" name="description" class="inputBox"></textarea>
