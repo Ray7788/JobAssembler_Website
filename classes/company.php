@@ -28,7 +28,7 @@ class company
             $this->id = $id;
         }
         $pdo = Database::connect();
-        $query = "SELECT * FROM `UserAccounts` WHERE UserID = ?";
+        $query = "SELECT * FROM `Companies` WHERE CompanyID = ?";
         $statement = $pdo->prepare($query);
         $statement->execute([$this->id]);
         $result = $statement->fetch();
@@ -40,7 +40,7 @@ class company
     public static function check_company_exists(string $name){
         $pdo = Database::connect();
         if(strlen($name)==0) return true;
-        $query = "SELECT COUNT(*) FROM Companies WHERE Username = ?";
+        $query = "SELECT COUNT(*) FROM Companies WHERE Name = ?";
         $statement = $pdo->prepare($query);
         $statement->execute([$name]);
         $count = intval($statement->fetch()[0]);
