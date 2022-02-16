@@ -16,7 +16,7 @@ $name = $_REQUEST["name"];
 $description = $_REQUEST["description"];
 
 #Name must be between 3 and 64 alphanumeric characters
-if(!preg_match('/^[A-Za-z\d\-]{6,30}$/', $name)){
+if(!preg_match('/^[A-Za-z\d\-]{3,64}$/', $name)){
     ApiResponseGenerator::generate_error_json(400, "Invalid company name given. Must be between 3-64 alphanumeric characters.");
 }
 #Description must be at least 20 characters
