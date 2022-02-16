@@ -49,7 +49,7 @@ class company
 
     public static function create_company(string $name, string $description): bool{
         $pdo = Database::connect();
-        $query = "INSERT INTO 'Companies' ('Name', 'Description') VALUES (:name, :description)";
+        $query = "INSERT INTO `Companies` (`Name`, `Description`) VALUES (:name, :description)";
         $statement = $pdo->prepare($query);
         return $statement->execute([
             "name" => $name,
