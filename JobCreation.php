@@ -6,13 +6,12 @@
     <script>
         // Shamelessly stole this directly from James's code
         $(document).ready(function(){
-            $("#loginForm").submit(function (e){
-                let warning = document.getElementById("warningMessage");
+            $("#jobCreateForm").submit(function (e){
                 e.preventDefault();     //Stops the normal HTML form behaviour of changing files
-                let form = document.getElementById('loginForm');
                 $.ajax({
                     type:"POST",
-                    url:"https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/jobCreate.php",
+                    //url:"https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/jobCreate.php",
+                    url:"api/jobCreate.php",
                     data: $(this).serialize(),
                     success: function(data){
                         window.location = "main.php"  //Where to go if successful

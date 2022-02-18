@@ -22,8 +22,9 @@ $location = $_REQUEST["location"];
 if (strlen($title) < 3){
     ApiResponseGenerator::generate_error_json(400, "Invalid job title. Must be longer than 3 characters");
 }
-if (strlen($title) > 65535){
+if (strlen($title) > 65535) {
     ApiResponseGenerator::generate_error_json(400, "Invalid job title. Title is too long");
+}
 if (strlen($description) < 50){
     ApiResponseGenerator::generate_error_json(400, "Invalid job description. Must be longer than 50 characters");
 }
@@ -31,7 +32,7 @@ if (strlen($description) > 4294967295){
     ApiResponseGenerator::generate_error_json(400, "Invalid job description. Description is too long");
 }
 try {
-    $result = Job::create_job($title, $description, $location, 0);
+    $result = Job::create_job($title, $description, $location, 1);
     if (!$result) {
         ApiResponseGenerator::generate_error_json(500, "There was an error with the database. Please try again later.");
     }
