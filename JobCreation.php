@@ -12,7 +12,7 @@
                 let form = document.getElementById('loginForm');
                 $.ajax({
                     type:"POST",
-                    url:"https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/login.php",
+                    url:"https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/jobCreate.php",
                     data: $(this).serialize(),
                     success: function(data){
                         window.location = "main.php"  //Where to go if successful
