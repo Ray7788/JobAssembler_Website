@@ -39,7 +39,7 @@
             Job description<br>
             <textarea type="textbox" name="description" id="description" rows="4" cols="50" required></textarea><br><br>
             Job Location<br>
-            <input type="text" name="Location" id="Location" required><br><br>
+            <input type="text" name="location" id="location" required><br><br>
             <input type="submit" value="Submit">
         </p>
     </form>
