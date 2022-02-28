@@ -54,7 +54,8 @@
                     if(validForm){
                         $.ajax({
                             type:"POST",
-                            url:"https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/register.php",
+                            //url:"https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/register.php",
+                            url:"api/register.php",
                             data: $(this).serialize(),
                             success: function(data){
                                 window.location = "login_page.php"  //Where to go if successful
