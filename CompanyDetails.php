@@ -24,7 +24,7 @@
         <script>
             function ValidateForm(name, description, warning){
                 warning.innerHTML = ""; //Set it to blank first in case the user got the validation wrong first time round.
-                if(/^[0-9a-z]+$/i.test(name.value) == false || name.value.length > 64 || name.value.length < 3){
+                if(/^[0-9a-z\s]+$/i.test(name.value) == false || name.value.length > 64 || name.value.length < 3){
     	            warning.innerHTML = "Company name must be between 3 and 64 alphanumeric characters.";
                 }else if(description.value.length < 20){
                     warning.innerHTML = "Please ensure you've added an appropriate description (over 20 characters long).";

@@ -15,10 +15,11 @@ foreach($required_params as $param){
 $name = $_REQUEST["name"];
 $description = $_REQUEST["description"];
 
+
 #Name must be between 3 and 64 alphanumeric characters - can also have whitespace
 $pattern = "/^[A-Za-z\d\s]{3,64}$/";
 if(!preg_match($pattern, $name)){
-    ApiResponseGenerator::generate_error_json(400, "Invalid company name given. Must be between 3-64 alphanumeric characters.");
+    ApiResponseGenerator::generate_error_json(400, "Invalid company name given. Must be between 3-64 alphanumeric characters." . $name);
 }
 #Description must be at least 20 characters
 if(strlen($description) < 20){
