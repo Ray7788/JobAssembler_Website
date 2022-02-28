@@ -3,18 +3,42 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/custom.css"> <!-- Include a custom CSS for the website later-->
+    <link rel="stylesheet" href="CSS/index-custom.css"> <!-- Include a custom CSS for the website later-->
 
     <title>JobAssembler</title>
+
+    <!-- core styling -->
+    <style>
+        /* navibar */
+        .container-fluid {
+            height: 80px;
+            position: sticky;
+            top: 0;
+        }
+        main {
+            scroll-snap-type: y mandatory;
+            scroll-padding: 80px;
+            overflow: scroll; 
+            height: 100vh;
+        }
+        section {
+            width: 100vw;
+            height: 100vh;
+            scroll-snap-align: center;
+        }
+    </style>
+
   </head>
   <body>
+
+    
     <div class="container-fluid">
         <!-- Image and text -->
-        <nav class="navbar navbar-light" style="background-color: #FFFFFF;">
+        <nav class="navbar navbar-light" style="background-color: white;">
             <a class="navbar-brand" href="index.html">
             <img src="../JobAssembler/Images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
             JobAssembler
@@ -24,31 +48,40 @@
             </a>
         </nav>
     </div>
+    
 
-    <div class="container">
-        <div class="jumbotron text-center mt-5 mx-2">
+   
+    <main>
+        <!-- <div class="jumbotron text-center mt-5 mx-2"> -->
+            <section>
             <h1 class="display-3">Struggling with finding Employment or Employees?</h1>
             <p>
             <h1 class="display-6">Ever wish it was as easy as Tinder?</h1>
             <hr class="my-4">
             <p class="lead">JobAssembler Is!</p>
-            <p class="lead">
-            <a class="btn btn-primary btn-lg" href="../JobAssembler/SignUpPage2.php" role="button">Sign Up Now</a>
+           
+            <a class="btn btn-primary btn-lg" href="../JobAssembler/SignUpPage2.php" role="button">Sign Up Now!</a>
             </p>
-        </div>
-    </div>
+            </section>
+            <section>
+                Customized for campus students
+            </section>
+            <section>
+                page3
+            </section>
+            <section>page4</section>
+            <!-- </div> -->
+    </main>
+  
 
-    <div class="container">
-        <img src="../JobAssembler/Images/pexels-vlada-karpovich-4050347.jpg" class="img-fluid" alt="Responsive image">
-    </div>
 
-    <p class="mb-6"></p>
+    
     
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
-    
+</main>
     </body>
 </html>
