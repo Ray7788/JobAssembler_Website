@@ -23,6 +23,11 @@
             width: 100vw;
             height: 100vh;
         }
+
+        body {
+            overflow: hidden;
+        }
+
     </style>
         
 
@@ -33,6 +38,7 @@
     
 
     <!-- Image and text -->
+    
     <nav class="navbar navbar-light" style="background-color: white;">
         <a class="navbar-brand" href="index.html">
         <img src="../JobAssembler/Images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
