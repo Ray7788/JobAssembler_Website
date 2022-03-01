@@ -68,17 +68,13 @@
         <div class="container-fluid">
             <div class="jumbotron text-center mt-5 mx-2" style="background-image: url('../JobAssembler/Images/index/index4.jpg');
                                                                 background-size: 100% 100%;">   
-                <h1 class="display-4 style=" style="padding"></h1>Assemble Your Future</h1>
+                <h1 class="display-4 style=" style=></h1>Assemble Your Future</h1>
                 <p></p>
                 <a class="btn btn-primary btn-lg" href="../JobAssembler/SignUpPage2.php" role="button">Sign Up Now!</a>
             </div>
         </div>
 
     </main>
-  
-
-
-    
     
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
