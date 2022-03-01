@@ -52,7 +52,7 @@
                         event.preventDefault();
                         $.ajax({
                                 type:"POST",
-                                url:"",
+                                url:"api/EmployeeRegister.php",
                                 data:$(this).serialize(),
                                 success: function(data){
                                         window.location = "login_page.php"
