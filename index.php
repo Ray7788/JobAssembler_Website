@@ -11,68 +11,81 @@
 
     <title>JobAssembler</title>
 
+    <style>
+        main {
+            scroll-snap-type: y mandatory;
+            overflow: scroll;
+            height: 100vh;
+        }
+
+        .container-fluid {
+            scroll-snap-align: start;
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+        
+
   </head>
 
   <body>
 
     
-    <div class="container-fluid">
-        <!-- Image and text -->
-        <nav class="navbar navbar-light" style="background-color: white;">
-            <a class="navbar-brand" href="index.html">
-            <img src="../JobAssembler/Images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-            JobAssembler
-            <div class="nav-item">
-                <a class="btn btn-primary" href="../JobAssembler/login_page.php">Login</a>
-            </div>
-            </a>
-        </nav>
-    </div>
-    
 
+    <!-- Image and text -->
+    <nav class="navbar navbar-light" style="background-color: white;">
+        <a class="navbar-brand" href="index.html">
+        <img src="../JobAssembler/Images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        JobAssembler
+        <div class="nav-item">
+            <a class="btn btn-primary" href="../JobAssembler/login_page.php">Login</a>
+        </div>
+        </a>
+    </nav>
    
     <main>
-        <div class="container-fluid" style="padding: 0%; margin: 0;">
-            <div class="jumbotron text-center mt-5 mx-2" style="background-color: #fdf5df;">
+    <div class="container-fluid" style="padding: 0%; margin: 0;">
+        <div class="jumbotron text-center mt-5 mx-2" style="background-color: #fdf5df;">
 
-                <p></p>
-                <h1 class="display-3" style="color: #5ebec4;">Struggling with finding Employment or Employees?</h1>
-                <p></p>
-                <h1 class="display-6" style="color: #5ebec4;">Ever wish it was as easy as Tinder?</h1>
-                <hr class="my-4">
-                <p class="lead" style="color: #5ebec4;">JobAssembler Is!</p>
-            
-                <a class="btn btn-primary btn-lg" href="../JobAssembler/SignUpPage2.php" role="button" style="background-color: #f92c85;">Sign Up Now!</a>
-                <p></p> 
-            </div> 
-        </div>
-
-        <div class="container-fluid">
-            <div class="jumbotron text-center mt-5 mx-2" style="background-color:cyan; height: 400px;">
-                <h1 class="display-6" style="vertical-align:-webkit-baseline-middle"> Direct Contact Between Employers and Employees</h1>
-                <p></p>
-                <hr class="my-4">
-                <p class="lead" style="color: #5ebec4;"></p>
-                <a class="btn btn-primary btn-lg" href="../JobAssembler/SignUpPage2.php" role="button">Sign Up Now!</a>
-            </div>
-        </div>
+            <p></p>
+            <h1 class="display-3" style="color: #5ebec4;">Struggling with finding Employment or Employees?</h1>
+            <p></p>
+            <h1 class="display-6" style="color: #5ebec4;">Ever wish it was as easy as Tinder?</h1>
+            <hr class="my-4">
+            <p class="lead" style="color: #5ebec4;">JobAssembler Is!</p>
         
-        <div class="container-fluid">
-            <div class="jumbotron text-center mt-5 mx-2" style="background-color: #f7f7f7; height: 400px;">
-                <h1 class="display-4" style="color: #7da2a9;"></h1>The Best of the Best</h1>
-                <p></p>
-                <a class="btn btn-primary btn-lg" href="../JobAssembler/SignUpPage2.php" role="button">Sign Up Now!</a>
-            </div>
-        </div>
+            <a class="btn btn-primary btn-lg" href="../JobAssembler/SignUpPage2.php" role="button" style="background-color: #f92c85;">Sign Up Now!</a>
+            <p></p> 
+        </div> 
+    </div>
 
-        <div class="container-fluid">
-            <div class="jumbotron text-center mt-5 mx-2" style="background-image: url('../JobAssembler/Images/index/index4.jpg');
-                                                                background-size: 100% 100%;">   
-                <h1 class="display-4 style=" style=></h1>Assemble Your Future</h1>
-                <p></p>
-                <a class="btn btn-primary btn-lg" href="../JobAssembler/SignUpPage2.php" role="button">Sign Up Now!</a>
-            </div>
+    <div class="container-fluid">
+        <div class="jumbotron text-center mt-5 mx-2" style="background-color:cyan; height: 400px;">
+            <h1 class="display-6" style="vertical-align:-webkit-baseline-middle"> Direct Contact Between Employers and Employees</h1>
+            <p></p>
+            <hr class="my-4">
+            <p class="lead" style="color: #5ebec4;"></p>
+            <a class="btn btn-primary btn-lg" href="../JobAssembler/SignUpPage2.php" role="button">Sign Up Now!</a>
         </div>
+    </div>
+    
+    <div class="container-fluid">
+        <div class="jumbotron text-center mt-5 mx-2" style="background-color: #f7f7f7; height: 400px;">
+            <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>
+            <p></p>
+            <a class="btn btn-primary btn-lg" href="../JobAssembler/SignUpPage2.php" role="button">Sign Up Now!</a>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="jumbotron text-center mt-5 mx-2" style="background-image: url('../JobAssembler/Images/index/index4.jpg');
+                                                            background-size: 100% 100%;">   
+            <h1 class="display-4">Assemble Your Future</h1>
+            <p></p>
+            <a class="btn btn-primary btn-lg" href="../JobAssembler/SignUpPage2.php" role="button">Sign Up Now!</a>
+        </div>
+    </div>
+
 
     </main>
     
