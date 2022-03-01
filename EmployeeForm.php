@@ -45,12 +45,30 @@
                 float:center;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
+        $(document).ready(function(){
+                $("employeeForm").submit(function(event){
+                        event.preventDefault();
+                        $.ajax({
+                                type:"POST",
+                                url:"",
+                                data:$(this).serialize(),
+                                success: function(data){
+                                        window.location = "login_page.php"
+                                        alert("success");
+                                },
+                                error: function(){
+                                        alert("Fail");
+                                }
 
+                        })
+                })
+        })
     </script>
 </head>
 <body>
-    <form id="employeeForm" name="employeeForm" onsubmit="return formValidation()">
+    <form id="employeeForm" name="employeeForm">
     <div class="container">
         <h2>Employee Sign Up Page</h>
         <hr>
