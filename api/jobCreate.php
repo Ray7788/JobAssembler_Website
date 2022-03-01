@@ -1,8 +1,8 @@
 <?php
-require_once("../classes/database.php");
-require_once("../classes/api_response_generator.php");
-require_once("../classes/user.php");
-require_once("../classes/job.php");
+require_once(__DIR__ . "/../classes/database.php");
+require_once(__DIR__ . "/../classes/api_response_generator.php");
+require_once(__DIR__ . "/../classes/user.php");
+require_once(__DIR__ . "/../classes/job.php");
 header("Access-Control-Allow-Origin: *"); #TODO - MUST REVERT BEFORE COMPLETE
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     ApiResponseGenerator::generate_error_json(405, "{$_SERVER["REQUEST_METHOD"]} method not allowed");

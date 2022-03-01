@@ -1,6 +1,6 @@
 <?php
-require_once("prevent_direct_access.php");
-require_once("database.php");
+require_once(__DIR__ . "/prevent_direct_access.php");
+require_once(__DIR__ . "/database.php");
 
 class company
 {

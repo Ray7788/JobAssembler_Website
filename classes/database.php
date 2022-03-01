@@ -1,7 +1,7 @@
 <?php
-require_once("prevent_direct_access.php");
-require_once("../config.inc.php");
-require_once("../classes/api_response_generator.php");
+require_once(__DIR__ . "/prevent_direct_access.php");
+require_once(__DIR__ . "/../config.inc.php");
+require_once(__DIR__ . "/../classes/api_response_generator.php");
 
 if (!isset($database_host) || !isset($database_user) || !isset($database_pass) || !isset($group_dbnames)){
     ApiResponseGenerator::generate_error_json(500, "There was an error with the website configuration. Please try again later.");
