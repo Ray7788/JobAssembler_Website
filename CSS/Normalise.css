@@ -8,6 +8,8 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
+
+ /* For scroll styling  */
 * {
   scroll-behavior:smooth;
 }
