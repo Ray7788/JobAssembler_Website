@@ -39,7 +39,7 @@
 
     <!-- Image and text -->
     
-    <nav class="navbar navbar-light" style="background-color: white; height=">
+    <nav class="navbar navbar-light" style="background-color: white;">
         <a class="navbar-brand" href="index.php">
         <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block align-top" alt="";>
         JobAssembler
@@ -51,7 +51,7 @@
    
     <main>
     <div class="container-fluid" style="padding:0%; margin: 0;">
-        <div class="jumbotron text-center mt-5 mx-2" style="background-color: #fdf5df;">
+        <div class="jumbotron text-center mt-5 mx-2" style="background-color: #fdf5df; height: 600px;">
 
             <p></p>
             <h1 class="display-4" style="color: #5ebec4;">Struggling with finding Employment or Employees?</h1>
@@ -65,8 +65,8 @@
         </div> 
     </div>
 
-    <div class="container-fluid">
-        <div class="jumbotron text-center mt-5 mx-2" style="background-color:cyan; height: 400px;">
+    <div class="container-fluid"  style="padding:0%; margin: 0;">
+        <div class="jumbotron text-center mt-5 mx-2" style="background-color:cyan; height: 600px;">
             <h1 class="display-6" style="vertical-align:-webkit-baseline-middle"> Direct Contact Between Employers and Employees</h1>
             <p></p>
             <hr class="my-4">
@@ -75,8 +75,8 @@
         </div>
     </div>
     
-    <div class="container-fluid">
-        <div class="jumbotron text-center mt-5 mx-2" style="background-color: #f7f7f7; height: 400px;">
+    <div class="container-fluid" style="padding:0%; margin: 0;">
+        <div class="jumbotron text-center mt-5 mx-2" style="background-color: #f7f7f7; height: 600px;">
             <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>
             <p></p>
             <a class="btn btn-primary btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>
