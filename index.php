@@ -20,6 +20,8 @@
         }
 
         /*For Logo border*/
+        .d-inline-block-align-top {border-radius: 5px;}
+
         .container-fluid {
             scroll-snap-align: start;
             width: 100vw;
@@ -41,7 +43,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-light" style="background-color: white;">
         <a class="navbar-brand" href="index.php">
-        <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block align-top" alt="";>
+        <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="";>
         JobAssembler
         <div class="nav-item">
             <a class="btn btn-primary" href="login_page.php">Login</a>
