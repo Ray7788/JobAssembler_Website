@@ -85,7 +85,7 @@ class User
         $this->forename = $result["Forename"];
         $this->surname = $result["Surname"];
         $this->biography = $result["Biography"];
-        $this->image_url = $result["ProfileImage"];
+        $this->image_url = is_null($result["ProfileImage"]) ? "" : $result["ProfileImage"];
         $this->authenticated = true;
         return true;
     }

@@ -13,7 +13,7 @@
                 let form = document.getElementById('loginForm');
                 $.ajax({
                     type:"POST",
-                    url:"https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/login.php",
+                    url:"api/login.php",
                     data: $(this).serialize(),
                     success: function(data){
                         window.location = "main.php"  //Where to go if successful
@@ -40,7 +40,7 @@
             Password<br>
             <input type="password" name="password" id="password" required><br><br>
             <input type="submit" value="Submit">
-            <p name="warningMessage" id="warningMessage"></p>
+            <p id="warningMessage"></p>
         </p>
 	</form>
 </body>

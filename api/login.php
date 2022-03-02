@@ -2,7 +2,6 @@
 require_once(__DIR__ . "/../classes/database.php");
 require_once(__DIR__ . "/../classes/api_response_generator.php");
 require_once(__DIR__ . "/../classes/user.php");
-header("Access-Control-Allow-Origin: *");  #TODO - MUST REVERT BEFORE COMPLETE
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     ApiResponseGenerator::generate_error_json(405, "{$_SERVER["REQUEST_METHOD"]} method not allowed");
 }
@@ -27,15 +26,15 @@ if ($id < 0) {
 $user = new User();
 $success = $user->authenticate($id, $password);
 if ($success) {
-    session_set_cookie_params(0, httponly: true);
+    //session_set_cookie_params(0, httponly: true);
+    session_set_cookie_params(["httponly" => true]);
     session_start();
     if (isset($_SESSION["user"])) {
-        if ($_SESSION["user"] instanceof User){
-            $_SESSION["user"]->revoke_auth();
-        }
+        $_SESSION["user"]->revoke_auth();
     }
     session_regenerate_id(true);
     $_SESSION["user"] = $user;
+    setcookie("test", strval(rand(0, 100)));
     ApiResponseGenerator::generate_response_json(200, [
         "message" => "Login successful."
     ]);
