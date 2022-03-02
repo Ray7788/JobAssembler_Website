@@ -22,6 +22,7 @@
         /*For Logo border*/
         .d-inline-block-align-top {border-radius: 5px;}
 
+        /*  */
         .container-fluid {
             scroll-snap-align: start;
             width: 100vw;
@@ -38,8 +39,8 @@
   </head>
 
   <body>
-
     <!-- Image and text -->
+    
     <!-- navbar -->
     <nav class="navbar navbar-light" style="background-color: white;">
         <a class="navbar-brand" href="index.php">
@@ -52,9 +53,9 @@
     </nav>
    
     <main>
+    <!-- page1 -->
     <div class="container-fluid" style="padding:0%; margin: 0;">
         <div class="jumbotron text-center mt-5 mx-2" style="background-color: #fdf5df; height: 600px;">
-
             <p></p>
             <h1 class="display-4" style="color: #5ebec4;">Struggling with finding Employment or Employees?</h1>
             <p></p>
@@ -67,26 +68,26 @@
         </div> 
     </div>
 
+    <!-- page2 -->
     <div class="container-fluid"  style="padding:0%; margin: 0;">
-        <div class="jumbotron text-center mt-5 mx-2" style="background-color:cyan; height: 600px;">
-            <h1 class="display-6" style="vertical-align:-webkit-baseline-middle"> Direct Contact Between Employers and Employees</h1>
-            <p></p>
+        <div class="jumbotron text-center mt-5 mx-2" style="background-color: #CCCCFF; height: 600px;">
+            <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color: #FFFFCC"> Direct Contact Between Employers and Employees  :)</h1>
+            <h1 class="display-6" style="color: #FFFFCC;">Customized for campus students!</h1>
             <hr class="my-4">
             <p class="lead" style="color: #5ebec4;"></p>
             <a class="btn btn-primary btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>
         </div>
     </div>
-    
+
+    <!-- page3 -->
     <div class="container-fluid" style="padding:0%; margin: 0;">
         <div class="jumbotron text-center mt-5 mx-2" style="background-color: #f7f7f7; height: 600px;">
             <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>
-            <p></p>
             <a class="btn btn-primary btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>
         </div>
     </div>
 
     </main>
-    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
