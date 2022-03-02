@@ -12,12 +12,14 @@
     <title>JobAssembler</title>
 
     <style>
-        main {
+         /* Please Don't edit this part. For scroll Styling */
+        main {   
             scroll-snap-type: y mandatory;
             overflow: scroll;
             height: 100vh;
         }
 
+        /*For Logo border*/
         .container-fluid {
             scroll-snap-align: start;
             width: 100vw;
@@ -35,10 +37,8 @@
 
   <body>
 
-    
-
     <!-- Image and text -->
-    
+    <!-- navbar -->
     <nav class="navbar navbar-light" style="background-color: white;">
         <a class="navbar-brand" href="index.php">
         <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block align-top" alt="";>
