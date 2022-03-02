@@ -34,7 +34,6 @@ if ($success) {
     }
     session_regenerate_id(true);
     $_SESSION["user"] = $user;
-    setcookie("test", strval(rand(0, 100)));
     ApiResponseGenerator::generate_response_json(200, [
         "message" => "Login successful."
     ]);
