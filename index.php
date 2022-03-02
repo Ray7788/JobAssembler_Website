@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="../JobAssembler/CSS/Normalise.css"> <!-- Include a custom CSS for the website later-->
+    <link rel="stylesheet" href="CSS/Normalise.css"> <!-- Include a custom CSS for the website later-->
 
     <title>JobAssembler</title>
 
@@ -44,13 +44,13 @@
         <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block align-top" alt="";>
         JobAssembler
         <div class="nav-item">
-            <a class="btn btn-primary" href="../JobAssembler/login_page.php">Login</a>
+            <a class="btn btn-primary" href="login_page.php">Login</a>
         </div>
         </a>
     </nav>
    
     <main>
-    <div class="container-fluid" style="padding: 0%; margin: 0;">
+    <div class="container-fluid" style="padding:0%; margin: 0;">
         <div class="jumbotron text-center mt-5 mx-2" style="background-color: #fdf5df;">
 
             <p></p>
@@ -60,7 +60,7 @@
             <hr class="my-3">
             <p class="lead" style="color: #5ebec4;">JobAssembler Is!</p>
         
-            <a class="btn btn-primary btn-lg" href="../JobAssembler/SignUpPage2.php" role="button" style="background-color: #f92c85;">Sign Up Now!</a>
+            <a class="btn btn-primary btn-lg" href="SignUpPage2.php" role="button" style="background-color: #f92c85;">Sign Up Now!</a>
             <p></p> 
         </div> 
     </div>
@@ -71,7 +71,7 @@
             <p></p>
             <hr class="my-4">
             <p class="lead" style="color: #5ebec4;"></p>
-            <a class="btn btn-primary btn-lg" href="../JobAssembler/SignUpPage2.php" role="button">Sign Up Now!</a>
+            <a class="btn btn-primary btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>
         </div>
     </div>
     
@@ -79,7 +79,7 @@
         <div class="jumbotron text-center mt-5 mx-2" style="background-color: #f7f7f7; height: 400px;">
             <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>
             <p></p>
-            <a class="btn btn-primary btn-lg" href="../JobAssembler/SignUpPage2.php" role="button">Sign Up Now!</a>
+            <a class="btn btn-primary btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>
         </div>
     </div>
 
