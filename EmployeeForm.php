@@ -91,8 +91,8 @@
         <label for="birth">Birth Date:</label>
         <input type="date" id="birth">
         <br><br><br>
-        <p>By Creating an account you agree to our <a href="Link to our policy page">Terms and Conditions</a><p>
-        <button type="button" onclick="window.location.href='Put link to previous page here';" class="button">Cancel</button>
+        <p>By Creating an account you agree to our <a href="privacypolicy.html">Terms and Conditions</a><p>
+        <button type="button" onclick="window.location.href='SignUpPage2.php';" class="button">Cancel</button>
         <input type="submit" value="Sign Up" class="button">
         </form>
 </body>

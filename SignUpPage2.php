@@ -50,6 +50,7 @@
                     let warning = document.getElementById("validationMsg");
                     e.preventDefault();     //Stops the normal HTML form behaviour of changing files
                     let form = document.getElementById('signUpForm');
+                    var accountType = document.querySelector('input[name = "accountType"]:checked').value;
                     var validForm = ValidateForm(form.elements[0], form.elements[1], form.elements[2], form.elements[3], form.elements[4], warning);
                     if(validForm){
                         $.ajax({
@@ -57,8 +58,13 @@
                             //url:"https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/register.php",
                             url:"api/register.php",
                             data: $(this).serialize(),
-                            success: function(data){
-                                window.location = "login_page.php"  //Where to go if successful
+                            success: function(data){   //Where to go if successful
+                                alert(accountType)
+                                if (accountType == "employee"){
+                                    window.location = "EmployeeForm.php";
+                                }else{
+                                    window.location = "CompanyDetails.php";
+                                }
                             },
                             error: function(xhr){
                                 //alert($(this).serialize);
@@ -97,6 +103,14 @@
                     <br><br>
                     <label for="confirmPassword">Confirm Password:</label>
                     <input type="password" name="confirmPassword" id="confirmPassword" class="inputBox">
+                    <br><br>
+                    <label for="accountType">You are a:</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="accountType" id="employee" value="employee" required>Employee
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="accountType" id="employer" value="employer" required>Employer
+                    </label>
                     <br><br>
                     <input type="submit">
                     <br><br>
