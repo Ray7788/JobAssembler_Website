@@ -41,7 +41,7 @@
     
     <nav class="navbar navbar-light" style="background-color: white; height=">
         <a class="navbar-brand" href="index.php">
-        <img src="../JobAssembler/Images/Logo1.png" width="30" height="30" class="d-inline-block align-top" alt="";>
+        <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block align-top" alt="";>
         JobAssembler
         <div class="nav-item">
             <a class="btn btn-primary" href="../JobAssembler/login_page.php">Login</a>
