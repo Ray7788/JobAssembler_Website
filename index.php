@@ -12,7 +12,14 @@
     <title>JobAssembler</title>
 
     <style>
-         /* Please Don't edit this part. For scroll Styling */
+        * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        }
+
+        /* Please Don't edit this part. For scroll Styling */
         main {   
             scroll-snap-type: y mandatory;
             overflow: scroll;
@@ -36,21 +43,48 @@
 
         /* For every page */
         .container-fluid {
-            padding:0%; margin: 0;
+            padding:0%; margin: 0%;
         }
 
+        /* 1st page */
         .page1 {
-            width: 100vw;
-            height: 100vh;
+      
+            width: 120vw;
+            height: 170vh;
             background: linear-gradient(
             135deg,
             hsl(170deg, 80%, 70%),
             hsl(190deg, 80%, 70%),
             hsl(250deg, 80%, 70%),
-            hsl(320deg, 80%, 70%)
-        );
+            hsl(320deg, 80%, 70%));
             background-size: 200% 200%;
-            animation: gradient-move 15s ease alternate infinite;
+            animation: gradient-move 10s ease alternate infinite;
+        }
+         /*3rd page */
+        .page3 {
+            width: 100vw;
+            height: 150vh;
+            background: linear-gradient(
+                135deg,
+            rgb(225, 238, 210),
+            rgb(219, 208, 167),
+            rgb(230, 155, 3),
+            hsl(320deg, 80%, 70%));
+            background-size: 200% 200%;
+            animation: gradient-move 10s ease alternate infinite;
+        }
+        /* 2nd page */
+        .page2 {
+            width: 100vw;
+            height: 150vh;
+            background: linear-gradient(
+                135deg,
+            rgb(226, 241, 141),
+            rgb(194, 255, 159),
+            rgb(113, 252, 136),
+            rgb(103, 190, 240));
+            background-size: 200% 200%;
+            animation: gradient-move 10s ease alternate infinite;
         }
 
         @keyframes gradient-move {
@@ -93,20 +127,24 @@
 
     <!-- page2 -->
     <div class="container-fluid">
-        <div class="jumbotron text-center mt-5 mx-2" style="background-color: #CCCCFF; height: 600px;">
+        <div class="jumbotron text-center mt-5 mx-2" style="height: 600px;">
+            <div class="page2">
             <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color: #FFFFCC"> Direct Contact Between Employers and Employees  :)</h1>
             <h1 class="display-6" style="color: #FFFFCC;">Customized for campus students!</h1>
             <hr class="my-4">
             <p class="lead" style="color: #5ebec4;"></p>
             <a class="btn btn-primary btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>
+            </div>
         </div>
     </div>
 
     <!-- page3 -->
     <div class="container-fluid">
-        <div class="jumbotron text-center mt-5 mx-2" style="background-color: #f7f7f7; height: 600px;">
+        <div class="jumbotron text-center mt-5 mx-2" style="height: 600px;">
+            <div class="page3">
             <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>
             <a class="btn btn-primary btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>
+            </div>
         </div>
     </div>
 
