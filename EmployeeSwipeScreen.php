@@ -11,6 +11,24 @@ if (!$user->is_authenticated()) {
     header("Location: /index.php");
     die(0);
 }
+$jobs = array();
+$pdo = Database::connect();
+/*
+Query:
+SELECT JobPostings.*, UserJobs.UserSeen, Companies.* FROM ((JobPostings
+INNER JOIN UserJobs ON JobPostings.JobID = UserJobs.JobID)
+INNER JOIN Companies ON JobPostings.CompanyID = Companies.CompanyID) 
+WHERE UserJobs.UserSeen = 0;
+*/
+$columns = array("JobID", "Title", "Details", "CompanyID", "UserSeen", "CompanyID", "Name", "Description", "CompanyImage");
+$query = "SELECT JobPostings.*, UserJobs.UserSeen, Companies.* FROM ((JobPostings
+INNER JOIN UserJobs ON JobPostings.JobID = UserJobs.JobID)
+INNER JOIN Companies ON JobPostings.CompanyID = Companies.CompanyID) 
+WHERE UserJobs.UserSeen = 0;";
+$statement = $pdo->prepare($query);
+$statement->execute();
+$data = $statement->fetchAll();
+$jobs = array_reverse($data);
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +41,7 @@ if (!$user->is_authenticated()) {
                 display: flex;
                 align-items:center;
                 height: 12em;
-                font-size:40px;
+                font-size:2.5em;
                 position:relative;
             }
             .box{
@@ -57,20 +75,20 @@ if (!$user->is_authenticated()) {
     </head>
     <body>
         <?php
-            $user = $_SESSION["user"];
+            //$user = $_SESSION["user"];
             echo("You are signed in as: " . $user->username);
-
         ?>
 
         <div class="container">
             <div class="box">
-                <p>Company name is</p>
-                <br>
-                <p>Com</p>
-                <br>
-                <p>dasd</p>
-                
-                <p>Hello</p>
+                <?php
+                    echo("Company: " . $jobs[0][array_search("Name", $columns)] . "<br>");
+                    echo("Job Title: " . $jobs[0][array_search("Title", $columns)] . "<br>");
+                    echo("Job Details: " . "<br>" . 
+                    "<textarea cols=80 rows=8 readonly>".$jobs[0][array_search("Details", $columns)]."</textarea><br>");
+                    echo("Company Description:" . "<br>" . 
+                    "<textarea cols=80 rows=8 readonly>".$jobs[0][array_search("Description", $columns)]."</textarea><br>");
+                ?>
 
             </div>  
         </div>
