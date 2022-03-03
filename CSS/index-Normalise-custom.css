@@ -353,3 +353,68 @@
     [hidden] {
       display: none;
     }
+
+
+
+
+    /* ----------------------------------------------------------------------------------------------------------------- */
+    /* For the specialised button */
+    .btn-btn-primary-btn-lg {
+      position: relative;
+      left: 45%;
+	    top: 40%;
+	    transform: translate(-50%,-50%);
+      width: 15vw;
+      height: 20vh;
+      border-radius: 50px;
+      line-height: 100px;
+      text-align: center;
+      text-decoration: none;
+      font-size:36px;
+      color: #fff;  
+      background-image: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #09a8f4);
+      background-size: 400%;
+      z-index: 1;
+      /* text-decoration: none;
+      position: relative;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 24px;
+      background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+      background-size: 400%;
+      width: 400px;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+      color: #fff;
+      border-radius: 50px;
+      z-index: 1; */
+
+    }
+  
+  
+    a.btn-btn-primary-btn-lg:hover {
+      animation: sun 8s infinite;
+      }
+
+    a.btn-btn-primary-btn-lg:hover::before {
+      /* content: "";
+      position: relative;
+      left: -5px;
+      right: -5px;
+      top:-5px;
+      bottom: -5px;
+      background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+      background-size: 400%;
+      border-radius: 50px;
+      filter: blur(20px);
+      z-index: -1; */
+      animation: sun 8s infinite;
+      }
+
+    @keyframes sun {
+    100% {
+        background-position: -400% 0;
+        }
+    }

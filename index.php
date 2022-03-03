@@ -28,11 +28,16 @@
         /* Delete extra scroll bars */
         body {
             overflow: hidden;
+        
         }
 
         /* For every pages */
         .container-fluid {
-            padding:0%; margin: 0%;
+            width: 100vw;
+            width: 100vh;
+            padding:0%; 
+            margin: 0%;
+            scroll-snap-align: center;
         }
 
 /* ----------------------------------------------------------------------------------------------------------------- */
@@ -42,15 +47,14 @@
         /* For navbar */
         .container-fluid {
             scroll-snap-align: start;
-            width: 100vh;
+            width: 100vw;
             height: 100vh;
         }
 /* ----------------------------------------------------------------------------------------------------------------- */
         /* 1st page */
         .page1 {
-      
             width: 100vw;
-            height: 100vh;
+            height: 120vh;
             border-width:0px ;
             background: linear-gradient(
             135deg,
@@ -61,33 +65,36 @@
             background-size: 200% 200%;
             animation: gradient-move 10s ease alternate infinite;
         }
-         /*3rd page */
-        .page3 {
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(
-                135deg,
-            rgb(225, 238, 210),
-            rgb(219, 208, 167),
-            rgb(230, 155, 3),
-            hsl(320deg, 80%, 70%));
-            background-size: 200% 200%;
-            animation: gradient-move 10s ease alternate infinite;
-        }
-        /* 2nd page */
+        
+         /*2nd page */
         .page2 {
             width: 100vw;
-            height: 100vh;
+            height: 120vh;
             background: linear-gradient(
                 135deg,
-            rgb(226, 241, 141),
-            rgb(194, 255, 159),
-            rgb(113, 252, 136),
-            rgb(103, 190, 240));
+            rgb(240, 117, 199),
+            rgb(241, 173, 255),
+            rgb(221, 102, 195),
+            rgb(241, 185,93));
             background-size: 200% 200%;
             animation: gradient-move 10s ease alternate infinite;
         }
 
+        /* 3rd page */
+        .page3 {
+            width: 100vw;
+            height: 120vh;
+            background: linear-gradient(
+                135deg,
+            rgb(248, 243, 151),
+            rgb(255, 247, 96),
+            rgb(170, 220, 94),
+            rgb(155, 223, 70));
+            background-size: 200% 200%;
+            animation: gradient-move 10s ease alternate infinite;
+        }
+
+        /* Dynamic */
         @keyframes gradient-move {
         0% {
           background-position: 0% 0%;
@@ -97,15 +104,14 @@
         }
     }
 /* ----------------------------------------------------------------------------------------------------------------- */
-
-        .display-4 {text-align:center;}
-        .display-6 {text-align:center;}
-    
+        /* Text general styling  */
+        .display-4, .display-6, .lead {text-align: center;}
 
     </style>
-  </head>
+ </head>
 
-  <body>
+
+    <body>
     <!-- Image and text -->
     
     <!-- navbar -->
@@ -124,21 +130,26 @@
     <!-- page1 -->
     <div class="container-fluid">
         <div class="page1">
-            <h1 class="display-4" style="color: #5ebec4;">Struggling with finding Employment or Employees?</h1>
-            <h1 class="display-6" style="color: #5ebec4;">Ever wish it was as easy as Tinder?</h1>
+            <br>
+            <h1 class="display-4" style="color: #000000;"><b>Struggling with finding Employment or Employees?</b></h1>
+            <br>
+            <h1 class="display-6" style="color: #000000;">Ever wish it was as easy as Tinder?</h1>
             <hr class="my-3">
-            <p class="lead" style="color: #5ebec4;">JobAssembler Is!</p>
-            <a class="btn-btn-primary-btn-lg" href="SignUpPage2.php" role="button" style="background-color: #f92c85;">Sign Up Now!</a>
-
+            <br>
+            <p class="lead" style="color: #000000;">JobAssembler Is!</p>
+            <a class="btn-btn-primary-btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>
         </div> 
     </div>
 
     <!-- page2 -->
     <div class="container-fluid">
             <div class="page2">
-            <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color: #FFFFCC"> Direct Contact Between Employers and Employees  :)</h1>
+                <br>
+            <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color: #FFFFCC"> <b>Direct Contact Between Employers and Employees  :)</b></h1>
+            <br>
             <h1 class="display-6" style="color: #FFFFCC;">Customized for campus students!</h1>
             <hr class="my-4">
+            <p class="lead" style="color: #FFFFCC;"><b>Easier and more engaging than existing options (LinkedIn, Indeed, Reed ... etc.)</b></p>
             <a class="btn-btn-primary-btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>
         </div>
     </div>
@@ -146,8 +157,9 @@
     <!-- page3 -->
     <div class="container-fluid">
             <div class="page3">
-            <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>
-            <a class="bt-btn-primary-btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>  
+                <br>
+            <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>  
+            <a class="btn-btn-primary-btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>  
         </div>
     </div>
 
