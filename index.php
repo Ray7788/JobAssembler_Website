@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/Normalise.css"> <!-- Include a custom CSS for the website later-->
+    <link rel="stylesheet" href="CSS/index-Normalise-custom.css"> <!-- Include a custom CSS for the website later-->
 
     <title>JobAssembler</title>
 
@@ -19,23 +19,48 @@
             height: 100vh;
         }
 
-        /*For Logo border*/
+        /* For Logo border*/
         .d-inline-block-align-top {border-radius: 5px;}
 
-        /*  */
+        /* For navbar */
         .container-fluid {
             scroll-snap-align: start;
             width: 100vw;
             height: 100vh;
         }
 
+        /* delete extra scroll bars */
         body {
             overflow: hidden;
         }
 
-    </style>
-        
+        /* For every page */
+        .container-fluid {
+            padding:0%; margin: 0;
+        }
 
+        .page1 {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(
+            135deg,
+            hsl(170deg, 80%, 70%),
+            hsl(190deg, 80%, 70%),
+            hsl(250deg, 80%, 70%),
+            hsl(320deg, 80%, 70%)
+        );
+            background-size: 200% 200%;
+            animation: gradient-move 15s ease alternate infinite;
+        }
+
+        @keyframes gradient-move {
+        0% {
+          background-position: 0% 0%;
+        }
+        100% {
+          background-position: 100% 100%;
+        }
+    </style>
   </head>
 
   <body>
@@ -47,29 +72,27 @@
         <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="";>
         JobAssembler
         <div class="nav-item">
-            <a class="btn btn-primary" href="login_page.php">Login</a>
+            <a class="btn btn-primary" href="login_page.php">Log in</a>
         </div>
         </a>
     </nav>
    
     <main>
     <!-- page1 -->
-    <div class="container-fluid" style="padding:0%; margin: 0;">
-        <div class="jumbotron text-center mt-5 mx-2" style="background-color: #fdf5df; height: 600px;">
-            <p></p>
+    <div class="container-fluid">
+        <div class="jumbotron text-center mt-5 mx-2" style="height: 600px;">
+            <div class="page1">
             <h1 class="display-4" style="color: #5ebec4;">Struggling with finding Employment or Employees?</h1>
-            <p></p>
             <h1 class="display-6" style="color: #5ebec4;">Ever wish it was as easy as Tinder?</h1>
             <hr class="my-3">
             <p class="lead" style="color: #5ebec4;">JobAssembler Is!</p>
-        
             <a class="btn btn-primary btn-lg" href="SignUpPage2.php" role="button" style="background-color: #f92c85;">Sign Up Now!</a>
-            <p></p> 
+        </div>
         </div> 
     </div>
 
     <!-- page2 -->
-    <div class="container-fluid"  style="padding:0%; margin: 0;">
+    <div class="container-fluid">
         <div class="jumbotron text-center mt-5 mx-2" style="background-color: #CCCCFF; height: 600px;">
             <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color: #FFFFCC"> Direct Contact Between Employers and Employees  :)</h1>
             <h1 class="display-6" style="color: #FFFFCC;">Customized for campus students!</h1>
@@ -80,7 +103,7 @@
     </div>
 
     <!-- page3 -->
-    <div class="container-fluid" style="padding:0%; margin: 0;">
+    <div class="container-fluid">
         <div class="jumbotron text-center mt-5 mx-2" style="background-color: #f7f7f7; height: 600px;">
             <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>
             <a class="btn btn-primary btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>
