@@ -13,15 +13,9 @@ if (!$user->is_authenticated()) {
 }
 $jobs = array();
 $pdo = Database::connect();
-/*
-Query:
-SELECT JobPostings.*, UserJobs.UserSeen, Companies.* FROM ((JobPostings
-INNER JOIN UserJobs ON JobPostings.JobID = UserJobs.JobID)
-INNER JOIN Companies ON JobPostings.CompanyID = Companies.CompanyID) 
-WHERE UserJobs.UserSeen = 0;
-*/
 $columns = array("JobID", "Title", "Details", "CompanyID", "UserSeen", "CompanyID", "Name", "Description", "CompanyImage");
-$query = "SELECT JobPostings.*, UserJobs.UserSeen, Companies.* FROM ((JobPostings
+//It's SELECT DISTINCT because without it the same row is returned multiple times. I think it's because my INNER JOIN stuff is outdated but this solves it easily.
+$query = "SELECT DISTINCT JobPostings.*, UserJobs.UserSeen, Companies.* FROM ((JobPostings
 INNER JOIN UserJobs ON JobPostings.JobID = UserJobs.JobID)
 INNER JOIN Companies ON JobPostings.CompanyID = Companies.CompanyID) 
 WHERE UserJobs.UserSeen = 0;";
@@ -29,6 +23,9 @@ $statement = $pdo->prepare($query);
 $statement->execute();
 $data = $statement->fetchAll();
 $jobs = array_reverse($data);
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -72,29 +69,64 @@ $jobs = array_reverse($data);
                 background-color:aqua;
             }
         </style>
+        <script>
+            var jobCounter = 0;
+            //To see whole jobArray do JSON.stringify(jobArray) because it's encoded using json to make it more secure.
+            var jobArray = <?php echo json_encode($jobs) ?>;
+            var columns = ["JobID", "Title", "Details", "CompanyID", "UserSeen", "CompanyID", "Name", "Description", "CompanyImage"];
+            
+            function writeToCard(){
+                var companyName = jobArray[jobCounter][columns.indexOf("Name")];
+                var jobTitle = jobArray[jobCounter][columns.indexOf("Title")];
+                var jobDetails = jobArray[jobCounter][columns.indexOf("Details")];
+                var companyDescription = jobArray[jobCounter][columns.indexOf("Description")];
+
+                document.getElementById("card").innerHTML = "Company: " + companyName + " <br> "
+                 + "Job Title: " + jobTitle + "<br>"
+                 + "Job Details: " + "<br> <textarea cols=80 rows=8 readonly>" + jobDetails + "</textarea><br>"
+                 + "Company Description: " + "<br> <textarea cols=80 rows=8 readonly>" + companyDescription + "</textarea><br>";
+            }
+
+            function buttonPressed(){
+                if(jobCounter < jobArray.length-1){
+                    jobCounter += 1;
+                    writeToCard();
+                }else{
+                    document.getElementById("card").innerHTML = "Sorry, you've seen every available job.";
+                }
+                
+            }
+
+            function yesPressed(){
+                buttonPressed();
+            }
+
+            function noPressed(){
+                buttonPressed();
+            }
+        </script>
     </head>
     <body>
         <?php
-            //$user = $_SESSION["user"];
             echo("You are signed in as: " . $user->username);
         ?>
 
         <div class="container">
             <div class="box">
-                <?php
-                    echo("Company: " . $jobs[0][array_search("Name", $columns)] . "<br>");
-                    echo("Job Title: " . $jobs[0][array_search("Title", $columns)] . "<br>");
-                    echo("Job Details: " . "<br>" . 
-                    "<textarea cols=80 rows=8 readonly>".$jobs[0][array_search("Details", $columns)]."</textarea><br>");
-                    echo("Company Description:" . "<br>" . 
-                    "<textarea cols=80 rows=8 readonly>".$jobs[0][array_search("Description", $columns)]."</textarea><br>");
-                ?>
+                <p id="card" name="card">
+                    placeholder
+                </p>
+                
 
             </div>  
         </div>
         <div class="buttonHolder">
-            <button class="button">NO</button>
-            <button class="button">YES</button>
+            <button class="button" onclick="noPressed()">NO</button>
+            <button class="button" onclick="yesPressed()">YES</button>
         </div>
     </body>
+    <script>
+        writeToCard();
+    </script>
+
 </html>
