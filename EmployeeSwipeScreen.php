@@ -131,12 +131,6 @@ $jobs = array_reverse($data);
             }
 
             function buttonPressed(yesOrNo){
-                if(jobCounter < jobArray.length-1){
-                    jobCounter += 1;
-                    writeToCard();
-                }else{
-                    document.getElementById("card").innerHTML = "Sorry, you've seen every available job.";
-                }
                 dataArray = {"userAccepted":yesOrNo, "userID":userID, "jobID":jobArray[jobCounter][columns.indexOf("JobID")]};
                 $.ajax({
                     type:"POST",
@@ -154,6 +148,13 @@ $jobs = array_reverse($data);
                         }
                     }
                 })
+                if(jobCounter < jobArray.length-1){
+                    jobCounter += 1;
+                    writeToCard();
+                }else{
+                    document.getElementById("card").innerHTML = "Sorry, you've seen every available job.";
+                }
+                
             }
         </script>
     </head>
