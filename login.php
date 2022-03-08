@@ -10,7 +10,9 @@
     <title>Signin - Job Assembler</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
     <!-- Bootstrap CSS -->
-    <link href="/CSS/signin.css" rel="stylesheet">
+
+    <link href="CSS/signin.css" rel="stylesheet">
+    <link href="../JobAssembler/CSS/signin.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
       
     <style>
@@ -75,7 +77,7 @@
     </div>
 
     <button class="w-30 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+    <p class="mt-5 mb-3 text-muted">&copy; X17 2021</p>
 
     <p id="warningMessage"></p>
   </form>
