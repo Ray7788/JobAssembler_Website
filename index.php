@@ -120,7 +120,7 @@
         <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="";>
         JobAssembler
         <div class="nav-item">
-            <a class="btn btn-primary" href="login_page.php">Log in</a>
+            <a class="btn btn-primary" href="login.php">Log in</a>
         </div>
         </a>
     </nav>
