@@ -15,12 +15,33 @@ if ($user->company_id == -1) {
     header("Location: index.php");
     die(0);
 }
+if (isset($_REQUEST["page"])) {
+    try {
+        $page = intval($_REQUEST["page"]);
+    }
+    catch (Exception $e) {
+        $page = 1;
+    }
+}
+else {
+    $page = 1;
+}
+if ($page < 1) {
+    $page = 1;
+}
+$offset = 0;
+const RESULTS_PER_PAGE = 20;
+$offset = ($page - 1) * RESULTS_PER_PAGE;
+if ($offset < 0) {
+    $offset = 0;
+}
+
 $jobs = array();
 $pdo = Database::connect();
 $query = "SELECT UserAccounts.Username, UserAccounts.Forename, UserAccounts.Surname, UserAccounts.Biography, JobPostings.Title, UserJobs.UserAccepted, UserJobs.CompanyAccepted
 FROM JobPostings INNER JOIN UserJobs ON JobPostings.JobID = UserJobs.JobID
 INNER JOIN UserAccounts ON UserJobs.UserID = UserAccounts.UserID
-WHERE JobPostings.CompanyID = ? LIMIT 20";
+WHERE JobPostings.CompanyID = ? LIMIT " . RESULTS_PER_PAGE . " OFFSET " . $offset;
 $statement = $pdo->prepare($query);
 $statement->execute([$user->company_id]);
 $jobs = $statement->fetchAll();
@@ -39,47 +60,66 @@ $jobs = $statement->fetchAll();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-<main class="container" style="padding-top: 2rem">
-    <h1>Your viewed applicants</h1>
-    <h4 class="text-muted">All the applicants you have either accepted or declined can be seen here</h4>
-    <br/>
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th scope="col">Username</th>
-                <th scope="col">Forename</th>
-                <th scope="col">Surname</th>
-                <th scope="col">About</th>
-                <th scope="col">Job Title</th>
-                <th scope="col">Accepted</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($jobs as $num => $line): ?>
-            <tr>
-                <td><?= $line["Username"]?></td>
-                <td><?= $line["Forename"]?></td>
-                <td><?= $line["Surname"]?></td>
-                <td style="word-break:break-all;"><?= $line["Biography"]?></td>
-                <td><?= $line["Title"]?></td>
-                <td><input type="checkbox" disabled <?= $line["CompanyAccepted"] ? "checked": ""?>></td>
-                <td>
-                    <div class="dropdown show">
-                        <button class="btn btn-sm dropdown-toggle" href="" role="button" id="dropdownMenuLink<?=$num?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Options
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink<?=$num?>">
-                            <button class="dropdown-item btn" href="">View details</button>
-                            <button class="dropdown-item btn" href="">Change acceptance</button>
-                            <button class="dropdown-item btn btn-danger" href="">Report</button>
+<main>
+    <div class="container" style="padding-top: 2rem">
+        <h1>Your viewed applicants</h1>
+        <h4 class="text-muted">All the applicants you have either accepted or declined can be seen here</h4>
+        <br/>
+        <table class="table" style="margin: auto;">
+            <thead>
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Forename</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">About</th>
+                    <th scope="col">Job Title</th>
+                    <th scope="col">Accepted</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php if(count($jobs) == 0): ?>
+                <tr>
+                    <th colspan="7" style="text-align: center;">No results found.</th>
+                </tr>
+            <?php else: ?>
+                <?php foreach($jobs as $num => $line): ?>
+                <tr>
+                    <td><?= $line["Username"]?></td>
+                    <td><?= $line["Forename"]?></td>
+                    <td><?= $line["Surname"]?></td>
+                    <td style="word-break:break-all;"><?= $line["Biography"]?></td>
+                    <td><?= $line["Title"]?></td>
+                    <td><input type="checkbox" disabled <?= $line["CompanyAccepted"] ? "checked": ""?>></td>
+                    <td>
+                        <div class="dropdown show">
+                            <button class="btn btn-sm dropdown-toggle" href="" role="button" id="dropdownMenuLink<?=$num?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Options
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink<?=$num?>">
+                                <button class="dropdown-item btn" href="">View details</button>
+                                <button class="dropdown-item btn" href="">Change acceptance</button>
+                                <button class="dropdown-item btn btn-danger" href="">Report</button>
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation example" style="margin: auto;">
+            <ul class="pagination">
+                <li class="page-item<?=$page == 1 ? " disabled" : ""?>"><a class="page-link"<?=$page != 1 ? " href=\"?page=". $page - 1 ."\"" : ""?><?=$page == 1 ? " disabled" : ""?>>Previous</a></li>
+                <?php if ($page != 1): ?>
+                <li class="page-item"><a class="page-link" href="?page=<?=$page-1?>"><?=$page-1?></a></li>
+                <?php endif; ?>
+                <li class="page-item active"><a class="page-link"><?=$page?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?=$page+1?>"><?=$page+1?></a></li>
+                <li class="page-item"><a class="page-link" href="?page=<?=$page+1?>">Next</a></li>
+            </ul>
+        </nav>
+    </div>
 </main>
 </body>
 </html>
