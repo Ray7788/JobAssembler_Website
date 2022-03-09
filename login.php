@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="author" content="X17 Group">
     <meta name="generator" content="Hugo 0.88.1">
     <title>Signin - Job Assembler</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
@@ -16,6 +16,39 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
       
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        }
+
+      .mb-4{border-radius: 5px;}
+      .text-center{
+        width: 100vw;
+        height: 100vh;
+        border-width:0px ;
+        background: linear-gradient(
+        135deg,
+            hsl(170deg, 80%, 70%),
+            hsl(190deg, 80%, 70%),
+            hsl(250deg, 80%, 70%),
+            hsl(320deg, 80%, 70%));
+        background-size: 200% 200%;
+        animation: gradient-move 10s ease alternate infinite;}
+      
+
+      /* Dynamic */
+      @keyframes gradient-move {
+        0% {
+          background-position: 0% 0%;
+        }
+        100% {
+          background-position: 100% 100%;
+        }
+      }
+/*-----------------------------------------------------------------------------------------------  */
+
+
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
