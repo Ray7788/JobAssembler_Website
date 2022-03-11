@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="X17 Group">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Signin - Job Assembler</title>
+    <title>Sign In - Job Assembler</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
     <!-- Bootstrap CSS -->
 
@@ -22,7 +22,10 @@
         border: 0;
         }
 
+/*-----------------------------------------------------------------------------------------------  */        
       .mb-4{border-radius: 5px;}
+/*-----------------------------------------------------------------------------------------------  */
+      /* gradient color */
       .text-center{
         width: 100vw;
         height: 100vh;
@@ -98,7 +101,9 @@
 <main class="form-signin">
     <img class="mb-4" src="Images/Logo1.png" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
+    
+<!-------------------------------------------------------------------------------------------------------------->
+<!-- form -->
     <form name="loginForm" id="loginForm">
     <div class="form-floating">
       <input type="text" class="form-control" name="username" id="username" placeholder="Username">
@@ -109,8 +114,10 @@
       <label for="password">Password</label>
     </div>
 
+<!-------------------------------------------------------------------------------------------------------------->
+<!-- submit  -->
     <button class="w-30 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; X17 2021</p>
+    <p class="mt-5 mb-3 text-muted">&copy; X17 2021-2022</p>
 
     <p id="warningMessage"></p>
   </form>
