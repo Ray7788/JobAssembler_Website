@@ -47,9 +47,34 @@
             background-position: 100% 100%;
             }
         }
-/*-----------------------------------------------------------------------------------------------  */
 
-        .bd-placeholder-img {
+/*-----------------------------------------------------------------------------------------------  */
+/* input styling */
+input{
+    outline-color: invert ;
+	outline-style: none ;
+	outline-width: 0px ;
+
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    padding: 10px 10px;
+	text-shadow: none ;
+	-webkit-appearance: none ;
+	-webkit-user-select: text ;
+	outline-color: transparent ;
+	box-shadow: none;
+}
+
+input:focus{
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+}
+
+/*-----------------------------------------------------------------------------------------------  */
+/* From bootstrap */
+.bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
         -webkit-user-select: none;
@@ -63,9 +88,8 @@
             }
         }
 
-/*-----------------------------------------------------------------------------------------------  */
-/*-----------------------------------------------------------------------------------------------  */
         </style>
+
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
@@ -137,7 +161,7 @@
         <main class="form-signin">
             <form id="form-signin" name="signUpForm">
 <!-------------------------------------------------------------------------------------------------------------->
-               
+<!-- form -->
                     <h3>Join Now!</h3>
                     <div class="form-floating">
                     <!-- <label for="username">Username:</label> -->
@@ -165,28 +189,28 @@
                 </div>
              
  <!-------------------------------------------------------------------------------------------------------------->
-
+<!-- radio frame -->
                     <br>
-                    <p class="ID">You want to be:</p>
-                    <br>
+                    <p class="choicetext">You want to be:</p>
+                    
                     <label class="radio-inline">
-                        <input type="radio" name="accountType" id="employee" value="employee" required>
+                        <input type="radio"  name="accountType" id="employee" value="employee" required>
                         <span class="check"></span>
-                        <label for="yes">Employe</label>
+                        <label for="yes">Employee </label>
                     </label>
-                   
+                   <br>
                     <label class="radio-inline">
-                        <input type="radio" name="accountType" id="employer" value="employer" required>
+                        <input type="radio"  name="accountType" id="employer" value="employer" required>
                         <span class="check"></span>
                         <label for="yes">Employer</label>
                     </label>
-                    <br><br>
+                    <br><br><br>
 
  <!-------------------------------------------------------------------------------------------------------------->
-                
-                    <input type="submit">
-
-                    
+<!-- submit  -->
+                    <!-- <input type="submit" value="Submit"> -->
+                    <button class="w-30 btn btn-lg btn-primary" type="submit">Sign Up</button>
+<!-- End part-->
                     <p class="mt-5 mb-3 text-muted">&copy; X17 2021-2022</p>
                     <br><br>
                     <p id="validationMsg"></p>
