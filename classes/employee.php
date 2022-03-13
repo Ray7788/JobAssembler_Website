@@ -11,7 +11,7 @@ class employee
 
 	public static function create_employee(String $biography){
 		$pdo = Database::connect();
-		$query = "INSERT INTO 'UserAccounts'('Biography') VALUES(':biography')";
+		$query = "INSERT INTO 'UserAccounts'('Biography') VALUES(:biography)";
 		$statement = $pdo->prepare($query);
 		return $statement->execute([
 			"biography" => $biography
