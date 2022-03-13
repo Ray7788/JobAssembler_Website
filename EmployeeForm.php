@@ -4,7 +4,6 @@
 <head>
  <title>Employee Form</title>
     <style>
-
         .container{
                 justify-content:center;
                 display: flex;
@@ -61,7 +60,6 @@
                                 error: function(){
                                         alert("Fail");
                                 }
-
                         })
                 })
         })
@@ -78,19 +76,11 @@
         <label for="biography">Biography: </label>
         <textarea type="text" name="biography" placeholder="Enter any relevent information about youself"id="biography"class="inputBox" required></textarea>
         <br><br>
-        <label for="credentials">Credentials: </label>
-        <textarea type="text" name="credentials" placeholder="Enter any of your credentials such as degrees, programming languages known, etc" id="credentials" class="inputBox" required></textarea>
+        <label for="profilePic">Profile Pic: </label>
+        <input type="file" id="profilePic" name="profilePic" accept="image/*">
         <br><br>
-        <select>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-        <option value="Prefer not to say">Prefer not to say</option>
-        </select>
-        <br><br>
-        <label for="birth">Birth Date:</label>
-        <input type="date" id="birth">
-        <br><br><br>
+        <label for="CV">CV: </label>
+        <input type="file" id="CV" name="CV">
         <p>By Creating an account you agree to our <a href="privacypolicy.html">Terms and Conditions</a><p>
         <button type="button" onclick="window.location.href='SignUpPage2.php';" class="button">Cancel</button>
         <input type="submit" value="Sign Up" class="button">
