@@ -360,10 +360,6 @@
     /* ----------------------------------------------------------------------------------------------------------------- */
     /* For the specialised button */
     .btn-btn-primary-btn-lg {
-      position: relative;
-      left: 45%;
-	    top: 40%;
-	    transform: translate(-50%,-50%);
       width: 15vw;
       height: 20vh;
       border-radius: 50px;

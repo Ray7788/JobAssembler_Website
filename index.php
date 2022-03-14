@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/index-Normalise-custom.css"> <!-- Include a custom CSS for the website. -->
+    <link rel="stylesheet" href="CSS/Index.css"> <!-- Include a custom CSS for the website. -->
 
     <title>JobAssembler</title>
 
@@ -107,6 +107,9 @@
         /* Text general styling  */
         .display-4, .display-6, .lead {text-align: center;}
 
+
+    
+
     </style>
  </head>
 
@@ -137,7 +140,7 @@
             <hr class="my-3">
             <br>
             <p class="lead" style="color: #000000;">JobAssembler Is!</p>
-            <a class="btn-btn-primary-btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>
+            <a class="btn-btn-primary-btn-lg" id="SignUpButton1" href="SignUpPage2.php" role="button" style="position: relative; left: 42.5%; top: 10%; transform: translate(-50%,-50%)">Sign Up Now!</a>
         </div> 
     </div>
 
@@ -150,7 +153,7 @@
             <h1 class="display-6" style="color: #FFFFCC;">Customized for campus students!</h1>
             <hr class="my-4">
             <p class="lead" style="color: #FFFFCC;"><b>Easier and more engaging than existing options (LinkedIn, Indeed, Reed ... etc.)</b></p>
-            <a class="btn-btn-primary-btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>
+            <a class="btn-btn-primary-btn-lg" id="SignUpButton2" href="SignUpPage2.php" role="button" style="position: relative; left: 42.5%; top: 10%; transform: translate(-50%,-50%)">Sign Up Now!</a>
         </div>
     </div>
 
@@ -159,7 +162,7 @@
             <div class="page3">
                 <br>
             <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>  
-            <a class="btn-btn-primary-btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>  
+            <a class="btn-btn-primary-btn-lg" id="SignUpButton3" href="SignUpPage2.php" role="button"  style="position: relative; left: 42.5%; top: 20%; transform: translate(-50%,-50%)">Sign Up Now!</a>  
         </div>
     </div>
 
