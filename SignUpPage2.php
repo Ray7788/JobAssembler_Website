@@ -1,24 +1,96 @@
 <!DOCTYPE html>
+<html lang="en">
 <html>
     <head>
-        <title>Sign-Up Page</title>
-        <style type="text/css">
-            .container{
-                justify-content:center;
-                display: flex;
-                align-items:center;
-                height: 100vh;
-                font-size:40px;
-                position:relative;
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <title>Sign Up - Job Assembler</title>
+       
+
+        <link href="CSS/SignUp.css" rel="stylesheet">
+        <link href="../JobAssembler/CSS/SignUp.css" rel="stylesheet">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
+
+        <style>
+        * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        box-sizing: border-box;
+        }
+
+/*-----------------------------------------------------------------------------------------------  */
+        /* gradient color */
+        .text-center{
+        width: 100vw;
+        height: 100vh;
+        border-width:0px ;
+        background: linear-gradient(
+        135deg,
+            hsl(170deg, 80%, 70%),
+            hsl(190deg, 80%, 70%),
+            hsl(250deg, 80%, 70%),
+            hsl(320deg, 80%, 70%));
+        background-size: 200% 200%;
+        animation: gradient-move 10s ease alternate infinite;}
+      
+
+        /* Dynamic */
+        @keyframes gradient-move {
+            0% {
+            background-position: 0% 0%;
             }
-            .inputBox{
-                float:right;
-                font-size:40px;
+            100% {
+            background-position: 100% 100%;
             }
-            label{
-                float:left;
+        }
+
+/*-----------------------------------------------------------------------------------------------  */
+/* input styling */
+input{
+    outline-color: invert ;
+	outline-style: none ;
+	outline-width: 0px ;
+
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    padding: 10px 10px;
+	text-shadow: none ;
+	-webkit-appearance: none ;
+	-webkit-user-select: text ;
+	outline-color: transparent ;
+	box-shadow: none;
+}
+
+input:focus{
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+}
+
+/*-----------------------------------------------------------------------------------------------  */
+/* From bootstrap */
+.bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        }
+
+        @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
             }
+        }
+
         </style>
+
+
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
             function ValidateForm(username, forename, surname, password, confirmPassword, warning){
@@ -85,34 +157,61 @@
         </script>
     </head>
 
-    <body>
-        <div class="container">
-            <form id="signUpForm" name="signUpForm">
-                    <h3>Job Assembler</h3>
-                    <label for="username">Username:</label>
-                    <input type="text" name="username" id="username" class="inputBox">
-                    <br><br>
-                    <label for="forename">Forename:</label>
-                    <input type="text" name="forename" id="forename" class="inputBox">
-                    <br><br>
-                    <label for="surname">Surname:</label>
-                    <input type="text" name="surname" id="surname" class="inputBox">
-                    <br><br>
-                    <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" class="inputBox">
-                    <br><br>
-                    <label for="confirmPassword">Confirm Password:</label>
-                    <input type="password" name="confirmPassword" id="confirmPassword" class="inputBox">
-                    <br><br>
-                    <label for="accountType">You are a:</label>
+    <body class="text-center">
+        <main class="form-signin">
+            <form id="form-signin" name="signUpForm">
+<!-------------------------------------------------------------------------------------------------------------->
+<!-- form -->
+                    <h3>Join Now!</h3>
+                    <div class="form-floating">
+                    <!-- <label for="username">Username:</label> -->
+                    <input type="text" name="username" id="username" class="inputBox" placeholder="Username">                  
+                </div>
+                   
+                    <div class="form-floating">
+                    <!-- <label for="forename">Forename:</label> -->
+                    <input type="text" name="forename" id="forename" class="inputBox" placeholder="Forename"> 
+                </div>
+                   
+                    <div class="form-floating">
+                    <!-- <label for="surname">Surname:</label> -->
+                    <input type="text" name="surname" id="surname" class="inputBox" placeholder="Surname">
+                </div>
+                   
+                    <div class="form-floating">
+                    <!-- <label for="password">Password:</label> -->
+                    <input type="password" name="password" id="password" class="inputBox" placeholder="Password">
+                </div>
+                    
+                    <div class="form-floating">
+                    <!-- <label for="confirmPassword">Confirm Password:</label> -->
+                    <input type="password" name="confirmPassword" id="confirmPassword" class="inputBox" placeholder="Confirm Password">
+                </div>
+             
+ <!-------------------------------------------------------------------------------------------------------------->
+<!-- radio frame -->
+                    <br>
+                    <p class="choicetext">You want to be:</p>
+                    
                     <label class="radio-inline">
-                        <input type="radio" name="accountType" id="employee" value="employee" required>Employee
+                        <input type="radio"  name="accountType" id="employee" value="employee" required>
+                        <span class="check"></span>
+                        <label for="yes">Employee </label>
                     </label>
+                   <br>
                     <label class="radio-inline">
-                        <input type="radio" name="accountType" id="employer" value="employer" required>Employer
+                        <input type="radio"  name="accountType" id="employer" value="employer" required>
+                        <span class="check"></span>
+                        <label for="yes">Employer</label>
                     </label>
-                    <br><br>
-                    <input type="submit">
+                    <br><br><br>
+
+ <!-------------------------------------------------------------------------------------------------------------->
+<!-- submit  -->
+                    <!-- <input type="submit" value="Submit"> -->
+                    <button class="w-30 btn btn-lg btn-primary" type="submit">Sign Up</button>
+<!-- End part-->
+                    <p class="mt-5 mb-3 text-muted">&copy; X17 2021-2022</p>
                     <br><br>
                     <p id="validationMsg"></p>
 
@@ -125,6 +224,6 @@
             </form>
 
 
-        </div>
+        </main>
     </body>
 </html>
