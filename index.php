@@ -28,7 +28,6 @@
         /* Delete extra scroll bars */
         body {
             overflow: hidden;
-        
         }
 
         /* For every pages */
@@ -53,6 +52,7 @@
 /* ----------------------------------------------------------------------------------------------------------------- */
         /* 1st page */
         .page1 {
+            position: relative;
             width: 100vw;
             height: 120vh;
             border-width:0px ;
@@ -68,6 +68,7 @@
         
          /*2nd page */
         .page2 {
+            position: relative;
             width: 100vw;
             height: 120vh;
             background: linear-gradient(
@@ -82,6 +83,7 @@
 
         /* 3rd page */
         .page3 {
+            position: relative;
             width: 100vw;
             height: 120vh;
             background: linear-gradient(
@@ -106,9 +108,9 @@
 /* ----------------------------------------------------------------------------------------------------------------- */
         /* Text general styling  */
         .display-4, .display-6, .lead {text-align: center;}
-
-
-    
+/* ----------------------------------------------------------------------------------------------------------------- */
+        /*Button position  */
+       .PageButton{position: absolute; left: 50%; top: 60%; transform: translate(-50%,-50%)}
 
     </style>
  </head>
@@ -140,7 +142,9 @@
             <hr class="my-3">
             <br>
             <p class="lead" style="color: #000000;">JobAssembler Is!</p>
-            <a class="btn-btn-primary-btn-lg" id="SignUpButton1" href="SignUpPage2.php" role="button" style="position: relative; left: 42.5%; top: 10%; transform: translate(-50%,-50%)">Sign Up Now!</a>
+            <div class="PageButton">
+            <a class="btn-btn-primary-btn-lg" id="SignUpButton1" href="SignUpPage2.php" role="button">Sign Up Now!</a>
+            </div> 
         </div> 
     </div>
 
@@ -153,7 +157,9 @@
             <h1 class="display-6" style="color: #FFFFCC;">Customized for campus students!</h1>
             <hr class="my-4">
             <p class="lead" style="color: #FFFFCC;"><b>Easier and more engaging than existing options (LinkedIn, Indeed, Reed ... etc.)</b></p>
-            <a class="btn-btn-primary-btn-lg" id="SignUpButton2" href="SignUpPage2.php" role="button" style="position: relative; left: 42.5%; top: 10%; transform: translate(-50%,-50%)">Sign Up Now!</a>
+            <div class="PageButton">
+            <a class="btn-btn-primary-btn-lg" id="SignUpButton2" href="SignUpPage2.php" role="button">Sign Up Now!</a>
+            </div>
         </div>
     </div>
 
@@ -161,8 +167,10 @@
     <div class="container-fluid">
             <div class="page3">
                 <br>
-            <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>  
-            <a class="btn-btn-primary-btn-lg" id="SignUpButton3" href="SignUpPage2.php" role="button"  style="position: relative; left: 42.5%; top: 20%; transform: translate(-50%,-50%)">Sign Up Now!</a>  
+            <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>
+            <div class="PageButton">  
+            <a class="btn-btn-primary-btn-lg" id="SignUpButton3" href="SignUpPage2.php" role="button">Sign Up Now!</a>  
+            </div>
         </div>
     </div>
 
