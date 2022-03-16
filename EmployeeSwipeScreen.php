@@ -115,7 +115,7 @@ $jobs = array_reverse($data);
             var userID = <?php echo($userID); ?>;
             var jobCounter = 0;
             //To see whole jobArray do JSON.stringify(jobArray) because it's encoded using json to make it more secure.
-            var jobArray = <?php echo json_encode($jobs) ?>;
+            var jobArray = <?php echo json_encode($jobs) ?>;    //If this is empty, disable buttons
             var columns = ["JobID", "Title", "Details", "CompanyID", "UserSeen", "CompanyID", "Name", "Description", "CompanyImage"];
             
             function writeToCard(){
@@ -153,6 +153,8 @@ $jobs = array_reverse($data);
                     writeToCard();
                 }else{
                     document.getElementById("card").innerHTML = "Sorry, you've seen every available job.";
+                    document.getElementById("noButton").disabled = true;
+                    document.getElementById("yesButton").disabled = true;
                 }
                 
             }
@@ -174,8 +176,8 @@ $jobs = array_reverse($data);
         </div>
         <div class="buttonHolder">
 
-            <button class="button" onclick="buttonPressed(0)">NO</button>
-            <button class="button" onclick="buttonPressed(1)">YES</button>
+            <button class="button" id="noButton" onclick="buttonPressed(0)">NO</button>
+            <button class="button" id="yesButton" onclick="buttonPressed(1)">YES</button>
         </div>
     </body>
     <script>
