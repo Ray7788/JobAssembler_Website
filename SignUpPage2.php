@@ -159,7 +159,7 @@ input:focus{
 
     <body class="text-center">
         <main class="form-signin">
-            <form id="form-signin" name="signUpForm">
+            <form id="signUpForm" name="signUpForm">
 <!-------------------------------------------------------------------------------------------------------------->
 <!-- form -->
                     <h3>Join Now!</h3>
