@@ -54,7 +54,7 @@
                                 url:"api/EmployeeRegister.php",
                                 data:$(this).serialize(),
                                 success: function(data){
-                                        window.location = "login_page.php"
+                                        window.location = "login.php"
                                         alert("success");
                                 },
                                 error: function(){
