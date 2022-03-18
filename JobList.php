@@ -82,12 +82,13 @@ $jobs = $statement->fetchAll();
             $("#jobUpdateModal").on("show.bs.modal", function (event) {
                 let button = $(event.relatedTarget) // Button that triggered the modal
                 let id = button.data("job-id") // Extract info from data-* attributes
+                console.log(id)
                 $.ajax({
                     type:"GET",
                     url:"api/jobDetails.php?id=" + id,
                     success: function(data){
-                        let modal = $(this);
-                        $("#jobUpdateText").text(data["Title"]);
+                        $("#jobUpdateModal").data("job-id", id)
+                        $("#jobUpdateText").text(data["Name"] + ": " + data["Title"]);
                         console.log(data);
                     },
                     error: function(xhr){
@@ -95,6 +96,36 @@ $jobs = $statement->fetchAll();
                     }
                 })
             })
+            $("#jobUpdateAccept").on("click", function (event) {
+                    let modal = $("#jobUpdateModal");
+                    let id = modal.data("job-id");
+                    $.ajax({
+                        type:"POST",
+                        url:"api/jobUpdating.php?userID=<?=$user->user_id?>&userAccepted=1&jobID=" + id,
+                        success: function(data){
+                            window.location.reload();
+                        },
+                        error: function(xhr){
+                            alert("error\n" + xhr.responseJson);
+                        }
+                    })
+                }
+            )
+            $("#jobUpdateDecline").on("click", function (event) {
+                    let modal = $("#jobUpdateModal");
+                    let id = modal.data("job-id");
+                    $.ajax({
+                        type:"POST",
+                        url:"api/jobUpdating.php?userID=<?=$user->user_id?>&userAccepted=0&jobID=" + id,
+                        success: function(data){
+                            window.location.reload();
+                        },
+                        error: function(xhr){
+                            alert("error\n" + xhr.responseJson);
+                        }
+                    })
+                }
+            )
         })
     </script>
 </head>
@@ -198,8 +229,8 @@ $jobs = $statement->fetchAll();
                     <p>Change job acceptance status?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Accept job</button>
-                    <button type="button" class="btn btn-danger"    >Decline job</button>
+                    <button type="button" class="btn btn-success" id="jobUpdateAccept">Accept job</button>
+                    <button type="button" class="btn btn-danger" id="jobUpdateDecline">Decline job</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
