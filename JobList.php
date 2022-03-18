@@ -160,7 +160,7 @@ $jobs = $statement->fetchAll();
                 <td><?= $line["Title"]?></td>
                 <!--<td style="word-break:break-all;"><?= $line["Details"]?></td>-->
                 <td><?= "Unknown"?></td>
-                <td><input type="checkbox" disabled <?= $line["UserAccepted"] ? "checked": ""?>></td>
+                <td class="<?= $line["UserAccepted"] ? "text-success" : "text-danger" ?>"><?= $line["UserAccepted"] ? "Accepted": "Declined"?></td>
                 <td>
                     <div class="dropdown show">
                         <button class="btn btn-sm dropdown-toggle" href="" role="button" id="dropdownMenuLink<?=$num?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
