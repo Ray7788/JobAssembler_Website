@@ -31,7 +31,7 @@ $statement = $pdo->prepare($query);
 $statement->execute(["userID" => $userID]);
 $UserJobsIDs = $statement->fetchAll();
 $UserJobsIDs = array_map('implode', $UserJobsIDs);
-echo(implode($UserJobsIDs));
+//echo(implode($UserJobsIDs));
 
 $query = "SELECT JobID FROM JobPostings";
 $statement = $pdo->prepare($query);

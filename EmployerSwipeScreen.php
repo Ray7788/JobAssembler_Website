@@ -15,11 +15,20 @@ if (!$user->is_authenticated()) {
 $applicants = array();
 $pdo = Database::connect();
 
+//$columns = array("JobID", "Title", "Details", "CompanyID");
 $query = "SELECT * FROM JobPostings WHERE CompanyID = :companyID";
 $statement = $pdo->prepare($query);
 $statement->execute(["companyID" => $user->company_id]);
 $jobs = $statement->fetchAll();
-$num=1;
+
+//* FROM UserAccounts WHERE UserJobs.jobID belongs to my companyID AND CompanySeen = 0.
+$query = "SELECT UserAccounts.UserID, UserAccounts.Forename, UserAccounts.Surname, UserAccounts.Biography FROM ((UserAccounts 
+INNER JOIN UserJobs ON UserJobs.UserID = UserAccounts.UserID)
+INNER JOIN Companies ON JobPostings.CompanyID = Companies.CompanyID)
+WHERE UserJobs.UserAccepted = 1 AND UserJobs.CompanySeen = 0 AND UserJobs.companyID = :companyID;";
+$statement = $pdo->prepare($query);
+$statement->execute(["companyID" => $user->company_id]);
+//$userAccounts = $statements->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -73,25 +82,37 @@ $num=1;
         
         <script>
             var userID = <?php echo($userID); ?>;
-            var currentJob = 0;
+            var currentJobID = 0;
+            var jobArray = <?php echo json_encode($jobs) ?>;    //If this is empty, disable buttons
+            var currentJob = jobArray[currentJobID][1];
+            
             $(function(){
                 $(".dropdown-menu a").click(function(){
                     alert($(this).text());
                     currentJob = $(this).text();
+                    document.getElementById("jobName").innerHTML = "Current job: " + currentJob;
                 });
             });
 
+            function getRightJobs(){
+                //When user presses the dropdown button and changes jobs, you want to change the jobs displayed
+                //Get array of jobs with jobID just selected.
+            }
+
             function writeToCard(){
-                
+                //var forename = 
             }
         </script>
     </head>
     <body>
         <?php
             echo("You are signed in as: " . $user->username);
-            echo(implode("",$jobs[0]));
-            
+            //echo(implode(",",$jobs[0]));
+            echo($user->companyID);
         ?>
+        <p id="jobName" name="jobName">
+            placeholder
+        </p>
         
         <div class="container">
             <div class="box">
@@ -111,7 +132,7 @@ $num=1;
         <div class="buttonHolder">
             <div class="dropdown">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    Dropdown button
+                    Choose job
                 </button>
                 <div class="dropdown-menu">
                     <?php
@@ -124,6 +145,7 @@ $num=1;
         </div>
     </body>
     <script>
+        document.getElementById("jobName").innerHTML = "Current job: " + currentJob;
         //writeToCard();
     </script>
 </html>
