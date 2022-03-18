@@ -58,10 +58,12 @@ $jobs = $statement->fetchAll();
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 <body>
 <main>
     <div class="container" style="padding-top: 2rem">
+        <a class="btn btn-secondary" href="main.php">Back</a>
         <h1>Your viewed applicants</h1>
         <h4 class="text-muted">All the applicants you have either accepted or declined can be seen here</h4>
         <br/>
@@ -88,7 +90,7 @@ $jobs = $statement->fetchAll();
                     <td><?= $line["Username"]?></td>
                     <td><?= $line["Forename"]?></td>
                     <td><?= $line["Surname"]?></td>
-                    <td style="word-break:break-all;"><?= $line["Biography"]?></td>
+                    <td style="word-break:break-word;"><?= $line["Biography"]?></td>
                     <td><?= $line["Title"]?></td>
                     <td><input type="checkbox" disabled <?= $line["CompanyAccepted"] ? "checked": ""?>></td>
                     <td>
@@ -108,8 +110,8 @@ $jobs = $statement->fetchAll();
             <?php endif; ?>
             </tbody>
         </table>
-        <nav aria-label="Page navigation example" style="margin: auto;">
-            <ul class="pagination">
+        <nav>
+            <ul class="pagination justify-content-center">
                 <li class="page-item<?=$page == 1 ? " disabled" : ""?>"><a class="page-link"<?=$page != 1 ? " href=\"?page=". $page - 1 ."\"" : ""?><?=$page == 1 ? " disabled" : ""?>>Previous</a></li>
                 <?php if ($page != 1): ?>
                 <li class="page-item"><a class="page-link" href="?page=<?=$page-1?>"><?=$page-1?></a></li>

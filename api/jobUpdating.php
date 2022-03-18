@@ -26,7 +26,6 @@ try{
     if(!$result){
         ApiResponseGenerator::generate_error_json(500, "There was an error with the database. Please try again later");
     }else{
-        
         ApiResponseGenerator::generate_response_json(201, ["message" => "Successfully updated database."]);
     }
 }
