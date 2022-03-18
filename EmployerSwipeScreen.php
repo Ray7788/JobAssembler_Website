@@ -12,23 +12,29 @@ if (!$user->is_authenticated()) {
     header("Location: /index.php");
     die(0);
 }
+//$companyID = $user->company_id;
+$companyID = 1;
+
 $applicants = array();
 $pdo = Database::connect();
 
 //$columns = array("JobID", "Title", "Details", "CompanyID");
 $query = "SELECT * FROM JobPostings WHERE CompanyID = :companyID";
 $statement = $pdo->prepare($query);
-$statement->execute(["companyID" => $user->company_id]);
+$statement->execute(["companyID" => $companyID]);
 $jobs = $statement->fetchAll();
 
+//Make the array of jobs belonging to the company into a string ready for the sql query.
+
+
 //* FROM UserAccounts WHERE UserJobs.jobID belongs to my companyID AND CompanySeen = 0.
-$query = "SELECT UserAccounts.UserID, UserAccounts.Forename, UserAccounts.Surname, UserAccounts.Biography FROM ((UserAccounts 
-INNER JOIN UserJobs ON UserJobs.UserID = UserAccounts.UserID)
-INNER JOIN Companies ON JobPostings.CompanyID = Companies.CompanyID)
-WHERE UserJobs.UserAccepted = 1 AND UserJobs.CompanySeen = 0 AND UserJobs.companyID = :companyID;";
+$query = "SELECT DISTINCT UserAccounts.UserID, UserAccounts.Forename, UserAccounts.Surname, UserAccounts.Biography FROM ((UserAccounts 
+INNER JOIN UserJobs ON UserJobs.UserID = UserAccounts.UserID) 
+INNER JOIN JobPostings ON JobPostings.JobID = UserJobs.JobID) 
+WHERE UserJobs.UserAccepted = 1 AND UserJobs.CompanySeen = 0 AND UserJobs.JobID in (2, 3, 4);";
 $statement = $pdo->prepare($query);
-$statement->execute(["companyID" => $user->company_id]);
-//$userAccounts = $statements->fetchAll();
+$statement->execute(["companyID" => $companyID]);
+$userAccounts = $statements->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -85,6 +91,7 @@ $statement->execute(["companyID" => $user->company_id]);
             var currentJobID = 0;
             var jobArray = <?php echo json_encode($jobs) ?>;    //If this is empty, disable buttons
             var currentJob = jobArray[currentJobID][1];
+            //var userAccounts = <?php echo json_encode($userAccounts) ?>;  //If this is empty, there are no users left to swipe through.
             
             $(function(){
                 $(".dropdown-menu a").click(function(){

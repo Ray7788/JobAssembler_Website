@@ -45,7 +45,7 @@ $JobPostingsIDs = array_map('implode', $JobPostingsIDs);
 for($x=0;$x<count($JobPostingsIDs);$x++){
     if(in_array($JobPostingsIDs[$x], $UserJobsIDs) == false){
         //Need to INSERT this entry
-        $query = "INSERT INTO UserJobs(UserID, JobID, UserAccepted, CompanyAccepted, UserSeen) VALUES (:userID, :jobID, 0, 0, 0)";
+        $query = "INSERT INTO UserJobs(UserID, JobID, UserAccepted, CompanyAccepted, UserSeen) VALUES (:userID, :jobID, 0, 0, 0, 0)";
         $statement = $pdo->prepare($query);
         $statement->execute([
             "userID" => $userID,
