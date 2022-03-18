@@ -30,10 +30,17 @@
         border-width:0px ;
         background: linear-gradient(
         135deg,
-            hsl(170deg, 80%, 70%),
-            hsl(190deg, 80%, 70%),
-            hsl(250deg, 80%, 70%),
-            hsl(320deg, 80%, 70%));
+            
+            rgb(247,121,125),
+            rgb(253,200,48),
+            rgb(251,215,134),
+            rgb(168,255,120)
+            
+            /* rgb(247,121,125),
+            rgb(247,121,125),
+            rgb(121,203,202),
+            rgb(119,161,211) */
+            );
         background-size: 200% 200%;
         animation: gradient-move 10s ease alternate infinite;}
       
@@ -159,10 +166,13 @@ input:focus{
 
     <body class="text-center">
         <main class="form-signin">
-            <form id="form-signin" name="signUpForm">
+            <form id="signUpForm" name="signUpForm">
 <!-------------------------------------------------------------------------------------------------------------->
+<!-- header -->
+                    <h2>Join</h2>
+                    <h1>JobAssembler</h1>
+                    <h2>Now!</h2>
 <!-- form -->
-                    <h3>Join Now!</h3>
                     <div class="form-floating">
                     <!-- <label for="username">Username:</label> -->
                     <input type="text" name="username" id="username" class="inputBox" placeholder="Username">                  
@@ -198,7 +208,7 @@ input:focus{
                         <span class="check"></span>
                         <label for="yes">Employee </label>
                     </label>
-                   <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <label class="radio-inline">
                         <input type="radio"  name="accountType" id="employer" value="employer" required>
                         <span class="check"></span>
