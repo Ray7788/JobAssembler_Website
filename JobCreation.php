@@ -27,20 +27,38 @@
                 })
             });})
     </script>
-    <title>Job Creation</title>
+    <title>Job Creation  JobAssembler</title>
+
+    <!-- CSS Styling-->
+    <link rel="stylesheet" href="CSS/JobCreation.css">
+    <link rel="stylesheet" href=../JobAssembler/CSS/JobCreation.css>
 </head>
 <body>
-    <h1>Enter job detail</h1>
+    <div class="content">
+        <div class="login-box">
+            <h1>Enter Job Detail</h1>
+            
     <form name="jobCreateForm" id="jobCreateForm">
-        <p>
-            Job title<br>
+        <!-- <p> -->
+            <div class="output-frame">
+            <label for="username">Job title</label>
             <input type="text" name="title" id="title" required><br><br>
+            </div>
+
+            <div class="output-frame">
             Job description<br>
             <textarea type="textbox" name="description" id="description" rows="4" cols="50" required></textarea><br><br>
+            </div>
+
+            <div class="output-frame">
             Job Location<br>
             <input type="text" name="location" id="location" required><br><br>
+            </div>
+            
             <input type="submit" value="Submit">
-        </p>
+        <!-- </p> -->
     </form>
+        </div>
+    </div>
 </body>
 </html>
