@@ -117,7 +117,6 @@
 
 
     <body>
-    <!-- Image and text -->
     
     <!-- navbar -->
     <nav class="navbar navbar-light" style="background-color: white;">
@@ -169,7 +168,7 @@
                 <br>
             <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>
             <div class="PageButton">  
-            <a class="btn-btn-primary-btn-lg" id="SignUpButton3" href="SignUpPage2.php" role="button">Sign Up Now!</a>  
+            <a class="btn-btn-primary-btn-lg" id="SignUpButton3" href="SignUpPage2.php" role="button">Sign Up</a>  
             </div>
         </div>
     </div>

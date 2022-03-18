@@ -34,12 +34,9 @@
             rgb(247,121,125),
             rgb(253,200,48),
             rgb(251,215,134),
-            rgb(168,255,120)
-            
-            /* rgb(247,121,125),
-            rgb(247,121,125),
-            rgb(121,203,202),
-            rgb(119,161,211) */
+            rgb(168,255,120),
+            rgb(48,232,191)
+
             );
         background-size: 200% 200%;
         animation: gradient-move 10s ease alternate infinite;}
@@ -170,7 +167,7 @@ input:focus{
 <!-------------------------------------------------------------------------------------------------------------->
 <!-- header -->
                     <h2>Join</h2>
-                    <h1>JobAssembler</h1>
+                    <h1><b>JobAssembler</b></h1>
                     <h2>Now!</h2>
 <!-- form -->
                     <div class="form-floating">
