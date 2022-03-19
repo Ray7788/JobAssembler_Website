@@ -31,27 +31,24 @@ $statement = $pdo->prepare($query);
 $statement->execute(["userID" => $userID]);
 $UserJobsIDs = $statement->fetchAll();
 $UserJobsIDs = array_map('implode', $UserJobsIDs);
-//echo(implode($UserJobsIDs));
 
 $query = "SELECT JobID FROM JobPostings";
 $statement = $pdo->prepare($query);
 $statement->execute();
 $JobPostingsIDs = $statement->fetchAll();
 $JobPostingsIDs = array_map('implode', $JobPostingsIDs);
-//echo("HEELOOO". implode('\n', array_map('implode', $JobPostingsIDs)));
 
 //For some reason each number is read twice, so each array element is two numbers. Shouldn't make a difference though.
 
 for($x=0;$x<count($JobPostingsIDs);$x++){
     if(in_array($JobPostingsIDs[$x], $UserJobsIDs) == false){
         //Need to INSERT this entry
-        $query = "INSERT INTO UserJobs(UserID, JobID, UserAccepted, CompanyAccepted, UserSeen) VALUES (:userID, :jobID, 0, 0, 0, 0)";
+        $query = "INSERT INTO UserJobs(UserID, JobID, UserAccepted, CompanyAccepted, UserSeen, CompanySeen) VALUES (:userID, :jobID, 0, 0, 0, 0)";
         $statement = $pdo->prepare($query);
         $statement->execute([
             "userID" => $userID,
             "jobID" => $JobPostingsIDs[$x][0]
         ]);
-        
     }
 }
 

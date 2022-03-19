@@ -12,13 +12,11 @@ if (!$user->is_authenticated()) {
     header("Location: /index.php");
     die(0);
 }
-//$companyID = $user->company_id;
 $companyID = 1;
 
 $applicants = array();
 $pdo = Database::connect();
 
-//$columns = array("JobID", "Title", "Details", "CompanyID");
 $query = "SELECT * FROM JobPostings WHERE CompanyID = :companyID";
 $statement = $pdo->prepare($query);
 $statement->execute(["companyID" => $companyID]);
@@ -34,7 +32,6 @@ for($x=0; $x<count($jobs); $x++){
 $jobString = substr($jobString, 0, -1); //Removes the last comma
 
 
-//* FROM UserAccounts WHERE UserJobs.jobID belongs to my companyID AND CompanySeen = 0.
 $query = "SELECT DISTINCT UserAccounts.UserID, UserAccounts.Forename, UserAccounts.Surname, UserAccounts.Biography, UserJobs.JobID FROM ((UserAccounts 
 INNER JOIN UserJobs ON UserJobs.UserID = UserAccounts.UserID) 
 INNER JOIN JobPostings ON JobPostings.JobID = UserJobs.JobID) 
