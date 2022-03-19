@@ -70,21 +70,49 @@ $jobs = array_reverse($data);
 <html>
     <head>
         <title>Employee Swipe Screen</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
         <style type="text/css">
-            .container{
+            body {
+            display: flex;
+            justify-content: center;
+            background-image: linear-gradient(to left, #e1eec3, #f05053);
+            }
+
+            .container-fluid{
+            background-color: #fff;
+            width: 75vw;
+            height: 90vh;
+            position: relative;
+            display: flex;
+            border-radius: 15px;
+            justify-content: center;
+            align-items: center;
+            top: 10vh;
+            }
+
+            /* .container{
                 justify-content:center;
                 display: flex;
-                align-items:center;
+                align-items: center;
                 height: 12em;
                 font-size:2.5em;
                 position:relative;
-            }
+            } */
+
             .box{
+                width: 70vw;
+                height: 80vh;
+                top: 0;
+                overflow: hidden;
                 background: bisque;
-                border-radius: 5px;
+                border-radius: 10px;
                 box-shadow: 3px 10px 15px #abc;
-                
+                /* bisque */
             }
+
             .buttonHolder{
                 justify-content:center;
                 display:flex;
@@ -121,10 +149,10 @@ $jobs = array_reverse($data);
                 var jobDetails = jobArray[jobCounter][columns.indexOf("Details")];
                 var companyDescription = jobArray[jobCounter][columns.indexOf("Description")];
 
-                document.getElementById("card").innerHTML = "Company: " + companyName + " <br> "
-                 + "Job Title: " + jobTitle + "<br>"
-                 + "Job Details: " + "<br> <textarea cols=80 rows=8 readonly>" + jobDetails + "</textarea><br>"
-                 + "Company Description: " + "<br> <textarea cols=80 rows=8 readonly>" + companyDescription + "</textarea><br>";
+                document.getElementById("card").innerHTML = "Company: " + companyName + " <br><br> "
+                 + "Job Title: " + jobTitle + "<br><br>"
+                 + "Job Details: " + "<br> <textarea cols=80 rows=6 readonly>" + jobDetails + "</textarea><br>"
+                 + "Company Description: " + "<br> <textarea cols=80 rows=6 readonly>" + companyDescription + "</textarea><br>";
             }
 
             function buttonPressed(yesOrNo){
@@ -157,24 +185,34 @@ $jobs = array_reverse($data);
             }
         </script>
     </head>
-    <body>
-        <?php
-            echo("You are signed in as: " . $user->username);
-        ?>
 
-        <div class="container">
+
+    <body>
+        <!-- Nav bar -->
+        <nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
+            <a class="navbar-brand" href="#">
+            <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
+            <!-- <span class="navbar-text">
+            &nbsp;&nbsp; JobAssembler  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span> -->
+            <?php
+                echo("You are signed in as: " . $user->username);
+            ?>
+        </nav>
+
+        <div class="container-fluid">
             <div class="box">
                 <p id="card" name="card">
                     Sorry, you've seen all the available jobs
                 </p>
-                
-
-            </div>  
+ 
         </div>
+       
         <div class="buttonHolder">
-
             <button class="button" id="noButton" onclick="buttonPressed(0)">NO</button>
             <button class="button" id="yesButton" onclick="buttonPressed(1)">YES</button>
+        </div>  
+      
         </div>
     </body>
     <script>
