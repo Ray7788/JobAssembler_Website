@@ -39,6 +39,8 @@ $statement = $pdo->prepare($query);
 $statement->execute([$user->user_id]);
 $jobs = $statement->fetchAll();
 ?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -46,12 +48,16 @@ $jobs = $statement->fetchAll();
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Viewed Jobs</title>
+    <title>Viewed Jobs - JobAssembler</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   
+    <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <script>
         $(function () {
             $("#jobDetailsModal").on("show.bs.modal", function (event) {
@@ -129,6 +135,9 @@ $jobs = $statement->fetchAll();
         })
     </script>
 </head>
+
+
+
 <body>
 <main class="container" style="padding-top: 2rem">
     <div style="text-align: right;">
@@ -137,6 +146,7 @@ $jobs = $statement->fetchAll();
     <h1>Your viewed jobs</h1>
     <h4 class="text-muted">All the jobs you have either accepted or declined can be seen here</h4>
     <br/>
+
     <table class="table">
         <thead>
             <tr>
@@ -178,6 +188,8 @@ $jobs = $statement->fetchAll();
         <?php endif; ?>
         </tbody>
     </table>
+
+
     <nav>
         <ul class="pagination justify-content-center">
             <li class="page-item<?=$page == 1 ? " disabled" : ""?>"><a class="page-link"<?=$page != 1 ? " href=\"?page=". $page - 1 ."\"" : ""?><?=$page == 1 ? " disabled" : ""?>>Previous</a></li>
@@ -189,6 +201,8 @@ $jobs = $statement->fetchAll();
             <li class="page-item"><a class="page-link" href="?page=<?=$page+1?>">Next</a></li>
         </ul>
     </nav>
+
+
     <div class="modal fade" tabindex="-1" role="dialog" id="jobDetailsModal" aria-labelledby="jobDetailsTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -215,6 +229,7 @@ $jobs = $statement->fetchAll();
             </div>
         </div>
     </div>
+    
     <div class="modal fade" tabindex="-1" role="dialog" id="jobUpdateModal" aria-labelledby="jobUpdateTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
