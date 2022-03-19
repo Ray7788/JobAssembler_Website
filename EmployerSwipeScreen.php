@@ -134,6 +134,8 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                     document.getElementById("noButton").disabled = true;
                     document.getElementById("yesButton").disabled = true;
                 }else{
+                    document.getElementById("noButton").disabled = false;
+                    document.getElementById("yesButton").disabled = false;
                     writeToCard();
                 }
             }
@@ -150,14 +152,37 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
 
             function buttonPressed(yesOrNo){
                 //dataArray = {"companyAccepted":yesOrNo, "userID":userAccounts[currentUser][0], "jobID":currentJobID};
+                dataArray = {"companyAccepted":yesOrNo, "userID":userAccountsForJob[userCounter][0], "jobID":currentJobID};
+                $.ajax({
+                    type:"POST",
+                    url:"api/companyJobUpdating.php",
+                    data:dataArray,
+                    success:function(data){
+                        alert("User Done");
+                    },
+                    error: function (xhr){
+                        var obj = xhr.responseJSON;
+                        if(Object.keys(obj).includes("message")){
+                            alert(obj["message"]);
+                        }else{
+                            alert("An unknown error has occurred. Please try again later.");
+                        }
+                    }
+                })
+                if(userCounter < userAccountsForJob.length-1){
+                    userCounter += 1;
+                    writeToCard();
+                }else{
+                    document.getElementById("card").innerHTML = "Sorry, you've seen every current available job applicant. Try changing to another job.";
+                    document.getElementById("noButton").disabled = true;
+                    document.getElementById("yesButton").disabled = true;
+                }
             }
         </script>
     </head>
     <body>
         <?php
             echo("You are signed in as: " . $user->username);
-            //echo(implode(",",$jobs[0]));
-            //echo(implode(",", $userAccounts[0]));
         ?>
         <p id="jobName" name="jobName">
             placeholder
