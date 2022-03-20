@@ -82,7 +82,7 @@ $jobs = array_reverse($data);
             }
 
             .container-fluid{
-            background-color: #fff;
+            /* background-color: #fff; */
             width: 75vw;
             height: 90vh;
             position: relative;
@@ -91,37 +91,35 @@ $jobs = array_reverse($data);
             justify-content: center;
             align-items: center;
             top: 10vh;
+            font-size:1.5em;
+            background: bisque;
             }
 
             /* .container{
-                justify-content:center;
-                display: flex;
-                align-items: center;
-                height: 12em;
-                font-size:2.5em;
+                justify-content:center;;
                 position:relative;
             } */
 
             .box{
-                width: 70vw;
-                height: 80vh;
+                width: 75vw;
+                height: 85vh;
                 top: 0;
                 overflow: hidden;
                 background: bisque;
-                border-radius: 10px;
-                box-shadow: 3px 10px 15px #abc;
-                /* bisque */
+                /* border-radius: 10px; */
+                /* box-shadow: 3px 10px 15px #abc; */
             }
 
-            .buttonHolder{
+            .btn-group{
                 justify-content:center;
                 display:flex;
                 align-items:center;
                 height:5em;
                 font-size:40px;
-                position:relative;
+                position: sticky;
+                bottom: -5vh;
             }
-            .button {
+            .btn btn-outline-primary {
                 margin-left:auto;
                 margin-right:auto;
                 border: none;
@@ -133,7 +131,9 @@ $jobs = array_reverse($data);
                 font-size: 16px;
                 cursor: pointer;
                 background-color:aqua;
-            }
+                width: 50%;
+              
+            } 
         </style>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
@@ -149,10 +149,10 @@ $jobs = array_reverse($data);
                 var jobDetails = jobArray[jobCounter][columns.indexOf("Details")];
                 var companyDescription = jobArray[jobCounter][columns.indexOf("Description")];
 
-                document.getElementById("card").innerHTML = "Company: " + companyName + " <br><br> "
-                 + "Job Title: " + jobTitle + "<br><br>"
-                 + "Job Details: " + "<br> <textarea cols=80 rows=6 readonly>" + jobDetails + "</textarea><br>"
-                 + "Company Description: " + "<br> <textarea cols=80 rows=6 readonly>" + companyDescription + "</textarea><br>";
+                document.getElementById("card").innerHTML = "Company: " + companyName + " <br> "
+                 + "Job Title: " + jobTitle + "<br>"
+                 + "Job Details: " + "<br> <textarea cols=80 rows=4 readonly>" + jobDetails + "</textarea><br>"
+                 + "Company Description: " + "<br> <textarea cols=80 rows=4 readonly>" + companyDescription + "</textarea><br>";
             }
 
             function buttonPressed(yesOrNo){
@@ -205,15 +205,18 @@ $jobs = array_reverse($data);
                 <p id="card" name="card">
                     Sorry, you've seen all the available jobs
                 </p>
- 
+               
+                <br>
+                <div class="btn-group">
+                    <button class="btn btn-outline-primary" id="noButton" onclick="buttonPressed(0)">NO</button>
+                    <button class="btn btn-outline-primary" id="yesButton" onclick="buttonPressed(1)">YES</button>
+                </div>
+                <br>  
+               
+            </div>
         </div>
-       
-        <div class="buttonHolder">
-            <button class="button" id="noButton" onclick="buttonPressed(0)">NO</button>
-            <button class="button" id="yesButton" onclick="buttonPressed(1)">YES</button>
-        </div>  
-      
-        </div>
+
+
     </body>
     <script>
         writeToCard();
