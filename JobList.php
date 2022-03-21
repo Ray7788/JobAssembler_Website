@@ -58,6 +58,28 @@ $jobs = $statement->fetchAll();
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+    <script>
+        var map;
+        var marker;
+        $(function () {
+            map = L.map("map").setView({lat: 53.4808, lng: -2.2426}, 13);
+            marker = L.marker({lat: 0, lng: 0});
+            map.invalidateSize();
+
+            // add the OpenStreetMap tiles
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                maxZoom: 19,
+                attribution: "&copy; <a href=\"https://openstreetmap.org/copyright\">OpenStreetMap contributors</a>"
+            }).addTo(map);
+
+            // show the scale bar on the lower left corner
+            L.control.scale({imperial: true, metric: true}).addTo(map);
+        })
+    </script>
     <script>
         $(function () {
             $("#jobDetailsModal").on("show.bs.modal", function (event) {
@@ -78,12 +100,23 @@ $jobs = $statement->fetchAll();
                         }
                         $("#jobDetailsCompanyName").text(data["Name"]);
                         $("#jobDetailsCompanyDescription").text(data["Description"]);
+                        if (data["Latitude"] != null && data["Longitude"] != null) {
+                            $("#mapSection").show();
+                            map.setView({lat: data["Latitude"], lng: data["Longitude"]}, 17);
+                            marker.remove();
+                            marker.setLatLng({lat: data["Latitude"], lng: data["Longitude"]}).bindPopup(`Latitude: ${data["Latitude"]}, Longitude: ${data["Longitude"]}`).addTo(map);
+                        } else {
+                            $("#mapSection").hide();
+                        }
                         console.log(data);
                     },
                     error: function(xhr){
                         alert("error\n" + xhr.responseJson);
                     }
                 })
+            });
+            $("#jobDetailsModal").on("shown.bs.modal", function (event) {
+                map.invalidateSize();
             });
             $("#jobUpdateModal").on("show.bs.modal", function (event) {
                 let button = $(event.relatedTarget) // Button that triggered the modal
@@ -214,6 +247,9 @@ $jobs = $statement->fetchAll();
                 </div>
                 <div class="modal-body">
                     <p id="jobDetailsText" style="word-break: break-word;"></p>
+                </div>
+                <div class="modal-body" id="mapSection" style="border-top: 1px solid #e9ecef" style="height: 200px;">
+                    <div id="map" style="height: 200px;"></div>
                 </div>
                 <div class="modal-body" style="border-top: 1px solid #e9ecef">
                     <img id="jobDetailsImage" style="width: 100px; height: 100px; float: left; margin: 10px;" src="../Images/Logo1.png" class="rounded float-left"/>

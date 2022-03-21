@@ -7,6 +7,8 @@ class Job
     public string $title;
     public string $description;
     public company $company;
+    public float $latitude;
+    public float $longitude;
 
     public static function create_job(string $title, string $description, string $location, int $company_id) {
         $pdo = Database::connect();
@@ -29,6 +31,8 @@ class Job
         $result = $statement->fetch(PDO::FETCH_ASSOC);
         $this->title = $result["Title"];
         $this->description = $result["Details"];
+        $this->latitude = floatval($result["Latitude"]);
+        $this->longitude = floatval($result["Longitude"]);
         $this->company = new company();
         $this->company->id = $result["CompanyID"];
         $this->company->name = $result["Name"];
