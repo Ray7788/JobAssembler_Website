@@ -45,9 +45,11 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Employer Swipe Screen</title>
+        <title>Employer Swipe Screen - JobAssembler</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -178,13 +180,19 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
         </script>
     </head>
     <body>
+        <!-- Nav bar -->
+        <nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
+            <a class="navbar-brand" href="#">
+            <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
         <?php
             echo("You are signed in as: " . $user->username);
         ?>
+        
         <p id="jobName" name="jobName">
             placeholder
         </p>
-        
+        </nav>
+
         <div class="container">
             <div class="box">
                 <p id="card" name="card">
@@ -192,17 +200,18 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 </p>
             </div>  
         </div>
-        <div class="buttonHolder">
 
+        <div class="buttonHolder">
             <button class="button" id="noButton" onclick="buttonPressed(0)">NO</button>
             <button class="button" id="yesButton" onclick="buttonPressed(1)">YES</button>
-
         </div>
+
         <div class="buttonHolder">
             <div class="dropdown">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                     Choose job
                 </button>
+
                 <div class="dropdown-menu">
                     <?php
                         for($x=0; $x<count($jobs);$x++){
@@ -213,6 +222,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 </div>
             </div>
         </div>
+
     </body>
     <script>
         document.getElementById("jobName").innerHTML = "Current job: " + currentJob;
