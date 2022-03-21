@@ -96,7 +96,7 @@ $jobs = $statement->fetchAll();
                             $("#jobDetailsImage").attr("src", data["CompanyImage"]);
                         }
                         else {
-                            $("#jobDetailsImage").attr("src", "../Images/Logo1.png");
+                            $("#jobDetailsImage").attr("src", "Images/Logo1.png");
                         }
                         $("#jobDetailsCompanyName").text(data["Name"]);
                         $("#jobDetailsCompanyDescription").text(data["Description"]);
@@ -252,7 +252,7 @@ $jobs = $statement->fetchAll();
                     <div id="map" style="height: 200px;"></div>
                 </div>
                 <div class="modal-body" style="border-top: 1px solid #e9ecef">
-                    <img id="jobDetailsImage" style="width: 100px; height: 100px; float: left; margin: 10px;" src="../Images/Logo1.png" class="rounded float-left"/>
+                    <img id="jobDetailsImage" style="width: 100px; height: 100px; float: left; margin: 10px;" src="Images/Logo1.png" class="rounded float-left"/>
                     <div>
                         <h6 id="jobDetailsCompanyName">Unknown</h6>
                         <p id="jobDetailsCompanyDescription">Unknown</p>
