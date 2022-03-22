@@ -78,9 +78,26 @@ $jobs = array_reverse($data);
             body {
             display: flex;
             justify-content: center;
-            background-image: linear-gradient(to left, #e1eec3, #f05053);
+            background: linear-gradient(
+                135deg,
+            rgb(30,150,0),
+            rgb(89,193,115),
+            rgb(161,127,224),
+            rgb(93,38,193));
+            background-size: 200% 200%;
+            animation: gradient-move 10s ease alternate infinite;
             }
 
+            /* Dynamic */
+            @keyframes gradient-move {
+                    0% {
+                    background-position: 0% 0%;
+                    }
+                    100% {
+                    background-position: 100% 100%;
+                    }
+                }
+/* ----------------------------------------------------------------------------------------------------------------- */
             .container-fluid{
             /* background-color: #fff; */
             width: 75vw;
@@ -92,24 +109,18 @@ $jobs = array_reverse($data);
             align-items: center;
             top: 10vh;
             font-size:1.5em;
-            background: bisque;
+            background: white;
             }
-
-            /* .container{
-                justify-content:center;;
-                position:relative;
-            } */
 
             .box{
                 width: 75vw;
                 height: 85vh;
                 top: 0;
                 overflow: hidden;
-                background: bisque;
-                /* border-radius: 10px; */
-                /* box-shadow: 3px 10px 15px #abc; */
+       
             }
-
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* For Yes/No Button */
             .btn-group{
                 justify-content:center;
                 display:flex;
@@ -196,7 +207,7 @@ $jobs = array_reverse($data);
             &nbsp;&nbsp; JobAssembler  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </span> -->
             <?php
-                echo("You are signed in as: " . $user->username);
+                echo("You are signed in as: &nbsp;" . $user->username);
             ?>
         </nav>
 
