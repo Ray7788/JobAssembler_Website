@@ -7,7 +7,7 @@
 
    <!-- CSS Styling-->
     <link rel="stylesheet" href="CSS/JobCreation.css">
-    <link rel="stylesheet" href=../JobAssembler/CSS/JobCreation.css>
+    <link rel="stylesheet" href="../JobAssembler/CSS/JobCreation.css">
     <!-- Bootstrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
@@ -50,30 +50,63 @@
         height: 750px;
         position: relative;
         display: flex;
-        border-radius: 10px;
+        border-radius: 20px;
         justify-content: center;
         align-items: center;
         top: 50px;
     }
     .b{
-        width: 400px;
+        width: 500px;
         height: 650px;
         overflow: hidden;
     }
-    .header1{
+    .display-1{
         font: 900 24px '';
+        font-size:2.5em;
+        font-family:"Helvetica";
         margin: 5px 0;
         text-align: center;
-        letter-spacing: 3px;
+        letter-spacing: 1px;
     }
     .e{
         width: 100%;
         margin-bottom: 20px;
         outline: none;
         border: 0;
-        padding: 10px;
+        padding: 5px;
         border-bottom: 2px solid rgb(60,60,70);
         font: 900 16px '';
+
+        /* For the specialised button */
+/* .btn btn-primary btn-lg {
+    width: 15vw;
+    height: 20vh;
+    border-radius: 30px;
+    line-height: 100px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 28px;
+    color: #fff;  
+    background-image: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #09a8f4);
+    background-size: 400%;
+    z-index: 1;
+
+  }
+
+
+  a.btn btn-primary btn-lg {
+    animation: sun 8s infinite;
+    }
+
+  a.btn btn-primary btn-lg:hover::before {
+    animation: sun 8s infinite;
+    }
+
+  @keyframes sun {
+  100% {
+      background-position: -400% 0;
+      }
+  } */
     }
 
 </style>
@@ -85,7 +118,7 @@
 
     <form name="jobCreateForm" id="jobCreateForm">
         <p>
-        <h1 class="header1">Enter Job Detail</h1>
+        <h1 class="display-1">Enter Job Detail</h1>
         <br><br>
 
             <h3 class="d">Job Title<br></h3>
@@ -99,7 +132,7 @@
             <br><br>
          
             <!-- button -->
-            <input type="submit" class="f" value="Submit">
+            <input type="submit" class="btn btn-primary btn-lg" value="Submit">
             
         </p>
        
