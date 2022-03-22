@@ -162,25 +162,12 @@
             <div class="page3">
                 <br>
             <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>
-        </div>
+            <br>
+            <a class="PageButton" href="privacypolicy.html">Privacy Policy</a>
+           </div> 
     </div>
 
     </main>
-
-    <div class="nav">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-        </li>
-    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
