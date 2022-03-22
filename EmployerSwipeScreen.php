@@ -49,27 +49,101 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-
+        
+        <!-- Jquery -->
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         
         <style type="text/css">
-            .container{
-                justify-content:center;
-                display: flex;
-                align-items:center;
-                height: 12em;
-                font-size:2.5em;
-                position:relative;
+            body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(
+                135deg,
+            rgb(221,62,84),
+            rgb(107,229,133),
+            rgb(221, 102, 195),
+            rgb(241, 185,93)
+            );
+            background-size: 200% 200%;
+            animation: gradient-move 10s ease alternate infinite;
             }
+
+            /* Dynamic */
+            @keyframes gradient-move {
+                    0% {
+                    background-position: 0% 0%;
+                    }
+                    100% {
+                    background-position: 100% 100%;
+                    }
+                }
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+            .container-fluid{
+            width: 70vw;
+            height: 80vh;
+            top: 10vh;
+            position: relative;
+            display: flex;
+            border-radius: 15px;
+            justify-content: center;
+            align-items: center;
+            background: bisque;
+            }
+
             .box{
-                background: bisque;
-                border-radius: 5px;
-                box-shadow: 3px 10px 15px #abc;
-                
+                width: 70vw;
+                height: 70vh;
+                top: 0;
+                position:absolute;
+                overflow: hidden;
+                background: white;
             }
+
+            #card {
+                postion: absolute;
+                
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                background: yellow;
+            }
+
+                      
+            #jobName {
+                text-align: center;
+                font-size: 2.5em;
+                text-transform: uppercase;
+            }
+             /* ----------------------------------------------------------------------------------------------------------------- */
+/* For Yes/No Button */
+            .btn-group{
+                justify-content:center;
+                display:flex;
+                align-items:center;
+                height:5em;
+                /* font-size:60px; */
+                position: absolute;
+                bottom: 0;
+            }
+            .btn btn-outline-primary {
+                margin-left:auto;
+                margin-right:auto;
+                border: none;
+                padding: 30px 60px;
+                text-align: center;
+                display: inline-block;
+                font-size: 30px;
+                cursor: pointer;
+                background-color:aqua;
+                bottom:0px;
+            }
+       /* ----------------------------------------------------------------------------------------------------------------- */
+/* For DownMenu */
             .buttonHolder{
                 justify-content:center;
                 display:flex;
@@ -77,6 +151,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 height:5em;
                 font-size:40px;
                 position:relative;
+                z-index: 1;
             }
             .button {
                 margin-left:auto;
@@ -91,6 +166,8 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 cursor: pointer;
                 background-color:aqua;
             }
+       /* ----------------------------------------------------------------------------------------------------------------- */
+  
         </style>
         
         <script>
@@ -145,7 +222,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 var biography = userAccountsForJob[userCounter][3];
                 
                 document.getElementById("card").innerHTML = ("Forename: " + forename + " <br> "
-                + "Surname: " + surname + " <br> "
+                + "Surname: " + surname + " <br> <br> "
                 + "Biography: " + "<br> <textarea columns=120 rows=4 readonly>" + biography + "</textarea><br>");
             }
 
@@ -185,44 +262,38 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
             <a class="navbar-brand" href="#">
             <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
         <?php
-            echo("You are signed in as: " . $user->username);
+            echo("You are signed in as: &nbsp;" . $user->username);
         ?>
-        
-        <p id="jobName" name="jobName">
-            placeholder
-        </p>
         </nav>
 
-        <div class="container">
+        <!-- Main Part -->
+        <div class="container-fluid">
             <div class="box">
-                <p id="card" name="card">
-                    Sorry, you've seen all available jobs.
-                </p>
+                <p id="jobName" name="jobName">placeholder</p>
+                <p id="card" name="card">Sorry, you've seen all available jobs.</p>
             </div>  
+<!-- not in the box -->
+            <div class="btn-group">
+            <button class="btn btn-outline-primary" id="noButton" onclick="buttonPressed(0)">NO</button>
+            <button class="btn btn-outline-primary" id="yesButton" onclick="buttonPressed(1)">YES</button>
+            </div>            
         </div>
 
-        <div class="buttonHolder">
-            <button class="button" id="noButton" onclick="buttonPressed(0)">NO</button>
-            <button class="button" id="yesButton" onclick="buttonPressed(1)">YES</button>
-        </div>
 
-        <div class="buttonHolder">
-            <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    Choose job
-                </button>
-
+    <!-- <div class="buttonHolder">
+                <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Choose job</button>
+               
                 <div class="dropdown-menu">
-                    <?php
+                <?php
                         for($x=0; $x<count($jobs);$x++){
                             echo('<a class="dropdown-item" id="dropdown'.$x.'">' . $jobs[$x][1]);
                             //set ID to dropdown$x  8
                         }
                     ?>
                 </div>
-            </div>
-        </div>
-
+                </div>
+            </div> -->
     </body>
     <script>
         document.getElementById("jobName").innerHTML = "Current job: " + currentJob;
