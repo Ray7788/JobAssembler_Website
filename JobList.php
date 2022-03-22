@@ -59,6 +59,7 @@ $jobs = $statement->fetchAll();
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <!-- Leafletjs (map) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
@@ -186,7 +187,7 @@ $jobs = $statement->fetchAll();
 
 
 <body>
-<main class="container" style="padding-top: 2rem">
+    <main class="container" style="padding-top: 2rem">
     <div style="text-align: right;">
         <a class="btn btn-secondary" href="main.php" style="text-align: right;"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
     </div>
@@ -216,7 +217,7 @@ $jobs = $statement->fetchAll();
                 <td><?= $line["Name"]?></td>
                 <td><?= $line["Title"]?></td>
                 <!--<td style="word-break:break-all;"><?= $line["Details"]?></td>-->
-                <td><?= "Unknown"?></td>
+                <td><?= is_null($line["Latitude"]) || is_null($line["Longitude"]) ? "None" : "See details"?></td>
                 <td class="<?= $line["UserAccepted"] ? "text-success" : "text-danger" ?>"><?= $line["UserAccepted"] ? "Accepted": "Declined"?></td>
                 <td>
                     <div class="dropdown show">
