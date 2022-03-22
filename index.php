@@ -163,7 +163,7 @@
                 <br>
             <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>
             <br>
-            <a class="PageButton" href="privacypolicy.html">Privacy Policy</a>
+            <a class="PageButton" href="PrivacyPolicy.html">Privacy Policy</a>
            </div> 
     </div>
 
