@@ -167,6 +167,20 @@ $jobs = $statement->fetchAll();
             )
         })
     </script>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: linear-gradient(to left, #e1eec3, #f05053);
+            }
+        .container{
+            background: white;
+            position:relative;
+            top: 100px;
+        }
+    </style>
 </head>
 
 
