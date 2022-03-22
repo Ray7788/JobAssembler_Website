@@ -124,6 +124,7 @@
         <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="";>
         JobAssembler
         <div class="nav-item">
+            <a class="btn btn-primary" href="SignUpPage2.php">Sign Up</a>
             <a class="btn btn-primary" href="login.php">Log in</a>
         </div>
         </a>
@@ -140,10 +141,7 @@
             <h1 class="display-6" style="color: #000000;">Ever wish it was as easy as Tinder?</h1>
             <hr class="my-3">
             <br>
-            <p class="lead" style="color: #000000;">JobAssembler Is!</p>
-            <div class="PageButton">
-            <a class="btn-btn-primary-btn-lg" id="SignUpButton1" href="SignUpPage2.php" role="button">Sign Up Now!</a>
-            </div> 
+            <p class="lead" style="color: #000000;">JobAssembler Is!</p> 
         </div> 
     </div>
 
@@ -156,9 +154,6 @@
             <h1 class="display-6" style="color: #FFFFCC;">Customized for campus students!</h1>
             <hr class="my-4">
             <p class="lead" style="color: #FFFFCC;"><b>Easier and more engaging than existing options (LinkedIn, Indeed, Reed ... etc.)</b></p>
-            <div class="PageButton">
-            <a class="btn-btn-primary-btn-lg" id="SignUpButton2" href="SignUpPage2.php" role="button">Sign Up Now!</a>
-            </div>
         </div>
     </div>
 
@@ -167,9 +162,6 @@
             <div class="page3">
                 <br>
             <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>
-            <div class="PageButton">  
-            <a class="btn-btn-primary-btn-lg" id="SignUpButton3" href="SignUpPage2.php" role="button">Sign Up</a>  
-            </div>
         </div>
     </div>
 
