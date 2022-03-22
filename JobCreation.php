@@ -92,10 +92,10 @@
             <input type="text" name="title" class="e" id="title"  placeholder="Input Title" required>
             <br><br>
             <h3 class="d">Job Description</h3>
-            <textarea type="textbox" name="description" class="e" id="description" rows="3" cols="50" placeholder="More Details" required></textarea>
+            <textarea type="textbox" name="description" class="e" id="description" rows="3" cols="50" placeholder="More Details        " required></textarea>
             <br><br>
             <h3 class="d">Job Location</h3> 
-            <input type="text" name="location" class="e" id="location"  placeholder="Post Code" required>
+            <input type="text" name="location" class="e" id="location"  placeholder="Post Code Recommend" required>
             <br><br>
          
             <!-- button -->
