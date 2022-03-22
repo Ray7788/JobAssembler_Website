@@ -112,6 +112,10 @@
         /*Button position  */
        .PageButton{position: absolute; left: 50%; top: 60%; transform: translate(-50%,-50%)}
 
+
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
     </style>
  </head>
 
@@ -124,7 +128,7 @@
         <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="";>
         JobAssembler
         <div class="nav-item">
-            <a class="btn btn-primary" href="SignUpPage2.php">Sign Up</a>
+            <a class="btn btn-success" href="SignUpPage2.php">Sign Up</a>
             <a class="btn btn-primary" href="login.php">Log in</a>
         </div>
         </a>
@@ -135,7 +139,7 @@
     <!-- page1 -->
     <div class="container-fluid">
         <div class="page1">
-            <br>
+                <br>
             <h1 class="display-4" style="color: #000000;"><b>Struggling with finding Employment or Employees?</b></h1>
             <br>
             <h1 class="display-6" style="color: #000000;">Ever wish it was as easy as Tinder?</h1>
