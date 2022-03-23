@@ -101,7 +101,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 top: 0;
                 position:absolute;
                 overflow: hidden;
-                background: white;
+                background: bisque;
             }
 
             #card {
@@ -110,13 +110,13 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 text-align: center;
                 justify-content: center;
                 align-items: center;
-                background: yellow;
+                background: bisque;
             }
 
                       
             #jobName {
                 text-align: center;
-                font-size: 2.5em;
+                font-size: 1.5em;
                 text-transform: uppercase;
             }
              /* ----------------------------------------------------------------------------------------------------------------- */
