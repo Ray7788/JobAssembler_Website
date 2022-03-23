@@ -87,7 +87,7 @@ class User
         }
         $query = "SELECT Username, Forename, Surname, Biography, ProfileImage, CompanyID FROM `UserAccounts` WHERE UserID = ?";
         $statement = $pdo->prepare($query);
-        $statement->execute([$id]);
+        $statement->execute([$this->user_id]);
         $result = $statement->fetch();
         $this->username = $result["Username"];
         $this->forename = $result["Forename"];
