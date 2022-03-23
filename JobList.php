@@ -179,7 +179,8 @@ $jobs = $statement->fetchAll();
         .container{
             background: white;
             position:relative;
-            top: 100px;
+            margin-top: 100px;
+            margin-bottom: 50px;
         }
     </style>
 </head>
@@ -189,7 +190,7 @@ $jobs = $statement->fetchAll();
 <body>
     <main class="container" style="padding-top: 2rem">
     <div style="text-align: right;">
-        <a class="btn btn-secondary" href="main.php" style="text-align: right;"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
+        <a class="btn btn-secondary" href="main.php"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
     </div>
     <h1>Your viewed jobs</h1>
     <h4 class="text-muted">All the jobs you have either accepted or declined can be seen here</h4>
@@ -238,7 +239,7 @@ $jobs = $statement->fetchAll();
     </table>
 
 
-    <nav>
+    <nav style="padding-bottom: 10px">
         <ul class="pagination justify-content-center">
             <li class="page-item<?=$page == 1 ? " disabled" : ""?>"><a class="page-link"<?=$page != 1 ? " href=\"?page=". $page - 1 ."\"" : ""?><?=$page == 1 ? " disabled" : ""?>>Previous</a></li>
             <?php if ($page != 1): ?>
@@ -263,7 +264,7 @@ $jobs = $statement->fetchAll();
                 <div class="modal-body">
                     <p id="jobDetailsText" style="word-break: break-word;"></p>
                 </div>
-                <div class="modal-body" id="mapSection" style="border-top: 1px solid #e9ecef" style="height: 200px;">
+                <div class="modal-body" id="mapSection" style="border-top: 1px solid #e9ecef">
                     <div id="map" style="height: 200px;"></div>
                 </div>
                 <div class="modal-body" style="border-top: 1px solid #e9ecef">

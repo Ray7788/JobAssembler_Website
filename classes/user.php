@@ -40,9 +40,6 @@ class User
         }
     }
 
-    /**
-     * @throws Exception
-     */
     public static function create_user(string $username, string $password, string $forename, string $surname): bool {
         $pdo = Database::connect();
         $pre_hash = hash("sha256", $password);
@@ -75,10 +72,20 @@ class User
     }
 
     public function authenticate($id, $password): bool {
-        $pdo = Database::connect();
         $this->user_id = $id;
         $verified = User::check_password($id, $password);
-        if (!$verified) return false;$query = "SELECT * FROM `UserAccounts` WHERE UserID = ?";
+        if (!$verified) return false;
+        $this->get_user();
+        $this->authenticated = true;
+        return true;
+    }
+
+    public function get_user(int $id = null): array {
+        $pdo = Database::connect();
+        if (isset($id)){
+            $this->user_id = $id;
+        }
+        $query = "SELECT Username, Forename, Surname, Biography, ProfileImage, CompanyID FROM `UserAccounts` WHERE UserID = ?";
         $statement = $pdo->prepare($query);
         $statement->execute([$id]);
         $result = $statement->fetch();
@@ -88,8 +95,7 @@ class User
         $this->biography = $result["Biography"];
         $this->image_url = is_null($result["ProfileImage"]) ? "" : $result["ProfileImage"];
         $this->company_id = is_null($result["CompanyID"]) ? -1 : intval($result["CompanyID"]);
-        $this->authenticated = true;
-        return true;
+        return $result;
     }
 
     public function is_authenticated(): bool {
