@@ -23,17 +23,16 @@ if(empty($txt)){
     //Get list of users who are in the JoinRequest table for the company the present user is a part of (and where companyAccepted is 0).
     $query = "SELECT UserAccounts.UserID, UserAccounts.Username, UserAccounts.Forename, UserAccounts.Surname 
     FROM (UserAccounts INNER JOIN CompanyJoinRequests ON UserAccounts.UserID = CompanyJoinRequests.UserID)
-    WHERE UserAccounts.UserID = :userid AND CompanyJoinRequests.CompanyID = :companyid AND CompanyJoinRequests.CompanyAccepted = 0";
+    WHERE CompanyJoinRequests.CompanyID = :companyid AND CompanyJoinRequests.CompanyAccepted = 0";
     $statement = $pdo->prepare($query);
     $statement->execute([
-        "userid" => $userID,
         "companyid" => $companyID
     ]);
     $usersApplied = $statement->fetchAll(PDO::FETCH_NUM); 
 }else{
     $query = "SELECT UserAccounts.UserID, UserAccounts.Username, UserAccounts.Forename, UserAccounts.Surname
     FROM (UserAccounts INNER JOIN CompanyJoinRequests ON UserAccounts.UserID = CompanyJoinRequests.UserID)
-    WHERE (UserAccounts.UserID = :userid AND CompanyJoinRequests.CompanyID = :companyid AND CompanyJoinRequests.CompanyAccepted = 0) AND (";
+    WHERE (CompanyJoinRequests.CompanyID = :companyid AND CompanyJoinRequests.CompanyAccepted = 0) AND (";
     //Format each of the search words
     $keywords = explode(' ', $txt);
     foreach($keywords as $kw){
@@ -49,7 +48,6 @@ if(empty($txt)){
     $wordsForDisplay = substr($wordsForDisplay, 0, strlen($wordsForDisplay) -1);
     $statement = $pdo->prepare($query);
     $statement->execute([
-        "userid" => $userID,
         "companyid" => $companyID
     ]);
     $usersApplied = $statement->fetchAll(PDO::FETCH_NUM);
@@ -67,7 +65,31 @@ $noOfUsers = count($usersApplied);
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
         
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    
+        <script>
+            //var userID = <?php echo($userID); ?>;
+            var companyID = <?php echo($companyID); ?>;
+
+            function acceptPressed(userID){
+                //userID here is the user that I am currently accepting.
+                dataArray = {"companyID":companyID, "userID":userID};
+                $.ajax({
+                    type:"POST",
+                    url:"api/companyAccepting.php",
+                    data: dataArray,
+                    success:function(data){
+                        document.getElementById("errorMsg").innerHTML = "User successfully added to your company. Go and tell them they can now go through and accept or decline job applicants.";
+                    },
+                    error: function(xhr){
+                        var obj = xhr.responseJSON;
+                        if(Object.keys(obj).includes("message")){
+                            document.getElementById("errorMsg").innerHTML = obj["message"];
+                        }else{
+                            document.getElementById("errorMsg").innerHTML = "An unknown error has occurred. Please try again later.";
+                        }
+                    }
+                })
+            }
+        </script>
     </head>
     <body>
         <form action="CompanyAddUsers.php" method="GET" name="searchForm">
@@ -98,7 +120,7 @@ $noOfUsers = count($usersApplied);
                 }
             }else{
                 if(empty($txt)){
-                    echo("<br>There are no users who have applied to your company that you have't already dealt with.");
+                    echo("<br>There are no users who have applied to your company that you haven't already dealt with.");
                 }else{
                     echo("<br>There were no results for your search. Please ensure you've entered the correct information<br>");
                     echo("You searched for: <b>'" . $wordsForDisplay . "'</b>");

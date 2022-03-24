@@ -25,6 +25,25 @@ class companyJoinRequest{
         ]);
 
     }
+
+    public static function acceptJoinRequest(string $companyID, string $userID){
+        $pdo = Database::connect();
+        $query = "UPDATE CompanyJoinRequests SET CompanyAccepted=1 WHERE CompanyID=:companyid AND UserID=:userid";
+        $statement = $pdo->prepare($query);
+        return $statement->execute([
+            "companyid" => $companyID,
+            "userid" => $userID
+        ]);
+    }
+
+    public static function changeCompanyID(string $companyID, string $userID){
+        $pdo = Database::connect();
+        $query = "UPDATE UserAccounts SET CompanyID=$companyID WHERE UserID=:userid";
+        $statement = $pdo->prepare($query);
+        return $statement->execute([
+            "userid" => $userID
+        ]);
+    }
 }
 
 ?>
