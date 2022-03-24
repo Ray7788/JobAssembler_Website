@@ -83,6 +83,7 @@
                 <input type="submit">
                 <br><br>
                 <p id="validationMsg"></p>
+                <a href="JoinCompany.php">Or join a pre-existing company</a>
             </form>
         </div>
     </body>
