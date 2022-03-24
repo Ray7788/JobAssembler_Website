@@ -118,6 +118,8 @@
     </div>
 
 <!-------------------------------------------------------------------------------------------------------------->
+<a href="SignUpPage2.php">Don't have a JobAssembler account yet?</a>
+ <br> <br>
 <!-- submit  -->
     <button class="w-30 btn btn-lg btn-primary" type="submit">Sign In</button>
     <p class="mt-5 mb-3 text-muted">&copy; X17 2021-2022</p>
