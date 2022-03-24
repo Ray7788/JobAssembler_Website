@@ -196,6 +196,8 @@ input:focus{
                 </div>
              
  <!-------------------------------------------------------------------------------------------------------------->
+ <a href="login.php">Already have a JobAssembler account?</a>
+ <br>
 <!-- radio frame -->
                     <br>
                     <p class="choicetext">You want to be:</p>
