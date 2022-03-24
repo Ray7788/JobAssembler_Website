@@ -29,6 +29,7 @@ $pdo = Database::connect();
 $statement = $pdo->prepare($query);
 $statement->execute();
 $companies = $statement->fetchAll(PDO::FETCH_NUM);
+
 $noOfCompanies = count($companies);
 
 ?>
@@ -88,14 +89,14 @@ $noOfCompanies = count($companies);
             }else{
                 if($noOfCompanies > 0){
                     echo("Your search returned: <b>" . $noOfCompanies . " </b>results. <br>");
-                    echo("You searched for: <b>'" . $wordsForDisplay . "'</b><br><hr><br>");
+                    echo("You searched for: <b>'" . $wordsForDisplay . "'</b><br><hr>");
 
                     for($x=0;$x<$noOfCompanies;$x++){
                         echo('
                         <h3>'.$companies[$x][1].'</h3>
                         '.$companies[$x][2].'<br>
                         <button class="btn btn-outline-primary" id="join'.$companies[$x][0].'" onclick="joinPressed('.$companies[$x][0].')">Send Join Request</button>
-                        <br><br>'); 
+                        <hr>'); 
                     }
                 }else{
                     echo("You searched for: <b>'" . $wordsForDisplay . "'</b><br>");
