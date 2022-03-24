@@ -105,7 +105,7 @@ $jobs = $statement->fetchAll();
                             $("#mapSection").show();
                             map.setView({lat: data["Latitude"], lng: data["Longitude"]}, 17);
                             marker.remove();
-                            marker.setLatLng({lat: data["Latitude"], lng: data["Longitude"]}).bindPopup(`Latitude: ${data["Latitude"]}, Longitude: ${data["Longitude"]}`).addTo(map);
+                            marker.setLatLng({lat: data["Latitude"], lng: data["Longitude"]}).bindPopup(`<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(data["Latitude"] + "," + data["Longitude"])}">Latitude: ${data["Latitude"]}, Longitude: ${data["Longitude"]}</a>`).addTo(map);
                         } else {
                             $("#mapSection").hide();
                         }
