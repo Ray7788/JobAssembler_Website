@@ -28,8 +28,8 @@ $companies = array();
 $pdo = Database::connect();
 $statement = $pdo->prepare($query);
 $statement->execute();
-$companies = $statement->fetchAll();
-$noOfCompaies = sizeof($companies);
+$companies = $statement->fetchAll(PDO::FETCH_NUM);
+$noOfCompanies = count($companies);
 
 ?>
 <!DOCTYPE html>
@@ -47,15 +47,35 @@ $noOfCompaies = sizeof($companies);
         <form action="JoinCompany.php" method="GET" name="searchForm">
             <table>
                 <tr>
-                    <td><input type="text" name="k" value="<?php echo isset($_GET['txt']) ? $_GET['txt'] : ''; ?>" placeholder="Enter your search keywords" /></td>
+                    <td><input type="text" name="txt" value="<?php echo isset($_GET['txt']) ? $_GET['txt'] : ''; ?>" placeholder="Enter your company name" /></td>
                     <td><input type="submit" name="" value="Search" /></td>
                 </tr>
             </table>
         </form>   
         <?php
             //Show the user the keywords they previously entered.
-            echo("Your search returned: <b>" . $noOfCompanies . " <b>results. <br>");
-            echo("You searched for: <b>'" . $wordsForDisplay . "'<b>");
+            //If the txt variable is empty then nothing has been searched for.
+            if(empty($txt)){
+                echo("Please search for your company using the search bar above.");
+            }else{
+                if($noOfCompanies > 0){
+                    echo("Your search returned: <b>" . $noOfCompanies . " </b>results. <br>");
+                    echo("You searched for: <b>'" . $wordsForDisplay . "'</b><br><hr><br>");
+
+                    for($x=0;$x<$noOfCompanies;$x++){
+                        echo('
+                        <h3>'.$companies[$x][1].'</h3>
+                        '.$companies[$x][2].'<br>
+                        <button class="btn btn-outline-primary" id="join'.$companies[$x][0].'" onclick="joinPressed()">Send Join Request</button>
+                        <br><br>'); 
+                    }
+                }else{
+                    echo("You searched for: <b>'" . $wordsForDisplay . "'</b><br>");
+                    echo('There were no results for your search. Please ensure you have typed the right company name.');
+                }
+            }
+
+            
         ?>
     </body>
 
