@@ -3,7 +3,7 @@ require_once(__DIR__ . "/classes/database.php");
 require_once(__DIR__ . "/classes/user.php");
 session_start();
 $user = $_SESSION["user"];
-
+$userID = $user->user_id;
 
 if(!$user->is_authenticated()){
     header("Location: index.php");
@@ -41,7 +41,34 @@ $noOfCompanies = count($companies);
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+        <script>
+            var userID = <?php echo($userID); ?>;
+            var companyArray = <?php echo json_encode($companies) ?>;
+
+            function joinPressed(companyID){
+                dataArray = {"companyID":companyID, "userID":userID};
+                $.ajax({
+                    type:"POST",
+                    url:"api/companyJoining.php",
+                    data:dataArray,
+                    success:function(data){
+                        document.getElementById("errorMsg").innerHTML = "Job request successfully sent. Please wait for your company to accept.";
+                    },
+                    error: function(xhr){
+                        var obj = xhr.responseJSON;
+                        if(Object.keys(obj).includes("message")){
+                            document.getElementById("errorMsg").innerHTML = obj["message"];
+                        }else{
+                            document.getElementById("errorMsg").innerHTML = "An unknown error has occurred. Please try again later.";
+                        }
+                    }
+                });
+
+            }
+        </script>
+
     </head>
+
     
     <body>
         <form action="JoinCompany.php" method="GET" name="searchForm">
@@ -52,6 +79,7 @@ $noOfCompanies = count($companies);
                 </tr>
             </table>
         </form>   
+        <b><i><p id="errorMsg"></p></i></b>
         <?php
             //Show the user the keywords they previously entered.
             //If the txt variable is empty then nothing has been searched for.
@@ -66,7 +94,7 @@ $noOfCompanies = count($companies);
                         echo('
                         <h3>'.$companies[$x][1].'</h3>
                         '.$companies[$x][2].'<br>
-                        <button class="btn btn-outline-primary" id="join'.$companies[$x][0].'" onclick="joinPressed()">Send Join Request</button>
+                        <button class="btn btn-outline-primary" id="join'.$companies[$x][0].'" onclick="joinPressed('.$companies[$x][0].')">Send Join Request</button>
                         <br><br>'); 
                     }
                 }else{

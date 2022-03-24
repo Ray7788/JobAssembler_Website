@@ -37,7 +37,7 @@ try{
         ApiResponseGenerator::generate_error_json(500, "There was an error with the database. Please try again later");
     }
     else{
-        ApiResponseGenerator::generate_response_json(201, ["message" => "Successfully created user."]);
+        ApiResponseGenerator::generate_response_json(201, ["message" => "Successfully created company."]);
     }
 }catch(Exception $exception){
     ApiResponseGenerator::generate_error_json(500, "There was an error with the database. {$exception->getMessage()} Please try again later.");
