@@ -1,12 +1,11 @@
 <?php
+
 require_once(__DIR__ . "/classes/database.php");
 require_once(__DIR__ . "/classes/user.php");
 session_start();
 $user = $_SESSION["user"];
+$companyID = $user->company_id;
 $userID = $user->user_id;
-
-//TODO NEED TO CHANGE THIS TO THE COMPANY ID IN THE SESSION!!!
-$companyID = 2;
 
 if(!$user->is_authenticated()){
     header("Location: /index.php");
