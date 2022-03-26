@@ -76,52 +76,113 @@ $jobs = array_reverse($data);
 
         <style type="text/css">
             body {
+            width: 100vw;
+			height: 100vh;
             display: flex;
-            justify-content: center;
-            background: linear-gradient(
-                135deg,
-            rgb(30,150,0),
-            rgb(89,193,115),
-            rgb(161,127,224),
-            rgb(93,38,193));
-            background-size: 200% 200%;
-            animation: gradient-move 10s ease alternate infinite;
-            }
-
-            /* Dynamic */
-            @keyframes gradient-move {
-                    0% {
-                    background-position: 0% 0%;
-                    }
-                    100% {
-                    background-position: 100% 100%;
-                    }
-                }
-/* ----------------------------------------------------------------------------------------------------------------- */
-            .container-fluid{
-            /* background-color: #fff; */
-            width: 75vw;
-            height: 90vh;
-            position: relative;
-            display: flex;
-            border-radius: 15px;
             justify-content: center;
             align-items: center;
-            top: 10vh;
-            font-size:1.5em;
-            background: white;
+            background: salmon;
+            /* background: linear-gradient(to left, #e1eec3, #f05053); */
             }
 
-            .box{
-                width: 75vw;
-                height: 85vh;
-                top: 0;
-                overflow: hidden;
-       
+            .container{
+            width: 85vw;
+            height: 90vh;
+            position: relative;  
+            margin: auto; 
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            top: 5vh;
             }
+/* ----------------------------------------------------*/
+        h1 {
+			color: white;
+			margin-top: 80px;
+			text-align: center;
+		}
+		.cards-wrap {
+            border-radius: 15px;
+			margin-top: 10px;
+			width: 1140px;
+			height: 1100px;
+			margin: auto;
+			perspective: 100px;
+			perspective-origin: 50% 90%;
+		}
+		.card {
+            border-radius: 15px;
+			width: 960px;
+			height: 720px;
+			padding: 50px 30px;
+			background: #ffffff;
+			box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+			position: absolute;
+			transform-origin: 50% 50%;
+			transition: all 0.8s;
+		}
+		.card.first {
+			transform: translate3d(0, 0, 0px);
+			z-index: 3;
+		}
+
+		.card.second {
+			transform: translate3d(0, 0, -10px);
+			z-index: 2;
+		}
+
+		.card.third {
+			transform: translate3d(0, 0, -20px);
+			z-index: 1;
+		}
+
+		.card.last-card {
+			transform: translate3d(0, 0, -20px);
+			z-index: 1;
+		}
+
+		.card:not(:first-child) {
+			opacity: 0.95;
+		}
+
+		.card.swipe {
+			transform: rotate(30deg) translate3d(120%, -50%, 0px) !important;
+			opacity: 0;
+			visibility: hidden;
+		}
+
+		.card p {
+			font-size: 20px;
+			font-weight: 400;
+			margin-bottom: 20px;
+			margin-top: 0;
+		}
+
 /* ----------------------------------------------------------------------------------------------------------------- */
 /* For Yes/No Button */
-            .btn-group{
+		.option {
+			width: 100%;
+			padding: 18px 10px 18px 84px;
+			text-align: left;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			font-size: 16px;
+			font-weight: 400;
+			background: #f8f8f8 url(ic_option_normal.svg) left 50px center no-repeat;
+			background-size: 24px;
+		}
+
+		.option:nth-child(2) {
+			margin-bottom: 20px;
+		}
+
+		.option:hover,
+		.option.checked {
+			background: #faeeee url(ic_option_checked.svg) left 50px center no-repeat;
+		}
+
+        .btn-group{
                 justify-content:center;
                 display:flex;
                 align-items:center;
@@ -129,8 +190,9 @@ $jobs = array_reverse($data);
                 font-size:40px;
                 position: sticky;
                 bottom: -5vh;
-            }
-            .btn btn-outline-primary {
+        }
+/* ----------------------------------------------------------------------------------------------------------------- */
+            /* .option {
                 margin-left:auto;
                 margin-right:auto;
                 border: none;
@@ -143,8 +205,8 @@ $jobs = array_reverse($data);
                 cursor: pointer;
                 background-color:aqua;
                 width: 50%;
-              
-            } 
+            }  */
+
         </style>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
@@ -162,8 +224,8 @@ $jobs = array_reverse($data);
 
                 document.getElementById("card").innerHTML = "Company: " + companyName + " <br> "
                  + "Job Title: " + jobTitle + "<br>"
-                 + "Job Details: " + "<br> <textarea cols=80 rows=4 readonly>" + jobDetails + "</textarea><br>"
-                 + "Company Description: " + "<br> <textarea cols=80 rows=4 readonly>" + companyDescription + "</textarea><br>";
+                 + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
+                 + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
             }
 
             function buttonPressed(yesOrNo){
@@ -203,33 +265,63 @@ $jobs = array_reverse($data);
         <nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
             <a class="navbar-brand" href="#">
             <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
-            <!-- <span class="navbar-text">
-            &nbsp;&nbsp; JobAssembler  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </span> -->
             <?php
                 echo("You are signed in as: &nbsp;" . $user->username);
             ?>
         </nav>
 
-        <div class="container-fluid">
-            <div class="box">
-                <p id="card" name="card">
-                    Sorry, you've seen all the available jobs
-                </p>
-               
-                <br>
-                <div class="btn-group">
-                    <button class="btn btn-outline-primary" id="noButton" onclick="buttonPressed(0)">NO</button>
-                    <button class="btn btn-outline-primary" id="yesButton" onclick="buttonPressed(1)">YES</button>
-                </div>
-                <br>  
-               
-            </div>
-        </div>
+        <!-- main part -->
+        <h1>Swipe Cards</h1>
+    <div class="container">
 
+        <br>
+		<div class="cards-wrap">
+			<div class="card first">
+                <p id="card" name="card">
+                        Sorry, you've seen all the available jobs
+                    </p>
+                <br>
+                <!-- <div class="btn-group"> -->
+				<button class="option" id="yesButton" onclick="buttonPressed(1)">YES</button>
+				<button class="option" id="noButton" onclick="buttonPressed(0)">NO</button>
+                <!-- </div> -->
+			</div>
+
+			<div class="card second"></div>
+			<div class="card third"></div>
+    </div>
 
     </body>
     <script>
         writeToCard();
+        const cardWrap = document.querySelector(".cards-wrap");
+		function pickOption() {
+			const topCard = document.querySelector(".card:first-child");
+			const tempStr = topCard.innerHTML;
+			topCard.classList.add("swipe");
+			setTimeout(function() {
+				topCard.remove();
+				const cards = document.querySelectorAll(".card");
+				cards[0].style.transform = "translate3d(0, 0, 0px)";
+				cards[0].style.zIndex = "3";
+				cards[0].innerHTML = tempStr;
+				cards[1].style.transform = "translate3d(0, 0, -10px)";
+				cards[1].style.zIndex = "2";
+				cardWrap.insertAdjacentHTML(
+					"beforeend",
+					'<div class="card last-card"></div>'
+				);
+				const newOptions = document.querySelectorAll(".option");
+				newOptions.forEach(optionBtn =>
+					optionBtn.addEventListener("click", pickOption)
+				);
+			}, 300);
+		}
+
+		const optionBtns = document.querySelectorAll(".option");
+		optionBtns.forEach(optionBtn =>
+			optionBtn.addEventListener("click", pickOption)
+		);
+
     </script>
 </html>
