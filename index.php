@@ -1,3 +1,12 @@
+<?php
+    require_once(__DIR__ . "/classes/database.php");
+    $jobs = array();
+    $pdo = Database::connect();
+    $query = "SELECT Title, Name FROM JobPostings INNER JOIN Companies ON JobPostings.CompanyID = Companies.CompanyID ORDER BY JobPostings.JobID DESC LIMIT 5";
+    $statement = $pdo->prepare($query);
+    $statement->execute();
+    $jobs = $statement->fetchAll();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -28,6 +37,21 @@
         /* Delete extra scroll bars */
         body {
             overflow: hidden;
+        }
+
+        th, td {   
+            border-bottom: 2px solid #000000;
+            border-left: 2px solid #000000;
+            border-right: 2px solid #000000;
+            background: white;
+            color: black;
+            width: 53%
+        }
+
+        table{
+            margin-right: 10%;
+            margin-left: 10%;
+            border: 3px solid #000000;
         }
 
         /* For every pages */
@@ -139,7 +163,7 @@
     <!-- page1 -->
     <div class="container-fluid">
         <div class="page1">
-                <br>
+            <br>
             <h1 class="display-4" style="color: #000000;"><b>Struggling with finding Employment or Employees?</b></h1>
             <br>
             <h1 class="display-6" style="color: #000000;">Ever wish it was as easy as Tinder?</h1>
@@ -152,7 +176,7 @@
     <!-- page2 -->
     <div class="container-fluid">
             <div class="page2">
-                <br>
+            <br>
             <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color: #FFFFCC"> <b>Direct Contact Between Employers and Employees  :)</b></h1>
             <br>
             <h1 class="display-6" style="color: #FFFFCC;">Customized for campus students!</h1>
@@ -164,8 +188,29 @@
     <!-- page3 -->
     <div class="container-fluid">
             <div class="page3">
-                <br>
-            <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>
+            <h1 class="display-4" style="color: #000000;"><b>Our Newest Jobs:</b></h1>
+            <table class="table" style="margin:0% 10%">
+                    <thead style="border: 3px solid #000000;">
+                        <tr>    
+                            <th colspan="5" scope="col" style="padding: 15px; text-align: right" >Company</th>
+                            <th colspan="5" scope="col" style="padding: 15px; text-align: left" >Job Title</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php if(count($jobs) == 0): ?>
+                        <tr>
+                            <th colspan="5" style="text-align: center;">No results found.</th>
+                        </tr>
+                    <?php else: ?>
+                        <?php foreach($jobs as $num => $line): ?>
+                        <tr>
+                            <td colspan="5" style="text-align: right" ><?= $line["Name"]?></td>
+                            <td colspan="5"style="text-align: left"><?= $line["Title"]?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    </tbody>
+            </table>
             <br>
             <a class="PageButton" href="PrivacyPolicy.html">Privacy Policy</a>
            </div> 
