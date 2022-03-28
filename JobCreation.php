@@ -8,7 +8,7 @@
    <!-- CSS Styling-->
     <link rel="stylesheet" href="CSS/JobCreation.css">
     <link rel="stylesheet" href="../JobAssembler/CSS/JobCreation.css">
-    <!-- Bootstrap CSS-->
+    <!-- Bootstrap CSS 5.1.3-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- jQuery -->
@@ -83,7 +83,7 @@
     .container-fluid{
         background-color: #fff;
         width: 550px;
-        height: 750px;
+        height: 850px;
         position: relative;
         display: flex;
         border-radius: 20px;
@@ -112,6 +112,7 @@
         padding: 5px;
         border-bottom: 2px solid rgb(60,60,70);
         font: 900 16px '';
+    }
 
         /* For the specialised button */
 /* .btn btn-primary btn-lg {
@@ -143,7 +144,7 @@
       background-position: -400% 0;
       }
   } */
-    }
+    
 
 </style>
 </head>
@@ -151,11 +152,10 @@
     <div class="container-fluid" style="margin-bottom: 100px">
     <div class="b">
 
-
     <form name="jobCreateForm" id="jobCreateForm">
         <p>
         <h1 class="display-1">Enter Job Detail</h1>
-        <br><br>
+        <br>
 
         <h3 class="d">Job Title<br></h3>
         <input type="text" name="title" class="e" id="title"  placeholder="Input Title" required>
@@ -164,14 +164,16 @@
         <textarea type="textbox" name="description" class="e" id="description" rows="3" cols="50" placeholder="More Details        " required></textarea>
         <br><br>
         <h3 class="d">Job Location</h3>
+        <!-- map -->
         <div id="map" style="height: 200px"></div>
         <button id="resetMap" class="btn btn-danger btn-sm" style="margin: 10px 0px;" type="button">Remove location</button>
         <br><br>
         <input type="hidden" name="latitude" id="latitude"/>
         <input type="hidden" name="longitude" id="longitude"/>
         <!-- button -->
-        <input type="submit" class="btn btn-primary btn-lg" value="Submit">
-            
+        <div class="d-grid gap-1">
+        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
+        </div>  
         </p>
        
         
