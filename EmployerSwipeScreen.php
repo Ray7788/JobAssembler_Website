@@ -35,10 +35,10 @@ $jobString = substr($jobString, 0, -1); //Removes the last comma
 $query = "SELECT DISTINCT UserAccounts.UserID, UserAccounts.Forename, UserAccounts.Surname, UserAccounts.Biography, UserJobs.JobID FROM ((UserAccounts 
 INNER JOIN UserJobs ON UserJobs.UserID = UserAccounts.UserID) 
 INNER JOIN JobPostings ON JobPostings.JobID = UserJobs.JobID) 
-WHERE UserJobs.UserAccepted = 1 AND UserJobs.CompanySeen = 0 AND UserJobs.JobID in (" . $jobString . ");";
+WHERE UserJobs.UserAccepted = 1 AND UserJobs.CompanySeen = 0 AND JobPostings.CompanyID = ?";
 //Printing two of each person because
 $statement = $pdo->prepare($query);
-$statement->execute(["companyID" => $companyID]);
+$statement->execute([$companyID]);
 $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
 ?>
 
