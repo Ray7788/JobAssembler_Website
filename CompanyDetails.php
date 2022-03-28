@@ -80,6 +80,7 @@
                     e.preventDefault();     //Stops the normal HTML form behaviour of changing files
                     let form = document.getElementById('companyForm');
                     var validForm = ValidateForm(form.elements[0], form.elements[1], warning);
+                    form.elements[2] = localStorage.getItem("userID");
                     if(validForm){
                         $.ajax({
                             type:"POST",
@@ -120,6 +121,8 @@
                 <label for="description">Description:</label>
                 <br>
                 <textarea id="description" rows="3" cols="50" name="description" class="inputBox"></textarea>
+                <br>
+                <input type="hidden" name="userID" id="userID">
                 <br>
                 <a href="JoinCompany.php">Or join a pre-existing company</a>
                 <br>

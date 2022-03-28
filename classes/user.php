@@ -121,4 +121,14 @@ class User
     public function revoke_auth(): void {
         $this->authenticated = false;
     }
+
+    public function set_company_id(string $userID, string $companyID): void {
+        $pdo = Database::connect();
+        $query = "UPDATE `UserAccounts` SET CompanyID = :companyID WHERE UserID = :userID";
+        $statement = $pdo->prepare($query);
+        $statement->execute([
+            "userID" => $userID,
+            "companyID" => $companyID
+        ]);
+    }
 }
