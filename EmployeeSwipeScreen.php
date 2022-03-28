@@ -61,9 +61,32 @@ INNER JOIN Companies ON JobPostings.CompanyID = Companies.CompanyID)
 WHERE UserJobs.UserSeen = 0 AND UserJobs.UserID=:userID;";
 $statement = $pdo->prepare($query);
 $statement->execute(["userID" => $userID]);
-$data = $statement->fetchAll();
+$data = $statement->fetchAll(PDO::FETCH_NUM);
 $jobs = array_reverse($data);
 
+//This is getting the skills the user has in common with the job. Gets a score for each job that has just been returned
+$scores = array();
+for($x=0;$x<count($jobs);$x++){
+    //Returns the number of skills in common between the user and the job.
+    $query = "SELECT COUNT(*) FROM (UserSkills INNER JOIN JobSkills ON UserSkills.SkillID = JobSkills.SkillID) WHERE UserSkills.UserID = :userid AND JobSkills.jobid = :jobid";
+    $statement = $pdo->prepare($query);
+    $statement->execute([
+        "userid" => $userID,
+        "jobid" => $jobs[$x][0]
+    ]);
+    $count = intval($statement->fetch()[0]);
+    array_push($scores, $count);
+    array_push($jobs[$x], $count);
+}
+//Has the index of array 'scores' correspond to the array 'jobs'.
+//Now need to sort the job array based upon this.
+//sort($scores);
+//Go through the scores and if there is a job with a matching score then add it to a 'sorted' jobs array
+//$sortedJobs = array();
+
+//for($x=0; $x<count($scores);$x++){
+
+//}
 ?>
 
 <!DOCTYPE html>
@@ -217,10 +240,10 @@ $jobs = array_reverse($data);
             var columns = ["JobID", "Title", "Details", "CompanyID", "UserSeen", "CompanyID", "Name", "Description", "CompanyImage"];
             
             function writeToCard(){
-                var companyName = jobArray[jobCounter][columns.indexOf("Name")];
+                var companyName = jobArray[jobCounter][8];
                 var jobTitle = jobArray[jobCounter][columns.indexOf("Title")];
                 var jobDetails = jobArray[jobCounter][columns.indexOf("Details")];
-                var companyDescription = jobArray[jobCounter][columns.indexOf("Description")];
+                var companyDescription = jobArray[jobCounter][9];
 
                 document.getElementById("card").innerHTML = "Company: " + companyName + " <br> "
                  + "Job Title: " + jobTitle + "<br>"
