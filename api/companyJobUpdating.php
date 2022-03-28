@@ -3,8 +3,6 @@ require_once(__DIR__ . "/../classes/database.php");
 require_once(__DIR__ . "/../classes/userjobs.php");
 require_once(__DIR__ . "/../classes/api_response_generator.php");
 
-header("Access-Control-Allow-Origin: *"); //TODO must revert before complete
-
 if($_SERVER["REQUEST_METHOD"] !== "POST"){
     ApiResponseGenerator::generate_error_json(405, "{$_SERVER["REQUEST_METHOD"]} method not allowed");
 }

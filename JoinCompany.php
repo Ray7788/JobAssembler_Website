@@ -32,6 +32,7 @@ $companies = $statement->fetchAll(PDO::FETCH_NUM);
 
 $noOfCompanies = count($companies);
 
+
 ?>
 <!DOCTYPE html>
 <html>

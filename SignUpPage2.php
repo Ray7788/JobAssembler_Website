@@ -134,8 +134,8 @@ input:focus{
                             //url:"https://web.cs.manchester.ac.uk/v31903mb/JobAssembler/api/register.php",
                             url:"api/register.php",
                             data: $(this).serialize(),
-                            success: function(data){   //Where to go if successful
-                                alert(accountType)
+                            success: function(data, textStatus, xhr){   //Where to go if successful
+                                localStorage.setItem("userID", xhr.responseJSON["id"]);
                                 if (accountType == "employee"){
                                     window.location = "EmployeeForm.php";
                                 }else{
