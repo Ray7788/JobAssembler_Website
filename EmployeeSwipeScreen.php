@@ -45,7 +45,6 @@ for($x=0;$x<count($JobPostingsIDs);$x++){
         //Need to INSERT this entry
         $query = "INSERT INTO UserJobs(UserID, JobID, UserAccepted, CompanyAccepted, UserSeen, CompanySeen) VALUES (:userID, :jobID, 0, 0, 0, 0)";
         $statement = $pdo->prepare($query);
-        var_dump($JobPostingsIDs[$x]);
         $statement->execute([
             "userID" => $userID,
             "jobID" => $JobPostingsIDs[$x]
