@@ -10,7 +10,7 @@ if (isset($_SESSION["user"])) {
 }
 session_regenerate_id(true);
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    header("Location: /JobAssembler/index.php");
+    header("Location: ../index.php");
 }
 else {
     ApiResponseGenerator::generate_response_json(200, ["message" => "Successfully logged out."]);
