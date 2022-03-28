@@ -12,6 +12,10 @@ if (!$user->is_authenticated()) {
     header("Location: /index.php");
     die(0);
 }
+if($user->company_id != -1){
+    header("Location: /main.php");
+    die(0);
+}
 $jobs = array();
 $pdo = Database::connect();
 //NEED to insert rows with UserSeen=0 for jobs that aren't in the database yet.
