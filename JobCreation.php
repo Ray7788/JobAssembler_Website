@@ -13,6 +13,11 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Leafletjs (map) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
     <script>
         // Shamelessly stole this directly from James's code
         $(document).ready(function(){
@@ -37,7 +42,38 @@
                 })
             });})
     </script>
+    <script>
+        var map;
+        var marker = L.marker({lat: 0, lng: 0});
+        $(function() {
+            map = L.map("map").setView({lat: 53.4808, lng: -2.2426}, 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+            }).addTo(map);
 
+            // show the scale bar on the lower left corner
+            L.control.scale({imperial: true, metric: true}).addTo(map);
+
+            // show a marker on the map
+            //L.marker({lon: 0, lat: 0}).bindPopup('The center of the world').addTo(map);
+
+            map.on("click", function(e) {
+                let coords = map.mouseEventToLatLng(e.originalEvent);
+                marker.remove();
+                marker.setLatLng({lat: coords.lat, lng: coords.lng}).addTo(map);
+                $("#latitude").val(coords.lat);
+                $("#longitude").val(coords.lng);
+            })
+        })
+        $(function() {
+            $("#resetMap").on("click", function() {
+                marker.remove();
+                $("#latitude").removeAttr("value");
+                $("#longitude").removeAttr("value");
+            })
+        })
+    </script>
 <style>
     body {
         display: flex;
@@ -57,8 +93,8 @@
     }
     .b{
         width: 500px;
-        height: 650px;
         overflow: hidden;
+        margin-bottom: 1em;
     }
     .display-1{
         font: 900 24px '';
@@ -112,7 +148,7 @@
 </style>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-bottom: 100px">
     <div class="b">
 
 
@@ -121,18 +157,20 @@
         <h1 class="display-1">Enter Job Detail</h1>
         <br><br>
 
-            <h3 class="d">Job Title<br></h3>
-            <input type="text" name="title" class="e" id="title"  placeholder="Input Title" required>
-            <br><br>
-            <h3 class="d">Job Description</h3>
-            <textarea type="textbox" name="description" class="e" id="description" rows="3" cols="50" placeholder="More Details        " required></textarea>
-            <br><br>
-            <h3 class="d">Job Location</h3> 
-            <input type="text" name="location" class="e" id="location"  placeholder="Post Code Recommend" required>
-            <br><br>
-         
-            <!-- button -->
-            <input type="submit" class="btn btn-primary btn-lg" value="Submit">
+        <h3 class="d">Job Title<br></h3>
+        <input type="text" name="title" class="e" id="title"  placeholder="Input Title" required>
+        <br><br>
+        <h3 class="d">Job Description</h3>
+        <textarea type="textbox" name="description" class="e" id="description" rows="3" cols="50" placeholder="More Details        " required></textarea>
+        <br><br>
+        <h3 class="d">Job Location</h3>
+        <div id="map" style="height: 200px"></div>
+        <button id="resetMap" class="btn btn-danger btn-sm" style="margin: 10px 0px;" type="button">Remove location</button>
+        <br><br>
+        <input type="hidden" name="latitude" id="latitude"/>
+        <input type="hidden" name="longitude" id="longitude"/>
+        <!-- button -->
+        <input type="submit" class="btn btn-primary btn-lg" value="Submit">
             
         </p>
        

@@ -10,14 +10,29 @@ class Job
     public float $latitude;
     public float $longitude;
 
-    public static function create_job(string $title, string $description, string $location, int $company_id) {
+    public static function create_job(string $title, string $description, int $company_id, float $latitude = null, float $longitude = null): bool {
         $pdo = Database::connect();
-        $query = "INSERT INTO JobPostings (Title, Details, CompanyID) VALUES (:title, :description, 1)";
-        $statement = $pdo->prepare($query);
-        return $statement->execute([
-            "title" => $title,
-            "description" => $description
-        ]);
+        if (is_null($latitude) || is_null($longitude)){
+            $query = "INSERT INTO JobPostings (Title, Details, CompanyID) VALUES (:title, :description, :company_id)";
+            $statement = $pdo->prepare($query);
+            return $statement->execute([
+                "title" => $title,
+                "description" => $description,
+                "company_id" => $company_id
+            ]);
+        }
+        else {
+            $query = "INSERT INTO JobPostings (Title, Details, CompanyID, Latitude, Longitude) VALUES (:title, :description, :company_id, :latitude, :longitude)";
+            $statement = $pdo->prepare($query);
+            return $statement->execute([
+                "title" => $title,
+                "description" => $description,
+                "company_id" => $company_id,
+                "latitude" => $latitude,
+                "longitude" => $longitude
+            ]);
+        }
+
     }
 
     public function get_job(int $id = null): array {
