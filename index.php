@@ -49,8 +49,8 @@
         }
 
         table{
-            margin-right: 10%;
-            margin-left: 10%;
+            margin-right: 25%;
+            margin-left: 25%;
             border: 3px solid #000000;
         }
 
@@ -170,6 +170,8 @@
             <hr class="my-3">
             <br>
             <p class="lead" style="color: #000000;">JobAssembler Is!</p> 
+            <br>
+            <a class="PageButton" style="color: red;" href="PrivacyPolicy.html">Privacy Policy</a>
         </div> 
     </div>
 
@@ -177,11 +179,14 @@
     <div class="container-fluid">
             <div class="page2">
             <br>
-            <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color: #FFFFCC"> <b>Direct Contact Between Employers and Employees  :)</b></h1>
+            <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color: #FFFFCC"> <b>Direct access to Employees and Employers </b></h1>
             <br>
-            <h1 class="display-6" style="color: #FFFFCC;">Customized for campus students!</h1>
+            <h1 class="display-6" style="color: #FFFFCC;">Ideal for New Graduates!</h1>
             <hr class="my-4">
-            <p class="lead" style="color: #FFFFCC;"><b>Easier and more engaging than existing options (LinkedIn, Indeed, Reed ... etc.)</b></p>
+            <br>
+            <p class="lead" style="color: #FFFFCC;"><b>Easier and more engaging than the Competition</b></p>
+            <br>
+            <p class="lead" style="color: #FFFFCC;"><b>DON'T MISS OUT, JOIN NOW!</b></p>
         </div>
     </div>
 
@@ -189,7 +194,7 @@
     <div class="container-fluid">
             <div class="page3">
             <h1 class="display-4" style="color: #000000;"><b>Our Newest Jobs:</b></h1>
-            <table class="table" style="margin:0% 10%">
+            <table class="table" style="width: 50%;">
                     <thead style="border: 3px solid #000000;">
                         <tr>    
                             <th colspan="5" scope="col" style="padding: 15px; text-align: right" >Company</th>
@@ -212,7 +217,7 @@
                     </tbody>
             </table>
             <br>
-            <a class="PageButton" href="PrivacyPolicy.html">Privacy Policy</a>
+            
            </div> 
     </div>
 
