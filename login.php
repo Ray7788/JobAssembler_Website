@@ -22,7 +22,8 @@
         border: 0;
         }
 
-/*-----------------------------------------------------------------------------------------------  */        
+/*-----------------------------------------------------------------------------------------------  */   
+      /* LOGO border */
       .mb-4{border-radius: 5px;}
 /*-----------------------------------------------------------------------------------------------  */
       /* gradient color */
@@ -32,10 +33,12 @@
         border-width:0px ;
         background: linear-gradient(
         135deg,
-            hsl(170deg, 80%, 70%),
-            hsl(190deg, 80%, 70%),
-            hsl(250deg, 80%, 70%),
-            hsl(320deg, 80%, 70%));
+        
+            rgb(172,182,229),
+            rgb(109,213,250),
+            rgb(116,235,213),
+            rgb(188, 238, 240)
+            );
         background-size: 200% 200%;
         animation: gradient-move 10s ease alternate infinite;}
       
@@ -50,8 +53,7 @@
         }
       }
 /*-----------------------------------------------------------------------------------------------  */
-
-
+/* Bootstrap */
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -100,7 +102,7 @@
     
 <main class="form-signin">
     <img class="mb-4" src="Images/Logo1.png" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <h1 class="h3 mb-3 fw-normal">Please Sign In</h1>
     
 <!-------------------------------------------------------------------------------------------------------------->
 <!-- form -->
@@ -109,14 +111,17 @@
       <input type="text" class="form-control" name="username" id="username" placeholder="Username">
       <label for="username">Username</label>
     </div>
+    <br>
     <div class="form-floating">
       <input type="password" class="form-control" name="password" id="password" placeholder="Password">
       <label for="password">Password</label>
     </div>
 
 <!-------------------------------------------------------------------------------------------------------------->
+<a href="SignUpPage2.php">Don't have a JobAssembler account yet?</a>
+ <br> <br>
 <!-- submit  -->
-    <button class="w-30 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <button class="w-30 btn btn-lg btn-primary" type="submit">Sign In</button>
     <p class="mt-5 mb-3 text-muted">&copy; X17 2021-2022</p>
 
     <p id="warningMessage"></p>

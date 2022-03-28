@@ -29,29 +29,26 @@ Look through the database and see if there is an entry in UserJobs for every job
 $query = "SELECT JobID FROM UserJobs WHERE UserID = :userID";
 $statement = $pdo->prepare($query);
 $statement->execute(["userID" => $userID]);
-$UserJobsIDs = $statement->fetchAll();
+$UserJobsIDs = $statement->fetchAll(PDO::FETCH_ASSOC);
 $UserJobsIDs = array_map('implode', $UserJobsIDs);
-echo(implode($UserJobsIDs));
 
 $query = "SELECT JobID FROM JobPostings";
 $statement = $pdo->prepare($query);
 $statement->execute();
-$JobPostingsIDs = $statement->fetchAll();
+$JobPostingsIDs = $statement->fetchAll(PDO::FETCH_ASSOC);
 $JobPostingsIDs = array_map('implode', $JobPostingsIDs);
-//echo("HEELOOO". implode('\n', array_map('implode', $JobPostingsIDs)));
 
 //For some reason each number is read twice, so each array element is two numbers. Shouldn't make a difference though.
-
+//The reason the above problem was happening was because the default fetch mode is PDO::FETCH_BOTH which creates an array with both integer and string keys. I have fixed said problem -Max.
 for($x=0;$x<count($JobPostingsIDs);$x++){
     if(in_array($JobPostingsIDs[$x], $UserJobsIDs) == false){
         //Need to INSERT this entry
-        $query = "INSERT INTO UserJobs(UserID, JobID, UserAccepted, CompanyAccepted, UserSeen) VALUES (:userID, :jobID, 0, 0, 0)";
+        $query = "INSERT INTO UserJobs(UserID, JobID, UserAccepted, CompanyAccepted, UserSeen, CompanySeen) VALUES (:userID, :jobID, 0, 0, 0, 0)";
         $statement = $pdo->prepare($query);
         $statement->execute([
             "userID" => $userID,
-            "jobID" => $JobPostingsIDs[$x][0]
+            "jobID" => $JobPostingsIDs[$x]
         ]);
-        
     }
 }
 
@@ -73,30 +70,129 @@ $jobs = array_reverse($data);
 <html>
     <head>
         <title>Employee Swipe Screen</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
         <style type="text/css">
+            body {
+            width: 100vw;
+			height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: salmon;
+            /* background: linear-gradient(to left, #e1eec3, #f05053); */
+            }
+
             .container{
-                justify-content:center;
-                display: flex;
-                align-items:center;
-                height: 12em;
-                font-size:2.5em;
-                position:relative;
+            width: 85vw;
+            height: 90vh;
+            position: relative;  
+            margin: auto; 
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            top: 5vh;
             }
-            .box{
-                background: bisque;
-                border-radius: 5px;
-                box-shadow: 3px 10px 15px #abc;
-                
-            }
-            .buttonHolder{
+/* ----------------------------------------------------*/
+        h1 {
+			color: white;
+			margin-top: 80px;
+			text-align: center;
+		}
+		.cards-wrap {
+            border-radius: 15px;
+			margin-top: 10px;
+			width: 1140px;
+			height: 1100px;
+			margin: auto;
+			perspective: 100px;
+			perspective-origin: 50% 90%;
+		}
+		.card {
+            border-radius: 15px;
+			width: 960px;
+			height: 720px;
+			padding: 50px 30px;
+			background: #ffffff;
+			box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+			position: absolute;
+			transform-origin: 50% 50%;
+			transition: all 0.8s;
+		}
+		.card.first {
+			transform: translate3d(0, 0, 0px);
+			z-index: 3;
+		}
+
+		.card.second {
+			transform: translate3d(0, 0, -10px);
+			z-index: 2;
+		}
+
+		.card.third {
+			transform: translate3d(0, 0, -20px);
+			z-index: 1;
+		}
+
+		.card.last-card {
+			transform: translate3d(0, 0, -20px);
+			z-index: 1;
+		}
+
+		.card:not(:first-child) {
+			opacity: 0.95;
+		}
+
+		.card.swipe {
+			transform: rotate(30deg) translate3d(120%, -50%, 0px) !important;
+			opacity: 0;
+			visibility: hidden;
+		}
+
+		.card p {
+			font-size: 20px;
+			font-weight: 400;
+			margin-bottom: 20px;
+			margin-top: 0;
+		}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* For Yes/No Button */
+		.option {
+			width: 100%;
+			padding: 18px 10px 18px 84px;
+			text-align: left;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			font-size: 16px;
+			font-weight: 400;
+			background: #f8f8f8 url(ic_option_normal.svg) left 50px center no-repeat;
+			background-size: 24px;
+		}
+
+		.option:nth-child(2) {
+			margin-bottom: 20px;
+		}
+
+		.option:hover,
+		.option.checked {
+			background: #faeeee url(ic_option_checked.svg) left 50px center no-repeat;
+		}
+
+        .btn-group{
                 justify-content:center;
                 display:flex;
                 align-items:center;
                 height:5em;
                 font-size:40px;
-                position:relative;
-            }
-            .button {
+                position: sticky;
+                bottom: -5vh;
+        }
+/* ----------------------------------------------------------------------------------------------------------------- */
+            /* .option {
                 margin-left:auto;
                 margin-right:auto;
                 border: none;
@@ -108,14 +204,16 @@ $jobs = array_reverse($data);
                 font-size: 16px;
                 cursor: pointer;
                 background-color:aqua;
-            }
+                width: 50%;
+            }  */
+
         </style>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
             var userID = <?php echo($userID); ?>;
             var jobCounter = 0;
             //To see whole jobArray do JSON.stringify(jobArray) because it's encoded using json to make it more secure.
-            var jobArray = <?php echo json_encode($jobs) ?>;
+            var jobArray = <?php echo json_encode($jobs) ?>;    //If this is empty, disable buttons
             var columns = ["JobID", "Title", "Details", "CompanyID", "UserSeen", "CompanyID", "Name", "Description", "CompanyImage"];
             
             function writeToCard(){
@@ -126,8 +224,8 @@ $jobs = array_reverse($data);
 
                 document.getElementById("card").innerHTML = "Company: " + companyName + " <br> "
                  + "Job Title: " + jobTitle + "<br>"
-                 + "Job Details: " + "<br> <textarea cols=80 rows=8 readonly>" + jobDetails + "</textarea><br>"
-                 + "Company Description: " + "<br> <textarea cols=80 rows=8 readonly>" + companyDescription + "</textarea><br>";
+                 + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
+                 + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
             }
 
             function buttonPressed(yesOrNo){
@@ -153,32 +251,77 @@ $jobs = array_reverse($data);
                     writeToCard();
                 }else{
                     document.getElementById("card").innerHTML = "Sorry, you've seen every available job.";
+                    document.getElementById("noButton").disabled = true;
+                    document.getElementById("yesButton").disabled = true;
                 }
                 
             }
         </script>
     </head>
+
+
     <body>
-        <?php
-            echo("You are signed in as: " . $user->username);
-        ?>
+        <!-- Nav bar -->
+        <nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
+            <a class="navbar-brand" href="#">
+            <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
+            <?php
+                echo("You are signed in as: &nbsp;" . $user->username);
+            ?>
+        </nav>
 
-        <div class="container">
-            <div class="box">
+        <!-- main part -->
+        <h1>Swipe Cards</h1>
+    <div class="container">
+
+        <br>
+		<div class="cards-wrap">
+			<div class="card first">
                 <p id="card" name="card">
-                    Sorry, you've seen all the available jobs
-                </p>
-                
+                        Sorry, you've seen all the available jobs
+                    </p>
+                <br>
+                <!-- <div class="btn-group"> -->
+				<button class="option" id="yesButton" onclick="buttonPressed(1)">YES</button>
+				<button class="option" id="noButton" onclick="buttonPressed(0)">NO</button>
+                <!-- </div> -->
+			</div>
 
-            </div>  
-        </div>
-        <div class="buttonHolder">
+			<div class="card second"></div>
+			<div class="card third"></div>
+    </div>
 
-            <button class="button" onclick="buttonPressed(0)">NO</button>
-            <button class="button" onclick="buttonPressed(1)">YES</button>
-        </div>
     </body>
     <script>
         writeToCard();
+        const cardWrap = document.querySelector(".cards-wrap");
+		function pickOption() {
+			const topCard = document.querySelector(".card:first-child");
+			const tempStr = topCard.innerHTML;
+			topCard.classList.add("swipe");
+			setTimeout(function() {
+				topCard.remove();
+				const cards = document.querySelectorAll(".card");
+				cards[0].style.transform = "translate3d(0, 0, 0px)";
+				cards[0].style.zIndex = "3";
+				cards[0].innerHTML = tempStr;
+				cards[1].style.transform = "translate3d(0, 0, -10px)";
+				cards[1].style.zIndex = "2";
+				cardWrap.insertAdjacentHTML(
+					"beforeend",
+					'<div class="card last-card"></div>'
+				);
+				const newOptions = document.querySelectorAll(".option");
+				newOptions.forEach(optionBtn =>
+					optionBtn.addEventListener("click", pickOption)
+				);
+			}, 300);
+		}
+
+		const optionBtns = document.querySelectorAll(".option");
+		optionBtns.forEach(optionBtn =>
+			optionBtn.addEventListener("click", pickOption)
+		);
+
     </script>
 </html>

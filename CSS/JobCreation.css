@@ -1,0 +1,67 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(to left, #e1eec3, #f05053);
+}
+.container-fluid{
+    background-color: #fff;
+    width: 550px;
+    height: 750px;
+    position: relative;
+    display: flex;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    top: 50px;
+}
+.b{
+    width: 400px;
+    overflow: hidden;
+}
+.header1{
+    font: 900 24px '';
+    margin: 5px 0;
+    text-align: center;
+    letter-spacing: 3px;
+}
+.e{
+    width: 100%;
+    margin-bottom: 20px;
+    outline: none;
+    border: 0;
+    padding: 10px;
+    border-bottom: 2px solid rgb(60,60,70);
+    font: 900 16px '';
+}
+
+/* -------------------------------------------------- */
+/* For the specialised button
+.btn-btn-primary-btn-lg {
+    width: 15vw;
+    height: 20vh;
+    border-radius: 30px;
+    line-height: 100px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 28px;
+    color: #fff;  
+    background-image: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #09a8f4);
+    background-size: 400%;
+    z-index: 1;
+
+  }
+
+
+  a.btn-btn-primary-btn-lg:hover {
+    animation: sun 8s infinite;
+    }
+
+  a.btn-btn-primary-btn-lg:hover::before {
+    animation: sun 8s infinite;
+    }
+
+  @keyframes sun {
+  100% {
+      background-position: -400% 0;
+      }
+  } */

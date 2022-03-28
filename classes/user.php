@@ -12,6 +12,8 @@ class User
     public string $biography = "";
     public string $image_url;
     public int $company_id;
+    public float $latitude;
+    public float $longitude;
 
     #Pepper used in password hashing to give some protection against password shucking. https://www.youtube.com/watch?v=OQD3qDYMyYQ
     private static string $pepper = "v6uAX32o";
@@ -40,9 +42,6 @@ class User
         }
     }
 
-    /**
-     * @throws Exception
-     */
     public static function create_user(string $username, string $password, string $forename, string $surname): bool {
         $pdo = Database::connect();
         $pre_hash = hash("sha256", $password);
@@ -75,21 +74,44 @@ class User
     }
 
     public function authenticate($id, $password): bool {
-        $pdo = Database::connect();
         $this->user_id = $id;
         $verified = User::check_password($id, $password);
-        if (!$verified) return false;$query = "SELECT * FROM `UserAccounts` WHERE UserID = ?";
+        if (!$verified) return false;
+        $this->get_user();
+        $this->authenticated = true;
+        return true;
+    }
+
+    public function get_user(int $id = null): array {
+        $pdo = Database::connect();
+        if (isset($id)){
+            $this->user_id = $id;
+        }
+        $query = "SELECT Username, Forename, Surname, Biography, ProfileImage, CompanyID, Latitude, Longitude FROM `UserAccounts` WHERE UserID = ?";
         $statement = $pdo->prepare($query);
-        $statement->execute([$id]);
-        $result = $statement->fetch();
+        $statement->execute([$this->user_id]);
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
         $this->username = $result["Username"];
         $this->forename = $result["Forename"];
         $this->surname = $result["Surname"];
         $this->biography = $result["Biography"];
         $this->image_url = is_null($result["ProfileImage"]) ? "" : $result["ProfileImage"];
         $this->company_id = is_null($result["CompanyID"]) ? -1 : intval($result["CompanyID"]);
-        $this->authenticated = true;
-        return true;
+        $this->latitude = floatval($result["Latitude"]);
+        $this->longitude = floatval($result["Longitude"]);
+        unset($result["Latitude"]);
+        unset($result["Longitude"]);
+        return $result;
+    }
+
+    public function set_location(float $latitude, float $longitude, int $id = null): void {
+        $pdo = Database::connect();
+        if (isset($id)){
+            $this->user_id = $id;
+        }
+        $query = "SELECT Username, Forename, Surname, Biography, ProfileImage, CompanyID FROM `UserAccounts` WHERE UserID = ?";
+        $statement = $pdo->prepare($query);
+        $statement->execute([$this->user_id]);
     }
 
     public function is_authenticated(): bool {

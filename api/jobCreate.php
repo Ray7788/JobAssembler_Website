@@ -3,11 +3,24 @@ require_once(__DIR__ . "/../classes/database.php");
 require_once(__DIR__ . "/../classes/api_response_generator.php");
 require_once(__DIR__ . "/../classes/user.php");
 require_once(__DIR__ . "/../classes/job.php");
-header("Access-Control-Allow-Origin: *"); #TODO - MUST REVERT BEFORE COMPLETE
+
+session_start();
+if (!isset($_SESSION["user"]) || !($_SESSION["user"] instanceof User)) {
+    ApiResponseGenerator::generate_error_json(401, "User not logged in.");
+}
+$user = $_SESSION["user"];
+$userID = $user->user_id;
+if (!$user->is_authenticated()) {
+    ApiResponseGenerator::generate_error_json(401, "User not logged in.");
+}
+if ($user->company_id == -1) {
+    ApiResponseGenerator::generate_error_json(403, "User not assigned to company.");
+}
+
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     ApiResponseGenerator::generate_error_json(405, "{$_SERVER["REQUEST_METHOD"]} method not allowed");
 }
-$required_params = ["title", "description", "location"];
+$required_params = ["title", "description"];
 foreach ($required_params as $param) {
     if (!isset($_REQUEST[$param])) {
         ApiResponseGenerator::generate_error_json(400, "Parameter $param not set.");
@@ -16,7 +29,14 @@ foreach ($required_params as $param) {
 
 $title = $_REQUEST["title"];
 $description = $_REQUEST["description"];
-$location = $_REQUEST["location"];
+if (isset($_REQUEST["latitude"]) && isset($_REQUEST["longitude"]) && ($_REQUEST["latitude"]) && is_float($_REQUEST["longitude"])) {
+    $latitude = $_REQUEST["latitude"];
+    $longitude = $_REQUEST["longitude"];
+}
+else {
+    $latitude = null;
+    $longitude = null;
+}
 
 
 if (strlen($title) < 3){
@@ -32,7 +52,7 @@ if (strlen($description) > 4294967295){
     ApiResponseGenerator::generate_error_json(400, "Invalid job description. Description is too long");
 }
 try {
-    $result = Job::create_job($title, $description, $location, 1);
+    $result = Job::create_job($title, $description, $user->company_id, $latitude, $longitude);
     if (!$result) {
         ApiResponseGenerator::generate_error_json(500, "There was an error with the database. Please try again later.");
     }

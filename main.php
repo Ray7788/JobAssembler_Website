@@ -1,3 +1,7 @@
+<?php
+header("Location: EmployeeSwipeScreen.php")
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,5 +10,6 @@
 </head>
 <body>
 	<h1>Job Assembler</h1>
+
 </body>
 </html>

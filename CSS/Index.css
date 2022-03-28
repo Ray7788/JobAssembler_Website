@@ -360,17 +360,13 @@
     /* ----------------------------------------------------------------------------------------------------------------- */
     /* For the specialised button */
     .btn-btn-primary-btn-lg {
-      position: relative;
-      left: 45%;
-	    top: 40%;
-	    transform: translate(-50%,-50%);
       width: 15vw;
       height: 20vh;
-      border-radius: 50px;
+      border-radius: 30px;
       line-height: 100px;
       text-align: center;
       text-decoration: none;
-      font-size:36px;
+      font-size: 28px;
       color: #fff;  
       background-image: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #09a8f4);
       background-size: 400%;

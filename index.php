@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/index-Normalise-custom.css"> <!-- Include a custom CSS for the website. -->
+    <link rel="stylesheet" href="CSS/Index.css"> <!-- Include a custom CSS for the website. -->
 
     <title>JobAssembler</title>
 
@@ -28,7 +28,6 @@
         /* Delete extra scroll bars */
         body {
             overflow: hidden;
-        
         }
 
         /* For every pages */
@@ -53,6 +52,7 @@
 /* ----------------------------------------------------------------------------------------------------------------- */
         /* 1st page */
         .page1 {
+            position: relative;
             width: 100vw;
             height: 120vh;
             border-width:0px ;
@@ -68,6 +68,7 @@
         
          /*2nd page */
         .page2 {
+            position: relative;
             width: 100vw;
             height: 120vh;
             background: linear-gradient(
@@ -82,6 +83,7 @@
 
         /* 3rd page */
         .page3 {
+            position: relative;
             width: 100vw;
             height: 120vh;
             background: linear-gradient(
@@ -106,13 +108,19 @@
 /* ----------------------------------------------------------------------------------------------------------------- */
         /* Text general styling  */
         .display-4, .display-6, .lead {text-align: center;}
+/* ----------------------------------------------------------------------------------------------------------------- */
+        /*Button position  */
+       .PageButton{position: absolute; left: 50%; top: 60%; transform: translate(-50%,-50%)}
+
+
+
+/* ----------------------------------------------------------------------------------------------------------------- */
 
     </style>
  </head>
 
 
     <body>
-    <!-- Image and text -->
     
     <!-- navbar -->
     <nav class="navbar navbar-light" style="background-color: white;">
@@ -120,6 +128,7 @@
         <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="";>
         JobAssembler
         <div class="nav-item">
+            <a class="btn btn-success" href="SignUpPage2.php">Sign Up</a>
             <a class="btn btn-primary" href="login.php">Log in</a>
         </div>
         </a>
@@ -130,14 +139,13 @@
     <!-- page1 -->
     <div class="container-fluid">
         <div class="page1">
-            <br>
+                <br>
             <h1 class="display-4" style="color: #000000;"><b>Struggling with finding Employment or Employees?</b></h1>
             <br>
             <h1 class="display-6" style="color: #000000;">Ever wish it was as easy as Tinder?</h1>
             <hr class="my-3">
             <br>
-            <p class="lead" style="color: #000000;">JobAssembler Is!</p>
-            <a class="btn-btn-primary-btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>
+            <p class="lead" style="color: #000000;">JobAssembler Is!</p> 
         </div> 
     </div>
 
@@ -150,7 +158,6 @@
             <h1 class="display-6" style="color: #FFFFCC;">Customized for campus students!</h1>
             <hr class="my-4">
             <p class="lead" style="color: #FFFFCC;"><b>Easier and more engaging than existing options (LinkedIn, Indeed, Reed ... etc.)</b></p>
-            <a class="btn-btn-primary-btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>
         </div>
     </div>
 
@@ -158,9 +165,10 @@
     <div class="container-fluid">
             <div class="page3">
                 <br>
-            <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>  
-            <a class="btn-btn-primary-btn-lg" href="SignUpPage2.php" role="button">Sign Up Now!</a>  
-        </div>
+            <h1 class="display-4" style="color: #7da2a9;">The Best of the Best</h1>
+            <br>
+            <a class="PageButton" href="PrivacyPolicy.html">Privacy Policy</a>
+           </div> 
     </div>
 
     </main>

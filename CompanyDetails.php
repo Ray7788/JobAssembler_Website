@@ -1,20 +1,58 @@
 <!DOCTYPE html>
+<html lang="en">
 <html>
     <head>
-        <title>Company Details</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Company Details - JobAssembler</title>
+
+         <!-- Bootstrap CSS-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
         <style type="text/css">
-            .container{
+            body {
+                display: flex;
                 justify-content: center;
-                display:flex;
+                background-image: linear-gradient(to left, #5B86E5,#6DD5FA);
+            }
+            .container-fluid{
+                background-color: #fff;
+                width: 80vw;
+                height: 90vh;
+                position: relative;
+                display: flex;
+                border-radius: 20px;
+                justify-content: center;
                 align-items: center;
-                height: 100vh;
-                font-size:40px;
-                position:relative;
+                top: 50px;
+                font-size:40px;  
+            }
+            .b{
+                width: 75vw;
+                height: 90vh;
+                overflow: hidden;
+                font-family:"Helvetica";
+
+            }
+            .display-1{
+            font: 900 24px '';
+            font-size:1.5em;
+            font-family:"Helvetica";
+            margin: 5px 0;
+            text-align: center;
+            letter-spacing: 1px;
             }
             .inputBox{
-                float:right;
-                font-size:40px;
+            width: 100%;
+            margin-bottom: 20px;
+            outline: none;
+            border: 0;
+            padding: 5px;
+            border-bottom: 2px solid rgb(60,60,70);
+            font: 900 16px '';
+            font-size:40px;
             }
+           
             label{
                 float:left;
             }
@@ -48,7 +86,7 @@
                             url:"api/companyRegister.php",
                             data: $(this).serialize(),
                             success: function(data){
-                                window.location = "login_page.php"  //Where to go if successful (Needs changing to the main screen)
+                                window.location = "login.php"  //Where to go if successful (Needs changing to the main screen)
                                 alert("Success");
                             },
                             error: function(xhr){
@@ -71,18 +109,24 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="container-fluid">
+        <div class="b">
+            <h1 class="display-1" align="center">Company Details</h1>
             <form id="companyForm" name="companyForm">
-                <h3>Company Details</h3>
                 <label for="name">Company Name:</label>
+                <br>
                 <input type="text" name="name" id="name" class="inputBox">
-                <br><br>
-                <label for="description">Description:</label><br>
-                <textarea id="description" rows="4" cols="50" name="description" class="inputBox"></textarea>
-                <br><br>
-                <input type="submit">
-                <br><br>
+                <br>
+                <label for="description">Description:</label>
+                <br>
+                <textarea id="description" rows="3" cols="50" name="description" class="inputBox"></textarea>
+                <br>
+                <a href="JoinCompany.php">Or join a pre-existing company</a>
+                <br>
+                <input type="submit" class="btn btn-primary" style="display:block;margin:0 auto" value="Submit">
+               
                 <p id="validationMsg"></p>
+                <br>
             </form>
         </div>
     </body>
