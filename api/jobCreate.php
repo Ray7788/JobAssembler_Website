@@ -29,15 +29,15 @@ foreach ($required_params as $param) {
 
 $title = $_REQUEST["title"];
 $description = $_REQUEST["description"];
-if (isset($_REQUEST["latitude"]) && isset($_REQUEST["longitude"]) && ($_REQUEST["latitude"]) && is_float($_REQUEST["longitude"])) {
-    $latitude = $_REQUEST["latitude"];
-    $longitude = $_REQUEST["longitude"];
+
+if (isset($_REQUEST["latitude"]) && isset($_REQUEST["longitude"]) && $_REQUEST["latitude"] != "" && $_REQUEST["longitude"] != "") {
+    $latitude = floatval($_REQUEST["latitude"]);
+    $longitude = floatval($_REQUEST["longitude"]);
 }
 else {
     $latitude = null;
     $longitude = null;
 }
-
 
 if (strlen($title) < 3){
     ApiResponseGenerator::generate_error_json(400, "Invalid job title. Must be longer than 3 characters");
