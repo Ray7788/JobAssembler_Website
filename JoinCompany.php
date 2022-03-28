@@ -37,12 +37,42 @@ $noOfCompanies = count($companies);
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Join Company</title>
+        <title>Join Company  - JobAssembler</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Bootstrap CSS -->
+
+        <!-- Bootstrap CSS 4.6.1 -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+        <style>
+        body {
+        display: flex;
+        justify-content: center;
+        background-image: linear-gradient(to left, #e1eec3, #f05053);
+        }
+
+        .container-fluid{
+                width: 40vw;
+                height: 80h;
+                position: relative;
+                display: flex;
+                border-radius: 20px;
+                justify-content: center;
+                align-items: center;
+                top: 50px;
+                font-size:40px;  
+        }
+
+        .b{
+            background-color: #fff;
+
+                width: 75vw;
+                height: 60vh;
+                overflow: hidden;
+                font-family:"Helvetica";
+
+            }
+        </style>
         <script>
             var userID = <?php echo($userID); ?>;
             var companyArray = <?php echo json_encode($companies) ?>;
@@ -73,15 +103,25 @@ $noOfCompanies = count($companies);
 
     
     <body>
-        <form action="JoinCompany.php" method="GET" name="searchForm">
-            <table>
+    <div class="container-fluid">
+    <div class="b">  
+
+        <form action="JoinCompany.php" method="GET" name="searchForm" class="form-inline">
+        <div class="form-group mb-2">
+        
+        <table>
                 <tr>
-                    <td><input type="text" name="txt" value="<?php echo isset($_GET['txt']) ? $_GET['txt'] : ''; ?>" placeholder="Enter your company name" /></td>
-                    <td><input type="submit" name="" value="Search" /></td>
+                    <td><input type="text" name="txt" class="form-control" value="<?php echo isset($_GET['txt']) ? $_GET['txt'] : ''; ?>" placeholder="Enter your company name" /></td>
+                    <td><input type="submit" name="" value="Search" class="btn btn-primary mb-2" /></td>
                 </tr>
-            </table>
-        </form>   
+        </table>
+         
+        </form>  
+        </div> 
+         
         <b><i><p id="errorMsg"></p></i></b>
+
+
         <?php
             //Show the user the keywords they previously entered.
             //If the txt variable is empty then nothing has been searched for.
