@@ -47,7 +47,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
     <head>
         <title>Employer Swipe Screen - JobAssembler</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Bootstrap CSS -->
+        <!-- Bootstrap CSS 4.6.1-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
         
         <!-- Jquery -->
@@ -58,52 +58,89 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
         
         <style type="text/css">
             body {
+            width: 100vw;
+			height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(
-                135deg,
-            rgb(221,62,84),
-            rgb(107,229,133),
-            rgb(221, 102, 195),
-            rgb(241, 185,93)
-            );
-            background-size: 200% 200%;
-            animation: gradient-move 10s ease alternate infinite;
+            background: salmon;
+            /* background: linear-gradient(to left, #e1eec3, #f05053); */
+            align-items: center;
             }
-
-            /* Dynamic */
-            @keyframes gradient-move {
-                    0% {
-                    background-position: 0% 0%;
-                    }
-                    100% {
-                    background-position: 100% 100%;
-                    }
-                }
+            .container{
+            width: 85vw;
+            height: 90vh;
+            position: relative;  
+            margin: auto; 
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            top: 5vh;
+            }
 /* ----------------------------------------------------------------------------------------------------------------- */
 
-            .container-fluid{
-            width: 70vw;
-            height: 80vh;
-            top: 10vh;
-            position: relative;
-            display: flex;
+            .cards-wrap {
             border-radius: 15px;
-            justify-content: center;
-            align-items: center;
-            background: bisque;
+			margin-top: 10px;
+			width: 1140px;
+			height: 1100px;
+			margin: auto;
+			perspective: 100px;
+			perspective-origin: 50% 90%;
+            }
+            .card {
+                border-radius: 15px;
+                width: 960px;
+                height: 720px;
+                padding: 50px 30px;
+                background: #ffffff;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+                position: absolute;
+                transform-origin: 50% 50%;
+                transition: all 0.8s;
+            }
+            .card.first {
+                transform: translate3d(0, 0, 0px);
+                z-index: 3;
             }
 
-            .box{
-                width: 70vw;
-                height: 70vh;
-                top: 0;
-                position:absolute;
-                overflow: hidden;
-                background: bisque;
+            .card.second {
+                transform: translate3d(0, 0, -10px);
+                z-index: 2;
             }
 
+            .card.third {
+                transform: translate3d(0, 0, -20px);
+                z-index: 1;
+            }
+
+            .card.last-card {
+                transform: translate3d(0, 0, -20px);
+                z-index: 1;
+            }
+
+            .card:not(:first-child) {
+                opacity: 0.95;
+            }
+
+            .card.swipe {
+                transform: rotate(30deg) translate3d(120%, -50%, 0px) !important;
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .card p {
+                font-size: 20px;
+                font-weight: 400;
+                margin-bottom: 20px;
+                margin-top: 0;
+            }
+
+            #jobName {
+                text-align: center;
+                font-size: 1.5em;
+                text-transform: uppercase;
+            }
             #card {
                 postion: absolute;
                 
@@ -112,24 +149,53 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 align-items: center;
                 background: bisque;
             }
+            /* .box{
+                width: 70vw;
+                height: 70vh;
+                top: 0;
+                position:absolute;
+                overflow: hidden;
+                background: bisque;
+            }
 
-                      
-            #jobName {
-                text-align: center;
-                font-size: 1.5em;
-                text-transform: uppercase;
-            }
-             /* ----------------------------------------------------------------------------------------------------------------- */
+            
+        */
+        /* ----------------------------------------------------------------------------------------------------------------- */
 /* For Yes/No Button */
-            .btn-group{
-                justify-content:center;
-                display:flex;
-                align-items:center;
-                height:5em;
-                /* font-size:60px; */
-                position: absolute;
-                bottom: 0;
+            .option {
+                width: 100%;
+                padding: 18px 10px 18px 84px;
+                text-align: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: 400;
+                background: #f8f8f8 url(ic_option_normal.svg) left 50px center no-repeat;
+                background-size: 24px;
             }
+
+            .option:nth-child(2) {
+                margin-bottom: 20px;
+            }
+
+            .option:hover,
+            .option.checked {
+                background: #faeeee url(ic_option_checked.svg) left 50px center no-repeat;
+            }
+
+            .btn-group{
+                    justify-content:center;
+                    display:flex;
+                    align-items:center;
+                    height:5em;
+                    font-size:40px;
+                    position: sticky;
+                    bottom: -5vh;
+            }
+          
+          
+            /*
             .btn btn-outline-primary {
                 margin-left:auto;
                 margin-right:auto;
@@ -141,7 +207,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 cursor: pointer;
                 background-color:aqua;
                 bottom:0px;
-            }
+            } */
        /* ----------------------------------------------------------------------------------------------------------------- */
 /* For DownMenu */
             .buttonHolder{
@@ -167,7 +233,6 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 background-color:aqua;
             }
        /* ----------------------------------------------------------------------------------------------------------------- */
-  
         </style>
         
         <script>
@@ -267,37 +332,76 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
         </nav>
 
         <!-- Main Part -->
-        <div class="container-fluid">
-            <div class="box">
+        <div class="container">
+        <div class="cards-wrap">
+
+			<div class="card first">
                 <p id="jobName" name="jobName">placeholder</p>
                 <p id="card" name="card">Sorry, you've seen all available jobs.</p>
-            </div>  
-<!-- not in the box -->
-            <div class="btn-group">
-            <button class="btn btn-outline-primary" id="noButton" onclick="buttonPressed(0)">NO</button>
-            <button class="btn btn-outline-primary" id="yesButton" onclick="buttonPressed(1)">YES</button>
-            </div>            
+                <br>
+                <!-- <div class="btn-group"> -->
+				<button class="option" id="yesButton" onclick="buttonPressed(1)">YES</button>
+				<button class="option" id="noButton" onclick="buttonPressed(0)">NO</button>
+                <!-- </div> -->
+			</div>
+
+			<div class="card second"></div>
+			<div class="card third"></div>
+            
         </div>
+        </div>
+<!-- <div class="box">
+                
+            </div>   -->
 
-
-    <!-- <div class="buttonHolder">
+        <!-- <div class="buttonHolder">
                 <div class="dropdown">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Choose job</button>
                
-                <div class="dropdown-menu">
-                <?php
-                        for($x=0; $x<count($jobs);$x++){
-                            echo('<a class="dropdown-item" id="dropdown'.$x.'">' . $jobs[$x][1]);
-                            //set ID to dropdown$x  8
-                        }
-                    ?>
+                    <div class="dropdown-menu">
+                    <?php
+                            for($x=0; $x<count($jobs);$x++){
+                                echo('<a class="dropdown-item" id="dropdown'.$x.'">' . $jobs[$x][1]);
+                                //set ID to dropdown$x  8
+                            }
+                        ?>
+                    </div>
                 </div>
-                </div>
-            </div> -->
+        </div> -->
     </body>
-    <script>
+        <script>
         document.getElementById("jobName").innerHTML = "Current job: " + currentJob;
         getRightJobs();
         writeToCard();
+        
+        // Swipe
+        const cardWrap = document.querySelector(".cards-wrap");
+		function pickOption() {
+			const topCard = document.querySelector(".card:first-child");
+			const tempStr = topCard.innerHTML;
+			topCard.classList.add("swipe");
+			setTimeout(function() {
+				topCard.remove();
+				const cards = document.querySelectorAll(".card");
+				cards[0].style.transform = "translate3d(0, 0, 0px)";
+				cards[0].style.zIndex = "3";
+				cards[0].innerHTML = tempStr;
+				cards[1].style.transform = "translate3d(0, 0, -10px)";
+				cards[1].style.zIndex = "2";
+				cardWrap.insertAdjacentHTML(
+					"beforeend",
+					'<div class="card last-card"></div>'
+				);
+				const newOptions = document.querySelectorAll(".option");
+				newOptions.forEach(optionBtn =>
+					optionBtn.addEventListener("click", pickOption)
+				);
+			}, 300);
+		}
+
+		const optionBtns = document.querySelectorAll(".option");
+		optionBtns.forEach(optionBtn =>
+			optionBtn.addEventListener("click", pickOption)
+		);
     </script>
 </html>
