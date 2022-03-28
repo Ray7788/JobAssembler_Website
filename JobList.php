@@ -34,7 +34,7 @@ if ($offset < 0) {
 }
 $jobs = array();
 $pdo = Database::connect();
-$query = "SELECT JobPostings.*, UserJobs.UserAccepted, UserJobs.CompanyAccepted, Companies.Name FROM JobPostings INNER JOIN UserJobs ON JobPostings.JobID = UserJobs.JobID INNER JOIN Companies ON JobPostings.CompanyID = Companies.CompanyID WHERE UserJobs.UserID = ? LIMIT " . RESULTS_PER_PAGE . " OFFSET " . $offset;
+$query = "SELECT JobPostings.*, UserJobs.UserAccepted, UserJobs.CompanyAccepted, UserJobs.CompanySeen, Companies.Name FROM JobPostings INNER JOIN UserJobs ON JobPostings.JobID = UserJobs.JobID INNER JOIN Companies ON JobPostings.CompanyID = Companies.CompanyID WHERE UserJobs.UserID = ? LIMIT " . RESULTS_PER_PAGE . " OFFSET " . $offset;
 $statement = $pdo->prepare($query);
 $statement->execute([$user->user_id]);
 $jobs = $statement->fetchAll();
@@ -206,6 +206,7 @@ $jobs = $statement->fetchAll();
                 <!--<th scope="col">About</th>-->
                 <th scope="col">Location</th>
                 <th scope="col">Accepted</th>
+                <th scope="col">Company Accepted</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -216,12 +217,23 @@ $jobs = $statement->fetchAll();
             </tr>
         <?php else: ?>
             <?php foreach($jobs as $num => $line): ?>
+                <?php
+                if (!$line["CompanySeen"]) {
+                    $companyAcceptedText = "Not Seen";
+                    $companyAcceptedStyle = "text-secondary";
+                }
+                else {
+                    $companyAcceptedText = $line["CompanyAccepted"] ? "Accepted": "Declined";
+                    $companyAcceptedStyle = $line["CompanyAccepted"] ? "text-success" : "text-danger";
+                }
+                ?>
             <tr>
                 <td><?= $line["Name"]?></td>
                 <td><?= $line["Title"]?></td>
                 <!--<td style="word-break:break-all;"><?= $line["Details"]?></td>-->
                 <td><?= is_null($line["Latitude"]) || is_null($line["Longitude"]) ? "None" : "See details"?></td>
                 <td class="<?= $line["UserAccepted"] ? "text-success" : "text-danger" ?>"><?= $line["UserAccepted"] ? "Accepted": "Declined"?></td>
+                <td class="<?= $companyAcceptedStyle ?>"><?= $companyAcceptedText?></td>
                 <td>
                     <div class="dropdown show">
                         <button class="btn btn-sm dropdown-toggle" href="" role="button" id="dropdownMenuLink<?=$num?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

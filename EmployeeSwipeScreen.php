@@ -80,13 +80,19 @@ for($x=0;$x<count($jobs);$x++){
 }
 //Has the index of array 'scores' correspond to the array 'jobs'.
 //Now need to sort the job array based upon this.
-//sort($scores);
+//rsort($scores);
 //Go through the scores and if there is a job with a matching score then add it to a 'sorted' jobs array
 //$sortedJobs = array();
+//$jobs[11] has the score
+// Comparison function
+function compare($element1, $element2){
+    $job1 = $element1[11];
+    $job2 = $element2[11];
+    return $job2 - $job1;
+}
 
-//for($x=0; $x<count($scores);$x++){
+usort($jobs, 'compare');
 
-//}
 ?>
 
 <!DOCTYPE html>
