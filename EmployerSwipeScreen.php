@@ -12,7 +12,7 @@ if (!$user->is_authenticated()) {
     header("Location: /index.php");
     die(0);
 }
-$companyID = 1;
+$companyID = $user->company_id;
 
 $applicants = array();
 $pdo = Database::connect();
@@ -141,9 +141,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 font-size: 1.5em;
                 text-transform: uppercase;
             }
-            #card {
-                postion: absolute;
-                
+            #card {                
                 text-align: center;
                 justify-content: center;
                 align-items: center;
@@ -239,7 +237,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
             var userID = <?php echo($userID); ?>;
             var jobArray = <?php echo json_encode($jobs) ?>;    //If this is empty, disable buttons
             var currentJobID = jobArray[0][0];
-            var currentJob = jobArray[currentJobID][1];
+            var currentJob = jobArray[0][1];
             var userAccounts = <?php echo json_encode($userAccounts) ?>;  //If this is empty, there are no users left to swipe through.
             var userCounter = 0;
             var userAccountsForJob = [];
@@ -298,9 +296,6 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                     type:"POST",
                     url:"api/companyJobUpdating.php",
                     data:dataArray,
-                    success:function(data){
-                        alert("User Done");
-                    },
                     error: function (xhr){
                         var obj = xhr.responseJSON;
                         if(Object.keys(obj).includes("message")){
@@ -337,7 +332,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
 
 			<div class="card first">
                 <p id="jobName" name="jobName">placeholder</p>
-                <p id="card" name="card">Sorry, you've seen all available jobs.</p>
+                <p id="card" name="card">Sorry, you've seen all available job applicants.</p>
                 <br>
                 <!-- <div class="btn-group"> -->
 				<button class="option" id="yesButton" onclick="buttonPressed(1)">YES</button>
@@ -360,10 +355,10 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                
                     <div class="dropdown-menu">
                     <?php
-                            for($x=0; $x<count($jobs);$x++){
-                                echo('<a class="dropdown-item" id="dropdown'.$x.'">' . $jobs[$x][1]);
+                            //for($x=0; $x<count($jobs);$x++){
+                            //    echo('<a class="dropdown-item" id="dropdown'.$x.'">' . $jobs[$x][1]);
                                 //set ID to dropdown$x  8
-                            }
+                            //}
                         ?>
                     </div>
                 </div>
