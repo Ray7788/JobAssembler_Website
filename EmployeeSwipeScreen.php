@@ -29,25 +29,26 @@ Look through the database and see if there is an entry in UserJobs for every job
 $query = "SELECT JobID FROM UserJobs WHERE UserID = :userID";
 $statement = $pdo->prepare($query);
 $statement->execute(["userID" => $userID]);
-$UserJobsIDs = $statement->fetchAll();
+$UserJobsIDs = $statement->fetchAll(PDO::FETCH_ASSOC);
 $UserJobsIDs = array_map('implode', $UserJobsIDs);
 
 $query = "SELECT JobID FROM JobPostings";
 $statement = $pdo->prepare($query);
 $statement->execute();
-$JobPostingsIDs = $statement->fetchAll();
+$JobPostingsIDs = $statement->fetchAll(PDO::FETCH_ASSOC);
 $JobPostingsIDs = array_map('implode', $JobPostingsIDs);
 
 //For some reason each number is read twice, so each array element is two numbers. Shouldn't make a difference though.
-
+//The reason the above problem was happening was because the default fetch mode is PDO::FETCH_BOTH which creates an array with both integer and string keys. I have fixed said problem -Max.
 for($x=0;$x<count($JobPostingsIDs);$x++){
     if(in_array($JobPostingsIDs[$x], $UserJobsIDs) == false){
         //Need to INSERT this entry
         $query = "INSERT INTO UserJobs(UserID, JobID, UserAccepted, CompanyAccepted, UserSeen, CompanySeen) VALUES (:userID, :jobID, 0, 0, 0, 0)";
         $statement = $pdo->prepare($query);
+        var_dump($JobPostingsIDs[$x]);
         $statement->execute([
             "userID" => $userID,
-            "jobID" => $JobPostingsIDs[$x][0]
+            "jobID" => $JobPostingsIDs[$x]
         ]);
     }
 }
