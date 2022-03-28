@@ -81,6 +81,7 @@ $jobs = $statement->fetchAll();
             L.control.scale({imperial: true, metric: true}).addTo(map);
         })
     </script>
+    
     <script>
         $(function () {
             $("#jobDetailsModal").on("show.bs.modal", function (event) {
