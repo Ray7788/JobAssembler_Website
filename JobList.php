@@ -174,13 +174,14 @@ $jobs = $statement->fetchAll();
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: linear-gradient(to left, #e1eec3, #f05053);
+            background-image: linear-gradient(45deg, #d299c2, #fef9d7);
             }
         .container{
             background: white;
             position:relative;
             margin-top: 100px;
             margin-bottom: 50px;
+            border-radius: 15px;
         }
     </style>
 </head>
@@ -192,7 +193,7 @@ $jobs = $statement->fetchAll();
     <div style="text-align: right;">
         <a class="btn btn-secondary" href="main.php"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
     </div>
-    <h1>Your viewed jobs</h1>
+    <h1 style= "font-family: Helvetica">Your viewed jobs</h1>
     <h4 class="text-muted">All the jobs you have either accepted or declined can be seen here</h4>
     <br/>
 
