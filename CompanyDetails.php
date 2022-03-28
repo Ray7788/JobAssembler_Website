@@ -80,7 +80,7 @@
                     e.preventDefault();     //Stops the normal HTML form behaviour of changing files
                     let form = document.getElementById('companyForm');
                     var validForm = ValidateForm(form.elements[0], form.elements[1], warning);
-                    form.elements[2] = localStorage.getItem("userID");
+                    form.elements[2].value = localStorage.getItem("userID");
                     if(validForm){
                         $.ajax({
                             type:"POST",
