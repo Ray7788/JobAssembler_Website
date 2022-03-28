@@ -1,5 +1,21 @@
 <?php
-header("Location: EmployeeSwipeScreen.php")
+require_once(__DIR__ . "/classes/user.php");
+session_start();
+if (!isset($_SESSION["user"]) || !($_SESSION["user"] instanceof User)) {
+    header("Location: index.php");
+    die(0);
+}
+$user = $_SESSION["user"];
+if (!$user->is_authenticated()) {
+    header("Location: index.php");
+    die(0);
+}
+if ($user->company_id == -1) {
+    header("Location: EmployeeSwipeScreen.php");
+}
+else {
+    header("Location: EmployerSwipeScreen.php");
+}
 ?>
 
 <!DOCTYPE html>
