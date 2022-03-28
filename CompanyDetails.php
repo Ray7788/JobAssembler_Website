@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Company Details - JobAssembler</title>
 
-         <!-- Bootstrap CSS-->
+         <!-- Bootstrap CSS 5.1.3-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
         <style type="text/css">
@@ -29,7 +29,7 @@
             }
             .b{
                 width: 75vw;
-                height: 105vh;
+                height: 100vh;
                 overflow: hidden;
                 font-family:"Helvetica";
 
@@ -55,6 +55,12 @@
            
             label{
                 float:left;
+            }
+
+            #validationMsg{
+                text-align:center;
+                color:red;
+                font-size:30px;
             }
         </style>
 
@@ -112,7 +118,9 @@
     <body>
         <div class="container-fluid">
         <div class="b">
+
             <h1 class="display-1" align="center">Company Details</h1>
+
             <form id="companyForm" name="companyForm">
                 <label for="name">Company Name:</label>
                 <br>
@@ -126,13 +134,16 @@
                 
                 <a href="JoinCompany.php">Or join a pre-existing company</a>
                 <br>
-                
-               
-                <p id="validationMsg"></p>
-               
-                <input type="submit" class="btn btn-primary"  value="Submit">
                 <br>
+
+                <p id="validationMsg"></p>
+
+                <div class="d-grid gap-1">
+                <input type="submit" class="btn btn-primary btn-lg"  value="Submit">
+                </div>
+                
             </form>
+            </div>
         </div>
     </body>
 </html>
