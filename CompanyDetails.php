@@ -18,7 +18,7 @@
             .container-fluid{
                 background-color: #fff;
                 width: 80vw;
-                height: 90vh;
+                height: 110h;
                 position: relative;
                 display: flex;
                 border-radius: 20px;
@@ -29,7 +29,7 @@
             }
             .b{
                 width: 75vw;
-                height: 90vh;
+                height: 105vh;
                 overflow: hidden;
                 font-family:"Helvetica";
 
@@ -123,12 +123,14 @@
                 <textarea id="description" rows="3" cols="50" name="description" class="inputBox"></textarea>
                 <br>
                 <input type="hidden" name="userID" id="userID">
-                <br>
+                
                 <a href="JoinCompany.php">Or join a pre-existing company</a>
                 <br>
-                <input type="submit" class="btn btn-primary" style="display:block;margin:0 auto" value="Submit">
+                
                
                 <p id="validationMsg"></p>
+               
+                <input type="submit" class="btn btn-primary"  value="Submit">
                 <br>
             </form>
         </div>
