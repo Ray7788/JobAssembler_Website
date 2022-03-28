@@ -292,7 +292,7 @@ usort($jobs, 'compare');
     <body>
         <!-- Nav bar -->
         <nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand">
             <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
             <?php
                 echo("You are signed in as: &nbsp;" . $user->username);
