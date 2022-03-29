@@ -66,8 +66,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
             display: flex;
             justify-content: center;
             align-items: center;
-            background: salmon;
-            /* background: linear-gradient(to left, #e1eec3, #f05053); */
+            background: linear-gradient(to left, #f9f586, #ace0f9);
             align-items: center;
             }
 
@@ -89,7 +88,6 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
 			width: 1140px;
 			height: 1100px;
 			margin: auto;
-            style="margin-left: 7%;"
 			perspective: 100px;
 			perspective-origin: 50% 90%;
             }
@@ -143,6 +141,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
             }
 /* Card contents */
             #jobName {
+                color: blue;
                 font-family:"Helvetica";
                 text-align: center;
                 font-size: 1.3em;
@@ -154,7 +153,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 font-size: 1.7em;
                 justify-content: center;
                 align-items: center;
-                background: bisque;
+                
             }
            
 /* ----------------------------------------------------------------------------------------------------------------- */
@@ -196,28 +195,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
             .navbar-text{
                 color: yellow;
             }
-            /* .buttonHolder{
-                justify-content:center;
-                display:flex;
-                align-items:center;
-                height:5em;
-                font-size:40px;
-                position:relative;
-                z-index: 1;
-            }
-            .button {
-                margin-left:auto;
-                margin-right:auto;
-                border: none;
-                color: black;
-                padding: 0px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                cursor: pointer;
-            } */
-
+        
 /* ----------------------------------------------------------------------------------------------------------------- */
         </style>
         
@@ -305,9 +283,9 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
         </script>
     </head>
     <body>
-    <!-- Nav bar -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-    <!-- Brand LOGO -->
+        <!-- Nav bar -->
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <!-- Brand LOGO -->
         <a class="navbar-brand">
             <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
         </a>
@@ -315,36 +293,37 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
             <?php
                 echo("You are signed in as: &nbsp;" . $user->username . "&nbsp &nbsp");
             ?>
-          </span>   
+        </span>   
         <ul class="navbar-nav" style="margin-left: 65%;">
-            <!-- Links -->
-            <li class="nav-item">
-            <a class="nav-link" href="ApplicantList.php">Applicant List</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="CompanyAddUsers.php">Add Users</a>
-            </li>
-        
             <!-- Dropdown -->
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Choose job</a>
-                <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">
-                <?php
-                                for($x=0; $x<count($jobs);$x++){
-                                    echo('<a class="dropdown-item" id="dropdown'.$x.'">' . $jobs[$x][1]);
-                                    //set ID to dropdown$x  8
-                                }
-                            ?>
-                </div>
-                </a>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Choose Jobs</a>
+                    <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">
+                    <?php
+                                    for($x=0; $x<count($jobs);$x++){
+                                        echo('<a class="dropdown-item" id="dropdown'.$x.'">' . $jobs[$x][1]);
+                                        //set ID to dropdown$x  8
+                                    }
+                                ?>
+                    </div>
+                    </a>
+            </li>    
+        
+        <!-- Links -->
+            <li class="nav-item">
+                <a class="nav-link" href="ApplicantList.php">Applicant List</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="CompanyAddUsers.php">Add Users</a>
+            </li>
+        
         </ul>
         </nav>
 
 
         <!-- Main Part -->
-        <div class="container" style="margin-left:20%">
+        <div class="container" style="margin-left: 25%">
             <div class="cards-wrap">
 
                 <div class="card first">
