@@ -4,16 +4,60 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>User Skills Form</title>
+	<style>
+    body {
+        display: flex;
+        justify-content: center;
+        background-image: linear-gradient(to left, #e1eec3, #f05053);
+
+    }
+    .container-fluid{
+        background-color: #fff;
+        width: 650px;
+        height: 1350px;
+        position: relative;
+        display: flex;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+        top: 50px;
+    }
+    .b{
+        width: 500px;
+        overflow: hidden;
+        margin-bottom: 1em;
+    }
+    .display-1{
+        font: 900 24px '';
+        font-size:2.5em;
+        font-family:"Helvetica";
+        margin: 5px 0;
+        text-align: center;
+        letter-spacing: 1px;
+    }
+    .e{
+        width: 100%;
+        margin-bottom: 20px;
+        outline: none;
+        border: 0;
+        padding: 5px;
+        border-bottom: 2px solid rgb(60,60,70);
+        font: 900 16px '';
+    }
+</style>	
 </head>
 <body>
+	<div class="container-fluid" style="margin-bottom: 100px">
+    <div class="b">
+
 	<form id="userSkillsForm" name="UserSkills">
-	<h1>User Skills Form</h1>
-	<h3>Please be as honest as possible when filling out this form</h3>
+	<h1 class="display-1">Skill Form</h1>
+    <br>
+	<h3 class="d" >Please be as honest as possible when filling out this form. <br></h3>
 	<hr>
-	<label for="Work Experience">Work Experience: </label>
-	<textarea id="Work Experience" name="Work Experience" rows="15" cols="40" placeholder="Please summarise in brief any work experience you have had"></textarea>
-	<br><br>
-	<h2>Programming language Experience: </h2>
+	<h3 class="d">Work experience:</h3>
+	<textarea type="textbox" class ="e" id="Work Experience" name="Work Experience" rows="3" cols="60" placeholder="Please summarise in brief any work experience you have had"></textarea>
+	<h2>Programming languages experience: </h2>
 	<h3>Please select approxamitely how many years experience you have in each langauge</h3>
 	<label for="Javaexp">Java Experience: </label>
 	<input type="range" id="Javaexp" name="Javaexp" min="0" max="10" step="1" value="0">
@@ -103,30 +147,35 @@
 	<h2>Soft Skills Checklist: </h2>
 	<h3>Tick the box if you believe a skill applies to you</h3>
 	<label for="emotionalIntelligence">Emotional Intelligence: </label>
-	<input type="checkbox" name="emotionalIntelligence" id="emotionalIntelligence" value="emotionalIntelligence">
+	<input type="checkbox" name="emotionalIntelligence" id="emotionalIntelligence" value="emotionalIntelligence" style="text-align: center">
+	<br>
 	<label for="patience">Patience: </label>
 	<input type="checkbox" name="patience" id="patience" value="patience">
-	<br><br>
+	<br>
 	<label for="adaptability">Adaptability: </label>
 	<input type="checkbox" name="adaptability" id="adaptability" value="adaptability">
+	<br>
 	<label for="projectManagement">Project Management: </label>
 	<input type="checkbox" name="projectManagement" id="projectManagement" value="projectManagement">
-	<br><br>
+	<br>
 	<label for="probSolving">Problem Solving: </label>
 	<input type="checkbox" name="probSolving" id="probSolving" value="probSolving">
+	<br>
 	<label for="teamworkCollab">Teamworking and Collaboration: </label>
 	<input type="checkbox" name="teamworkCollab" id="teamworkCollab" value="teamworkCollab">
-	<br><br>
+	<br>
 	<label for="interPersonal">Interpersonal Skills: </label>
 	<input type="checkbox" name="interPersonal" id="interPersonal" value="interPersonal">
+	<br>
 	<label for="leadership">Leadership Skills: </label>
 	<input type="checkbox" name="leadership" id="leadership" value="leadership">
-	<br><br>
+	<br>
 	<label for="timeManagement">Time Management: </label>
 	<input type="checkbox" name="timeManagement" id="timeManagement" value="timeManagement">
+	<br>
 	<label for="decisiveness">Decisiveness: </label>
 	<input type="checkbox" name="decisiveness" id="decisiveness" value="decisiveness">
-	<br><br><hr>
+	<br><hr>
      <button type="button" onclick="window.location.href='SignUpPage2.php';" class="button">Cancel</button>
      <input type="submit" value="Submit" class="button">
 	</form>
