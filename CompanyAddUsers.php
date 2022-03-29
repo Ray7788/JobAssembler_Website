@@ -58,7 +58,7 @@ $noOfUsers = count($usersApplied);
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Add Users To Your Company - JobAssembler</title>
+        <title>Add Users To Company - JobAssembler</title>
         <meta name="viewport" content="width=device-width, intitial-scale=1">
         <!--Bootstrap CSS-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -89,10 +89,23 @@ $noOfUsers = count($usersApplied);
                 })
             }
         </script>
+
+        <style>
+            body {
+                    background-color: lightblue;
+                    }
+            .phpDisplay {
+                align-content: center;
+                text-align: center;
+                vertical-align: center;
+            }
+        </style>
+
     </head>
     <body>
-        <form action="CompanyAddUsers.php" method="GET" name="searchForm">
-            <table>
+        <h1 style="text-align: center; margin-top:10%">Add Users To Company</h1>
+        <form action="CompanyAddUsers.php" method="GET" name="searchForm" style="align-items: center;">
+            <table style="margin-left: 40%; margin-top: 20px">
                 <tr>
                     <td><input type="text" name="txt" value="<?php echo isset($_GET['txt']) ? $_GET['txt'] : ''; ?>" placeholder="Enter account Username, Forename or Surname" /></td>
                     <td><input type="submit" name="" value="Search" /></td>
@@ -100,10 +113,12 @@ $noOfUsers = count($usersApplied);
             </table>
         </form>   
         <b><i><p id="errorMsg"></p></i></b>
+
+        <p style="text-align: center;">"Please search for the account you're trying to add by their Username, Forename or Surname."</p>
+        <div class="phpDisplay">
         <?php
             //Show the user the keywords they have entered
             //If the txt variable is empty then everything is displayed.
-            echo("Please search for the account you're trying to add by their Username, Forename or Surname.");
             if($noOfUsers > 0){
                 echo("The search returned: <b>" . $noOfUsers . " </b>results. <br>");
                 if(!empty($txt)){
@@ -126,6 +141,7 @@ $noOfUsers = count($usersApplied);
                 }
             }
         ?>
+        </div>
 
     </body>
 </html>
