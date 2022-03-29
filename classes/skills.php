@@ -12,6 +12,38 @@ class skills{
         ]);
     }
 
+    public static function getSkillIDs(array $softSkills){
+        
+    }
+
+    public static function insertSoftSkills(array $softSkills, string $userID){
+        $pdo = Database::connect();
+        $acceptArray = array();
+        $skillsStr = "";
+        for($x=0; $x<count($softSkills); $x++){
+            $skillsStr .= "'";
+            $skillsStr .= $softSkills[$x];
+            $skillsStr .= "' ,";
+        }
+        $skillsStr = substr($skillsStr, 0, -1); // Removes last comma
+
+        $query = "SELECT SkillID FROM Skills WHERE Name IN (" . $skillsStr . ")";
+        $statement = $pdo->prepare($query);
+        array_push($acceptArray, $statement->execute());
+        $skillIDs = $statement->fetchAll(PDO::FETCH_NUM);
+        
+        for($x=0; $x<count($skillIDs); $x++){
+            $query = "INSERT INTO UserSkills (UserID, SkillID) VALUES (".$userID.", ".$skillIDs[$x][0].");";
+            $statement = $pdo->prepare($query);
+            $statement->execute();
+        }
+        if(in_array(false, $acceptArray)){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
     public static function insertSkillsForUser(array $languageYears, string $userID){
         $pdo = Database::connect();
         //These are the SkillIDs for the 'Basic' version of the skills in the Skills table. 

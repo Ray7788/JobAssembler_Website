@@ -72,8 +72,16 @@ if(!$user->is_authenticated()){
 		$(document).ready(function(){
 			$("#userSkillsForm").submit(function(e){
 				e.preventDefault();
-				var languageYears = [slider1.value, slider2.value, slider3.value, slider4.value, slider5.value, slider6.value, slider7.value, slider8.value];
-				dataArray = {"userID":userID, "javaYears":slider1.value, "pythonYears":slider2.value, "csharpYears":slider3.value, "htmlYears":slider4.value, "phpYears":slider5.value, "cssYears":slider6.value, "cplusYears":slider7.value, "sqlYears":slider8.value};
+				checkedArray = [];
+				for(let i=0 ; i<10; i++){
+					checkedArray.push(document.getElementById("soft" + i).checked);
+				}
+				//emoIntel, patience, adapt, projManage, probSolv, teamwork, interpersonal, leadership, time, decisiveness
+				dataArray = {"userID":userID, "javaYears":slider1.value, "pythonYears":slider2.value, "csharpYears":slider3.value, "htmlYears":slider4.value, 
+				"phpYears":slider5.value, "cssYears":slider6.value, "cplusYears":slider7.value, "sqlYears":slider8.value,
+				"emoIntel":checkedArray[0], "patience":checkedArray[1], "adapt":checkedArray[2], "projManage":checkedArray[3],
+				"probSolv":checkedArray[4], "teamwork":checkedArray[5], "interpersonal":checkedArray[6],
+				"leadership":checkedArray[7], "time":checkedArray[8], "decisiveness":checkedArray[9]};
 				$.ajax({
 					type:"POST",
 					url:"api/skillAdding.php",
@@ -209,34 +217,34 @@ if(!$user->is_authenticated()){
 	<h2>Soft Skills Checklist: </h2>
 	<h3>Tick the box if you believe a skill applies to you</h3>
 	<label for="emotionalIntelligence">Emotional Intelligence: </label>
-	<input type="checkbox" name="emotionalIntelligence" id="emotionalIntelligence" value="emotionalIntelligence" style="text-align: center">
+	<input type="checkbox" name="emotionalIntelligence" id="soft0" value="emotionalIntelligence" style="text-align: center">
 	<br>
 	<label for="patience">Patience: </label>
-	<input type="checkbox" name="patience" id="patience" value="patience">
+	<input type="checkbox" name="patience" id="soft1" value="patience">
 	<br>
 	<label for="adaptability">Adaptability: </label>
-	<input type="checkbox" name="adaptability" id="adaptability" value="adaptability">
+	<input type="checkbox" name="adaptability" id="soft2" value="adaptability">
 	<br>
 	<label for="projectManagement">Project Management: </label>
-	<input type="checkbox" name="projectManagement" id="projectManagement" value="projectManagement">
+	<input type="checkbox" name="projectManagement" id="soft3" value="projectManagement">
 	<br>
 	<label for="probSolving">Problem Solving: </label>
-	<input type="checkbox" name="probSolving" id="probSolving" value="probSolving">
+	<input type="checkbox" name="probSolving" id="soft4" value="probSolving">
 	<br>
 	<label for="teamworkCollab">Teamworking and Collaboration: </label>
-	<input type="checkbox" name="teamworkCollab" id="teamworkCollab" value="teamworkCollab">
+	<input type="checkbox" name="teamworkCollab" id="soft5" value="teamworkCollab">
 	<br>
 	<label for="interPersonal">Interpersonal Skills: </label>
-	<input type="checkbox" name="interPersonal" id="interPersonal" value="interPersonal">
+	<input type="checkbox" name="interPersonal" id="soft6" value="interPersonal">
 	<br>
 	<label for="leadership">Leadership Skills: </label>
-	<input type="checkbox" name="leadership" id="leadership" value="leadership">
+	<input type="checkbox" name="leadership" id="soft7" value="leadership">
 	<br>
 	<label for="timeManagement">Time Management: </label>
-	<input type="checkbox" name="timeManagement" id="timeManagement" value="timeManagement">
+	<input type="checkbox" name="timeManagement" id="soft8" value="timeManagement">
 	<br>
 	<label for="decisiveness">Decisiveness: </label>
-	<input type="checkbox" name="decisiveness" id="decisiveness" value="decisiveness">
+	<input type="checkbox" name="decisiveness" id="soft9" value="decisiveness">
 	<br><hr>
      <button type="button" onclick="window.location.href='EmployeeForm.php';" class="button">Cancel</button>
      <input type="submit" value="Submit" class="button">
