@@ -1,7 +1,27 @@
+<?php
+require_once(__DIR__ . "/classes/database.php");
+require_once(__DIR__ . "/classes/user.php");
+session_start();
+
+if(!isset($_SESSION["user"])){
+	header("Location: /index.php");
+	die(0);
+}
+$user = $_SESSION["user"];
+$userID = $user->user_id;
+if(!$user->is_authenticated()){
+	header("Location: /index.php");
+	die(0);
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>User Skills Form</title>
 	<style>
@@ -14,7 +34,7 @@
     .container-fluid{
         background-color: #fff;
         width: 650px;
-        height: 1350px;
+        height: 1700px;
         position: relative;
         display: flex;
         border-radius: 20px;
@@ -42,15 +62,44 @@
         border: 0;
         padding: 5px;
         border-bottom: 2px solid rgb(60,60,70);
-        font: 900 16px '';
+        
     }
 </style>	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script>
+		var userID = <?php echo($userID); ?>;
+
+		$(document).ready(function(){
+			$("#userSkillsForm").submit(function(e){
+				e.preventDefault();
+				var languageYears = [slider1.value, slider2.value, slider3.value, slider4.value, slider5.value, slider6.value, slider7.value, slider8.value];
+				dataArray = {"userID":userID, "javaYears":slider1.value, "pythonYears":slider2.value, "csharpYears":slider3.value, "htmlYears":slider4.value, "phpYears":slider5.value, "cssYears":slider6.value, "cplusYears":slider7.value, "sqlYears":slider8.value};
+				$.ajax({
+					type:"POST",
+					url:"api/skillAdding.php",
+					data:dataArray,
+					success:function(data){
+						window.location = "EmployeeSwipeScreen.php";
+					},
+					error: function(xhr){
+						var obj = xhr.responseJSON;
+						if(Object.keys(obj).includes("message")){
+							alert(obj["message"]);
+						}else{
+							alert("An unknown error has occurred. Please try again later.");
+						}
+					}
+				})
+			})
+		})
+
+	</script>
 </head>
 <body>
 	<div class="container-fluid" style="margin-bottom: 100px">
     <div class="b">
 
-	<form id="userSkillsForm" name="UserSkills">
+<form id="userSkillsForm" name="UserSkills">
 	<h1 class="display-1">Skill Form</h1>
     <br>
 	<h3 class="d" >Please be as honest as possible when filling out this form. <br></h3>
@@ -144,6 +193,19 @@
 			output7.innerHTML = this.value;
 		}
 	</script>
+	<label for="SQLExp">SQL Experience: </label>
+	<input type="range" id="SQLExp" name="SQLExp" min="0" max="10" step="1" value="0">
+	<p><span id="sqlOut"></span> Years</p>
+	<script>
+		var slider8 = document.getElementById("SQLExp");
+		var output8 = document.getElementById("sqlOut");
+		output8.innerHTML = slider8.value;
+
+		slider8.oninput = function(){
+			output8.innerHTML = this.value;
+		}
+	</script>
+
 	<h2>Soft Skills Checklist: </h2>
 	<h3>Tick the box if you believe a skill applies to you</h3>
 	<label for="emotionalIntelligence">Emotional Intelligence: </label>
@@ -176,7 +238,7 @@
 	<label for="decisiveness">Decisiveness: </label>
 	<input type="checkbox" name="decisiveness" id="decisiveness" value="decisiveness">
 	<br><hr>
-     <button type="button" onclick="window.location.href='SignUpPage2.php';" class="button">Cancel</button>
+     <button type="button" onclick="window.location.href='EmployeeForm.php';" class="button">Cancel</button>
      <input type="submit" value="Submit" class="button">
 	</form>
 </body>
