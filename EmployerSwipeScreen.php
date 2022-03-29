@@ -71,6 +71,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
             /* background: linear-gradient(to left, #e1eec3, #f05053); */
             align-items: center;
             }
+
             .container{
             width: 85vw;
             height: 90vh;
@@ -82,16 +83,18 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
             top: 5vh;
             }
 /* ----------------------------------------------------------------------------------------------------------------- */
-
+/* Central Cards */
             .cards-wrap {
             border-radius: 15px;
 			margin-top: 10px;
 			width: 1140px;
 			height: 1100px;
 			margin: auto;
+            style="margin-left: 7%;"
 			perspective: 100px;
 			perspective-origin: 50% 90%;
             }
+
             .card {
                 border-radius: 15px;
                 width: 960px;
@@ -139,30 +142,23 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 margin-bottom: 20px;
                 margin-top: 0;
             }
-
+/* Card contents */
             #jobName {
+                font-family:"Helvetica";
                 text-align: center;
-                font-size: 1.5em;
+                font-size: 1.3em;
                 text-transform: uppercase;
             }
+
             #card {                
                 text-align: center;
+                font-size: 1.7em;
                 justify-content: center;
                 align-items: center;
                 background: bisque;
             }
-            /* .box{
-                width: 70vw;
-                height: 70vh;
-                top: 0;
-                position:absolute;
-                overflow: hidden;
-                background: bisque;
-            }
-
-            
-        */
-        /* ----------------------------------------------------------------------------------------------------------------- */
+           
+/* ----------------------------------------------------------------------------------------------------------------- */
 /* For Yes/No Button */
             .option {
                 width: 100%;
@@ -196,21 +192,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                     bottom: -5vh;
             }
           
-          
-            /*
-            .btn btn-outline-primary {
-                margin-left:auto;
-                margin-right:auto;
-                border: none;
-                padding: 30px 60px;
-                text-align: center;
-                display: inline-block;
-                font-size: 30px;
-                cursor: pointer;
-                background-color:aqua;
-                bottom:0px;
-            } */
-       /* ----------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------- */
 /* For DownMenu */
             .buttonHolder{
                 justify-content:center;
@@ -219,22 +201,22 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 height:5em;
                 font-size:40px;
                 position:relative;
-                z-index: 1;
+                /* z-index: 1; */
             }
             .button {
                 margin-left:auto;
                 margin-right:auto;
                 border: none;
                 color: black;
-                padding: 30px 60px;
+                padding: 0px;
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
                 font-size: 16px;
                 cursor: pointer;
-                background-color:aqua;
             }
-       /* ----------------------------------------------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------------------------------------------- */
         </style>
         
         <script>
@@ -290,7 +272,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 
                 document.getElementById("card").innerHTML = ("Forename: " + forename + " <br> "
                 + "Surname: " + surname + " <br> <br> "
-                + "Biography: " + "<br> <textarea columns=120 rows=4 readonly>" + biography + "</textarea><br>");
+                + "Biography: " + "<br> <textarea columns=140 rows=4 readonly>" + biography + "</textarea><br>");
             }
 
             function buttonPressed(yesOrNo){
@@ -328,45 +310,50 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
         <?php
             echo("You are signed in as: &nbsp;" . $user->username);
         ?>
+
+        <div class="nav-item">
+            <a class="btn btn-success" href="ApplicantList.php">Applicant  List</a>
+            <a class="btn btn-success" href="CompanyAddUsers.php">Add Users</a>
+        </div>
         </nav>
 
         <!-- Main Part -->
-        <div class="container">
-        <div class="cards-wrap">
+        <div class="container" style="margin-left:10%">
+            <div class="cards-wrap">
 
-			<div class="card first">
-                <p id="jobName" name="jobName">placeholder</p>
-                <p id="card" name="card">Sorry, you've seen all available job applicants.</p>
-                <br>
-                <!-- <div class="btn-group"> -->
-				<button class="option" id="yesButton" onclick="buttonPressed(1)">YES</button>
-				<button class="option" id="noButton" onclick="buttonPressed(0)">NO</button>
-                <!-- </div> -->
-			</div>
-
-			<div class="card second"></div>
-			<div class="card third"></div>
-            
-        </div>
-        </div>
-<!-- <div class="box">
-                
-            </div>   -->
-
-        <!-- <div class="buttonHolder">
-                <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Choose job</button>
-               
-                    <div class="dropdown-menu">
-                    <?php
-                            //for($x=0; $x<count($jobs);$x++){
-                            //    echo('<a class="dropdown-item" id="dropdown'.$x.'">' . $jobs[$x][1]);
-                                //set ID to dropdown$x  8
-                            //}
-                        ?>
-                    </div>
+                <div class="card first">
+                    <p id="jobName" name="jobName">placeholder</p>
+                    <p id="card" name="card">Sorry, you've seen all available job applicants.</p>
+                    <br>
+                    <!-- <div class="btn-group"> -->
+                    <button class="option" id="yesButton" onclick="buttonPressed(1)">YES</button>
+                    <button class="option" id="noButton" onclick="buttonPressed(0)">NO</button>
+                    <!-- </div> -->
                 </div>
-        </div> -->
+
+                <div class="card second"></div>
+                <div class="card third"></div>
+                
+            </div>
+        </div> 
+
+
+        <!-- DropDown -->
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                Choose job
+            </button>
+            <div class="dropdown-menu">
+                <?php
+                    for($x=0; $x<count($jobs);$x++){
+                        echo('<a class="dropdown-item" id="dropdown'.$x.'">' . $jobs[$x][1]);
+                        //set ID to dropdown$x  8
+                    }
+                ?>
+            </div>
+        </div>
+
+
     </body>
         <script>
         document.getElementById("jobName").innerHTML = "Current job: " + currentJob;
