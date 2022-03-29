@@ -194,14 +194,17 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
           
 /* ----------------------------------------------------------------------------------------------------------------- */
 /* For DownMenu */
-            .buttonHolder{
+            .navbar-text{
+                color: yellow;
+            }
+            /* .buttonHolder{
                 justify-content:center;
                 display:flex;
                 align-items:center;
                 height:5em;
                 font-size:40px;
                 position:relative;
-                /* z-index: 1; */
+                z-index: 1;
             }
             .button {
                 margin-left:auto;
@@ -214,7 +217,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 display: inline-block;
                 font-size: 16px;
                 cursor: pointer;
-            }
+            } */
 
 /* ----------------------------------------------------------------------------------------------------------------- */
         </style>
@@ -303,22 +306,46 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
         </script>
     </head>
     <body>
-        <!-- Nav bar -->
-        <nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
-            <a class="navbar-brand">
+    <!-- Nav bar -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <!-- Brand LOGO -->
+        <a class="navbar-brand">
             <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
-        <?php
-            echo("You are signed in as: &nbsp;" . $user->username);
-        ?>
-
-        <div class="nav-item">
-            <a class="btn btn-success" href="ApplicantList.php">Applicant  List</a>
-            <a class="btn btn-success" href="CompanyAddUsers.php">Add Users</a>
-        </div>
+        </a>
+        <span class="navbar-text">
+            <?php
+                echo("You are signed in as: &nbsp;" . $user->username . "&nbsp &nbsp");
+            ?>
+          </span>   
+        <ul class="navbar-nav" style="margin-left: 65%;">
+            <!-- Links -->
+            <li class="nav-item">
+            <a class="nav-link" href="ApplicantList.php">Applicant List</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="CompanyAddUsers.php">Add Users</a>
+            </li>
+        
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Choose job</a>
+                <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">
+                <?php
+                                for($x=0; $x<count($jobs);$x++){
+                                    echo('<a class="dropdown-item" id="dropdown'.$x.'">' . $jobs[$x][1]);
+                                    //set ID to dropdown$x  8
+                                }
+                            ?>
+                </div>
+                </a>
+            </li>
+        </ul>
         </nav>
 
+
         <!-- Main Part -->
-        <div class="container" style="margin-left:10%">
+        <div class="container" style="margin-left:20%">
             <div class="cards-wrap">
 
                 <div class="card first">
@@ -336,22 +363,6 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 
             </div>
         </div> 
-
-
-        <!-- DropDown -->
-        <div class="dropdown">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                Choose job
-            </button>
-            <div class="dropdown-menu">
-                <?php
-                    for($x=0; $x<count($jobs);$x++){
-                        echo('<a class="dropdown-item" id="dropdown'.$x.'">' . $jobs[$x][1]);
-                        //set ID to dropdown$x  8
-                    }
-                ?>
-            </div>
-        </div>
 
 
     </body>
