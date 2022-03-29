@@ -132,16 +132,13 @@
                 <br>
                 <input type="hidden" name="userID" id="userID">
                 
-                <a href="JoinCompany.php">Or join a pre-existing company</a>
-                <br>
-                <br>
+                <input type="submit" class="btn btn-primary btn-lg"  value="Submit">
 
+                <a href="JoinCompany.php">Or join a pre-existing company</a>
+ 
                 <p id="validationMsg"></p>
 
-                <div class="d-grid gap-1">
-                <input type="submit" class="btn btn-primary btn-lg"  value="Submit">
-                </div>
-                
+                              
             </form>
             </div>
         </div>

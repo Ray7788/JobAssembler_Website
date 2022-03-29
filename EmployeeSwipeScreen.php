@@ -301,14 +301,13 @@ usort($jobs, 'compare');
             <?php
                 echo("You are signed in as: &nbsp;" . $user->username);
             ?>
-        </nav>
+            <a class="btn btn-success" style="margin-left: 65% ;" href="JobList.php">Job List</a>
+            </nav>
 
-        <!-- main part -->
-        <h1>Swipe Cards</h1>
     <div class="container">
 
         <br>
-		<div class="cards-wrap">
+		<div class="cards-wrap" style="margin-left: 7%;">
 			<div class="card first">
                 <p id="card" name="card">
                         Sorry, you've seen all the available jobs
