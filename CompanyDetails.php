@@ -93,8 +93,8 @@
                             url:"api/companyRegister.php",
                             data: $(this).serialize(),
                             success: function(data){
-                                window.location = "login.php"  //Where to go if successful (Needs changing to the main screen)
-                                alert("Success");
+                                localStorage.removeItem("userID");
+                                window.location = "login.php";  //Where to go if successful (Needs changing to the main screen)
                             },
                             error: function(xhr){
                                 //alert($(this).serialize);
