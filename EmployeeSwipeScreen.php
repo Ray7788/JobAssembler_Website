@@ -295,15 +295,18 @@ usort($jobs, 'compare');
 
     <body>
         <!-- Nav bar -->
-        <nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
-            <a class="navbar-brand">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+
+            <a class="navbar-brand" style="text-emphasis-color: white;">
             <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
             <?php
                 echo("You are signed in as: &nbsp;" . $user->username);
             ?>
-            <a class="btn btn-success" style="margin-left: 10%;" href="userSkills.php">Employee Skills</a>
-            <a class="btn btn-success" href="EmployeeForm.php">Edit Details</a>
-            <a class="btn btn-success" style="margin-left: 10%;" href="JobList.php">Job List</a>
+            
+            <a class="nav-link" style="margin-left: 10%;" href="userSkills.php">Employee Skills</a>
+            <a class="nav-link" style="margin-left: 10%;" href="EmployeeForm.php">Edit Details</a>
+            <a class="nav-link" style="margin-left: 10%;" href="JobList.php">Job List</a>
+            <a class="btn-danger" style="margin-left: 10%; padding:10px" href="index.php">Log Out</a>
             </nav>
 
     <div class="container">

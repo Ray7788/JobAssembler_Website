@@ -184,12 +184,35 @@ $jobs = $statement->fetchAll();
             margin-bottom: 50px;
             border-radius: 15px;
         }
+
+        .php {
+            color: #e9ecef;
+        }
     </style>
 </head>
 
 
 
 <body>
+
+    <!-- Nav bar -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+
+                <a class="navbar-brand" style="text-emphasis-color: white;">
+                <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
+                <a class = "php">
+                <?php
+                    echo ("You are signed in as: &nbsp;" . $user->username);
+                ?>
+                </a>
+                <a class="nav-link" style="margin-left: 5%; white-space: nowrap;" href="EmployeeSwipeScreen.php">Home</a>
+                <a class="nav-link" style="margin-left: 5%; white-space: nowrap;" href="userSkills.php">Employee Skills</a>
+                <a class="nav-link" style="margin-left: 5%; white-space: nowrap;" href="EmployeeForm.php">Edit Details</a>
+                <a class="nav-link" style="margin-left: 5%; white-space: nowrap;;" href="JobList.php">Job List</a>
+                <a class="btn-danger" style="margin-left: 10%; padding:10px" href="Index.php">Log Out</a>
+    </nav>
+
+
     <main class="container" style="padding-top: 2rem">
     <div style="text-align: right;">
         <a class="btn btn-secondary" href="main.php"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
