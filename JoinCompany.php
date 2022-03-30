@@ -47,29 +47,22 @@ $noOfCompanies = count($companies);
         <style>
         body {
         display: flex;
-        justify-content: center;
         background-image: linear-gradient(to left, #e1eec3, #f05053);
         }
 
         .container-fluid{
-                width: 40vw;
-                height: 80h;
+                
                 position: relative;
                 display: flex;
-                border-radius: 20px;
                 justify-content: center;
                 align-items: center;
-                top: 50px;
-                font-size:40px;  
+                margin: 5%;
         }
 
         .b{
             background-color: #fff;
-
-                width: 75vw;
-                height: 60vh;
-                overflow: hidden;
-                font-family:"Helvetica";
+            font-family:"Helvetica";
+            padding: 10%;
 
             }
         </style>
