@@ -26,6 +26,13 @@ $statement = $pdo->prepare($query);
 $statement->execute(["companyID" => $companyID]);
 $jobs = $statement->fetchAll();
 
+if(count($jobs) == 0){
+    //If they have no jobs, send then to create job screen.
+    header("Location: /JobCreation.php");
+    die(0);
+}
+$jobID = $jobs[0][0];
+
 $jobString = "";
 //Make the array of job IDs belonging to the company into a string ready for the sql query.
 //Want it like 2,3,4
@@ -36,7 +43,7 @@ for($x=0; $x<count($jobs); $x++){
 $jobString = substr($jobString, 0, -1); //Removes the last comma
 
 
-$query = "SELECT DISTINCT UserAccounts.UserID, UserAccounts.Forename, UserAccounts.Surname, UserAccounts.Biography, UserJobs.JobID FROM ((UserAccounts 
+$query = "SELECT DISTINCT UserAccounts.UserID, UserAccounts.Forename, UserAccounts.Surname, UserAccounts.Biography, UserJobs.JobID, UserAccounts.Latitude, UserAccounts.Longitude, JobPostings.Latitude, JobPostings.Longitude FROM ((UserAccounts 
 INNER JOIN UserJobs ON UserJobs.UserID = UserAccounts.UserID) 
 INNER JOIN JobPostings ON JobPostings.JobID = UserJobs.JobID) 
 WHERE UserJobs.UserAccepted = 1 AND UserJobs.CompanySeen = 0 AND JobPostings.CompanyID = ?";
@@ -44,6 +51,73 @@ WHERE UserJobs.UserAccepted = 1 AND UserJobs.CompanySeen = 0 AND JobPostings.Com
 $statement = $pdo->prepare($query);
 $statement->execute([$companyID]);
 $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
+
+function vincentyGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000){
+    // convert from degrees to radians
+    $latFrom = deg2rad($latitudeFrom);
+    $lonFrom = deg2rad($longitudeFrom);
+    $latTo = deg2rad($latitudeTo);
+    $lonTo = deg2rad($longitudeTo);
+  
+    $lonDelta = $lonTo - $lonFrom;
+    $a = pow(cos($latTo) * sin($lonDelta), 2) + pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
+    $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
+  
+    $angle = atan2(sqrt($a), $b);
+    return $angle * $earthRadius;
+}
+
+//userAccounts is an array that has user details FOR EACH JOB.
+$scores = array();
+for($x=0;$x<count($userAccounts);$x++){
+    $query = "SELECT COUNT(*) FROM (UserSkills INNER JOIN JobSkills ON UserSkills.SkillID = JobSkills.SkillID) WHERE UserSkills.UserID = :userid AND JobSkills.jobid = :jobid";
+    $statement = $pdo->prepare($query);
+    $statement->execute([
+        "userid" => $userAccounts[$x][0],
+        "jobid" => $userAccounts[$x][4]
+    ]);
+    $count = intval($statement->fetch()[0]);
+    array_push($scores, $count);
+    array_push($userAccounts[$x], $count);
+}
+
+for($x=0; $x<count($userAccounts); $x++){
+    if((!$userAccounts[$x][5] == null) && (!$userAccounts[$x][6] == null) && (!$userAccounts[$x][7] == null) && (!$userAccounts[$x][8] == null)){
+        $latitude1 = $userAccounts[$x][5];
+        $longitude1 = $userAccounts[$x][6];
+        $latitude2 = $userAccounts[$x][7];
+        $longitude2 = $userAccounts[$x][8];
+
+        $distance = vincentyGreatCircleDistance($latitude1, $longitude1, $latitude2, $longitude2);
+        //array_push($userAccounts[$x], $distance);
+        $distanceScore = 0;
+        if($distance <= 50000){
+            $distanceScore += 1;
+        }
+        if($distance <= 40000){
+            $distanceScore += 1;
+        }
+        if($distance <= 30000){
+            $distanceScore += 1;
+        }
+        if($distance <= 20000){
+            $distanceScore += 1;
+        }
+        if($distance <= 10000){
+            $distanceScore += 1;
+        }
+        //Score is at index 9
+        $userAccounts[$x][9] = $userAccounts[$x][9] + $distanceScore;
+    }
+}
+function compare($element1, $element2){
+    $acc1 = $element1[9];
+    $acc2 = $element2[9];
+    return $acc2 - $acc1;
+}
+
+usort($userAccounts, 'compare');
+
 ?>
 
 <!DOCTYPE html>
@@ -241,8 +315,10 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 //Get array of jobs with jobID just selected.
                 for(let i=0; i<userAccounts.length;i++){
                     console.log(userAccounts[i].join());
+                    //The userAccounts array will already be sorted into best first, 2ndbest second etc.
+                    //So you can just go through it from the start and see which belongs to the job you've got selected.
                     if(userAccounts[i][4] == currentJobID){
-                        console.log(currentJobID);
+                        //console.log(currentJobID);
                         //console.log(userAccounts[i].join());
                         userAccountsForJob.push(userAccounts[i]);
                     }
