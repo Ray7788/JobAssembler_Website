@@ -105,19 +105,19 @@ if((!$data[0][0] == null) && (!$data[0][1] == null)){
             $distance = vincentyGreatCircleDistance($latitude1, $longitude1, $jobLat, $jobLong);
             //Add 5 points for 10km, ... , 1 point for less than 50km
             $distanceScore = 0;
-            if($distance <= 5000){
+            if($distance <= 50000){
                 $distanceScore += 1;
             }
-            if($distance <= 4000){
+            if($distance <= 40000){
                 $distanceScore += 1;
             }
-            if($distance <= 3000){
+            if($distance <= 30000){
                 $distanceScore += 1;
             }
-            if($distance <= 2000){
+            if($distance <= 20000){
                 $distanceScore += 1;
             }
-            if($distance <= 1000){
+            if($distance <= 10000){
                 $distanceScore += 1;
             }
             $jobs[$x][11] = $jobs[$x][11] + $distanceScore;
@@ -133,8 +133,7 @@ function vincentyGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo,
     $lonTo = deg2rad($longitudeTo);
   
     $lonDelta = $lonTo - $lonFrom;
-    $a = pow(cos($latTo) * sin($lonDelta), 2) +
-      pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
+    $a = pow(cos($latTo) * sin($lonDelta), 2) + pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
     $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
   
     $angle = atan2(sqrt($a), $b);
