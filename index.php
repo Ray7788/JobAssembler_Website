@@ -43,9 +43,9 @@
             border-bottom: 2px solid #000000;
             border-left: 2px solid #000000;
             border-right: 2px solid #000000;
-            background: white;
+            background: transparent;
             color: black;
-            width: 53%
+            width: 54%
         }
 
         table{
@@ -79,14 +79,10 @@
             position: relative;
             width: 100vw;
             height: 120vh;
-            background: linear-gradient(
-                135deg,
-            rgb(254,249,215),
-            rgb(255,222,191),
-            rgb(253,195,181),
-            rgb(240,171,184));
-            background-size: 200% 200%;
-            animation: gradient-move 5s ease alternate infinite;
+            background: url(Images/pexels-cottonbro-7014764.jpg) no-repeat
+            center fixed;
+            background-size: cover;
+            animation: gradient-move 50s ease alternate infinite;
         }
         
          /*2nd page */
@@ -95,14 +91,10 @@
             width: 100vw;
             height: 120vh;
             border-width:0px ;
-            background: linear-gradient(
-            135deg,
-            rgb(255,241,235),
-            rgb(245,224,245),
-            rgb(213,222,255),
-            rgb(172,224,249));
-            background-size: 200% 200%;
-            animation: gradient-move 10s ease alternate infinite;
+            background: url(Images/pexels-vlada-karpovich-4050347.jpg) no-repeat
+            center fixed;
+            background-size: cover;
+            animation: gradient-move 40s ease alternate infinite;
         }
         
 
@@ -111,14 +103,9 @@
             position: relative;
             width: 100vw;
             height: 120vh;
-            background: linear-gradient(
-                135deg,
-            rgb(248, 243, 151),
-            rgb(255, 247, 96),
-            rgb(170, 220, 94),
-            rgb(155, 223, 70));
-            background-size: 200% 200%;
-            animation: gradient-move 10s ease alternate infinite;
+            background: url(Images/pexels-cottonbro-4065619.jpg) no-repeat
+            center fixed;
+            background-size: cover;
         }
 
         /* Dynamic */
@@ -159,14 +146,14 @@
     <div class="container-fluid">
         <div class="page1">
             <br>
-            <h1 class="display-4" style="color: #000000;"><b>Struggling with finding Employment or Employees?</b></h1>
+            <h1 class="display-4" style="color:white;"><b>Struggling with finding Employment or Employees?</b></h1>
             <br>
-            <h1 class="display-6" style="color: #000000;">Ever wish it was as easy as Tinder?</h1>
+            <h1 class="display-6" style="color:white;">Ever wish it was as easy as Tinder?</h1>
             <hr class="my-3">
             <br>
-            <p class="lead" style="color: #000000;">JobAssembler Is!</p> 
+            <p class="lead" style="color:white;">JobAssembler Is!</p> 
             <br>
-            <a style="color:red; width:50%; margin-left:47%" href="PrivacyPolicy.html">Privacy Policy</a>
+            <a class="btn-warning" style="color:white; width:50%; margin-left:45%; padding:10px" href="PrivacyPolicy.html">Privacy Policy</a>
         </div> 
     </div>
 
@@ -174,14 +161,14 @@
     <div class="container-fluid">
             <div class="page2">
             <br>
-            <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color: black"> <b>Direct access to Employees and Employers </b></h1>
+            <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color:white;"> <b>Direct access to Employees and Employers </b></h1>
             <br>
-            <h1 class="display-6" style="color: black;">Ideal for New Graduates!</h1>
+            <h1 class="display-6" style="color:white;">Ideal for New Graduates!</h1>
             <hr class="my-4">
             <br>
-            <p class="lead" style="color: black;"><b>Easier and more engaging than the Competition</b></p>
+            <p class="lead" style="color:white;"><b>Easier and more engaging than the Competition</b></p>
             <br>
-            <p class="lead" style="color: black;"><b>DON'T MISS OUT, JOIN NOW!</b></p>
+            <p class="lead" style="color:white;"><b>DON'T MISS OUT, JOIN NOW!</b></p>
         </div>
     </div>
 
