@@ -13,6 +13,16 @@ if(!$user->is_authenticated()){
 	header("Location: /index.php");
 	die(0);
 }
+if($user->company_id == -1){
+    header("Location: /main.php");
+    die(0);
+}
+$companyID = $user->company_id;
+
+
+//THIS NEEDS CHANGING TO THE JOB THE EMPLOYER IS LOOKING AT IN EMPLOYERSWIPESCREEN!!!
+$currentJobID = 19;
+$currentJob = "Test Job 19";
 
 ?>
 
@@ -23,7 +33,7 @@ if(!$user->is_authenticated()){
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>User Skills Form</title>
+	<title>Job Skills Form</title>
 	<style>
     body {
         display: flex;
@@ -68,6 +78,18 @@ if(!$user->is_authenticated()){
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 		var userID = <?php echo($userID); ?>;
+        var currentJobID = <?php echo json_encode($currentJobID); ?>;
+        var currentJob = <?php echo json_encode($currentJob); ?>;   
+
+        $(function(){
+            $(".dropdown-menu a").click(function(){
+                currentJob = $(this).text();
+                currentJobID = $(this).attr('id');
+                currentJobID = currentJobID.substring(8);
+                currentJobID = jobArray[currentJobID][0];
+                document.getElementById("jobName").innerHTML = "Current job: " + currentJob;
+            });
+        });
 
 		$(document).ready(function(){
 			$("#userSkillsForm").submit(function(e){
@@ -81,13 +103,13 @@ if(!$user->is_authenticated()){
 				"phpYears":slider5.value, "cssYears":slider6.value, "cplusYears":slider7.value, "sqlYears":slider8.value,
 				"emoIntel":checkedArray[0], "patience":checkedArray[1], "adapt":checkedArray[2], "projManage":checkedArray[3],
 				"probSolv":checkedArray[4], "teamwork":checkedArray[5], "interpersonal":checkedArray[6],
-				"leadership":checkedArray[7], "time":checkedArray[8], "decisiveness":checkedArray[9], "isCompany":"No", "jobID":"-1"};
+				"leadership":checkedArray[7], "time":checkedArray[8], "decisiveness":checkedArray[9], "isCompany":'Yes', "jobID":"19"};
 				$.ajax({
 					type:"POST",
 					url:"api/skillAdding.php",
 					data:dataArray,
 					success:function(data){
-						window.location = "EmployeeSwipeScreen.php";
+						window.location = "EmployerSwipeScreen.php";
 					},
 					error: function(xhr){
 						var obj = xhr.responseJSON;
@@ -108,12 +130,14 @@ if(!$user->is_authenticated()){
     <div class="b">
 
 <form id="userSkillsForm" name="UserSkills">
-	<h1 class="display-1">Skill Form</h1>
+	<h1 class="display-1">Job Skills Form</h1>
     <br>
-	<h3 class="d" >Please be as honest as possible when filling out this form. <br></h3>
+    <p id="jobName"></p>
+    <br>
+	<h3 class="d" >Please be as precise as possible to make sure you see the most suitable candidates. <br></h3>
 	<hr>
-	<h2>Programming languages experience: </h2>
-	<h3>Please select approximately how many years experience you have in each langauge</h3>
+    <h2>Programming languages experience: </h2>
+	<h3>Please select approximately how many years of experience you would like your candidate to have in each language.</h3>
 	<label for="Javaexp">Java Experience: </label>
 	<input type="range" id="Javaexp" name="Javaexp" min="0" max="10" step="1" value="0">
 	<p><span id="javaOut"></span> Years</p>
@@ -213,7 +237,7 @@ if(!$user->is_authenticated()){
 	</script>
 
 	<h2>Soft Skills Checklist: </h2>
-	<h3>Tick the box if you believe a skill applies to you</h3>
+	<h3>Tick the box if a candidate having this skill is a priority.</h3>
 	<label for="emotionalIntelligence">Emotional Intelligence: </label>
 	<input type="checkbox" name="emotionalIntelligence" id="soft0" value="emotionalIntelligence" style="text-align: center">
 	<br>
@@ -244,8 +268,14 @@ if(!$user->is_authenticated()){
 	<label for="decisiveness">Decisiveness: </label>
 	<input type="checkbox" name="decisiveness" id="soft9" value="decisiveness">
 	<br><hr>
-     <button type="button" onclick="window.location.href='EmployeeSwipeScreen.php';" class="button">Cancel</button>
+     <button type="button" onclick="window.location.href='EmployerSwipeScreen.php';" class="button">Cancel</button>
      <input type="submit" value="Submit" class="button">
 	</form>
+    </div>
+    </div>
 </body>
+<script>
+    document.getElementById("jobName").innerHTML = "Current job: " + currentJob;
+</script>
+
 </html>
