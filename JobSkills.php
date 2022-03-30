@@ -170,8 +170,9 @@ $jobs = $statement->fetchAll();
 		<!-- Links -->
 			<a class="nav-link" href="EmployerSwipeScreen.php" style="margin-left:5%; white-space: nowrap;">Home</a>
 			<a class="nav-link" href="ApplicantList.php" style="margin-left:5%; white-space: nowrap;">Applicant List</a>
+			<a class="nav-link" href="JobCreation.php" style="margin-left:5%; white-space: nowrap;;">Job Creation</a>
 			<a class="nav-link" href="CompanyAddUsers.php" style="margin-left:5%; white-space: nowrap;">Add Users</a>
-			<a class="btn-danger" style="margin-left: 0%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>            
+			<a class="btn-danger" style="margin-left: 70%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>            
         </ul>
     </nav>
 
