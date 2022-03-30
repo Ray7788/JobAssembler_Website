@@ -9,16 +9,18 @@ class Job
     public company $company;
     public float $latitude;
     public float $longitude;
+    public bool $remote;
 
-    public static function create_job(string $title, string $description, int $company_id, float $latitude = null, float $longitude = null): bool {
+    public static function create_job(string $title, string $description, int $company_id, bool $remote, float $latitude = null, float $longitude = null): bool {
         $pdo = Database::connect();
         if (is_null($latitude) || is_null($longitude)){
-            $query = "INSERT INTO JobPostings (Title, Details, CompanyID) VALUES (:title, :description, :company_id)";
+            $query = "INSERT INTO JobPostings (Title, Details, CompanyID, RemoteJob) VALUES (:title, :description, :company_id, :remote)";
             $statement = $pdo->prepare($query);
             return $statement->execute([
                 "title" => $title,
                 "description" => $description,
-                "company_id" => $company_id
+                "company_id" => $company_id,
+                "remote" => intval($remote)
             ]);
         }
         else {
@@ -29,7 +31,8 @@ class Job
                 "description" => $description,
                 "company_id" => $company_id,
                 "latitude" => $latitude,
-                "longitude" => $longitude
+                "longitude" => $longitude,
+                "remote" => intval($remote)
             ]);
         }
 
@@ -52,6 +55,7 @@ class Job
         $this->company->id = $result["CompanyID"];
         $this->company->name = $result["Name"];
         $this->company->description = $result["Description"];
+        $this->remote = boolval($result["Remote"]);
         if (!is_null($result["CompanyImage"])) {
             $this->company->image_url = $result["CompanyImage"];
         } else {

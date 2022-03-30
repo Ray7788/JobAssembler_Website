@@ -20,7 +20,7 @@ if ($user->company_id == -1) {
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     ApiResponseGenerator::generate_error_json(405, "{$_SERVER["REQUEST_METHOD"]} method not allowed");
 }
-$required_params = ["title", "description"];
+$required_params = ["title", "description", "remote"];
 foreach ($required_params as $param) {
     if (!isset($_REQUEST[$param])) {
         ApiResponseGenerator::generate_error_json(400, "Parameter $param not set.");
@@ -29,6 +29,7 @@ foreach ($required_params as $param) {
 
 $title = $_REQUEST["title"];
 $description = $_REQUEST["description"];
+$remote = $_REQUEST["remote"] == "remote";
 
 if (isset($_REQUEST["latitude"]) && isset($_REQUEST["longitude"]) && $_REQUEST["latitude"] != "" && $_REQUEST["longitude"] != "") {
     $latitude = floatval($_REQUEST["latitude"]);
@@ -52,7 +53,7 @@ if (strlen($description) > 4294967295){
     ApiResponseGenerator::generate_error_json(400, "Invalid job description. Description is too long");
 }
 try {
-    $result = Job::create_job($title, $description, $user->company_id, $latitude, $longitude);
+    $result = Job::create_job($title, $description, $user->company_id, $remote, $latitude, $longitude);
     if (!$result) {
         ApiResponseGenerator::generate_error_json(500, "There was an error with the database. Please try again later.");
     }

@@ -198,9 +198,15 @@ if (!$user->is_authenticated()) {
             <!-- map -->
             <div id="map" style="height: 200px"></div>
             <button id="resetMap" class="btn btn-danger btn-sm" style="margin: 10px 0px;" type="button">Remove location</button>
-            <br><br>
+            <br>
             <input type="hidden" name="latitude" id="latitude"/>
             <input type="hidden" name="longitude" id="longitude"/>
+            <div class="form-check">
+                <input type="hidden" name="remote" value/>
+                <input class="form-check-input" type="checkbox" id="remote" name="remote" value="remote"/>
+                <label class="form-check-label" for="remote">Work is performed remotely</label>
+            </div>
+            <br>
             <!-- button -->
             <div class="d-grid gap-1">
             <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">

@@ -36,12 +36,8 @@ $remote = $_REQUEST["remote"] == "remote";
 $updated = [];
 
 //Deal with remote working
-if ($remote) {
-    $user->update_property("Remote", 1);
-}
-else {
-    $user->update_property("Remote", 0);
-}
+
+$user->update_property("Remote", intval($remote));
 $updated[] = "remote";
 
 //Deal with email
