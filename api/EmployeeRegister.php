@@ -12,14 +12,11 @@ $userID = $user->user_id;
 if (!$user->is_authenticated()) {
     ApiResponseGenerator::generate_error_json(401, "User not logged in.");
 }
-if ($user->company_id == -1) {
-    ApiResponseGenerator::generate_error_json(403, "User not assigned to company.");
-}
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     ApiResponseGenerator::generate_error_json(405, "{$_SERVER["REQUEST_METHOD"]} method not allowed");
 }
-$required_params = ["email","biography", "latitude", "longitude"];
+$required_params = ["email","biography", "latitude", "longitude", "remote"];
 foreach($required_params as $param){
 	if(!isset($_REQUEST[$param])){
 		ApiResponseGenerator::generate_error_json(400,"Parameter $param not set.");
@@ -34,12 +31,23 @@ $biography = $_REQUEST["biography"];
 $latitude = $_REQUEST["latitude"];
 $longitude = $_REQUEST["longitude"];
 $picture = $_FILES["profilePic"];
+$remote = $_REQUEST["remote"] == "remote";
 
 $updated = [];
+
+//Deal with remote working
+if ($remote) {
+    $user->update_property("Remote", 1);
+}
+else {
+    $user->update_property("Remote", 0);
+}
+$updated[] = "remote";
 
 //Deal with email
 if (preg_match('/\w+@.+\..+/', $email) ){
     $user->update_property("Email", $email);
+    $updated[] = "email";
 }
 else if ($email != "") {
     ApiResponseGenerator::generate_error_json(400, "Invalid email given.");
@@ -48,6 +56,7 @@ else if ($email != "") {
 //Deal with biography
 if ($biography != "") {
     $user->update_property("Biography", $biography);
+    $updated[] = "biography";
 }
 
 //Deal with location
@@ -61,12 +70,13 @@ if (is_numeric($latitude) && is_numeric($longitude)) {
         ApiResponseGenerator::generate_error_json(500, "There was an error connecting to the database. Please try again later.");
     }
 }
-else {try {
+else {
+    try {
     $user->set_location(0, 0);
     $updated[] = "location";
-} catch (Throwable $exception) {
-    ApiResponseGenerator::generate_error_json(500, "There was an error connecting to the database. Please try again later.");
-}
+    } catch (Throwable $exception) {
+        ApiResponseGenerator::generate_error_json(500, "There was an error connecting to the database. Please try again later.");
+    }
 }
 
 //Deal with profile picture
