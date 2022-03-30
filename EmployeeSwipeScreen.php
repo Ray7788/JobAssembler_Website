@@ -122,7 +122,14 @@ if((!$data[0][0] == null) && (!$data[0][1] == null)){
                 $distanceScore += 1;
             }
             $jobs[$x][11] = $jobs[$x][11] + $distanceScore;
-        }   
+            array_push($jobs[$x], $distance);
+        }else{
+            array_push($jobs[$x], 0);
+        } 
+    }
+}else{
+    for($x=0;$x<count($jobs);$x++){
+        array_push($jobs[$x], 0);
     }
 }
 
@@ -308,8 +315,13 @@ usort($jobs, 'compare');
                 var jobTitle = jobArray[jobCounter][columns.indexOf("Title")];
                 var jobDetails = jobArray[jobCounter][columns.indexOf("Details")];
                 var companyDescription = jobArray[jobCounter][9];
+                var distance = jobArray[jobCounter][12];
+                distance = distance / 1000; // Convert into km
+
+                //Only show distance if not remote.
 
                 document.getElementById("card").innerHTML = "<b>Would you like to apply to this job?</b> <br>"
+                 + "Distance from you: " + distance + "km<br>"
                  + "Company: " + companyName + " <br> "
                  + "Job Title: " + jobTitle + "<br>"
                  + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
