@@ -197,24 +197,25 @@ $noOfUsers = count($usersApplied);
     <body>
         <!-- Nav bar -->
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-            <!-- Brand LOGO -->
-            <a class="navbar-brand">
-                <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
-            </a>
-            
-            <ul class="navbar-nav" style="margin-left: 65%;">
-            <!-- Links -->
-                <li class="nav-item">
-                    <a class="nav-link" href="ApplicantList.php">Applicant List</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="JobCreation.php">Job Creation</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="EmployerSwipeScreen.php">Swipe</a>
-                </li>
-            </ul>
-        </nav>
+        <!-- Brand LOGO -->
+        <a class="navbar-brand">
+            <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
+        </a>
+        <span class="navbar-text">
+            <?php
+                echo("You are signed in as: &nbsp;" . $user->username . "&nbsp &nbsp");
+            ?>
+        </span>   
+        <ul class="navbar-nav" style="margin-left: 10%;">
+                <!-- Links -->
+                <a class="nav-link" href="EmployerSwipeScreen.php" style="margin-left:5%; white-space: nowrap;">Home</a>
+                <a class="nav-link" href="JobSkills.php" style="margin-left:5%; white-space: nowrap;">Job Skills</a>
+                <a class="nav-link" href="JobCreation.php" style="margin-left:5%; white-space: nowrap;;">Job Creation</a>
+                <a class="nav-link" href="ApplicantList.php" style="margin-left:5%; white-space: nowrap;">Applicant List</a>
+                <a class="nav-link" href="CompanyAddUsers.php" style="margin-left:5%; white-space: nowrap;">Add Users</a>
+                <a class="btn-danger" style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>            
+        </ul>
+</nav>
 
         <!-- Main part -->
         <div class="container">
