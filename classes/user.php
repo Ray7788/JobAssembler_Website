@@ -15,6 +15,7 @@ class User
     public float $latitude;
     public float $longitude;
     public string $email;
+    public bool $remote;
 
     #Pepper used in password hashing to give some protection against password shucking. https://www.youtube.com/watch?v=OQD3qDYMyYQ
     private static string $pepper = "v6uAX32o";
@@ -88,7 +89,7 @@ class User
         if (isset($id)){
             $this->user_id = $id;
         }
-        $query = "SELECT Username, Forename, Surname, Biography, ProfileImage, CompanyID, Latitude, Longitude, Email FROM `UserAccounts` WHERE UserID = ?";
+        $query = "SELECT Username, Forename, Surname, Biography, ProfileImage, CompanyID, Latitude, Longitude, Email, Remote FROM `UserAccounts` WHERE UserID = ?";
         $statement = $pdo->prepare($query);
         $statement->execute([$this->user_id]);
         $result = $statement->fetch(PDO::FETCH_ASSOC);
@@ -101,6 +102,7 @@ class User
         $this->latitude = floatval($result["Latitude"]);
         $this->longitude = floatval($result["Longitude"]);
         $this->email = is_null($result["Email"]) ? "" : $result["Email"];
+        $this->remote = $result["Remote"];
         unset($result["Latitude"]);
         unset($result["Longitude"]);
         return $result;
