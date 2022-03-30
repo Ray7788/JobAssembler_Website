@@ -114,7 +114,6 @@ if(!$user->is_authenticated()){
                 echo("You are signed in as: &nbsp;" . $user->username);
             ?>
             <a class="nav-link" style="margin-left: 5%; white-space: nowrap;" href="EmployeeSwipeScreen.php">Home</a>
-            <a class="nav-link" style="margin-left: 5%; white-space: nowrap;" href="userSkills.php">Employee Skills</a>
             <a class="nav-link" style="margin-left: 5%; white-space: nowrap;" href="EmployeeForm.php">Edit Details</a>
             <a class="nav-link" style="margin-left: 5%; white-space: nowrap;;" href="JobList.php">Job List</a>
             <a class="btn-danger" style="margin-left: 10%; padding:10px" href="index.php">Log Out</a>
