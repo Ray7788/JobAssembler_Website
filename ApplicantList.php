@@ -169,6 +169,29 @@ $jobs = $statement->fetchAll();
     </style>
 </head>
 <body>
+  <!-- Nav bar -->
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <!-- Brand LOGO -->
+        <a class="navbar-brand">
+            <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
+        </a>
+        <span class="navbar-text">
+            <?php
+                echo("You are signed in as: &nbsp;" . $user->username . "&nbsp &nbsp");
+            ?>
+        </span>   
+        <ul class="navbar-nav" style="margin-left: 10%;"> 
+            <!-- Links -->
+                <a class="nav-link" href="EmployerSwipeScreen.php" style="margin-left:5%; white-space: nowrap;">Home</a>
+                <a class="nav-link" href="JobSkills.php" style="margin-left:5%; white-space: nowrap;">Job Skills</a>
+                <a class="nav-link" href="JobCreation.php" style="margin-left:5%; white-space: nowrap;;">Job Creation</a>
+                <a class="nav-link" href="CompanyAddUsers.php" style="margin-left:5%; white-space: nowrap;">Add Users</a>
+                <a class="btn-danger" style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>
+            
+        </ul>
+        </nav>
+
+
 <main class="container" style="padding-top: 2rem">
     <div style="text-align: right;">
         <a class="btn btn-secondary" href="main.php"><i class="bi bi-arrow-left-circle-fill"></i> Back</a>
