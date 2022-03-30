@@ -200,18 +200,18 @@ input:focus{
  <br>
 <!-- radio frame -->
                     <br>
-                    <p class="choicetext">You want to be:</p>
+                    <p class="choicetext" style="color: black;">You want to be:</p>
                     
                     <label class="radio-inline">
                         <input type="radio"  name="accountType" id="employee" value="employee" required>
-                        <span class="check"></span>
-                        <label for="yes">Employee </label>
+                        <span class="check" style="color: black;"></span>
+                        <label for="yes" style="color: black;">Employee </label>
                     </label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <label class="radio-inline">
                         <input type="radio"  name="accountType" id="employer" value="employer" required>
-                        <span class="check"></span>
-                        <label for="yes">Employer</label>
+                        <span class="check" style="color: black;"></span>
+                        <label for="yes" style="color: black;">Employer</label>
                     </label>
                     <br><br><br>
 
