@@ -3,7 +3,8 @@ require_once(__DIR__ . "/prevent_direct_access.php");
 require_once(__DIR__ . "/database.php");
 
 class UserJob{
-    public static function update_employer($companyAccepted, $userID, $jobID){
+    public static function update_employer($companyAccepted, $userID, $jobID): bool
+    {
         $pdo = Database::connect();
         $query = "UPDATE UserJobs SET CompanyAccepted = :companyAccepted, CompanySeen = 1 WHERE UserID=:userID AND JobID=:jobID";
         $statement = $pdo->prepare($query);
@@ -14,7 +15,8 @@ class UserJob{
         ]);
     }
 
-    public static function update_employee($userAccepted, $userID, $jobID){
+    public static function update_employee($userAccepted, $userID, $jobID): bool
+    {
         $pdo = Database::connect();
         $query = "UPDATE UserJobs SET UserAccepted = :userAccepted, UserSeen = 1 WHERE UserID=:userID AND JobID=:jobID";
         $statement = $pdo->prepare($query);

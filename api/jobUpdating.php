@@ -8,9 +8,9 @@ if($_SERVER["REQUEST_METHOD"] !== "POST"){
 }
 
 
-$required_params = ["userAccepted", "userID", "jobID"];
+$required_params = ["userID", "jobID"];
 foreach($required_params as $param){
-    if(!isset($_REQUEST[$param])){
+    if(!isset($_REQUEST[$param]) || $_REQUEST[$param] == ""){
         ApiResponseGenerator::generate_error_json(400, "Parameter $param not set");
     }
 }
@@ -18,18 +18,29 @@ foreach($required_params as $param){
 
 $userID = $_REQUEST["userID"];
 $jobID = $_REQUEST["jobID"];
-$userAccepted = $_REQUEST["userAccepted"];
 
-try{
-    $result = UserJob::update_employee($userAccepted, $userID, $jobID);
-    if(!$result){
-        ApiResponseGenerator::generate_error_json(500, "There was an error with the database. Please try again later");
-    }else{
-        ApiResponseGenerator::generate_response_json(201, ["message" => "Successfully updated database."]);
+if (isset($_REQUEST["userAccepted"])) {
+    try {
+        $result = UserJob::update_employee($_REQUEST["userAccepted"], $userID, $jobID);
+        if(!$result){
+            ApiResponseGenerator::generate_error_json(500, "There was an error with the database. Please try again later");
+        }
+    }
+    catch(Exception $exception){
+        ApiResponseGenerator::generate_error_json(500, "There was an error with the database. {$exception->getMessage()} Please try again later.");
     }
 }
-catch(Exception $exception){
-    ApiResponseGenerator::generate_error_json(500, "There was an error with the database. {$exception->getMessage()} Please try again later.");
+if (isset($_REQUEST["companyAccepted"])) {
+    try {
+        $result = UserJob::update_employer($_REQUEST["companyAccepted"], $userID, $jobID);
+        if(!$result){
+            ApiResponseGenerator::generate_error_json(500, "There was an error with the database. Please try again later");
+        }
+    }
+    catch(Exception $exception){
+        ApiResponseGenerator::generate_error_json(500, "There was an error with the database. {$exception->getMessage()} Please try again later.");
+    }
 }
 
+ApiResponseGenerator::generate_response_json(201, ["message" => "Successfully updated database."]);
 ?>

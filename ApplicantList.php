@@ -41,7 +41,7 @@ $pdo = Database::connect();
 $query = "SELECT UserAccounts.Username, UserAccounts.Forename, UserAccounts.Surname, UserAccounts.Biography, JobPostings.Title, UserJobs.UserAccepted, UserJobs.CompanyAccepted, JobPostings.JobID, UserAccounts.UserID
 FROM JobPostings INNER JOIN UserJobs ON JobPostings.JobID = UserJobs.JobID
 INNER JOIN UserAccounts ON UserJobs.UserID = UserAccounts.UserID
-WHERE JobPostings.CompanyID = ? LIMIT " . RESULTS_PER_PAGE . " OFFSET " . $offset;
+WHERE JobPostings.CompanyID = ? AND UserJobs.CompanySeen = 1 LIMIT " . RESULTS_PER_PAGE . " OFFSET " . $offset;
 $statement = $pdo->prepare($query);
 $statement->execute([$user->company_id]);
 $jobs = $statement->fetchAll();
@@ -107,12 +107,14 @@ $jobs = $statement->fetchAll();
             $("#jobUpdateModal").on("show.bs.modal", function (event) {
                 let button = $(event.relatedTarget) // Button that triggered the modal
                 let id = button.data("user-id") // Extract info from data-* attributes
+                let jobId = button.data("job-id")
                 console.log(id)
                 $.ajax({
                     type:"GET",
                     url:"api/userDetails.php?id=" + id,
                     success: function(data){
                         $("#jobUpdateModal").data("user-id", id)
+                        $("#jobUpdateModal").data("job-id", jobId)
                         $("#jobUpdateText").text(data["Username"] + ": " + data["Forename"] + " " + data["Surname"]);
                         console.log(data);
                     },
@@ -122,33 +124,35 @@ $jobs = $statement->fetchAll();
                 })
             })
             $("#jobUpdateAccept").on("click", function (event) {
-                    let modal = $("#jobUpdateModal");
-                    let id = modal.data("user-id");
-                    $.ajax({
-                        type:"POST",
-                        url:"api/jobUpdating.php?userID=<?=$user->user_id?>&userAccepted=1&jobID=" + id,
-                        success: function(data){
-                            window.location.reload();
-                        },
-                        error: function(xhr){
-                            alert("error\n" + xhr.responseJson);
-                        }
-                    })
+                let modal = $("#jobUpdateModal");
+                let id = modal.data("user-id");
+                let jobId = modal.data("job-id");
+                $.ajax({
+                    type:"POST",
+                    url:"api/jobUpdating.php?userID=" + id + "&companyAccepted=1&jobID=" + jobId,
+                    success: function(data){
+                        window.location.reload();
+                    },
+                    error: function(xhr){
+                        alert("error\n" + xhr.responseJson);
+                    }
+                })
                 }
             )
             $("#jobUpdateDecline").on("click", function (event) {
-                    let modal = $("#jobUpdateModal");
-                    let id = modal.data("user-id");
-                    $.ajax({
-                        type:"POST",
-                        url:"api/jobUpdating.php?userID=" + id + "&userAccepted=0&jobID=",
-                        success: function(data){
-                            window.location.reload();
-                        },
-                        error: function(xhr){
-                            alert("error\n" + xhr.responseJson);
-                        }
-                    })
+                let modal = $("#jobUpdateModal");
+                let id = modal.data("user-id");
+                let jobId = modal.data("job-id");
+                $.ajax({
+                    type:"POST",
+                    url:"api/jobUpdating.php?userID=" + id + "&companyAccepted=0&jobID=" + jobId,
+                    success: function(data){
+                        window.location.reload();
+                    },
+                    error: function(xhr){
+                        alert("error\n" + xhr.responseJson);
+                    }
+                })
                 }
             )
         })
@@ -229,8 +233,8 @@ $jobs = $statement->fetchAll();
                             Options
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink<?=$num?>">
-                            <button class="dropdown-item btn" data-toggle="modal" data-target="#jobDetailsModal" data-user-id="<?=$line["UserID"]?>">View details</button>
-                            <button class="dropdown-item btn" data-toggle="modal" data-target="#jobUpdateModal" data-user-id="<?=$line["UserID"]?>">Change acceptance</button>
+                            <button class="dropdown-item btn" data-toggle="modal" data-target="#jobDetailsModal" data-user-id="<?=$line["UserID"]?> data-job-id="<?=$line["JobID"]?>">View details</button>
+                            <button class="dropdown-item btn" data-toggle="modal" data-target="#jobUpdateModal" data-user-id="<?=$line["UserID"]?>" data-job-id="<?=$line["JobID"]?>">Change acceptance</button>
                             <button class="dropdown-item btn btn-danger" href="">Report</button>
                         </div>
                     </div>
