@@ -40,6 +40,7 @@ class skills{
         }
     }
 
+    //Will say things like 'languageYears'. This has been changed to level from 0-10. Just not changed the variable name.
     public static function insertSkillsForJob(array $languageYears, string $jobID){
         $pdo = Database::connect();
         //These are the SkillIDs for the 'Basic' version of the skills in the Skills table. 
@@ -49,7 +50,7 @@ class skills{
         $execute3 = true;
         for($x=0; $x<count($basicSkills); $x++){
             //$x is the index of the language in the languageYears array
-            //If it's <=2 years, it's 'basic'. If it's between 3 and 7 it's intermediate. If it's 8, 9 or 10 then it's advanced.
+            //If it's <=3, it's 'basic'. If it's between 3 and 7 it's intermediate. If it's 8, 9 or 10 then it's advanced.
             if(!$languageYears[$x] == 0){
                 if($languageYears[$x] >= 8){
                     $query1 = "INSERT INTO JobSkills VALUES (:jobid, :skillid)";
@@ -60,7 +61,7 @@ class skills{
                         "skillid" => $skillID
                     ]);
                 }
-                if($languageYears[$x] >= 3){
+                if($languageYears[$x] >= 4){
                     $query2 = "INSERT INTO JobSkills VALUES (:jobid, :skillid)";
                     $statement2 = $pdo->prepare($query2);
                     $skillID = $basicSkills[$x] + 1;

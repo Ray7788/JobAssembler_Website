@@ -96,6 +96,21 @@ $jobs = $statement->fetchAll();
 			currentJob = jobArray[0][1];
 		}
 
+		function getRightLevel(value){
+			if(value == 0){
+				return ' - None';
+			}
+			if(value >= 8){
+				return ' - Advanced';
+			}
+			if(value >= 4){
+				return ' - Intermediate';
+			}
+			else{
+				return ' - Beginner';
+			}
+		}
+
 		$(function(){
 			$(".dropdown-menu a").click(function(){
 				currentJob = $(this).text();
@@ -140,6 +155,7 @@ $jobs = $statement->fetchAll();
 				})
 			})
 		})
+
 
 	</script>
 </head>
@@ -189,110 +205,110 @@ $jobs = $statement->fetchAll();
     <br>
     <p id="jobName"></p>
     <br>
-	<h3 class="d" >Please be as precise as possible to make sure you see the most suitable candidates. <br></h3>
+	<h5 class="d" >Please be as precise as possible to make sure you see the most suitable candidates. <br></h3>
 	<hr>
     <h2>Programming languages experience: </h2>
-	<h3>Please select approximately how many years of experience you would like your candidate to have in each language.</h3>
+	<h5>On a scale of 1-10, how much experience would you like your candidate to have in each language? Leave the scale at 0 if your job doesn't need that language.</h5>
 	<label for="Javaexp">Java Experience: </label>
 	<input type="range" id="Javaexp" name="Javaexp" min="0" max="10" step="1" value="0">
-	<p><span id="javaOut"></span> Years</p>
+	<p><span id="javaOut"></span></p>
 	<script>
 		var slider1 = document.getElementById("Javaexp");
 		var output1 = document.getElementById("javaOut");
-		output1.innerHTML = slider1.value;
+		output1.innerHTML = slider1.value + getRightLevel(0);
 
 		slider1.oninput = function(){
-			output1.innerHTML = this.value;
+			output1.innerHTML = this.value + getRightLevel(this.value);
 		}
 	</script>
 
 	<label for="Pythonexp">Python Experience: </label>
 	<input type="range" id="Pythonexp" name="Pythonexp" min="0" max="10" step="1" value="0">
-	<p><span id="pythonOut"></span> Years</p>
+	<p><span id="pythonOut"></span></p>
 	<script>
 		var slider2 = document.getElementById("Pythonexp");
 		var output2 = document.getElementById("pythonOut");
-		output2.innerHTML = slider2.value;
+		output2.innerHTML = slider2.value + getRightLevel(0);
 
 		slider2.oninput = function(){
-			output2.innerHTML = this.value;
+			output2.innerHTML = this.value + getRightLevel(this.value);
 		}
 	</script>
 	<label for="Cexp">C# Experience: </label>
 	<input type="range" id="Cexp" name="Cexp" min="0" max="10" step="1" value="0">
-	<p><span id="c#Out"></span> Years</p>
+	<p><span id="c#Out"></span></p>
 	<script>
 		var slider3 = document.getElementById("Cexp");
 		var output3 = document.getElementById("c#Out");
-		output3.innerHTML = slider3.value;
+		output3.innerHTML = slider3.value + getRightLevel(0);
 
 		slider3.oninput = function(){
-			output3.innerHTML = this.value;
+			output3.innerHTML = this.value + getRightLevel(this.value);
 		}
 	</script>
 	<label for="HTMLexp">HTML Experience: </label>
 	<input type="range" id="HTMLexp" name="HTMLexp" min="0" max="10" step="1" value="0">
-	<p><span id="htmlOut"></span> Years</p>
+	<p><span id="htmlOut"></span></p>
 	<script>
 		var slider4 = document.getElementById("HTMLexp");
 		var output4 = document.getElementById("htmlOut");
-		output4.innerHTML = slider4.value;
+		output4.innerHTML = slider4.value + getRightLevel(0);
 
 		slider4.oninput = function(){
-			output4.innerHTML = this.value;
+			output4.innerHTML = this.value + getRightLevel(this.value);
 		}
 	</script>
 	<label for="PHPexp">PHP Experience: </label>
 	<input type="range" id="PHPexp" name="PHPexp" min="0" max="10" step="1" value="0">
-	<p><span id="phpOut"></span> Years</p>
+	<p><span id="phpOut"></span></p>
 	<script>
 		var slider5 = document.getElementById("PHPexp");
 		var output5 = document.getElementById("phpOut");
-		output5.innerHTML = slider5.value;
+		output5.innerHTML = slider5.value + getRightLevel(0);
 
 		slider5.oninput = function(){
-			output5.innerHTML = this.value;
+			output5.innerHTML = this.value + getRightLevel(this.value);
 		}
 	</script>
 	<label for="CSSexp">CSS Experience: </label>
 	<input type="range" id="CSSexp" name="CSSexp" min="0" max="10" step="1" value="0">
-	<p><span id="cssOut"></span> Years</p>
+	<p><span id="cssOut"></span></p>
 	<script>
 		var slider6 = document.getElementById("CSSexp");
 		var output6 = document.getElementById("cssOut");
-		output6.innerHTML = slider6.value;
+		output6.innerHTML = slider6.value + getRightLevel(0);
 
 		slider6.oninput = function(){
-			output6.innerHTML = this.value;
+			output6.innerHTML = this.value + getRightValue(this.value);
 		}
 	</script>
 	<label for="C++Exp">C++ Experience: </label>
 	<input type="range" id="C++exp" name="C++exp" min="0" max="10" step="1" value="0">
-	<p><span id="c++Out"></span> Years</p>
+	<p><span id="c++Out"></span></p>
 	<script>
 		var slider7 = document.getElementById("C++exp");
 		var output7 = document.getElementById("c++Out");
-		output7.innerHTML = slider7.value;
+		output7.innerHTML = slider7.value + getRightLevel(0);
 
 		slider7.oninput = function(){
-			output7.innerHTML = this.value;
+			output7.innerHTML = this.value + getRightLevel(this.value);
 		}
 	</script>
 	<label for="SQLExp">SQL Experience: </label>
 	<input type="range" id="SQLExp" name="SQLExp" min="0" max="10" step="1" value="0">
-	<p><span id="sqlOut"></span> Years</p>
+	<p><span id="sqlOut"></span></p>
 	<script>
 		var slider8 = document.getElementById("SQLExp");
 		var output8 = document.getElementById("sqlOut");
-		output8.innerHTML = slider8.value;
+		output8.innerHTML = slider8.value + getRightLevel(0);
 
 		slider8.oninput = function(){
-			output8.innerHTML = this.value;
+			output8.innerHTML = this.value + getRightLevel(this.value);
 		}
 	</script>
 
 	<h2>Soft Skills Checklist: </h2>
-	<h3>Tick the box if a candidate having this skill is a priority.</h3>
+	<h5>Tick the box if a candidate having this skill is a priority.</h5>
 	<label for="adaptability">Adaptability: </label>
 	<input type="checkbox" name="adaptability" id="soft0" value="adaptability">
 	<br>
@@ -324,7 +340,7 @@ $jobs = $statement->fetchAll();
     </div>
 </body>
 <script>
-    document.getElementById("jobName").innerHTML = "Current job: " + currentJob;
+    document.getElementById("jobName").innerHTML = "You are choosing skills for the job: " + currentJob;
 </script>
 
 </html>
