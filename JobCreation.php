@@ -108,6 +108,8 @@ if (!$user->is_authenticated()) {
         overflow: hidden;
         margin-bottom: 1em;
     }
+    /* ----------------------------------------------------------------------------------------------------------------- */
+/* For text */
     .display-1{
         font: 900 24px '';
         font-size:2.5em;
@@ -125,38 +127,18 @@ if (!$user->is_authenticated()) {
         border-bottom: 2px solid rgb(60,60,70);
         font: 900 16px '';
     }
-
-        /* For the specialised button */
-/* .btn btn-primary btn-lg {
-    width: 15vw;
-    height: 20vh;
-    border-radius: 30px;
-    line-height: 100px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 28px;
-    color: #fff;  
-    background-image: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #09a8f4);
-    background-size: 400%;
-    z-index: 1;
-
-  }
-
-
-  a.btn btn-primary btn-lg {
-    animation: sun 8s infinite;
-    }
-
-  a.btn btn-primary btn-lg:hover::before {
-    animation: sun 8s infinite;
-    }
-
-  @keyframes sun {
-  100% {
-      background-position: -400% 0;
-      }
-  } */
-    
+/* ----------------------------------------------------------------------------------------------------------------- */
+    /* For navbar */        
+        /* For Logo border*/
+        .d-inline-block-align-top {border-radius: 5px;}
+        /* For DownMenu */
+        .navbar-text{
+                color: yellow;
+            }
+       .navbar-nav{
+           position:absolute;
+           right: 50px;
+       } 
 
 </style>
 </head>
@@ -172,46 +154,61 @@ if (!$user->is_authenticated()) {
                 echo("You are signed in as: &nbsp;" . $user->username . "&nbsp &nbsp");
             ?>
         </span>   
-        <ul class="navbar-nav" style="margin-left: 10%;">
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <!-- <form class="form-inline"> -->
                 <!-- Links -->
-                <a class="nav-link" href="EmployerSwipeScreen.php" style="margin-left:5%; white-space: nowrap;">Home</a>
-                <a class="nav-link" href="JobSkills.php" style="margin-left:5%; white-space: nowrap;">Job Skills</a>
-                <a class="nav-link" href="ApplicantList.php" style="margin-left:5%; white-space: nowrap;">Applicant List</a>
-                <a class="nav-link" href="CompanyAddUsers.php" style="margin-left:5%; white-space: nowrap;">Add Users</a>
-                <a class="btn-danger" style="margin-left: 90%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>            
+                <li class="nav-item">
+                <a class="nav-link" href="EmployerSwipeScreen.php" >Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="JobSkills.php"  >Job Skills</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="ApplicantList.php"  >Applicant List</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="CompanyAddUsers.php"  >Add Users</a>
+                </li>
+                <li class="nav-item">
+                <a class="btn-danger" style="margin-left: 30%; padding: 7px; white-space: nowrap;"  href="index.php" >Log Out</a> 
+                </li>
+            <!-- </form>            -->
         </ul>
+        </div>
 </nav>
 
     <div class="container-fluid" style="margin-bottom: 100px">
     <div class="b">
 
-    <form name="jobCreateForm" id="jobCreateForm">
-        <p>
-        <<a class="btn" href="EmployerSwipeScreen.php">Back</a>
-        <h1 class="display-1">Enter Job Detail</h1>
-        <br>
-
-        <h3 class="d">Job Title<br></h3>
-        <input type="text" name="title" class="e" id="title"  placeholder="Input Title" required>
-        <br><br>
-        <h3 class="d">Job Description</h3>
-        <textarea type="textbox" name="description" class="e" id="description" rows="3" cols="50" placeholder="More Details        " required></textarea>
-        <br><br>
-        <h3 class="d">Job Location</h3>
-        <!-- map -->
-        <div id="map" style="height: 200px"></div>
-        <button id="resetMap" class="btn btn-danger btn-sm" style="margin: 10px 0px;" type="button">Remove location</button>
-        <br><br>
-        <input type="hidden" name="latitude" id="latitude"/>
-        <input type="hidden" name="longitude" id="longitude"/>
-        <!-- button -->
-        <div class="d-grid gap-1">
-        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
-        </div>  
-        </p>
-       
+        <form name="jobCreateForm" id="jobCreateForm">
+            <p>
+            <!-- button -->
+            <<a class="btn" href="EmployerSwipeScreen.php">Back</a>
+            <h1 class="display-1">Enter Job Detail</h1>
+            <br>
+            <h3 class="d">Job Title<br></h3>
+            <input type="text" name="title" class="e" id="title"  placeholder="Input Title" required>
+            <!-- <br><br> -->
+            <h3 class="d">Job Description</h3>
+            <textarea type="textbox" name="description" class="e" id="description" rows="3" cols="50" placeholder="More Details" required></textarea>
+            <!-- <br><br> -->
+            <h3 class="d">Job Location</h3>
+            <!-- map -->
+            <div id="map" style="height: 200px"></div>
+            <button id="resetMap" class="btn btn-danger btn-sm" style="margin: 10px 0px;" type="button">Remove location</button>
+            <br><br>
+            <input type="hidden" name="latitude" id="latitude"/>
+            <input type="hidden" name="longitude" id="longitude"/>
+            <!-- button -->
+            <div class="d-grid gap-1">
+            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
+            </div>  
+            </p>
         
-    </form>
+            
+        </form>
     
     </div>
     </div>
