@@ -91,19 +91,27 @@ $jobs = $statement->fetchAll();
 	<script>
 		var userID = <?php echo($userID); ?>;
 		var jobArray = <?php echo json_encode($jobs) ?>; 
-        var currentJobID = jobArray[0][0];
-        var currentJob = jobArray[0][1];   
+		var currentJobID = localStorage.getItem("currentJobID");
+		localStorage.removeItem("currentJobID");
+		var currentJob = localStorage.getItem("currentJob");
+		localStorage.removeItem("currentJob");
+		if (currentJobID == null){
+			currentJobID = jobArray[0][0];
+			currentJob = jobArray[0][1];
+		}
 
 		$(function(){
-                $(".dropdown-menu a").click(function(){
-                    currentJob = $(this).text();
-                    currentJobID = $(this).attr('id');      //Gets the ID of the dropdown item
-                    currentJobID = currentJobID.substring(8); //Every ID has 'dropdown' at the start. Remove it to just get the number
-                    //Right now 'currentJobID' is only relative to the list in the dropdown. Need to make it relative to the array from the database
-                    currentJobID = jobArray[currentJobID][0];
-                    
-                });
-            });
+			$(".dropdown-menu a").click(function(){
+				currentJob = $(this).text();
+				currentJobID = $(this).attr('id');      //Gets the ID of the dropdown item
+				currentJobID = currentJobID.substring(8); //Every ID has 'dropdown' at the start. Remove it to just get the number
+				//Right now 'currentJobID' is only relative to the list in the dropdown. Need to make it relative to the array from the database
+				currentJobID = jobArray[currentJobID][0];
+				localStorage.setItem("currentJobID", currentJobID);
+				localStorage.setItem("currentJob", currentJob);
+				window.location.reload();
+			});
+		});
 
 		$(document).ready(function(){
 			$("#userSkillsForm").submit(function(e){
@@ -117,7 +125,7 @@ $jobs = $statement->fetchAll();
 				"phpYears":slider5.value, "cssYears":slider6.value, "cplusYears":slider7.value, "sqlYears":slider8.value,
 				"emoIntel":checkedArray[0], "patience":checkedArray[1], "adapt":checkedArray[2], "projManage":checkedArray[3],
 				"probSolv":checkedArray[4], "teamwork":checkedArray[5], "interpersonal":checkedArray[6],
-				"leadership":checkedArray[7], "time":checkedArray[8], "decisiveness":checkedArray[9], "isCompany":'Yes', "jobID":"19"};
+				"leadership":checkedArray[7], "time":checkedArray[8], "decisiveness":checkedArray[9], "isCompany":'Yes', "jobID":currentJobID};
 				$.ajax({
 					type:"POST",
 					url:"api/skillAdding.php",
