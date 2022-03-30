@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS 4.0.0-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/Index.css"> <!-- Include a custom CSS for the website. -->
 
@@ -64,10 +64,10 @@
         }
 
 /* ----------------------------------------------------------------------------------------------------------------- */
+/* For navbar */        
         /* For Logo border*/
         .d-inline-block-align-top {border-radius: 5px;}
 
-        /* For navbar */
         .container-fluid {
             scroll-snap-align: start;
             width: 100vw;
@@ -79,15 +79,14 @@
             position: relative;
             width: 100vw;
             height: 120vh;
-            border-width:0px ;
             background: linear-gradient(
-            135deg,
-            hsl(170deg, 80%, 70%),
-            hsl(190deg, 80%, 70%),
-            hsl(250deg, 80%, 70%),
-            hsl(320deg, 80%, 70%));
+                135deg,
+            rgb(254,249,215),
+            rgb(255,222,191),
+            rgb(253,195,181),
+            rgb(240,171,184));
             background-size: 200% 200%;
-            animation: gradient-move 10s ease alternate infinite;
+            animation: gradient-move 5s ease alternate infinite;
         }
         
          /*2nd page */
@@ -95,15 +94,17 @@
             position: relative;
             width: 100vw;
             height: 120vh;
+            border-width:0px ;
             background: linear-gradient(
-                135deg,
-            rgb(240, 117, 199),
-            rgb(241, 173, 255),
-            rgb(221, 102, 195),
-            rgb(241, 185,93));
+            135deg,
+            rgb(255,241,235),
+            rgb(245,224,245),
+            rgb(213,222,255),
+            rgb(172,224,249));
             background-size: 200% 200%;
             animation: gradient-move 10s ease alternate infinite;
         }
+        
 
         /* 3rd page */
         .page3 {
@@ -132,16 +133,10 @@
 /* ----------------------------------------------------------------------------------------------------------------- */
         /* Text general styling  */
         .display-4, .display-6, .lead {text-align: center;}
-/* ----------------------------------------------------------------------------------------------------------------- */
-        /*Button position  */
-       .PageButton{position: absolute; left: 50%; top: 60%; transform: translate(-50%,-50%)}
-
-
 
 /* ----------------------------------------------------------------------------------------------------------------- */
-
-    </style>
- </head>
+        </style>
+    </head>
 
 
     <body>
@@ -193,7 +188,9 @@
     <!-- page3 -->
     <div class="container-fluid">
             <div class="page3">
+
             <h1 class="display-4" style="color: #000000;"><b>Our Newest Jobs:</b></h1>
+
             <table class="table" style="width: 50%;">
                     <thead style="border: 3px solid #000000;">
                         <tr>    
@@ -216,7 +213,6 @@
                     <?php endif; ?>
                     </tbody>
             </table>
-            <br>
             
            </div> 
     </div>
