@@ -153,6 +153,7 @@
 
     <form name="jobCreateForm" id="jobCreateForm">
         <p>
+        <<a class="btn" href="EmployerSwipeScreen.php">Back</a>
         <h1 class="display-1">Enter Job Detail</h1>
         <br>
 
