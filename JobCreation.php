@@ -1,3 +1,16 @@
+<?php
+require_once(__DIR__ . "/classes/user.php");
+require_once(__DIR__ . "/classes/company.php");
+session_start();
+if (!isset($_SESSION["user"])) {
+    header("Location: index.php");
+    die(0);
+}
+$user = $_SESSION["user"];
+if (!$user->is_authenticated()) {
+    header("Location: index.php");
+    die(0);
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
