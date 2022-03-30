@@ -310,8 +310,10 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                     </div>
                     </a>
             </li>    
-        
-        <!-- Links -->
+            <!-- Links -->
+            <li class="nav-item">
+                <a class="nav-link" href="JobSkills.php">Job Skills</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="JobCreation.php">Job Creation</a>
             </li>

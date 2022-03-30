@@ -166,7 +166,7 @@
             <br>
             <p class="lead" style="color: #000000;">JobAssembler Is!</p> 
             <br>
-            <a class="PageButton" style="color: red;" href="PrivacyPolicy.html">Privacy Policy</a>
+            <a style="color:red; width:50%; margin-left:47%" href="PrivacyPolicy.html">Privacy Policy</a>
         </div> 
     </div>
 
@@ -174,14 +174,14 @@
     <div class="container-fluid">
             <div class="page2">
             <br>
-            <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color: #FFFFCC"> <b>Direct access to Employees and Employers </b></h1>
+            <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color: black"> <b>Direct access to Employees and Employers </b></h1>
             <br>
-            <h1 class="display-6" style="color: #FFFFCC;">Ideal for New Graduates!</h1>
+            <h1 class="display-6" style="color: black;">Ideal for New Graduates!</h1>
             <hr class="my-4">
             <br>
-            <p class="lead" style="color: #FFFFCC;"><b>Easier and more engaging than the Competition</b></p>
+            <p class="lead" style="color: black;"><b>Easier and more engaging than the Competition</b></p>
             <br>
-            <p class="lead" style="color: #FFFFCC;"><b>DON'T MISS OUT, JOIN NOW!</b></p>
+            <p class="lead" style="color: black;"><b>DON'T MISS OUT, JOIN NOW!</b></p>
         </div>
     </div>
 

@@ -301,7 +301,9 @@ usort($jobs, 'compare');
             <?php
                 echo("You are signed in as: &nbsp;" . $user->username);
             ?>
-            <a class="btn btn-success" style="margin-left: 65% ;" href="JobList.php">Job List</a>
+            <a class="btn btn-success" style="margin-left: 10%;" href="userSkills.php">Employee Skills</a>
+            <a class="btn btn-success" href="EmployeeForm.php">Edit Details</a>
+            <a class="btn btn-success" style="margin-left: 10%;" href="JobList.php">Job List</a>
             </nav>
 
     <div class="container">
