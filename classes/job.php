@@ -55,7 +55,7 @@ class Job
         $this->company->id = $result["CompanyID"];
         $this->company->name = $result["Name"];
         $this->company->description = $result["Description"];
-        $this->remote = boolval($result["Remote"]);
+        $this->remote = boolval($result["RemoteJob"]);
         if (!is_null($result["CompanyImage"])) {
             $this->company->image_url = $result["CompanyImage"];
         } else {
