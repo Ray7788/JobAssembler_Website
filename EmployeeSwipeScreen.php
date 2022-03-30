@@ -163,7 +163,7 @@ usort($jobs, 'compare');
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Employee Swipe Screen</title>
+        <title>Employee Swipe Screen - JobAssembler</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -175,8 +175,9 @@ usort($jobs, 'compare');
             display: flex;
             justify-content: center;
             align-items: center;
-            background: salmon;
+            background: linear-gradient(45deg, #C7F5FE 10%, #C7F5FE 40%, #FCC8F8 40%, #FCC8F8 60%, #EAB4F8 60%, #EAB4F8 65%, #F3F798 65%, #F3F798 90%);           
             /* background: linear-gradient(to left, #e1eec3, #f05053); */
+            overflow: hidden;
             }
 
             .container{
@@ -190,15 +191,10 @@ usort($jobs, 'compare');
             top: 5vh;
             }
 /* ----------------------------------------------------*/
-        h1 {
-			color: white;
-			margin-top: 80px;
-			text-align: center;
-		}
 		.cards-wrap {
             border-radius: 15px;
-			margin-top: 10px;
-			width: 1140px;
+            width: 950px;
+			height: 1000px;
 			height: 1100px;
 			margin: auto;
 			perspective: 100px;
@@ -206,8 +202,8 @@ usort($jobs, 'compare');
 		}
 		.card {
             border-radius: 15px;
-			width: 960px;
-			height: 720px;
+			width: 800px;
+            height: 650px;
 			padding: 50px 30px;
 			background: #ffffff;
 			box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
@@ -286,20 +282,17 @@ usort($jobs, 'compare');
                 bottom: -5vh;
         }
 /* ----------------------------------------------------------------------------------------------------------------- */
-            /* .option {
-                margin-left:auto;
-                margin-right:auto;
-                border: none;
-                color: black;
-                padding: 15px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                cursor: pointer;
-                background-color:aqua;
-                width: 50%;
-            }  */
+   /* For navbar */        
+        /* For Logo border*/
+        .d-inline-block-align-top {border-radius: 5px;}
+        /* For DownMenu */
+        .navbar-text{
+                color: yellow;
+            }
+       .navbar-nav{
+           position:absolute;
+           right: 50px;
+       } 
 
         </style>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -362,24 +355,41 @@ usort($jobs, 'compare');
 
     <body>
         <!-- Nav bar -->
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
 
-            <a class="navbar-brand" style="text-emphasis-color: white;">
+            <a class="navbar-brand">
+            <!-- Brand LOGO -->
+            <a class="navbar-brand">
             <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
+            </a>
+            <span class="navbar-text  active"">
             <?php
                 echo("You are signed in as: &nbsp;" . $user->username);
             ?>
-            
-            <a class="nav-link" style="margin-left: 10%;" href="userSkills.php">Employee Skills</a>
-            <a class="nav-link" style="margin-left: 10%;" href="EmployeeForm.php">Edit Details</a>
-            <a class="nav-link" style="margin-left: 10%;" href="JobList.php">Job List</a>
-            <a class="btn-danger" style="margin-left: 10%; padding:10px" href="index.php">Log Out</a>
-            </nav>
+            </span> 
 
+            <ul class="navbar-nav" >
+
+                <form class="form-inline">
+                    <li class="nav-item  active">
+                    <a class="nav-link"  href="userSkills.php">Employee Skills</a>
+                    </li>
+                    <li class="nav-item  active">
+                    <a class="nav-link" href="EmployeeForm.php">Edit Details</a>
+                    </li>
+                    <li class="nav-item  active">
+                    <a class="nav-link" href="JobList.php">Job List</a>
+                    </li>
+                    <li class="nav-item  active">
+                    <a class="btn-danger"  style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php">Log Out</a>
+                    </li>
+                </form>
+            </ul>
+        </nav>
     <div class="container">
 
         <br>
-		<div class="cards-wrap" style="margin-left: 7%;">
+		<div class="cards-wrap" style="margin-left: 20%;">
 			<div class="card first">
                 <p id="card" name="card">
                         Sorry, you've seen all the available jobs
