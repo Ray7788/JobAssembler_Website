@@ -33,8 +33,8 @@ if (!$user->is_authenticated()) {
 
     <script>
         // Shamelessly stole this directly from James's code
-        $(document).ready(function(){
-            $("#jobCreateForm").submit(function (e){
+        $(function(){
+            $("#jobCreateForm").on("submit", function (e){
                 e.preventDefault();     //Stops the normal HTML form behaviour of changing files
                 $.ajax({
                     type:"POST",
@@ -44,11 +44,11 @@ if (!$user->is_authenticated()) {
                         window.location = "main.php"  //Where to go if successful
                     },
                     error: function(xhr){
-                        var obj = xhr.responseJSON;
+                        let obj = xhr.responseJSON;
                         if(Object.keys(obj).includes("message")){
-                            warning.innerHTML = obj["message"];
+                            alert(obj["message"]);
                         }else{
-                            warning.innerHTML = "An unknown error has occurred. Please try again later.";
+                            alert("An unknown error has occurred. Please try again later.");
                         }
                     }
                 })
