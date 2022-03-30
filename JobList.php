@@ -34,7 +34,7 @@ if ($offset < 0) {
 }
 $jobs = array();
 $pdo = Database::connect();
-$query = "SELECT JobPostings.*, UserJobs.UserAccepted, UserJobs.CompanyAccepted, UserJobs.CompanySeen, Companies.Name FROM JobPostings INNER JOIN UserJobs ON JobPostings.JobID = UserJobs.JobID INNER JOIN Companies ON JobPostings.CompanyID = Companies.CompanyID WHERE UserJobs.UserID = ? LIMIT " . RESULTS_PER_PAGE . " OFFSET " . $offset;
+$query = "SELECT JobPostings.*, UserJobs.UserAccepted, UserJobs.CompanyAccepted, UserJobs.CompanySeen, Companies.Name FROM JobPostings INNER JOIN UserJobs ON JobPostings.JobID = UserJobs.JobID INNER JOIN Companies ON JobPostings.CompanyID = Companies.CompanyID WHERE UserJobs.UserID = ? AND UserJobs.UserSeen = 1 LIMIT " . RESULTS_PER_PAGE . " OFFSET " . $offset;
 $statement = $pdo->prepare($query);
 $statement->execute([$user->user_id]);
 $jobs = $statement->fetchAll();

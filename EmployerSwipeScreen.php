@@ -295,7 +295,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 echo("You are signed in as: &nbsp;" . $user->username . "&nbsp &nbsp");
             ?>
         </span>   
-        <ul class="navbar-nav" style="margin-left: 60%;">
+        <ul class="navbar-nav" style="margin-left: 10%;">
             <!-- Dropdown -->
             <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Choose Jobs</a>
@@ -311,18 +311,12 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                     </a>
             </li>    
             <!-- Links -->
-            <li class="nav-item">
-                <a class="nav-link" href="JobSkills.php">Job Skills</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="JobCreation.php">Job Creation</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="ApplicantList.php">Applicant List</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="CompanyAddUsers.php">Add Users</a>
-            </li>
+                <a class="nav-link" href="JobSkills.php" style="margin-left:5%; white-space: nowrap;">Job Skills</a>
+                <a class="nav-link" href="JobCreation.php" style="margin-left:5%; white-space: nowrap;;">Job Creation</a>
+                <a class="nav-link" href="ApplicantList.php" style="margin-left:5%; white-space: nowrap;">Applicant List</a>
+                <a class="nav-link" href="CompanyAddUsers.php" style="margin-left:5%; white-space: nowrap;">Add Users</a>
+                <a class="btn-success" style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>
+
             
         </ul>
         </nav>
