@@ -190,7 +190,7 @@ $jobs = $statement->fetchAll();
                 <a class="nav-link" href="JobSkills.php" style="margin-left:5%; white-space: nowrap;">Job Skills</a>
                 <a class="nav-link" href="JobCreation.php" style="margin-left:5%; white-space: nowrap;;">Job Creation</a>
                 <a class="nav-link" href="CompanyAddUsers.php" style="margin-left:5%; white-space: nowrap;">Add Users</a>
-                <a class="btn-danger" style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>
+                <a class="btn-danger" style="margin-left: 90%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>
             
         </ul>
         </nav>
