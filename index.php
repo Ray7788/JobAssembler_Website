@@ -174,7 +174,7 @@
 
     <!-- page3 -->
     <div class="container-fluid">
-            <div class="page3" style="vertical-align:center; padding:10px">
+            <div class="page3" style="vertical-align:center; padding:20px">
 
             <h1 class="display-4" style="color: #000000;"><b>Our Newest Jobs:</b></h1>
 
