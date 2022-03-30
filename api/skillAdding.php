@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"] !== "POST"){
     ApiResponseGenerator::generate_error_json(405, "{$_SERVER["REQUEST_METHOD"]} method not alllowed");
 }
 $languages = ["java", "python", "csharp", "html", "php", "css", "cplus", "sql"];
-$required_params = ["userID", "javaYears", "pythonYears", "csharpYears", "htmlYears", "phpYears", "cssYears", "cplusYears", "sqlYears", "emoIntel", "patience", "adapt", "projManage","probSolv","teamwork","interpersonal","leadership","time","decisiveness", "isCompany", "jobID"];
+$required_params = ["userID", "javaYears", "pythonYears", "csharpYears", "htmlYears", "phpYears", "cssYears", "cplusYears", "sqlYears", "adapt", "projManage","probSolv","teamwork","interpersonal","leadership","time","decisiveness", "isCompany", "jobID"];
 foreach($required_params as $param){
     if(!isset($_REQUEST[$param])){
         ApiResponseGenerator::generate_error_json(400, "Parameter $param not set.");

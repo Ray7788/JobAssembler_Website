@@ -104,7 +104,6 @@ if(!$user->is_authenticated()){
 	</script>
 </head>
 <body>
-
 <!-- Nav bar -->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
 
