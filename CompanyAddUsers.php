@@ -98,24 +98,29 @@ $noOfUsers = count($usersApplied);
 
             body {
                 font-family: sans-serif;
-                background: url(Images/pexels-CompanyAddUsers.jpg) no-repeat
+                background: url(Images/pexels-pixabay-210158.jpg) no-repeat
                 center fixed;
                 background-size: cover;
             }
             
             .container {
             position: absolute;
-            top: 0;
+            top:20vh;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 70vw;
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin-left: 23%; 
+            margin-left: 20%;
+            /* background:white; */
             }
 
+            .d-flex flex-column{
+                 
+
+            }
             /* .item1{
             grid-area: header;
             align-content: center;
@@ -139,7 +144,7 @@ $noOfUsers = count($usersApplied);
             } */
 
             input {
-            font-size: 2rem;
+            
             padding: 1rem 2rem;
             /* width: 600px; */
             outline: none;
@@ -153,14 +158,16 @@ $noOfUsers = count($usersApplied);
             }
 
             #input1 {
-                width: 600px;  
+                width: 400px;
+                font-size: 1rem;  
             }
 
             #input2 {
                 width: 200px;  
+                font-size: 1rem;
             }
 
-            .overlay {
+            /* .overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -175,7 +182,7 @@ $noOfUsers = count($usersApplied);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             pointer-events: auto;
-            }
+            } */
 
 
             <h1>text-align: center; margin-top:10%</h1>
@@ -203,12 +210,15 @@ $noOfUsers = count($usersApplied);
                 <li class="nav-item">
                     <a class="nav-link" href="JobCreation.php">Job Creation</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="EmployerSwipeScreen.php">Swipe</a>
+                </li>
             </ul>
         </nav>
 
         <!-- Main part -->
         <div class="container">
-        
+        <div class="d-flex flex-column">
 
         <div class="item1">
             <header>
@@ -220,7 +230,7 @@ $noOfUsers = count($usersApplied);
             
         <div class="item2">
             <form action="CompanyAddUsers.php" method="GET" name="searchForm" style="align-items: center;">
-                <table style=" margin-left: -5%; margin-top: 20px">
+                <table style=" margin-left: 5%; margin-top: 20px">
                     <tr>
                         <td><input type="text" id="input1" name="txt" value="<?php echo isset($_GET['txt']) ? $_GET['txt'] : ''; ?>" placeholder="Enter account Username, Forename or Surname" /></td>
                         <td><input type="submit" id="input2" name="" value="Search" /></td>
@@ -260,10 +270,10 @@ $noOfUsers = count($usersApplied);
                     <b><i><p id="errorMsg"></p></i></b>
         </div>
 
-        <div class="overlay"></div>
+        <div class="overlay">
+        </div>
 
-
-    
+        </div>
     </div>
     </body>
 </html>
