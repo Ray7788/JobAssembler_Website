@@ -19,10 +19,16 @@ if($user->company_id == -1){
 }
 $companyID = $user->company_id;
 
+$pdo = Database::connect();
+
+$query = "SELECT * FROM JobPostings WHERE CompanyID = :companyID";
+$statement = $pdo->prepare($query);
+$statement->execute(["companyID" => $companyID]);
+$jobs = $statement->fetchAll();
 
 //THIS NEEDS CHANGING TO THE JOB THE EMPLOYER IS LOOKING AT IN EMPLOYERSWIPESCREEN!!!
-$currentJobID = 19;
-$currentJob = "Test Job 19";
+//$currentJobID = 19;
+//$currentJob = "Test Job 19";
 
 ?>
 
@@ -78,18 +84,20 @@ $currentJob = "Test Job 19";
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 		var userID = <?php echo($userID); ?>;
-        var currentJobID = <?php echo json_encode($currentJobID); ?>;
-        var currentJob = <?php echo json_encode($currentJob); ?>;   
+		var jobArray = <?php echo json_encode($jobs) ?>; 
+        var currentJobID = jobArray[0][0];
+        var currentJob = jobArray[0][1];   
 
-        $(function(){
-            $(".dropdown-menu a").click(function(){
-                currentJob = $(this).text();
-                currentJobID = $(this).attr('id');
-                currentJobID = currentJobID.substring(8);
-                currentJobID = jobArray[currentJobID][0];
-                document.getElementById("jobName").innerHTML = "Current job: " + currentJob;
+		$(function(){
+                $(".dropdown-menu a").click(function(){
+                    currentJob = $(this).text();
+                    currentJobID = $(this).attr('id');      //Gets the ID of the dropdown item
+                    currentJobID = currentJobID.substring(8); //Every ID has 'dropdown' at the start. Remove it to just get the number
+                    //Right now 'currentJobID' is only relative to the list in the dropdown. Need to make it relative to the array from the database
+                    currentJobID = jobArray[currentJobID][0];
+                    
+                });
             });
-        });
 
 		$(document).ready(function(){
 			$("#userSkillsForm").submit(function(e){
@@ -126,6 +134,42 @@ $currentJob = "Test Job 19";
 	</script>
 </head>
 <body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <!-- Brand LOGO -->
+        <a class="navbar-brand">
+            <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
+        </a>
+        <span class="navbar-text" style="white-space: nowrap">
+            <?php
+                echo("You are signed in as: &nbsp;" . $user->username . "&nbsp &nbsp");
+            ?>
+        </span>   
+		<!-- Dropdown -->
+		<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Choose Jobs</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">
+                        <?php
+                                        for($x=0; $x<count($jobs);$x++){
+                                            echo('<a class="dropdown-item" id="dropdown'.$x.'">' . $jobs[$x][1]);
+                                            //set ID to dropdown$x  8
+                                        }
+                                    ?>
+                        </a>
+                    </div>
+        </li>
+    
+		<!-- Links -->
+			<a class="nav-link" href="EmployerSwipeScreen.php" style="margin-left:5%; white-space: nowrap;">Home</a>
+			<a class="nav-link" href="JobSkills.php" style="margin-left:5%; white-space: nowrap;">Job Skills</a>
+			<a class="nav-link" href="ApplicantList.php" style="margin-left:5%; white-space: nowrap;">Applicant List</a>
+			<a class="nav-link" href="CompanyAddUsers.php" style="margin-left:5%; white-space: nowrap;">Add Users</a>
+			<a class="btn-danger" style="margin-left: 0%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>            
+        </ul>
+    </nav>
+
+
 	<div class="container-fluid" style="margin-bottom: 100px">
     <div class="b">
 
