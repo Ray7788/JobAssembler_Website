@@ -146,6 +146,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 text-align: center;
                 font-size: 1.3em;
                 text-transform: uppercase;
+                
             }
 
             #card {                
@@ -294,7 +295,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 echo("You are signed in as: &nbsp;" . $user->username . "&nbsp &nbsp");
             ?>
         </span>   
-        <ul class="navbar-nav" style="margin-left: 65%;">
+        <ul class="navbar-nav" style="margin-left: 60%;">
             <!-- Dropdown -->
             <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Choose Jobs</a>
@@ -312,12 +313,15 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
         
         <!-- Links -->
             <li class="nav-item">
+                <a class="nav-link" href="JobCreation.php">Job Creation</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="ApplicantList.php">Applicant List</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="CompanyAddUsers.php">Add Users</a>
             </li>
-        
+            
         </ul>
         </nav>
 
@@ -349,7 +353,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
         getRightJobs();
         writeToCard();
         
-        // Swipe
+        // Swipe cards
         const cardWrap = document.querySelector(".cards-wrap");
 		function pickOption() {
 			const topCard = document.querySelector(".card:first-child");
