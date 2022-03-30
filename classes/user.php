@@ -14,6 +14,7 @@ class User
     public int $company_id;
     public float $latitude;
     public float $longitude;
+    public string $email;
 
     #Pepper used in password hashing to give some protection against password shucking. https://www.youtube.com/watch?v=OQD3qDYMyYQ
     private static string $pepper = "v6uAX32o";
@@ -87,7 +88,7 @@ class User
         if (isset($id)){
             $this->user_id = $id;
         }
-        $query = "SELECT Username, Forename, Surname, Biography, ProfileImage, CompanyID, Latitude, Longitude FROM `UserAccounts` WHERE UserID = ?";
+        $query = "SELECT Username, Forename, Surname, Biography, ProfileImage, CompanyID, Latitude, Longitude, Email FROM `UserAccounts` WHERE UserID = ?";
         $statement = $pdo->prepare($query);
         $statement->execute([$this->user_id]);
         $result = $statement->fetch(PDO::FETCH_ASSOC);
@@ -99,19 +100,10 @@ class User
         $this->company_id = is_null($result["CompanyID"]) ? -1 : intval($result["CompanyID"]);
         $this->latitude = floatval($result["Latitude"]);
         $this->longitude = floatval($result["Longitude"]);
+        $this->email = is_null($result["Email"]) ? "" : $result["Email"];
         unset($result["Latitude"]);
         unset($result["Longitude"]);
         return $result;
-    }
-
-    public function set_location(float $latitude, float $longitude, int $id = null): void {
-        $pdo = Database::connect();
-        if (isset($id)){
-            $this->user_id = $id;
-        }
-        $query = "SELECT Username, Forename, Surname, Biography, ProfileImage, CompanyID FROM `UserAccounts` WHERE UserID = ?";
-        $statement = $pdo->prepare($query);
-        $statement->execute([$this->user_id]);
     }
 
     public function is_authenticated(): bool {
@@ -130,5 +122,42 @@ class User
             "userID" => $userID,
             "companyID" => $companyID
         ]);
+    }
+
+    public function update_property(string $property, mixed $value): void {
+        if (!isset($this->user_id)) {
+            return;
+        }
+        $pdo = Database::connect();
+        $query = "UPDATE `UserAccounts` SET $property = :val WHERE UserID = :userID";
+        $statement = $pdo->prepare($query);
+        $statement->execute([
+            "userID" => $this->user_id,
+            "val" => $value
+        ]);
+        $this->get_user();
+    }
+
+    public function set_location(float $latitude, float $longitude): void {
+        $this->latitude = $latitude;
+        $this->longitude = $longitude;
+        $pdo = Database::connect();
+        if ($latitude == 0 && $longitude == 0) {
+            $query = "UPDATE `UserAccounts` SET Latitude = NULL, Longitude = NULL WHERE UserID = :userID";
+            $statement = $pdo->prepare($query);
+            $statement->execute([
+                "userID" => $this->user_id
+            ]);
+        }
+        else {
+            $query = "UPDATE `UserAccounts` SET Latitude = :lat, Longitude = :lng WHERE UserID = :userID";
+            $statement = $pdo->prepare($query);
+            $statement->execute([
+                "userID" => $this->user_id,
+                "lat" => $latitude,
+                "lng" => $longitude
+            ]);
+        }
+
     }
 }
