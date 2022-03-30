@@ -66,8 +66,10 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(to left, #f9f586, #ace0f9);
-            align-items: center;
+            /* background: linear-gradient(to left, #f9f586, #ace0f9); no-repeat*/
+            background: linear-gradient(288deg, #FFB6B9 0%, #FFB6B9 35%, #FAE3D9 calc(35% + 1px), #FAE3D9 45%, #BBDED6 calc(45% + 1px), #BBDED6 65%, #61C0BF calc(65% + 1px), #61C0BF 100%)  no-repeat ;
+            /* background-repeat: repeat-y;  */
+            overflow: hidden;
             }
 
             .container{
@@ -85,8 +87,8 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
             .cards-wrap {
             border-radius: 15px;
 			margin-top: 10px;
-			width: 1140px;
-			height: 1100px;
+			width: 950px;
+			height: 1000px;
 			margin: auto;
 			perspective: 100px;
 			perspective-origin: 50% 90%;
@@ -94,8 +96,8 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
 
             .card {
                 border-radius: 15px;
-                width: 960px;
-                height: 720px;
+                width: 800px;
+                height: 600px;
                 padding: 50px 30px;
                 background: #ffffff;
                 box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
@@ -139,6 +141,7 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 margin-bottom: 20px;
                 margin-top: 0;
             }
+
 /* Card contents */
             #jobName {
                 color: blue;
@@ -192,12 +195,21 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
             }
           
 /* ----------------------------------------------------------------------------------------------------------------- */
-/* For DownMenu */
-            .navbar-text{
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* For navbar */        
+        /* For Logo border*/
+        .d-inline-block-align-top {border-radius: 5px;}
+        /* For DownMenu */
+        .navbar-text{
                 color: yellow;
             }
-        
+       .navbar-nav{
+           position:absolute;
+           right: 50px;
+       } 
 /* ----------------------------------------------------------------------------------------------------------------- */
+
         </style>
         
         <script>
@@ -295,7 +307,9 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                 echo("You are signed in as: &nbsp;" . $user->username . "&nbsp &nbsp");
             ?>
         </span>   
-        <ul class="navbar-nav" style="margin-left: 10%;">
+
+        <ul class="navbar-nav" >
+        <!-- <div class="d-flex flex-row-reverse"> -->
             <!-- Dropdown -->
             <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Choose Jobs</a>
@@ -310,13 +324,30 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
                         </a>
                     </div>
             </li>    
-        <!-- Links -->
+            <!-- Links -->
+            
+            <form class="form-inline">
+            
+            <li class="nav-item">
             <a class="nav-link" href="JobSkills.php" style="margin-left:5%; white-space: nowrap;">Job Skills</a>
+            </li>
+            <li class="nav-item">
             <a class="nav-link" href="JobCreation.php" style="margin-left:5%; white-space: nowrap;;">Job Creation</a>
+            </li>
+            <li class="nav-item">
             <a class="nav-link" href="ApplicantList.php" style="margin-left:5%; white-space: nowrap;">Applicant List</a>
+            </li>
+            <li class="nav-item">
             <a class="nav-link" href="CompanyAddUsers.php" style="margin-left:5%; white-space: nowrap;">Add Users</a>
-            <a class="btn-danger" style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>            
+            </li>
+            <li class="nav-item">
+            <a class="btn-danger" style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>     
+            </li> 
+                 
+            </form>
+            <!-- </div> -->
         </ul>
+        
         </nav>
 
 
