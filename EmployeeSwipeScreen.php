@@ -103,6 +103,7 @@ if((!$data[0][0] == null) && (!$data[0][1] == null)){
         $jobLong = $jobs[$x][5];
         if((!$jobLat == null) && (!$jobLong == null)){
             $distance = vincentyGreatCircleDistance($latitude1, $longitude1, $jobLat, $jobLong);
+            $distance = round($distance);
             //Add 5 points for 10km, ... , 1 point for less than 50km
             $distanceScore = 0;
             if($distance <= 50000){
@@ -308,7 +309,8 @@ usort($jobs, 'compare');
                 var jobDetails = jobArray[jobCounter][columns.indexOf("Details")];
                 var companyDescription = jobArray[jobCounter][9];
 
-                document.getElementById("card").innerHTML = "Company: " + companyName + " <br> "
+                document.getElementById("card").innerHTML = "<b>Would you like to apply to this job?</b> <br>"
+                 + "Company: " + companyName + " <br> "
                  + "Job Title: " + jobTitle + "<br>"
                  + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
                  + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";

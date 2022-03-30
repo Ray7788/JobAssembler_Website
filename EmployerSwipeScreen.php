@@ -89,6 +89,8 @@ for($x=0; $x<count($userAccounts); $x++){
         $longitude2 = $userAccounts[$x][8];
 
         $distance = vincentyGreatCircleDistance($latitude1, $longitude1, $latitude2, $longitude2);
+        //Round to nearest metre.
+        $distance = round($distance);
         //array_push($userAccounts[$x], $distance);
         $distanceScore = 0;
         if($distance <= 50000){
@@ -303,12 +305,11 @@ usort($userAccounts, 'compare');
                     //Right now 'currentJobID' is only relative to the list in the dropdown. Need to make it relative to the array from the database
                     currentJobID = jobArray[currentJobID][0];
                     getRightJobs();
-                    document.getElementById("jobName").innerHTML = "Current job: " + currentJob;
+                    document.getElementById("jobName").innerHTML = "<b>Would you like to accept this applicant for the job: " + currentJob + "?</b>";
                 });
             });
 
             function getRightJobs(){
-                //NOT GETTING THE RIGHT JOBS AT THE MOMENT. maybe currentjobid is always 2.
                 userAccountsForJob = [];
                 userCounter = 0;
                 //When user presses the dropdown button and changes jobs, you want to change the jobs displayed
@@ -339,7 +340,8 @@ usort($userAccounts, 'compare');
                 var surname = userAccountsForJob[userCounter][2];
                 var biography = userAccountsForJob[userCounter][3];
                 
-                document.getElementById("card").innerHTML = ("Forename: " + forename + " <br> "
+                document.getElementById("card").innerHTML = ("(needtochangeforremotestuff)Distance from Job: " + 
+                + "Forename: " + forename + " <br> "
                 + "Surname: " + surname + " <br> <br> "
                 + "Biography: " + "<br> <textarea columns=140 rows=4 readonly>" + biography + "</textarea><br>");
             }
@@ -450,7 +452,7 @@ usort($userAccounts, 'compare');
 
     </body>
         <script>
-        document.getElementById("jobName").innerHTML = "Current job: " + currentJob;
+        document.getElementById("jobName").innerHTML = "<b>Would you like to accept this applicant for the job: " + currentJob + "?</b>";
         getRightJobs();
         writeToCard();
         
