@@ -106,9 +106,14 @@ $user->get_user();
         <br><br>
         <div id="map" style="height: 200px"></div>
         <button id="resetMap" class="btn btn-danger btn-sm" style="margin: 10px 0px;" type="button">Remove location</button>
-        <br><br>
         <input type="hidden" name="latitude" id="latitude" value="<?=$user->latitude?>"/>
         <input type="hidden" name="longitude" id="longitude" value="<?=$user->longitude?>"/>
+        <br><br>
+        <div class="form-check">
+            <input type="hidden" name="remote" value/>
+            <input class="form-check-input" type="checkbox" id="remote" name="remote" value="remote" <?=$user->remote ? "checked" : ""?>/>
+            <label class="form-check-label" for="remote">Working remotely</label>
+        </div>
         <!-- button -->
         <p>By Creating an account you agree to our <a href="PrivacyPolicy.html">Terms and Conditions</a><p>
         <button type="button" onclick="window.location.href='main.php';" class="button">Cancel</button>
