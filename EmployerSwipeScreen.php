@@ -91,7 +91,7 @@ for($x=0; $x<count($userAccounts); $x++){
         $distance = vincentyGreatCircleDistance($latitude1, $longitude1, $latitude2, $longitude2);
         //Round to nearest metre.
         $distance = round($distance);
-        //array_push($userAccounts[$x], $distance);
+        array_push($userAccounts[$x], $distance);
         $distanceScore = 0;
         if($distance <= 50000){
             $distanceScore += 1;
@@ -110,6 +110,8 @@ for($x=0; $x<count($userAccounts); $x++){
         }
         //Score is at index 9
         $userAccounts[$x][9] = $userAccounts[$x][9] + $distanceScore;
+    }else{
+        array_push($userAccounts[$x], 0);
     }
 }
 function compare($element1, $element2){
@@ -320,7 +322,7 @@ usort($userAccounts, 'compare');
                     //So you can just go through it from the start and see which belongs to the job you've got selected.
                     if(userAccounts[i][4] == currentJobID){
                         //console.log(currentJobID);
-                        //console.log(userAccounts[i].join());
+                        console.log(userAccounts[i].join());
                         userAccountsForJob.push(userAccounts[i]);
                     }
                 }
@@ -340,7 +342,11 @@ usort($userAccounts, 'compare');
                 var surname = userAccountsForJob[userCounter][2];
                 var biography = userAccountsForJob[userCounter][3];
                 
-                document.getElementById("card").innerHTML = ("(needtochangeforremotestuff)Distance from Job: " + 
+                //Distance will be at userAccountsForJob[userCounter][10]
+                //Only do this stuff if the job is not remote!
+                var distance = userAccountsForJob[userCounter][10];
+                distance = distance / 1000; //Convert into km
+                document.getElementById("card").innerHTML = ("Distance from Job: " + distance + "km<br>"
                 + "Forename: " + forename + " <br> "
                 + "Surname: " + surname + " <br> <br> "
                 + "Biography: " + "<br> <textarea columns=140 rows=4 readonly>" + biography + "</textarea><br>");
