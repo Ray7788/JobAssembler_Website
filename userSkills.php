@@ -104,6 +104,22 @@ if(!$user->is_authenticated()){
 	</script>
 </head>
 <body>
+
+<!-- Nav bar -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+
+            <a class="navbar-brand" style="text-emphasis-color: white;">
+            <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
+            <?php
+                echo("You are signed in as: &nbsp;" . $user->username);
+            ?>
+            <a class="nav-link" style="margin-left: 5%; white-space: nowrap;" href="EmployeeSwipeScreen.php">Home</a>
+            <a class="nav-link" style="margin-left: 5%; white-space: nowrap;" href="userSkills.php">Employee Skills</a>
+            <a class="nav-link" style="margin-left: 5%; white-space: nowrap;" href="EmployeeForm.php">Edit Details</a>
+            <a class="nav-link" style="margin-left: 5%; white-space: nowrap;;" href="JobList.php">Job List</a>
+            <a class="btn-danger" style="margin-left: 10%; padding:10px" href="index.php">Log Out</a>
+</nav>
+
 	<div class="container-fluid" style="margin-bottom: 100px">
     <div class="b">
 

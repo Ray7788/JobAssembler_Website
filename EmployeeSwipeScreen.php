@@ -84,10 +84,64 @@ for($x=0;$x<count($jobs);$x++){
 }
 //Has the index of array 'scores' correspond to the array 'jobs'.
 //Now need to sort the job array based upon this.
-//rsort($scores);
-//Go through the scores and if there is a job with a matching score then add it to a 'sorted' jobs array
-//$sortedJobs = array();
 //$jobs[11] has the score
+//Need to add 'if not remote'
+//Latitude and longitude for jobs at 4, 5 respectively.
+//Get distance for each job
+
+//First get latlong for user signed in
+$query = "SELECT Latitude, Longitude FROM UserAccounts WHERE UserID = :userID";
+$statement = $pdo->prepare($query);
+$statement->execute(["userID" => $userID]);
+$data = $statement->fetchAll(PDO::FETCH_NUM);
+if((!$data[0][0] == null) && (!$data[0][1] == null)){
+    //Both latitude and longitude have to be set
+    $latitude1 = $data[0][0];
+    $longitude1 = $data[0][1];
+    for($x=0;$x<count($jobs);$x++){
+        $jobLat = $jobs[$x][4];
+        $jobLong = $jobs[$x][5];
+        if((!$jobLat == null) && (!$jobLong == null)){
+            $distance = vincentyGreatCircleDistance($latitude1, $longitude1, $jobLat, $jobLong);
+            //Add 5 points for 10km, ... , 1 point for less than 50km
+            $distanceScore = 0;
+            if($distance <= 5000){
+                $distanceScore += 1;
+            }
+            if($distance <= 4000){
+                $distanceScore += 1;
+            }
+            if($distance <= 3000){
+                $distanceScore += 1;
+            }
+            if($distance <= 2000){
+                $distanceScore += 1;
+            }
+            if($distance <= 1000){
+                $distanceScore += 1;
+            }
+            $jobs[$x][11] = $jobs[$x][11] + $distanceScore;
+        }   
+    }
+}
+
+function vincentyGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000){
+    // convert from degrees to radians
+    $latFrom = deg2rad($latitudeFrom);
+    $lonFrom = deg2rad($longitudeFrom);
+    $latTo = deg2rad($latitudeTo);
+    $lonTo = deg2rad($longitudeTo);
+  
+    $lonDelta = $lonTo - $lonFrom;
+    $a = pow(cos($latTo) * sin($lonDelta), 2) +
+      pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
+    $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
+  
+    $angle = atan2(sqrt($a), $b);
+    return $angle * $earthRadius;
+}
+
+
 // Comparison function
 function compare($element1, $element2){
     $job1 = $element1[11];
@@ -268,7 +322,7 @@ usort($jobs, 'compare');
                     url:"api/jobUpdating.php",
                     data:dataArray,
                     success:function(data){
-                        alert("Job Done")
+                        
                     },
                     error: function(xhr){
                         var obj = xhr.responseJSON;
@@ -295,15 +349,18 @@ usort($jobs, 'compare');
 
     <body>
         <!-- Nav bar -->
-        <nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
-            <a class="navbar-brand">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+
+            <a class="navbar-brand" style="text-emphasis-color: white;">
             <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
             <?php
                 echo("You are signed in as: &nbsp;" . $user->username);
             ?>
-            <a class="btn btn-success" style="margin-left: 10%;" href="userSkills.php">Employee Skills</a>
-            <a class="btn btn-success" href="EmployeeForm.php">Edit Details</a>
-            <a class="btn btn-success" style="margin-left: 10%;" href="JobList.php">Job List</a>
+            
+            <a class="nav-link" style="margin-left: 10%;" href="userSkills.php">Employee Skills</a>
+            <a class="nav-link" style="margin-left: 10%;" href="EmployeeForm.php">Edit Details</a>
+            <a class="nav-link" style="margin-left: 10%;" href="JobList.php">Job List</a>
+            <a class="btn-danger" style="margin-left: 10%; padding:10px" href="index.php">Log Out</a>
             </nav>
 
     <div class="container">
