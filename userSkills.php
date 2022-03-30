@@ -246,6 +246,7 @@ if(!$user->is_authenticated()){
 	<label for="decisiveness">Decisiveness: </label>
 	<input type="checkbox" name="decisiveness" id="soft9" value="decisiveness">
 	<br><hr>
+	<!-- submit button -->
 	<div class="d-grid gap-1">
 	<input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
 	</div>  
