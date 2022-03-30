@@ -300,24 +300,22 @@ $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
             <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Choose Jobs</a>
                     <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">
-                    <?php
-                                    for($x=0; $x<count($jobs);$x++){
-                                        echo('<a class="dropdown-item" id="dropdown'.$x.'">' . $jobs[$x][1]);
-                                        //set ID to dropdown$x  8
-                                    }
-                                ?>
+                        <a class="dropdown-item" href="#">
+                        <?php
+                                        for($x=0; $x<count($jobs);$x++){
+                                            echo('<a class="dropdown-item" id="dropdown'.$x.'">' . $jobs[$x][1]);
+                                            //set ID to dropdown$x  8
+                                        }
+                                    ?>
+                        </a>
                     </div>
-                    </a>
             </li>    
             <!-- Links -->
                 <a class="nav-link" href="JobSkills.php" style="margin-left:5%; white-space: nowrap;">Job Skills</a>
                 <a class="nav-link" href="JobCreation.php" style="margin-left:5%; white-space: nowrap;;">Job Creation</a>
                 <a class="nav-link" href="ApplicantList.php" style="margin-left:5%; white-space: nowrap;">Applicant List</a>
                 <a class="nav-link" href="CompanyAddUsers.php" style="margin-left:5%; white-space: nowrap;">Add Users</a>
-                <a class="btn-success" style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>
-
-            
+                <a class="btn-danger" style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>            
         </ul>
         </nav>
 
