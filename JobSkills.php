@@ -26,10 +26,6 @@ $statement = $pdo->prepare($query);
 $statement->execute(["companyID" => $companyID]);
 $jobs = $statement->fetchAll();
 
-//THIS NEEDS CHANGING TO THE JOB THE EMPLOYER IS LOOKING AT IN EMPLOYERSWIPESCREEN!!!
-//$currentJobID = 19;
-//$currentJob = "Test Job 19";
-
 ?>
 
 <!DOCTYPE html>
@@ -117,15 +113,15 @@ $jobs = $statement->fetchAll();
 			$("#userSkillsForm").submit(function(e){
 				e.preventDefault();
 				checkedArray = [];
-				for(let i=0 ; i<10; i++){
+				for(let i=0 ; i<8; i++){
 					checkedArray.push(document.getElementById("soft" + i).checked);
 				}
 				//emoIntel, patience, adapt, projManage, probSolv, teamwork, interpersonal, leadership, time, decisiveness
 				dataArray = {"userID":userID, "javaYears":slider1.value, "pythonYears":slider2.value, "csharpYears":slider3.value, "htmlYears":slider4.value, 
 				"phpYears":slider5.value, "cssYears":slider6.value, "cplusYears":slider7.value, "sqlYears":slider8.value,
-				"emoIntel":checkedArray[0], "patience":checkedArray[1], "adapt":checkedArray[2], "projManage":checkedArray[3],
-				"probSolv":checkedArray[4], "teamwork":checkedArray[5], "interpersonal":checkedArray[6],
-				"leadership":checkedArray[7], "time":checkedArray[8], "decisiveness":checkedArray[9], "isCompany":'Yes', "jobID":currentJobID};
+				"adapt":checkedArray[0], "projManage":checkedArray[1],
+				"probSolv":checkedArray[2], "teamwork":checkedArray[3], "interpersonal":checkedArray[4],
+				"leadership":checkedArray[5], "time":checkedArray[6], "decisiveness":checkedArray[7], "isCompany":'Yes', "jobID":currentJobID};
 				$.ajax({
 					type:"POST",
 					url:"api/skillAdding.php",
@@ -297,35 +293,29 @@ $jobs = $statement->fetchAll();
 
 	<h2>Soft Skills Checklist: </h2>
 	<h3>Tick the box if a candidate having this skill is a priority.</h3>
-	<label for="emotionalIntelligence">Emotional Intelligence: </label>
-	<input type="checkbox" name="emotionalIntelligence" id="soft0" value="emotionalIntelligence" style="text-align: center">
-	<br>
-	<label for="patience">Patience: </label>
-	<input type="checkbox" name="patience" id="soft1" value="patience">
-	<br>
 	<label for="adaptability">Adaptability: </label>
-	<input type="checkbox" name="adaptability" id="soft2" value="adaptability">
+	<input type="checkbox" name="adaptability" id="soft0" value="adaptability">
 	<br>
 	<label for="projectManagement">Project Management: </label>
-	<input type="checkbox" name="projectManagement" id="soft3" value="projectManagement">
+	<input type="checkbox" name="projectManagement" id="soft1" value="projectManagement">
 	<br>
 	<label for="probSolving">Problem Solving: </label>
-	<input type="checkbox" name="probSolving" id="soft4" value="probSolving">
+	<input type="checkbox" name="probSolving" id="soft2" value="probSolving">
 	<br>
 	<label for="teamworkCollab">Teamworking and Collaboration: </label>
-	<input type="checkbox" name="teamworkCollab" id="soft5" value="teamworkCollab">
+	<input type="checkbox" name="teamworkCollab" id="soft3" value="teamworkCollab">
 	<br>
 	<label for="interPersonal">Interpersonal Skills: </label>
-	<input type="checkbox" name="interPersonal" id="soft6" value="interPersonal">
+	<input type="checkbox" name="interPersonal" id="soft4" value="interPersonal">
 	<br>
 	<label for="leadership">Leadership Skills: </label>
-	<input type="checkbox" name="leadership" id="soft7" value="leadership">
+	<input type="checkbox" name="leadership" id="soft5" value="leadership">
 	<br>
 	<label for="timeManagement">Time Management: </label>
-	<input type="checkbox" name="timeManagement" id="soft8" value="timeManagement">
+	<input type="checkbox" name="timeManagement" id="soft6" value="timeManagement">
 	<br>
 	<label for="decisiveness">Decisiveness: </label>
-	<input type="checkbox" name="decisiveness" id="soft9" value="decisiveness">
+	<input type="checkbox" name="decisiveness" id="soft7" value="decisiveness">
 	<br><hr>
      <button type="button" onclick="window.location.href='EmployerSwipeScreen.php';" class="button">Cancel</button>
      <input type="submit" value="Submit" class="button">
