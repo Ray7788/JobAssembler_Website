@@ -17,6 +17,10 @@ $name = $_REQUEST["name"];
 $description = $_REQUEST["description"];
 $userID = $_REQUEST["userID"];
 
+#UserID must be set
+if($userID == ""){
+    ApiResponseGenerator::generate_error_json(400, "Please don't access this page directly - perform the full sign up process.");
+}
 
 #Name must be between 3 and 64 alphanumeric characters - can also have whitespace
 $pattern = "/^[A-Za-z\d\s]{3,64}$/";
