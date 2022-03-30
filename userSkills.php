@@ -110,10 +110,11 @@ if(!$user->is_authenticated()){
 <form id="userSkillsForm" name="UserSkills">
 	<h1 class="display-1">Skill Form</h1>
     <br>
-	<h3 class="d" >Please be as honest as possible when filling out this form. <br></h3>
+	<h3 class="d" >Please fill this form honestly <br></h3>
 	<hr>
-	<h2>Programming languages experience: </h2>
-	<h3>Please select approximately how many years experience you have in each langauge</h3>
+	<h4>Programming languages experience: </h3>
+	<h3>Select approximately how many years of experience you have in each langauge</h3>
+	<br>
 	<label for="Javaexp">Java Experience: </label>
 	<input type="range" id="Javaexp" name="Javaexp" min="0" max="10" step="1" value="0">
 	<p><span id="javaOut"></span> Years</p>
@@ -202,6 +203,7 @@ if(!$user->is_authenticated()){
 	<label for="SQLExp">SQL Experience: </label>
 	<input type="range" id="SQLExp" name="SQLExp" min="0" max="10" step="1" value="0">
 	<p><span id="sqlOut"></span> Years</p>
+	<hr>
 	<script>
 		var slider8 = document.getElementById("SQLExp");
 		var output8 = document.getElementById("sqlOut");
@@ -244,8 +246,16 @@ if(!$user->is_authenticated()){
 	<label for="decisiveness">Decisiveness: </label>
 	<input type="checkbox" name="decisiveness" id="soft9" value="decisiveness">
 	<br><hr>
-     <button type="button" onclick="window.location.href='EmployeeSwipeScreen.php';" class="button">Cancel</button>
-     <input type="submit" value="Submit" class="button">
+	<!-- submit button -->
+	<div class="d-grid gap-1">
+	<input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
+	</div>  
+	<br>
+	<!-- cancel button -->
+	<div class="d-grid gap-1">
+	<input type="button" class="btn btn-primary btn-lg btn-block" value="Cancel" onclick="window.location.href='EmployeeSwipeScreen.php';" style="background-color:red;">
+	</div>  
+	</p>
 	</form>
 </body>
 </html>
