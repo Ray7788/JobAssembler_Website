@@ -137,7 +137,7 @@ input:focus{
                             success: function(data, textStatus, xhr){   //Where to go if successful
                                 localStorage.setItem("userID", xhr.responseJSON["id"]);
                                 if (accountType == "employee"){
-                                    window.location = "EmployeeForm.php";
+                                    window.location = "login.php";
                                 }else{
                                     window.location = "CompanyDetails.php";
                                 }
