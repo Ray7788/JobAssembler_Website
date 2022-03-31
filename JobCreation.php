@@ -209,6 +209,13 @@ $user->get_user();
                 <input class="form-check-input" type="checkbox" id="remote" name="remote" value="remote"/>
                 <label class="form-check-label" for="remote">Work is performed remotely</label>
             </div>
+            <h3 class="d">Monthly Salary</h3>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">£</span>
+                </div>
+                <input type="number" name="salary" id="salary" required>
+            </div>
             <br>
             <!-- button -->
             <div class="d-grid gap-1">

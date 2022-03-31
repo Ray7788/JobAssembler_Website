@@ -32,13 +32,23 @@ $title = $_REQUEST["title"];
 $description = $_REQUEST["description"];
 $remote = $_REQUEST["remote"] == "remote";
 
-if (isset($_REQUEST["latitude"]) && isset($_REQUEST["longitude"]) && $_REQUEST["latitude"] != "" && $_REQUEST["longitude"] != "") {
+if (isset($_REQUEST["latitude"]) && isset($_REQUEST["longitude"]) && is_numeric($_REQUEST["latitude"]) && is_numeric($_REQUEST["longitude"])) {
     $latitude = floatval($_REQUEST["latitude"]);
     $longitude = floatval($_REQUEST["longitude"]);
 }
 else {
     $latitude = null;
     $longitude = null;
+}
+
+if (isset($_REQUEST["salary"]) && is_numeric($_REQUEST["salary"])) {
+    $salary = intval($_REQUEST["salary"]);
+    if ($salary < 0) {
+        ApiResponseGenerator::generate_error_json(400, "Invalid salary. Must be at least £0");
+    }
+}
+else {
+    ApiResponseGenerator::generate_error_json(400, "Invalid salary.");
 }
 
 if (strlen($title) < 3){
@@ -54,7 +64,7 @@ if (strlen($description) > 4294967295){
     ApiResponseGenerator::generate_error_json(400, "Invalid job description. Description is too long");
 }
 try {
-    $result = Job::create_job($title, $description, $user->company_id, $remote, $latitude, $longitude);
+    $result = Job::create_job($title, $description, $user->company_id, $remote, $salary, $latitude, $longitude);
     if (!$result) {
         ApiResponseGenerator::generate_error_json(500, "There was an error with the database. Please try again later.");
     }
