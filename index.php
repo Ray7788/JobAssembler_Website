@@ -79,10 +79,10 @@
             position: relative;
             width: 100vw;
             height: 120vh;
-            background: url(Images/pexels-cottonbro-7014764.jpg) no-repeat
+            background: url(Images/gratisography-light-cloud-wisp-free-stock-photo.jpg) no-repeat
             center fixed;
             background-size: cover;
-            animation: gradient-move 50s ease alternate infinite;
+            animation: gradient-move 30s ease alternate infinite;
         }
         
          /*2nd page */
@@ -91,15 +91,26 @@
             width: 100vw;
             height: 120vh;
             border-width:0px ;
-            background: url(Images/pexels-vlada-karpovich-4050347.jpg) no-repeat
+            background: url(Images/pexels-fauxels-3184418-F.jpg) no-repeat
             center fixed;
             background-size: cover;
-            animation: gradient-move 40s ease alternate infinite;
+            animation: gradient-move 20s ease alternate infinite;
         }
-        
-
+    
         /* 3rd page */
         .page3 {
+            position: relative;
+            width: 100vw;
+            height: 120vh;
+            border-width:0px ;
+            background: url(Images/pexels-pixabay-60504-F.jpg) no-repeat
+            center fixed;
+            background-size: cover;
+            animation: gradient-move 20s ease alternate infinite;
+        }
+
+        /* 4th page */
+        .page4 {
             position: relative;
             width: 100vw;
             height: 120vh;
@@ -110,16 +121,16 @@
 
         /* Dynamic */
         @keyframes gradient-move {
-        0% {
-          background-position: 0% 0%;
+            0% {
+            background-position: 0% 0%;
+            }
+            100% {
+            background-position: 100% 100%;
+            }
         }
-        100% {
-          background-position: 100% 100%;
-        }
-    }
 /* ----------------------------------------------------------------------------------------------------------------- */
         /* Text general styling  */
-        .display-4, .display-6, .lead {text-align: center;}
+            .display-4, .display-6, .lead {text-align: center;}
 
 /* ----------------------------------------------------------------------------------------------------------------- */
         </style>
@@ -127,7 +138,6 @@
 
 
     <body>
-    
     <!-- navbar -->
     <nav class="navbar navbar-light" style="background-color: white;">
         <a class="navbar-brand" href="index.php">
@@ -174,7 +184,22 @@
 
     <!-- page3 -->
     <div class="container-fluid">
-            <div class="page3" style="vertical-align:center; padding:20px">
+            <div class="page3">
+            <br>
+            <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color:white;"> <b>Direct access to Employees and Employers </b></h1>
+            <br>
+            <h1 class="display-6" style="color:white;">Ideal for New Graduates!</h1>
+            <hr class="my-4">
+            <br>
+            <p class="lead" style="color:white;"><b>Easier and more engaging than the Competition</b></p>
+            <br>
+            <p class="lead" style="color:white;"><b>DON'T MISS OUT, JOIN NOW!</b></p>
+        </div>
+    </div>
+    
+    <!-- page4 -->
+    <div class="container-fluid">
+            <div class="page4" style="vertical-align:center; padding:20px">
 
             <h1 class="display-4" style="color: #000000;"><b>Our Newest Jobs:</b></h1>
 
@@ -200,7 +225,6 @@
                     <?php endif; ?>
                     </tbody>
             </table>
-            
            </div> 
     </div>
 
