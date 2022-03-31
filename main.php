@@ -13,6 +13,9 @@ if (!$user->is_authenticated()) {
 if ($user->company_id == -1) {
     header("Location: EmployeeSwipeScreen.php");
 }
+else if ($user->company_id == 0) {
+    header("Location: JoinCompany.php");
+}
 else {
     header("Location: EmployerSwipeScreen.php");
 }

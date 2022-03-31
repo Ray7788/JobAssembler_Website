@@ -134,7 +134,7 @@
                 
                 <input type="submit" class="btn btn-primary btn-lg"  value="Submit">
 
-                <a href="JoinCompany.php">Or join a pre-existing company</a>
+                <a href="login.php">Or login to join a pre-existing company</a>
  
                 <p id="validationMsg"></p>
 

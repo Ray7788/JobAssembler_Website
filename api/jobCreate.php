@@ -13,7 +13,7 @@ $userID = $user->user_id;
 if (!$user->is_authenticated()) {
     ApiResponseGenerator::generate_error_json(401, "User not logged in.");
 }
-if ($user->company_id == -1) {
+if ($user->company_id < 1) {
     ApiResponseGenerator::generate_error_json(403, "User not assigned to company.");
 }
 

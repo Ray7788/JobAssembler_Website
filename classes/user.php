@@ -44,7 +44,10 @@ class User
         }
     }
 
-    public static function create_user(string $username, string $password, string $forename, string $surname): bool {
+    /**
+     * @throws Exception
+     */
+    public static function create_user(string $username, string $password, string $forename, string $surname, bool $employer = false): bool {
         $pdo = Database::connect();
         $pre_hash = hash("sha256", $password);
         $to_hash = $pre_hash . User::$pepper;
@@ -52,7 +55,12 @@ class User
             throw new Exception("Fatal error hashing password.");
         }
         $hash = password_hash($to_hash, PASSWORD_BCRYPT);
-        $query = "INSERT INTO `UserAccounts` (`Username`, `Forename`, `Surname`, `Biography`, `PasswordHash`) VALUES (:username, :forename, :surname, '', :hash)";
+        if ($employer) {
+            $query = "INSERT INTO `UserAccounts` (`Username`, `Forename`, `Surname`, `Biography`, `PasswordHash`, `CompanyID`) VALUES (:username, :forename, :surname, '', :hash, 0)";
+        }
+        else {
+            $query = "INSERT INTO `UserAccounts` (`Username`, `Forename`, `Surname`, `Biography`, `PasswordHash`) VALUES (:username, :forename, :surname, '', :hash)";
+        }
         $statement = $pdo->prepare($query);
         return $statement->execute([
             "username" => $username,

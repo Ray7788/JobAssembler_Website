@@ -6,7 +6,7 @@ require_once(__DIR__ . "/../classes/user.php");
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     ApiResponseGenerator::generate_error_json(405, "{$_SERVER["REQUEST_METHOD"]} method not allowed");
 }
-$required_params = ["username", "password", "forename", "surname"];
+$required_params = ["username", "password", "forename", "surname", "accountType"];
 foreach ($required_params as $param) {
     if (!isset($_REQUEST[$param])) {
         ApiResponseGenerator::generate_error_json(400, "Parameter $param not set.");
@@ -16,6 +16,7 @@ $username = $_REQUEST["username"];
 $password = $_REQUEST["password"];
 $forename = $_REQUEST["forename"];
 $surname = $_REQUEST["surname"];
+$employer = $_REQUEST["accountType"] == "employer";
 
 #Username must be 6-30 alphanumeric characters
 if (!preg_match('/^[A-Za-z\d\-]{6,30}$/', $username)) {
@@ -45,7 +46,7 @@ if (User::check_username_exists($username)) {
     ApiResponseGenerator::generate_error_json(400, "Invalid username given. Username is already in use, please choose another.");
 }
 try {
-    $result = User::create_user($username, $password, $forename, $surname);
+    $result = User::create_user($username, $password, $forename, $surname, $employer);
     if (!$result) {
         ApiResponseGenerator::generate_error_json(500, "There was an error with the database. Please try again later.");
     }
