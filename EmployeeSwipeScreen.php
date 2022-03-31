@@ -58,6 +58,7 @@ for($x=0;$x<count($JobPostingsIDs);$x++){
 }
 
 //Now do the thing that gets the jobs you haven't seen yet.
+//RemoteJob at 6. UserSeen at 7
 $columns = array("JobID", "Title", "Details", "CompanyID", "UserSeen", "CompanyID", "Name", "Description", "CompanyImage");
 //It's SELECT DISTINCT because without it the same row is returned multiple times. I think it's because my INNER JOIN stuff is outdated but this solves it easily.
 $query = "SELECT DISTINCT JobPostings.*, UserJobs.UserSeen, Companies.* FROM ((JobPostings
@@ -85,10 +86,20 @@ for($x=0;$x<count($jobs);$x++){
 }
 //Has the index of array 'scores' correspond to the array 'jobs'.
 //Now need to sort the job array based upon this.
-//$jobs[11] has the score
+//$jobs[12] has the score
 //Need to add 'if not remote'
 //Latitude and longitude for jobs at 4, 5 respectively.
 //Get distance for each job
+
+//I've made is so the distance score is still added if the user is remote, but only if the job isn't remote.
+if($user->remote){
+    for($x=0;$x<count($jobs); $x++){
+        $isRemote = $jobs[$x][6];
+        if($isRemote == 1){
+            $jobs[$x][12] = $jobs[$x][12] + 10;
+        }
+    }
+}
 
 //First get latlong for user signed in
 $query = "SELECT Latitude, Longitude FROM UserAccounts WHERE UserID = :userID";
@@ -102,9 +113,13 @@ if((!$data[0][0] == null) && (!$data[0][1] == null)){
     for($x=0;$x<count($jobs);$x++){
         $jobLat = $jobs[$x][4];
         $jobLong = $jobs[$x][5];
-        if((!$jobLat == null) && (!$jobLong == null)){
+        $isRemote = $jobs[$x][6];
+        if((!$jobLat == null) && (!$jobLong == null) && ($isRemote == 0)){
             $distance = vincentyGreatCircleDistance($latitude1, $longitude1, $jobLat, $jobLong);
             $distance = round($distance);
+            if($isRemote == 1){
+                $distance = 60000;  //So nothing is benefitted from the job being remote.
+            }
             //Add 5 points for 10km, ... , 1 point for less than 50km
             $distanceScore = 0;
             if($distance <= 50000){
@@ -122,7 +137,7 @@ if((!$data[0][0] == null) && (!$data[0][1] == null)){
             if($distance <= 10000){
                 $distanceScore += 1;
             }
-            $jobs[$x][11] = $jobs[$x][11] + $distanceScore;
+            $jobs[$x][12] = $jobs[$x][12] + $distanceScore;
             array_push($jobs[$x], $distance);
         }else{
             array_push($jobs[$x], 0);
@@ -133,6 +148,9 @@ if((!$data[0][0] == null) && (!$data[0][1] == null)){
         array_push($jobs[$x], 0);
     }
 }
+
+
+
 
 function vincentyGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000){
     // convert from degrees to radians
@@ -152,8 +170,8 @@ function vincentyGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo,
 
 // Comparison function
 function compare($element1, $element2){
-    $job1 = $element1[11];
-    $job2 = $element2[11];
+    $job1 = $element1[12];
+    $job2 = $element2[12];
     return $job2 - $job1;
 }
 
@@ -303,23 +321,50 @@ usort($jobs, 'compare');
             //To see whole jobArray do JSON.stringify(jobArray) because it's encoded using json to make it more secure.
             var jobArray = <?php echo json_encode($jobs) ?>;    //If this is empty, disable buttons
             var columns = ["JobID", "Title", "Details", "CompanyID", "UserSeen", "CompanyID", "Name", "Description", "CompanyImage"];
-            
+            var userRemote = <?php echo($user->remote) ?>;
+            //console.log("REMOTE"+userRemote);
+
+            for(let i=0; i<jobArray.length; i++){
+                console.log(jobArray[i].join());
+            }
+
             function writeToCard(){
-                var companyName = jobArray[jobCounter][8];
+                var companyName = jobArray[jobCounter][9];
                 var jobTitle = jobArray[jobCounter][columns.indexOf("Title")];
                 var jobDetails = jobArray[jobCounter][columns.indexOf("Details")];
-                var companyDescription = jobArray[jobCounter][9];
-                var distance = jobArray[jobCounter][12];
+                var companyDescription = jobArray[jobCounter][10];
+                var distance = jobArray[jobCounter][13];
                 distance = distance / 1000; // Convert into km
+                var isRemote = jobArray[jobCounter][6];
 
                 //Only show distance if not remote.
-
-                document.getElementById("card").innerHTML = "<b>Would you like to apply to this job?</b> <br>"
-                 + "Distance from you: " + distance + "km<br>"
-                 + "Company: " + companyName + " <br> "
-                 + "Job Title: " + jobTitle + "<br>"
-                 + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
-                 + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
+                if(isRemote == 1){
+                    document.getElementById("card").innerHTML = "<b>Would you like to apply to this job?</b> <br>"
+                    + "This job is remote.<br>"
+                    + "Company: " + companyName + " <br> "
+                    + "Job Title: " + jobTitle + "<br>"
+                    + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
+                    + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
+                }else{
+                    //If the user is remote but the job isn't, then it says so.
+                    if(userRemote == 1){
+                        document.getElementById("card").innerHTML = "<b>Would you like to apply to this job?</b> <br>"
+                        + "Distance from you: " + distance + "km - not remote<br>"
+                        + "Company: " + companyName + " <br> "
+                        + "Job Title: " + jobTitle + "<br>"
+                        + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
+                        + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
+                    }else{
+                        document.getElementById("card").innerHTML = "<b>Would you like to apply to this job?</b> <br>"
+                        + "Distance from you: " + distance + "km<br>"
+                        + "Company: " + companyName + " <br> "
+                        + "Job Title: " + jobTitle + "<br>"
+                        + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
+                        + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
+                    }
+                    
+                }
+                
             }
 
             function buttonPressed(yesOrNo){
