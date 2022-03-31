@@ -113,7 +113,12 @@ $jobs = $statement->fetchAll();
                         console.log(data);
                     },
                     error: function(xhr){
-                        alert("error\n" + xhr.responseJson);
+                        let response = xhr.responseJSON
+                        if (response.hasOwnProperty("message")) {
+                            alert("Error:\n" + response["message"]);
+                        } else {
+                            alert("An unknown error occurred. Please try again later.")
+                        }
                     }
                 })
             });

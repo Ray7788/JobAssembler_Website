@@ -53,7 +53,12 @@ $user->get_user();
                                         window.location.reload();
                                 },
                                 error: function(xhr){
-                                        alert(xhr.responseText);
+                                    let response = xhr.responseJSON
+                                    if (response.hasOwnProperty("message")) {
+                                        alert("Error:\n" + response["message"]);
+                                    } else {
+                                        alert("An unknown error occurred. Please try again later.")
+                                    }
                                 }
                         })
                 })
