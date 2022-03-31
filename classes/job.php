@@ -24,7 +24,7 @@ class Job
             ]);
         }
         else {
-            $query = "INSERT INTO JobPostings (Title, Details, CompanyID, Latitude, Longitude) VALUES (:title, :description, :company_id, :latitude, :longitude)";
+            $query = "INSERT INTO JobPostings (Title, Details, CompanyID, Latitude, Longitude, RemoteJob) VALUES (:title, :description, :company_id, :latitude, :longitude, :remote)";
             $statement = $pdo->prepare($query);
             return $statement->execute([
                 "title" => $title,
