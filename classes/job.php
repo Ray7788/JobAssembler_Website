@@ -10,21 +10,23 @@ class Job
     public float $latitude;
     public float $longitude;
     public bool $remote;
+    public int $salary;
 
-    public static function create_job(string $title, string $description, int $company_id, bool $remote, float $latitude = null, float $longitude = null): bool {
+    public static function create_job(string $title, string $description, int $company_id, bool $remote, int $salary, float $latitude = null, float $longitude = null): bool {
         $pdo = Database::connect();
         if (is_null($latitude) || is_null($longitude)){
-            $query = "INSERT INTO JobPostings (Title, Details, CompanyID, RemoteJob) VALUES (:title, :description, :company_id, :remote)";
+            $query = "INSERT INTO JobPostings (Title, Details, CompanyID, RemoteJob, Salary) VALUES (:title, :description, :company_id, :remote, :salary)";
             $statement = $pdo->prepare($query);
             return $statement->execute([
                 "title" => $title,
                 "description" => $description,
                 "company_id" => $company_id,
-                "remote" => intval($remote)
+                "remote" => intval($remote),
+                "salary" => $salary
             ]);
         }
         else {
-            $query = "INSERT INTO JobPostings (Title, Details, CompanyID, Latitude, Longitude, RemoteJob) VALUES (:title, :description, :company_id, :latitude, :longitude, :remote)";
+            $query = "INSERT INTO JobPostings (Title, Details, CompanyID, Latitude, Longitude, RemoteJob, Salary) VALUES (:title, :description, :company_id, :latitude, :longitude, :remote, :salary)";
             $statement = $pdo->prepare($query);
             return $statement->execute([
                 "title" => $title,
@@ -32,7 +34,8 @@ class Job
                 "company_id" => $company_id,
                 "latitude" => $latitude,
                 "longitude" => $longitude,
-                "remote" => intval($remote)
+                "remote" => intval($remote),
+                "salary" => $salary
             ]);
         }
 
@@ -56,6 +59,7 @@ class Job
         $this->company->name = $result["Name"];
         $this->company->description = $result["Description"];
         $this->remote = boolval($result["RemoteJob"]);
+        $this->salary = intval($result["Salary"]);
         if (!is_null($result["CompanyImage"])) {
             $this->company->image_url = $result["CompanyImage"];
         } else {
