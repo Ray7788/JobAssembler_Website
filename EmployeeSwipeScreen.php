@@ -84,8 +84,9 @@ for($x=0;$x<count($jobs);$x++){
     array_push($scores, $count);
     array_push($jobs[$x], $count);
 }
-//$jobs[12] has the score
+//$jobs[13] has the score
 //Latitude and longitude for jobs at 4, 5 respectively.
+//Salary at 7
 //Get distance for each job
 
 //If the job hunter is remote and the job is remote then add 10 points
@@ -97,7 +98,7 @@ if($user->remote){
     for($x=0;$x<count($jobs); $x++){
         $isRemote = $jobs[$x][6];
         if($isRemote == 1){
-            $jobs[$x][12] = $jobs[$x][12] + 10;
+            $jobs[$x][13] = $jobs[$x][13] + 10;
         }
     }
 }
@@ -135,7 +136,7 @@ if((!$data[0][0] == null) && (!$data[0][1] == null)){
             if($distance <= 10000){
                 $distanceScore += 1;
             }
-            $jobs[$x][12] = $jobs[$x][12] + $distanceScore;
+            $jobs[$x][13] = $jobs[$x][13] + $distanceScore;
             array_push($jobs[$x], $distance);
         }else{
             array_push($jobs[$x], 0);
@@ -168,8 +169,8 @@ function vincentyGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo,
 
 // Comparison function
 function compare($element1, $element2){
-    $job1 = $element1[12];
-    $job2 = $element2[12];
+    $job1 = $element1[13];
+    $job2 = $element2[13];
     return $job2 - $job1;
 }
 
@@ -329,13 +330,14 @@ usort($jobs, 'compare');
             */
 
             function writeToCard(){
-                var companyName = jobArray[jobCounter][9];
+                var companyName = jobArray[jobCounter][10];
                 var jobTitle = jobArray[jobCounter][columns.indexOf("Title")];
                 var jobDetails = jobArray[jobCounter][columns.indexOf("Details")];
-                var companyDescription = jobArray[jobCounter][10];
-                var distance = jobArray[jobCounter][13];
+                var companyDescription = jobArray[jobCounter][11];
+                var distance = jobArray[jobCounter][14];
                 distance = distance / 1000; // Convert into km
                 var isRemote = jobArray[jobCounter][6];
+                var salary = jobArray[jobCounter][7];
 
                 //Only show distance if not remote.
                 if(isRemote == 1){
@@ -343,6 +345,7 @@ usort($jobs, 'compare');
                     + "This job is remote.<br>"
                     + "Company: " + companyName + " <br> "
                     + "Job Title: " + jobTitle + "<br>"
+                    + "Salary: £" + salary + "<br>"
                     + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
                     + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
                 }else{
@@ -353,6 +356,7 @@ usort($jobs, 'compare');
                             + "Location not found - not remote<br>"
                             + "Company: " + companyName + " <br> "
                             + "Job Title: " + jobTitle + "<br>"
+                            + "Salary: £" + salary + "<br>"
                             + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
                             + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
                         }else{
@@ -360,6 +364,7 @@ usort($jobs, 'compare');
                             + "Distance from you: " + distance + "km - job is not remote<br>"
                             + "Company: " + companyName + " <br> "
                             + "Job Title: " + jobTitle + "<br>"
+                            + "Salary: £" + salary + "<br>"
                             + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
                             + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
                         }
@@ -370,6 +375,7 @@ usort($jobs, 'compare');
                             + "Location not found.<br>"
                             + "Company: " + companyName + " <br> "
                             + "Job Title: " + jobTitle + "<br>"
+                            + "Salary: £" + salary + "<br>"
                             + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
                             + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
                         }else{
@@ -377,6 +383,7 @@ usort($jobs, 'compare');
                             + "Distance from you: " + distance + "km<br>"
                             + "Company: " + companyName + " <br> "
                             + "Job Title: " + jobTitle + "<br>"
+                            + "Salary: £" + salary
                             + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
                             + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
                         }

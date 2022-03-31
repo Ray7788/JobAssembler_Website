@@ -246,7 +246,8 @@ $noOfUsers = count($usersApplied);
             <header>
             <h1>Add Users To Company</h1>
             <hr>
-            <p>"Please search for the account you're trying to add by their Username, Forename or Surname."</p>
+            <p>Please search for the account you're trying to add by </p>
+            <p>their Username, Forename or Surname.</p>
              </header>
         </div>
             
@@ -280,9 +281,9 @@ $noOfUsers = count($usersApplied);
                     }
                 }else{
                     if(empty($txt)){
-                        echo("<br>There are no users who have applied to your company that you haven't already dealt with.");
+                        echo("<br>There are no users who have applied to your <br><br> company that you haven't already dealt with.");
                     }else{
-                        echo("<br>There were no results for your search. Please ensure you've entered the correct information<br>");
+                        echo("<br>There were no results for your search. <br><br>Please ensure you've entered the correct information<br>");
                         echo("You searched for: <b>'" . $wordsForDisplay . "'</b>");
                     }
                 }
