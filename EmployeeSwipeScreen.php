@@ -321,7 +321,7 @@ usort($jobs, 'compare');
             //To see whole jobArray do JSON.stringify(jobArray) because it's encoded using json to make it more secure.
             var jobArray = <?php echo json_encode($jobs) ?>;    //If this is empty, disable buttons
             var columns = ["JobID", "Title", "Details", "CompanyID", "UserSeen", "CompanyID", "Name", "Description", "CompanyImage"];
-            var userRemote = <?php echo($user->remote) ?>;
+            var userRemote = <?php echo(intval($user->remote)) ?>;
             
             /*
             for(let i=0; i<jobArray.length; i++){
