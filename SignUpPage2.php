@@ -10,7 +10,7 @@
 
         <link href="CSS/SignUp.css" rel="stylesheet">
         <link href="../JobAssembler/CSS/SignUp.css" rel="stylesheet">
-        <!-- Bootstrap CSS -->
+        <!-- Bootstrap CSS 5.1-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
 
@@ -22,8 +22,11 @@
         box-sizing: border-box;
         }
 
+        body {
+            overflow: hidden;
+        }
 /*-----------------------------------------------------------------------------------------------  */
-        /* gradient color */
+/* gradient color */
         .text-center{
         width: 100vw;
         height: 100vh;
@@ -54,43 +57,43 @@
 
 /*-----------------------------------------------------------------------------------------------  */
 /* input styling */
-input{
-    outline-color: invert ;
-	outline-style: none ;
-	outline-width: 0px ;
+        input{
+            outline-color: invert ;
+            outline-style: none ;
+            outline-width: 0px ;
 
-    border: 1px solid #ccc; 
-    border-radius: 5px;
-    padding: 10px 10px;
-	text-shadow: none ;
-	-webkit-appearance: none ;
-	-webkit-user-select: text ;
-	outline-color: transparent ;
-	box-shadow: none;
-}
+            border: 1px solid #ccc; 
+            border-radius: 5px;
+            padding: 10px 10px;
+            text-shadow: none ;
+            -webkit-appearance: none ;
+            -webkit-user-select: text ;
+            outline-color: transparent ;
+            box-shadow: none;
+        }
 
-input:focus{
-    border-color: #66afe9;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
-}
+        input:focus{
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+        }
 
 /*-----------------------------------------------------------------------------------------------  */
 /* From bootstrap */
-.bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-        }
+        .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+                }
 
-        @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-            }
-        }
+                @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+                    }
+                }
 
         </style>
 
@@ -162,6 +165,7 @@ input:focus{
     </head>
 
     <body class="text-center">
+    <div class="container-fluid">
         <main class="form-signin">
             <form id="signUpForm" name="signUpForm">
 <!-------------------------------------------------------------------------------------------------------------->
@@ -173,31 +177,32 @@ input:focus{
                     <div class="form-floating">
                     <!-- <label for="username">Username:</label> -->
                     <input type="text" name="username" id="username" class="inputBox" placeholder="Username">                  
-                </div>
+                     </div>
                    
                     <div class="form-floating">
                     <!-- <label for="forename">Forename:</label> -->
                     <input type="text" name="forename" id="forename" class="inputBox" placeholder="Forename"> 
-                </div>
+                    </div>
                    
                     <div class="form-floating">
                     <!-- <label for="surname">Surname:</label> -->
                     <input type="text" name="surname" id="surname" class="inputBox" placeholder="Surname">
-                </div>
+                    </div>
                    
                     <div class="form-floating">
                     <!-- <label for="password">Password:</label> -->
                     <input type="password" name="password" id="password" class="inputBox" placeholder="Password">
-                </div>
+                    </div>
                     
                     <div class="form-floating">
                     <!-- <label for="confirmPassword">Confirm Password:</label> -->
                     <input type="password" name="confirmPassword" id="confirmPassword" class="inputBox" placeholder="Confirm Password">
-                </div>
+                    </div>
              
  <!-------------------------------------------------------------------------------------------------------------->
- <a href="login.php">Already have a JobAssembler account?</a>
- <br>
+ <!-- Link to the log in page -->
+                    <a href="login.php">Already have a JobAssembler account?</a>
+                    <br>
 <!-- radio frame -->
                     <br>
                     <p class="choicetext" style="color: black;">You want to be:</p>
@@ -219,10 +224,13 @@ input:focus{
 <!-- submit  -->
                     <!-- <input type="submit" value="Submit"> -->
                     <button class="w-30 btn btn-lg btn-primary" type="submit">Sign Up</button>
+                    <br><br>
+                    <p id="validationMsg" style="color: red;"></p>
+                    
 <!-- End part-->
                     <p class="mt-5 mb-3 text-muted">&copy; X17 2021-2022</p>
-                    <br><br>
-                    <p id="validationMsg"></p>
+                    
+                    
 
                     <?php
                         ini_set('error_reporting', E_ALL);
@@ -231,8 +239,8 @@ input:focus{
                         
                     ?>
             </form>
-
-
+            
+            </div>
         </main>
     </body>
 </html>
