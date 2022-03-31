@@ -12,7 +12,7 @@ $userID = $user->user_id;
 if (!$user->is_authenticated()) {
     ApiResponseGenerator::generate_error_json(401, "User not logged in.");
 }
-
+$user->get_user();
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     ApiResponseGenerator::generate_error_json(405, "{$_SERVER["REQUEST_METHOD"]} method not allowed");
 }

@@ -3,6 +3,10 @@
 require_once(__DIR__ . "/classes/database.php");
 require_once(__DIR__ . "/classes/user.php");
 session_start();
+if (!isset($_SESSION["user"]) || !($_SESSION["user"] instanceof User)) {
+    header("Location: index.php");
+    die(0);
+}
 $user = $_SESSION["user"];
 $companyID = $user->company_id;
 $userID = $user->user_id;
@@ -11,6 +15,7 @@ if(!$user->is_authenticated()){
     header("Location: /index.php");
     die(0);
 }
+$user->get_user();
 
 //Get the search entry
 $txt = isset($_GET['txt']) ? $_GET['txt'] : '';

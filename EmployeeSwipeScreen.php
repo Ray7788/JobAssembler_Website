@@ -2,18 +2,19 @@
 require_once(__DIR__ . "/classes/database.php");
 require_once(__DIR__ . "/classes/user.php");
 session_start();
-if (!isset($_SESSION["user"])) {
-    header("Location: /index.php");
+if (!isset($_SESSION["user"]) || !($_SESSION["user"] instanceof User)) {
+    header("Location: index.php");
     die(0);
 }
 $user = $_SESSION["user"];
 $userID = $user->user_id;
 if (!$user->is_authenticated()) {
-    header("Location: /index.php");
+    header("Location: index.php");
     die(0);
 }
+$user->get_user();
 if($user->company_id != -1){
-    header("Location: /main.php");
+    header("Location: main.php");
     die(0);
 }
 $jobs = array();
@@ -362,7 +363,7 @@ usort($jobs, 'compare');
             <a class="navbar-brand">
             <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
             </a>
-            <span class="navbar-text  active"">
+            <span class="navbar-text  active">
             <?php
                 echo("You are signed in as: &nbsp;" . $user->username);
             ?>

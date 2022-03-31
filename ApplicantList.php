@@ -11,6 +11,7 @@ if (!$user->is_authenticated()) {
     header("Location: index.php");
     die(0);
 }
+$user->get_user();
 if ($user->company_id < 1) {
     header("Location: main.php");
     die(0);

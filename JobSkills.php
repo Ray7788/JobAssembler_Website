@@ -3,18 +3,19 @@ require_once(__DIR__ . "/classes/database.php");
 require_once(__DIR__ . "/classes/user.php");
 session_start();
 
-if(!isset($_SESSION["user"])){
-	header("Location: /index.php");
-	die(0);
+if (!isset($_SESSION["user"]) || !($_SESSION["user"] instanceof User)) {
+    header("Location: index.php");
+    die(0);
 }
 $user = $_SESSION["user"];
 $userID = $user->user_id;
 if(!$user->is_authenticated()){
-	header("Location: /index.php");
+	header("Location: index.php");
 	die(0);
 }
+$user->get_user();
 if($user->company_id < 1){
-    header("Location: /main.php");
+    header("Location: main.php");
     die(0);
 }
 $companyID = $user->company_id;
@@ -205,7 +206,7 @@ $jobs = $statement->fetchAll();
     <br>
     <p id="jobName"></p>
     <br>
-	<h5 class="d" >Please be as precise as possible to make sure you see the most suitable candidates. <br></h3>
+	<h5 class="d" >Please be as precise as possible to make sure you see the most suitable candidates. <br></h5>
 	<hr>
     <h2>Programming languages experience: </h2>
 	<h5>On a scale of 1-10, how much experience would you like your candidate to have in each language? Leave the scale at 0 if your job doesn't need that language.</h5>
