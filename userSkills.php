@@ -64,6 +64,19 @@ $user->get_user();
         border-bottom: 2px solid rgb(60,60,70);
         
     }
+
+	/* For navbar */        
+        /* For Logo border*/
+        .d-inline-block-align-top {border-radius: 5px;}
+        /* For DownMenu */
+        .navbar-text{
+                color: yellow;
+            }
+       .navbar-nav{
+           position:absolute;
+           right: 50px;
+       } 
+
 </style>	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
@@ -120,18 +133,37 @@ $user->get_user();
 </head>
 <body>
 <!-- Nav bar -->
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+	<nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
 
-            <a class="navbar-brand" style="text-emphasis-color: white;">
-            <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
-            <?php
-                echo("You are signed in as: &nbsp;" . $user->username);
-            ?>
-            <a class="nav-link" style="margin-left: 5%; white-space: nowrap;" href="EmployeeSwipeScreen.php">Home</a>
-            <a class="nav-link" style="margin-left: 5%; white-space: nowrap;" href="EmployeeForm.php">Edit Details</a>
-            <a class="nav-link" style="margin-left: 5%; white-space: nowrap;;" href="JobList.php">Job List</a>
-            <a class="btn-danger" style="margin-left: 10%; padding:10px" href="index.php">Log Out</a>
-</nav>
+	<a class="navbar-brand">
+	<!-- Brand LOGO -->
+	<a class="navbar-brand">
+	<img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
+	</a>
+	<span class="navbar-text  active" style="color: white;">
+	<?php
+		echo("You are signed in as: &nbsp;" . $user->username);
+	?>
+	</span> 
+
+	<ul class="navbar-nav" >
+
+		<form class="form-inline">
+			<li class="nav-item  active">
+			<a class="nav-link"  href="EmployeeSwipeScreen.php">Home</a>
+			</li>
+			<li class="nav-item  active">
+			<a class="nav-link" href="EmployeeForm.php">Edit Details</a>
+			</li>
+			<li class="nav-item  active">
+			<a class="nav-link" href="JobList.php">Job List</a>
+			</li>
+			<li class="nav-item  active">
+			<a class="btn-danger"  style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php">Log Out</a>
+			</li>
+		</form>
+	</ul>
+	</nav>
 
 	<div class="container-fluid" style="margin-bottom: 100px">
     <div class="b">

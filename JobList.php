@@ -53,8 +53,7 @@ $jobs = $statement->fetchAll();
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -189,6 +188,19 @@ $jobs = $statement->fetchAll();
         .php {
             color: #e9ecef;
         }
+
+        /* For navbar */        
+        /* For Logo border*/
+        .d-inline-block-align-top {border-radius: 5px;}
+        /* For DownMenu */
+        .navbar-text{
+                color: yellow;
+            }
+       .navbar-nav{
+           position:absolute;
+           right: 50px;
+       } 
+
     </style>
 </head>
 
@@ -197,19 +209,37 @@ $jobs = $statement->fetchAll();
 <body>
 
     <!-- Nav bar -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
 
-                <a class="navbar-brand" style="text-emphasis-color: white;">
-                <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
-                <a class = "php">
-                <?php
-                    echo ("You are signed in as: &nbsp;" . $user->username);
-                ?>
-                </a>
-                <a class="nav-link" style="margin-left: 5%; white-space: nowrap;" href="EmployeeSwipeScreen.php">Home</a>
-                <a class="nav-link" style="margin-left: 5%; white-space: nowrap;" href="userSkills.php">Employee Skills</a>
-                <a class="nav-link" style="margin-left: 5%; white-space: nowrap;" href="EmployeeForm.php">Edit Details</a>
-                <a class="btn-danger" style="margin-left: 10%; padding:10px" href="Index.php">Log Out</a>
+    <a class="navbar-brand">
+    <!-- Brand LOGO -->
+    <a class="navbar-brand">
+    <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
+    </a>
+    <span class="navbar-text  active" style="color: white;">
+    <?php
+        echo("You are signed in as: &nbsp;" . $user->username);
+    ?>
+    </span> 
+
+    <ul class="navbar-nav" >
+
+        <form class="form-inline">
+            <li class="nav-item  active">
+            <a class="nav-link" href="EmployeeSwipeScreen.php">Home</a>
+            </li>
+            <li class="nav-item  active">
+            <a class="nav-link"  href="userSkills.php">Employee Skills</a>
+            </li>
+            <li class="nav-item  active">
+            <a class="nav-link" href="EmployeeForm.php">Edit Details</a>
+            </li>
+            <li class="nav-item  active">
+            <a class="btn-danger"  style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php">Log Out</a>
+            </li>
+        </form>
+    </ul>
+    
     </nav>
 
 
