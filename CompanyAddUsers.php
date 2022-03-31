@@ -103,45 +103,53 @@ $noOfUsers = count($usersApplied);
 
             body {
                 font-family: sans-serif;
-                background: url(Images/pexels-pixabay-210158.jpg) no-repeat
+                background: url(Images/pexels-pixabay-210158.jpg) no-repeat 
                 center fixed;
                 background-size: cover;
             }
             
             .container-fluid {
+            margin-top: 20vh;
+            margin-left:30vw;
+            width: 40vw;
+            height: 80vh;
             position: absolute;
-            top:20vh;
-            left: 0;
-            width: 70vw;
-            height: 60vh;
-            display: flex;
+            /* display: flex; */
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin-left: 20%;
-            /* background:white; */
+            overflow: hidden;
+             /* background:yellow; */
             }
 
             .d-flex flex-column{
                 display: flex;
-            }
-            .item1{
-/*             
-            align-content: center;
-                text-align: center; */
+                position: relative;
             }
 
-            .item2{
-                
+            .item1{
+            align-content: center;
+            text-align: center;
+            font-family:"Helvetica";
+            color: black;
             }
+            
+            /* .item2{
+                
+            } */
+
             .item3{
-                background: white;
                 align-content: center;
                 text-align: center;
+                position: relative;
+                color: black;
+                backdrop-filter: blur(50px) saturate(180%);
+                backdrop-filter: blur(50px) saturate(180%);
                 /* vertical-align: center;  */
+                /* background: white; */
             }
+
             .item4{
-               
                 align-content: center;
                 text-align: center;
                 vertical-align: center;
@@ -170,8 +178,9 @@ $noOfUsers = count($usersApplied);
                 width: 200px;  
                 font-size: 1rem;
             }
+/* ----------------------------------------------------------------------------------------------------------------- */
 
-            .overlay {
+            /* .overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -186,7 +195,7 @@ $noOfUsers = count($usersApplied);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             pointer-events: auto;
-            }
+            } */
 
 /* ----------------------------------------------------------------------------------------------------------------- */
             /* For navbar */   
@@ -202,7 +211,8 @@ $noOfUsers = count($usersApplied);
     </head>
     <body>
     
-     <!-- For navbar -->
+
+    <!-- For navbar -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <!-- Brand LOGO -->
         <a class="navbar-brand">
@@ -251,7 +261,7 @@ $noOfUsers = count($usersApplied);
              
         </div>
             
-        <div class="item2">
+        <div class="item2" style="  margin-top: 5vh;">
             <form action="CompanyAddUsers.php" method="GET" name="searchForm" >
                 <table style=" margin-left: 5%; ">
                     <tr>
@@ -262,7 +272,7 @@ $noOfUsers = count($usersApplied);
             </form> 
         </div>
        
-        <div class="item3">
+        <div class="item3" >
             <?php
                 //Show the user the keywords they have entered
                 //If the txt variable is empty then everything is displayed.
