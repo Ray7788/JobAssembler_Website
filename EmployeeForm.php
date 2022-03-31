@@ -59,6 +59,7 @@ $user->get_user();
                 })
         })
     </script>
+
     <script>
         var map;
         var marker = L.marker({lat: <?=$user->latitude?>, lng: <?=$user->longitude?>});
@@ -89,10 +90,82 @@ $user->get_user();
             })
         })
     </script>
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        background-image: linear-gradient(to left, #e1eec3, #f05053);
+
+    }
+    .container-fluid{
+        background-color: #fff;
+        width: 50%;
+        height: 80%;
+        position: relative;
+        display: flex;
+        border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+        vertical-align: center;
+        margin-top: 5%;
+    }
+
+	/* For navbar */        
+        /* For Logo border*/
+        .d-inline-block-align-top {border-radius: 5px;}
+        /* For DownMenu */
+        .navbar-text{
+                color: yellow;
+            }
+       .navbar-nav{
+           position:absolute;
+           right: 50px;
+       } 
+
+</style>
+
 </head>
+
 <body>
-<div class="container">
-    <form id="employeeForm" name="employeeForm" enctype="multipart/form-data" action="api/EmployeeRegister.php" method="post">
+    <!-- Nav bar -->
+	<nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
+
+    <a class="navbar-brand">
+    <!-- Brand LOGO -->
+    <a class="navbar-brand">
+    <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
+    </a>
+    <span class="navbar-text  active" style="color: white;">
+    <?php
+        echo("You are signed in as: &nbsp;" . $user->username);
+    ?>
+    </span> 
+
+    <ul class="navbar-nav" >
+
+        <form class="form-inline">
+            <li class="nav-item  active">
+            <a class="nav-link"  href="EmployeeSwipeScreen.php">Home</a>
+            </li>
+            <li class="nav-item  active">
+            <a class="nav-link" href="userSkills.php">My Skills</a>
+            </li>
+            <li class="nav-item  active">
+            <a class="nav-link" href="JobList.php">Job List</a>
+            </li>
+            <li class="nav-item  active">
+            <a class="btn-danger"  style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php">Log Out</a>
+            </li>
+        </form>
+
+    </ul>
+    </nav>
+
+<div class="container-fluid">
+
+
+    <form id="employeeForm" name="employeeForm" enctype="multipart/form-data" action="api/EmployeeRegister.php" method="post" style="padding: 5%;">
         <h2>Edit information</h2>
         <hr>
         <label for="email">Email: </label>

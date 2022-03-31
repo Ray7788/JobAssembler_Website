@@ -406,7 +406,7 @@ usort($jobs, 'compare');
             <a class="navbar-brand">
             <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
             </a>
-            <span class="navbar-text  active">
+            <span class="navbar-text  active" style="color: white;">
             <?php
                 echo("You are signed in as: &nbsp;" . $user->username);
             ?>
