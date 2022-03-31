@@ -1,15 +1,13 @@
 <!doctype html>
 <html lang="en">
   <head>
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="X17 Group">
-    <meta name="generator" content="Hugo 0.88.1">
+    <meta name="author" content="X17 Group UoM 2021-2022">
     <title>Sign In - Job Assembler</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS 5.1 -->
 
     <link href="CSS/signin.css" rel="stylesheet">
     <link href="../JobAssembler/CSS/signin.css" rel="stylesheet">
@@ -22,9 +20,12 @@
         border: 0;
         }
 
+      body {
+        overflow: hidden;
+      }
 /*-----------------------------------------------------------------------------------------------  */   
       /* LOGO border */
-      .mb-4{border-radius: 5px;}
+      .mb-4{border-radius: 15px;}
 /*-----------------------------------------------------------------------------------------------  */
       /* gradient color */
       .text-center{
@@ -98,37 +99,39 @@
 
   </head>
 
-  <body class="text-center">
-    
-<main class="form-signin">
-    <img class="mb-4" src="Images/Logo1.png" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 fw-normal">Please Sign In</h1>
-    
-<!-------------------------------------------------------------------------------------------------------------->
-<!-- form -->
-    <form name="loginForm" id="loginForm">
-    <div class="form-floating">
-      <input type="text" class="form-control" name="username" id="username" placeholder="Username">
-      <label for="username">Username</label>
+    <body class="text-center">
+    <div class="container-fluid">
+        <main class="form-signin">
+            <img class="mb-4" src="Images/Logo1.png" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 fw-normal">Please Sign In</h1>
+          
+      <!-------------------------------------------------------------------------------------------------------------->
+      <!-- form -->
+          <form name="loginForm" id="loginForm">
+          <div class="form-floating">
+                <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                <label for="username">Username</label>
+          </div>
+          <br>
+          <div class="form-floating">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                <label for="password">Password</label>
+          </div>
+
+      <!-------------------------------------------------------------------------------------------------------------->
+      <!-- Link to the sign up page -->
+          <a href="SignUpPage2.php">Don't have a JobAssembler account yet?</a>
+          <br> <br>
+          <!-- submit  -->
+            <button class="w-30 btn btn-lg btn-primary" type="submit">Sign In</button>
+            <br> <br>
+            <p id="warningMessage" style="color: red;"></p>
+
+            <p class="mt-5 mb-3 text-muted">&copy; X17 2021-2022</p>
+        </form>
+      </main>
+
+
     </div>
-    <br>
-    <div class="form-floating">
-      <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-      <label for="password">Password</label>
-    </div>
-
-<!-------------------------------------------------------------------------------------------------------------->
-<a href="SignUpPage2.php">Don't have a JobAssembler account yet?</a>
- <br> <br>
-<!-- submit  -->
-    <button class="w-30 btn btn-lg btn-primary" type="submit">Sign In</button>
-    <p class="mt-5 mb-3 text-muted">&copy; X17 2021-2022</p>
-
-    <p id="warningMessage"></p>
-  </form>
-</main>
-
-
-    
-  </body>
+    </body>
 </html>
