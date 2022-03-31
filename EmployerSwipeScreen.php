@@ -368,7 +368,7 @@ usort($userAccounts, 'compare');
                 }else{
                     if(jobRemote == 1){
                         if(distance == 0){
-                            document.getElementById("card").innerHTML = ("Applicant is not remote and has not entered their location.<br>"
+                            document.getElementById("card").innerHTML = ("Applicant is not remote and location not found.<br>"
                             + "Forename: " + forename + " <br> "
                             + "Surname: " + surname + " <br> <br> "
                             + "Biography: " + "<br> <textarea columns=140 rows=4 readonly>" + biography + "</textarea><br>");
@@ -382,7 +382,7 @@ usort($userAccounts, 'compare');
                         
                     }else{
                         if(distance == 0){
-                            document.getElementById("card").innerHTML = ("This user has not entered their location.<br>"
+                            document.getElementById("card").innerHTML = ("Location not found.<br>"
                             + "Forename: " + forename + " <br> "
                             + "Surname: " + surname + " <br> <br> "
                             + "Biography: " + "<br> <textarea columns=140 rows=4 readonly>" + biography + "</textarea><br>");
