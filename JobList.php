@@ -285,7 +285,7 @@ $jobs = $statement->fetchAll();
                 <td><?= $line["Name"]?></td>
                 <td><?= $line["Title"]?></td>
                 <!--<td style="word-break:break-all;"><?= $line["Details"]?></td>-->
-                <td><?= $line["RemoteJob"] ? "Remote" : (is_null($line["Latitude"]) || is_null($line["Longitude"]) ? "None Given" : "See details") ?></td>
+                <td><?= $line["RemoteJob"] ? "Remote" : (is_null($line["Latitude"]) || is_null($line["Longitude"]) ? "None Given" : "See Details") ?></td>
                 <td class="<?= $line["UserAccepted"] ? "text-success" : "text-danger" ?>"><?= $line["UserAccepted"] ? "Accepted": "Declined"?></td>
                 <td class="<?= $companyAcceptedStyle ?>"><?= $companyAcceptedText?></td>
                 <td>

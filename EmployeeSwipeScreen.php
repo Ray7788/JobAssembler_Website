@@ -383,7 +383,7 @@ usort($jobs, 'compare');
                             + "Distance from you: " + distance + "km<br>"
                             + "Company: " + companyName + " <br> "
                             + "Job Title: " + jobTitle + "<br>"
-                            + "Salary: £" + salary
+                            + "Salary: £" + salary + "<br>"
                             + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
                             + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
                         }
