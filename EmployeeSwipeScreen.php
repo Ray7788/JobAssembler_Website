@@ -321,11 +321,12 @@ usort($jobs, 'compare');
             var jobArray = <?php echo json_encode($jobs) ?>;    //If this is empty, disable buttons
             var columns = ["JobID", "Title", "Details", "CompanyID", "UserSeen", "CompanyID", "Name", "Description", "CompanyImage"];
             var userRemote = <?php echo($user->remote) ?>;
-            //console.log("REMOTE"+userRemote);
-
+            
+            /*
             for(let i=0; i<jobArray.length; i++){
                 console.log(jobArray[i].join());
             }
+            */
 
             function writeToCard(){
                 var companyName = jobArray[jobCounter][9];
@@ -347,19 +348,39 @@ usort($jobs, 'compare');
                 }else{
                     //If the user is remote but the job isn't, then it says so.
                     if(userRemote == 1){
-                        document.getElementById("card").innerHTML = "<b>Would you like to apply to this job?</b> <br>"
-                        + "Distance from you: " + distance + "km - not remote<br>"
-                        + "Company: " + companyName + " <br> "
-                        + "Job Title: " + jobTitle + "<br>"
-                        + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
-                        + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
+                        if(distance == 0){
+                            document.getElementById("card").innerHTML = "<b>Would you like to apply to this job?</b> <br>"
+                            + "Location not found - not remote<br>"
+                            + "Company: " + companyName + " <br> "
+                            + "Job Title: " + jobTitle + "<br>"
+                            + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
+                            + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
+                        }else{
+                            document.getElementById("card").innerHTML = "<b>Would you like to apply to this job?</b> <br>"
+                            + "Distance from you: " + distance + "km - job is not remote<br>"
+                            + "Company: " + companyName + " <br> "
+                            + "Job Title: " + jobTitle + "<br>"
+                            + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
+                            + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
+                        }
+                        
                     }else{
-                        document.getElementById("card").innerHTML = "<b>Would you like to apply to this job?</b> <br>"
-                        + "Distance from you: " + distance + "km<br>"
-                        + "Company: " + companyName + " <br> "
-                        + "Job Title: " + jobTitle + "<br>"
-                        + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
-                        + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
+                        if(distance == 0){
+                            document.getElementById("card").innerHTML = "<b>Would you like to apply to this job?</b> <br>"
+                            + "Location not found.<br>"
+                            + "Company: " + companyName + " <br> "
+                            + "Job Title: " + jobTitle + "<br>"
+                            + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
+                            + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
+                        }else{
+                            document.getElementById("card").innerHTML = "<b>Would you like to apply to this job?</b> <br>"
+                            + "Distance from you: " + distance + "km<br>"
+                            + "Company: " + companyName + " <br> "
+                            + "Job Title: " + jobTitle + "<br>"
+                            + "Job Details: " + "<br> <textarea cols=60 rows=4 readonly>" + jobDetails + "</textarea><br>"
+                            + "Company Description: " + "<br> <textarea cols=60 rows=4 readonly>" + companyDescription + "</textarea><br>";
+                        }
+                        
                     }
                     
                 }
