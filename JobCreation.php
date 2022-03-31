@@ -159,7 +159,7 @@ $user->get_user();
 
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <!-- <form class="form-inline"> -->
+            
                 <!-- Links -->
                 <li class="nav-item">
                 <a class="nav-link" href="EmployerSwipeScreen.php" >Home</a>
@@ -173,10 +173,11 @@ $user->get_user();
                 <li class="nav-item">
                 <a class="nav-link" href="CompanyAddUsers.php"  >Add Users</a>
                 </li>
+                <form class="form-inline">
                 <li class="nav-item">
-                <a class="btn-danger" style="margin-left: 30%; padding: 7px; white-space: nowrap;"  href="index.php" >Log Out</a> 
+                <a class="btn btn-danger" style="margin-left: 30%; padding: 11px; white-space: nowrap;"  href="index.php" >Log Out</a> 
                 </li>
-            <!-- </form>            -->
+                </form>
         </ul>
         </div>
 </nav>

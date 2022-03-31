@@ -83,6 +83,19 @@ $jobs = $statement->fetchAll();
         border-bottom: 2px solid rgb(60,60,70);
         
     }
+
+	/* For navbar */        
+	/* For Logo border*/
+	.d-inline-block-align-top {border-radius: 5px;}
+	/* For DownMenu */
+	.navbar-text{
+			color: yellow;
+		}
+	.navbar-nav{
+		position:absolute;
+		right: 50px;
+	}
+
 </style>	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
@@ -162,19 +175,22 @@ $jobs = $statement->fetchAll();
 </head>
 <body>
 
+<!-- Nav bar -->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <!-- Brand LOGO -->
         <a class="navbar-brand">
             <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
         </a>
-        <span class="navbar-text" style="white-space: nowrap">
+        <span class="navbar-text">
             <?php
                 echo("You are signed in as: &nbsp;" . $user->username . "&nbsp &nbsp");
             ?>
         </span>   
-		<ul class="navbar-nav" style="margin-left: 10%;">
-		<!-- Dropdown -->
-		<li class="nav-item dropdown">
+
+        <ul class="navbar-nav" >
+        <!-- <div class="d-flex flex-row-reverse"> -->
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Choose Jobs</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">
@@ -186,16 +202,32 @@ $jobs = $statement->fetchAll();
                                     ?>
                         </a>
                     </div>
-        </li>
-    
-		<!-- Links -->
-			<a class="nav-link" href="EmployerSwipeScreen.php" style="margin-left:5%; white-space: nowrap;">Home</a>
-			<a class="nav-link" href="ApplicantList.php" style="margin-left:5%; white-space: nowrap;">Applicant List</a>
-			<a class="nav-link" href="JobCreation.php" style="margin-left:5%; white-space: nowrap;;">Job Creation</a>
-			<a class="nav-link" href="CompanyAddUsers.php" style="margin-left:5%; white-space: nowrap;">Add Users</a>
-			<a class="btn-danger" style="margin-left: 70%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>            
+            </li>    
+            <!-- Links -->
+            
+            <form class="form-inline">
+            
+            <li class="nav-item">
+            <a class="nav-link" href="EmployerSwipeScreen.php" style="margin-left:5%; white-space: nowrap;">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="JobCreation.php" style="margin-left:5%; white-space: nowrap;;">Job Creation</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="ApplicantList.php" style="margin-left:5%; white-space: nowrap;">Applicant List</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="CompanyAddUsers.php" style="margin-left:5%; white-space: nowrap;">Add Users</a>
+            </li>
+            <li class="nav-item">
+            <a class="btn-danger" style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>     
+            </li> 
+                 
+            </form>
+            <!-- </div> -->
         </ul>
-    </nav>
+        
+        </nav>
 
 
 	<div class="container-fluid" style="margin-bottom: 100px">

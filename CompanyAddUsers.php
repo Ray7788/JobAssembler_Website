@@ -121,11 +121,6 @@ $noOfUsers = count($usersApplied);
             margin-left: 20%;
             /* background:white; */
             }
-
-            .d-flex flex-column{
-                 
-
-            }
             /* .item1{
             grid-area: header;
             align-content: center;
@@ -190,18 +185,23 @@ $noOfUsers = count($usersApplied);
             } */
 
 
-            <h1>text-align: center; margin-top:10%</h1>
-
-            
+            /* For navbar */        
             /* For Logo border*/
             .d-inline-block-align-top {border-radius: 5px;}
+            /* For DownMenu */
+            .navbar-text{
+                    color: yellow;
+                }
+            .navbar-nav{
+                position:absolute;
+                right: 50px;
+            }
 
         </style>
 
     </head>
     <body>
-        <!-- Nav bar -->
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <!-- Brand LOGO -->
         <a class="navbar-brand">
             <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
@@ -211,15 +211,32 @@ $noOfUsers = count($usersApplied);
                 echo("You are signed in as: &nbsp;" . $user->username . "&nbsp &nbsp");
             ?>
         </span>   
-        <ul class="navbar-nav" style="margin-left: 10%;">
-                <!-- Links -->
-                <a class="nav-link" href="EmployerSwipeScreen.php" style="margin-left:5%; white-space: nowrap;">Home</a>
-                <a class="nav-link" href="JobSkills.php" style="margin-left:5%; white-space: nowrap;">Job Skills</a>
-                <a class="nav-link" href="JobCreation.php" style="margin-left:5%; white-space: nowrap;;">Job Creation</a>
-                <a class="nav-link" href="ApplicantList.php" style="margin-left:5%; white-space: nowrap;">Applicant List</a>
-                <a class="btn-danger" style="margin-left: 60%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>            
+
+        <ul class="navbar-nav" >
+            
+            <form class="form-inline">
+            
+            <li class="nav-item">
+            <a class="nav-link" href="EmployerSwipeScreen.php" style="margin-left:5%; white-space: nowrap;">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="JobSkills.php" style="margin-left:5%; white-space: nowrap;">Job Skills</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="JobCreation.php" style="margin-left:5%; white-space: nowrap;;">Job Creation</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="ApplicantList.php" style="margin-left:5%; white-space: nowrap;">Applicant List</a>
+            </li>
+            <li class="nav-item">
+            <a class="btn-danger" style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>     
+            </li> 
+                 
+            </form>
+            <!-- </div> -->
         </ul>
-</nav>
+        
+    </nav>
 
         <!-- Main part -->
         <div class="container">

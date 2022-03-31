@@ -57,8 +57,7 @@ $jobs = $statement->fetchAll();
     <title>Job Applicants - Job Assembler</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -171,10 +170,21 @@ $jobs = $statement->fetchAll();
             margin-top: 100px;
             margin-bottom: 50px;
         }
+
+        /* For navbar */        
+        /* For Logo border*/
+        .d-inline-block-align-top {border-radius: 5px;}
+        /* For DownMenu */
+        .navbar-text{
+                color: yellow;
+            }
+        .navbar-nav{
+            position:absolute;
+            right: 50px;
+        }
     </style>
 </head>
 <body>
-  <!-- Nav bar -->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <!-- Brand LOGO -->
         <a class="navbar-brand">
@@ -185,15 +195,32 @@ $jobs = $statement->fetchAll();
                 echo("You are signed in as: &nbsp;" . $user->username . "&nbsp &nbsp");
             ?>
         </span>   
-        <ul class="navbar-nav" style="margin-left: 10%;"> 
+
+        <ul class="navbar-nav" >    
             <!-- Links -->
-                <a class="nav-link" href="EmployerSwipeScreen.php" style="margin-left:5%; white-space: nowrap;">Home</a>
-                <a class="nav-link" href="JobSkills.php" style="margin-left:5%; white-space: nowrap;">Job Skills</a>
-                <a class="nav-link" href="JobCreation.php" style="margin-left:5%; white-space: nowrap;;">Job Creation</a>
-                <a class="nav-link" href="CompanyAddUsers.php" style="margin-left:5%; white-space: nowrap;">Add Users</a>
-                <a class="btn-danger" style="margin-left: 90%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>
             
+            <form class="form-inline">
+            
+            <li class="nav-item">
+            <a class="nav-link" href="EmployerSwipeScreen.php" style="margin-left:5%; white-space: nowrap;">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="JobCreation.php" style="margin-left:5%; white-space: nowrap;;">Job Creation</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="JobSkills.php" style="margin-left:5%; white-space: nowrap;">Job Skills</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="CompanyAddUsers.php" style="margin-left:5%; white-space: nowrap;">Add Users</a>
+            </li>
+            <li class="nav-item">
+            <a class="btn-danger" style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>     
+            </li> 
+                 
+            </form>
+            <!-- </div> -->
         </ul>
+        
         </nav>
 
 
