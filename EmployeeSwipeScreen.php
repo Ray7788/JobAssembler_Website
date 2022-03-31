@@ -418,7 +418,7 @@ usort($jobs, 'compare');
 
                 <form class="form-inline">
                     <li class="nav-item  active">
-                    <a class="nav-link"  href="userSkills.php">Employee Skills</a>
+                    <a class="nav-link"  href="userSkills.php">My Skills</a>
                     </li>
                     <li class="nav-item  active">
                     <a class="nav-link" href="EmployeeForm.php">Edit Details</a>

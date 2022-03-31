@@ -229,7 +229,7 @@ $jobs = $statement->fetchAll();
             <a class="nav-link" href="EmployeeSwipeScreen.php">Home</a>
             </li>
             <li class="nav-item  active">
-            <a class="nav-link"  href="userSkills.php">Employee Skills</a>
+            <a class="nav-link"  href="userSkills.php">My Skills</a>
             </li>
             <li class="nav-item  active">
             <a class="nav-link" href="EmployeeForm.php">Edit Details</a>
