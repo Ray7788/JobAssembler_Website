@@ -28,7 +28,10 @@ $user->get_user();
     body {
         display: flex;
         justify-content: center;
-        background-image: linear-gradient(to left, #e1eec3, #f05053);
+        background: url("Images/pedro-lastra-Nyvq2juw4_o-unsplash.jpg") no-repeat
+            center fixed;
+        background-size: 100%;
+		
 
     }
     .container-fluid{

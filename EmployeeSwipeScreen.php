@@ -194,7 +194,8 @@ usort($jobs, 'compare');
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(45deg, #C7F5FE 10%, #C7F5FE 40%, #FCC8F8 40%, #FCC8F8 60%, #EAB4F8 60%, #EAB4F8 65%, #F3F798 65%, #F3F798 90%);           
+            background-image: url("Images/pedro-lastra-Nyvq2juw4_o-unsplash.jpg");
+            background-size: 100%;
             /* background: linear-gradient(to left, #e1eec3, #f05053); */
             overflow: hidden;
             }

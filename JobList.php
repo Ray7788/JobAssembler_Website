@@ -175,7 +175,8 @@ $jobs = $statement->fetchAll();
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: linear-gradient(45deg, #d299c2, #fef9d7);
+            background: url("Images/pedro-lastra-Nyvq2juw4_o-unsplash.jpg") no-repeat
+            center fixed;
             }
         .container{
             background: white;
