@@ -146,7 +146,7 @@ $user->get_user();
 	</a>
 	<span class="navbar-text  active" style="color: white;">
 	<?php
-		echo("You are signed in as: &nbsp;" . $user->username);
+		echo("You are signed in as:&nbsp;" . $user->username);
 	?>
 	</span> 
 
