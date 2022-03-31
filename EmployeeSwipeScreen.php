@@ -84,12 +84,13 @@ for($x=0;$x<count($jobs);$x++){
     array_push($scores, $count);
     array_push($jobs[$x], $count);
 }
-//Has the index of array 'scores' correspond to the array 'jobs'.
-//Now need to sort the job array based upon this.
 //$jobs[12] has the score
-//Need to add 'if not remote'
 //Latitude and longitude for jobs at 4, 5 respectively.
 //Get distance for each job
+
+//If the job hunter is remote and the job is remote then add 10 points
+//If the job hunter is remote and the job is not remote then add points based on distance
+//If the job hunter is not remote then just add points based on distance.
 
 //I've made is so the distance score is still added if the user is remote, but only if the job isn't remote.
 if($user->remote){
@@ -117,9 +118,6 @@ if((!$data[0][0] == null) && (!$data[0][1] == null)){
         if((!$jobLat == null) && (!$jobLong == null) && ($isRemote == 0)){
             $distance = vincentyGreatCircleDistance($latitude1, $longitude1, $jobLat, $jobLong);
             $distance = round($distance);
-            if($isRemote == 1){
-                $distance = 60000;  //So nothing is benefitted from the job being remote.
-            }
             //Add 5 points for 10km, ... , 1 point for less than 50km
             $distanceScore = 0;
             if($distance <= 50000){
