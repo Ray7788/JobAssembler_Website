@@ -135,7 +135,7 @@ class User
         ]);
     }
 
-    public function update_property(string $property, mixed $value): void {
+    public function update_property(string $property, $value): void {
         if (!isset($this->user_id)) {
             return;
         }
