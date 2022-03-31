@@ -43,7 +43,7 @@ for($x=0; $x<count($jobs); $x++){
 $jobString = substr($jobString, 0, -1); //Removes the last comma
 
 
-$query = "SELECT DISTINCT UserAccounts.UserID, UserAccounts.Forename, UserAccounts.Surname, UserAccounts.Biography, UserJobs.JobID, UserAccounts.Latitude, UserAccounts.Longitude, JobPostings.Latitude, JobPostings.Longitude FROM ((UserAccounts 
+$query = "SELECT DISTINCT UserAccounts.UserID, UserAccounts.Forename, UserAccounts.Surname, UserAccounts.Biography, UserJobs.JobID, UserAccounts.Latitude, UserAccounts.Longitude, JobPostings.Latitude, JobPostings.Longitude, UserAccounts.Remote, JobPostings.RemoteJob FROM ((UserAccounts 
 INNER JOIN UserJobs ON UserJobs.UserID = UserAccounts.UserID) 
 INNER JOIN JobPostings ON JobPostings.JobID = UserJobs.JobID) 
 WHERE UserJobs.UserAccepted = 1 AND UserJobs.CompanySeen = 0 AND JobPostings.CompanyID = ?";
@@ -51,6 +51,8 @@ WHERE UserJobs.UserAccepted = 1 AND UserJobs.CompanySeen = 0 AND JobPostings.Com
 $statement = $pdo->prepare($query);
 $statement->execute([$companyID]);
 $userAccounts = $statement->fetchAll(PDO::FETCH_NUM);
+
+//Score at 11
 
 function vincentyGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000){
     // convert from degrees to radians
@@ -81,8 +83,16 @@ for($x=0;$x<count($userAccounts);$x++){
     array_push($userAccounts[$x], $count);
 }
 
+//UserRemote at 9. JobRemote at 10.
+//If you're swiping for a job that is remote AND the user is remote then add 10 points.
+//If you're swiping for a job that is remote and the user is NOT remote then add points based off distance.
+//If you're swiping for a job that isn't remote then just add points based on distance for users that aren't remote.
+
 for($x=0; $x<count($userAccounts); $x++){
-    if((!$userAccounts[$x][5] == null) && (!$userAccounts[$x][6] == null) && (!$userAccounts[$x][7] == null) && (!$userAccounts[$x][8] == null)){
+    if(($userAccounts[$x][9] == 1) && ($userAccounts[$x][10] == 1)){
+        $userAccounts[$x][11] = $userAccounts[$x][11] + 10;
+    }
+    if((!$userAccounts[$x][5] == null) && (!$userAccounts[$x][6] == null) && (!$userAccounts[$x][7] == null) && (!$userAccounts[$x][8] == null) && ($userAccounts[$x][9] == 0)){
         $latitude1 = $userAccounts[$x][5];
         $longitude1 = $userAccounts[$x][6];
         $latitude2 = $userAccounts[$x][7];
@@ -108,15 +118,18 @@ for($x=0; $x<count($userAccounts); $x++){
         if($distance <= 10000){
             $distanceScore += 1;
         }
-        //Score is at index 9
-        $userAccounts[$x][9] = $userAccounts[$x][9] + $distanceScore;
+        //Score is at index 11
+        $userAccounts[$x][11] = $userAccounts[$x][11] + $distanceScore;
     }else{
         array_push($userAccounts[$x], 0);
     }
 }
+
+//Distance now at 12
+
 function compare($element1, $element2){
-    $acc1 = $element1[9];
-    $acc2 = $element2[9];
+    $acc1 = $element1[11];
+    $acc2 = $element2[11];
     return $acc2 - $acc1;
 }
 
@@ -317,12 +330,12 @@ usort($userAccounts, 'compare');
                 //When user presses the dropdown button and changes jobs, you want to change the jobs displayed
                 //Get array of jobs with jobID just selected.
                 for(let i=0; i<userAccounts.length;i++){
-                    console.log(userAccounts[i].join());
+                    //console.log(userAccounts[i].join());
                     //The userAccounts array will already be sorted into best first, 2ndbest second etc.
                     //So you can just go through it from the start and see which belongs to the job you've got selected.
                     if(userAccounts[i][4] == currentJobID){
                         //console.log(currentJobID);
-                        console.log(userAccounts[i].join());
+                        //console.log(userAccounts[i].join());
                         userAccountsForJob.push(userAccounts[i]);
                     }
                 }
@@ -341,15 +354,50 @@ usort($userAccounts, 'compare');
                 var forename = userAccountsForJob[userCounter][1];
                 var surname = userAccountsForJob[userCounter][2];
                 var biography = userAccountsForJob[userCounter][3];
-                
-                //Distance will be at userAccountsForJob[userCounter][10]
-                //Only do this stuff if the job is not remote!
-                var distance = userAccountsForJob[userCounter][10];
+                //Distance will be at userAccountsForJob[userCounter][12]
+                var distance = userAccountsForJob[userCounter][12];
                 distance = distance / 1000; //Convert into km
-                document.getElementById("card").innerHTML = ("Distance from Job: " + distance + "km<br>"
-                + "Forename: " + forename + " <br> "
-                + "Surname: " + surname + " <br> <br> "
-                + "Biography: " + "<br> <textarea columns=140 rows=4 readonly>" + biography + "</textarea><br>");
+                var isRemote = userAccountsForJob[userCounter][9];  //this is for if the EMPLOYEE is remote
+                var jobRemote = userAccountsForJob[userCounter][10];
+
+                if(isRemote == 1){
+                    document.getElementById("card").innerHTML = ("This user is remote.<br>"
+                    + "Forename: " + forename + " <br> "
+                    + "Surname: " + surname + " <br> <br> "
+                    + "Biography: " + "<br> <textarea columns=140 rows=4 readonly>" + biography + "</textarea><br>");
+                }else{
+                    if(jobRemote == 1){
+                        if(distance == 0){
+                            document.getElementById("card").innerHTML = ("Applicant is not remote and has not entered their location.<br>"
+                            + "Forename: " + forename + " <br> "
+                            + "Surname: " + surname + " <br> <br> "
+                            + "Biography: " + "<br> <textarea columns=140 rows=4 readonly>" + biography + "</textarea><br>");
+                        }else{
+                            //If job is remote but the user isn't, then say so.
+                            document.getElementById("card").innerHTML = ("Distance from Job: " + distance + "km - applicant is not remote<br>"
+                            + "Forename: " + forename + " <br> "
+                            + "Surname: " + surname + " <br> <br> "
+                            + "Biography: " + "<br> <textarea columns=140 rows=4 readonly>" + biography + "</textarea><br>");
+                        }
+                        
+                    }else{
+                        if(distance == 0){
+                            document.getElementById("card").innerHTML = ("This user has not entered their location.<br>"
+                            + "Forename: " + forename + " <br> "
+                            + "Surname: " + surname + " <br> <br> "
+                            + "Biography: " + "<br> <textarea columns=140 rows=4 readonly>" + biography + "</textarea><br>");
+                        }else{
+                            document.getElementById("card").innerHTML = ("Distance from Job: " + distance + "km<br>"
+                            + "Forename: " + forename + " <br> "
+                            + "Surname: " + surname + " <br> <br> "
+                            + "Biography: " + "<br> <textarea columns=140 rows=4 readonly>" + biography + "</textarea><br>");
+                        }
+                        
+                    }
+                }
+                
+                
+                
             }
 
             function buttonPressed(yesOrNo){
@@ -460,7 +508,7 @@ usort($userAccounts, 'compare');
         <script>
         document.getElementById("jobName").innerHTML = "<b>Would you like to accept this applicant for the job: " + currentJob + "?</b>";
         getRightJobs();
-        writeToCard();
+        //writeToCard();
         
         // Swipe cards
         const cardWrap = document.querySelector(".cards-wrap");
