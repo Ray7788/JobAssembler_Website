@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . "/prevent_direct_access.php");
+require_once(__DIR__ . "/database.php");
 
 class User
 {
