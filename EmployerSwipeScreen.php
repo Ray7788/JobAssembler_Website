@@ -436,7 +436,7 @@ usort($userAccounts, 'compare');
         </a>
         <span class="navbar-text">
             <?php
-                echo("You are signed in as: &nbsp;" . $user->username . "&nbsp &nbsp");
+                echo("You are signed in as:&nbsp;" . $user->username . "&nbsp &nbsp");
             ?>
         </span>   
 
