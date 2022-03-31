@@ -50,8 +50,7 @@ $user->get_user();
                                 contentType: false,
                                 processData: false,
                                 success: function(data){
-                                        alert("Successfully updated details.")
-                                        window.location.reload();
+                                        window.location = "main.php"
                                 },
                                 error: function(xhr){
                                     let response = xhr.responseJSON
