@@ -108,7 +108,7 @@ $noOfUsers = count($usersApplied);
                 background-size: cover;
             }
             
-            .container {
+            .container-fluid {
             position: absolute;
             top:20vh;
             left: 0;
@@ -121,30 +121,34 @@ $noOfUsers = count($usersApplied);
             margin-left: 20%;
             /* background:white; */
             }
-            /* .item1{
-            grid-area: header;
+
+            .d-flex flex-column{
+                display: flex;
+            }
+            .item1{
+/*             
             align-content: center;
-                text-align: center;
+                text-align: center; */
             }
 
             .item2{
-                grid-area: item2;
+                
             }
             .item3{
-                grid-area: item3; 
+                background: white;
                 align-content: center;
                 text-align: center;
-                vertical-align: center; 
+                /* vertical-align: center;  */
             }
             .item4{
-                grid-area: item4; 
+               
                 align-content: center;
                 text-align: center;
                 vertical-align: center;
-            } */
-
+            }
+/* ----------------------------------------------------------------------------------------------------------------- */
+/* search bar */
             input {
-            
             padding: 1rem 2rem;
             /* width: 600px; */
             outline: none;
@@ -167,7 +171,7 @@ $noOfUsers = count($usersApplied);
                 font-size: 1rem;
             }
 
-            /* .overlay {
+            .overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -182,25 +186,23 @@ $noOfUsers = count($usersApplied);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             pointer-events: auto;
-            } */
+            }
 
-
-            /* For navbar */        
-            /* For Logo border*/
-            .d-inline-block-align-top {border-radius: 5px;}
-            /* For DownMenu */
-            .navbar-text{
-                    color: yellow;
-                }
+/* ----------------------------------------------------------------------------------------------------------------- */
+            /* For navbar */   
             .navbar-nav{
                 position:absolute;
                 right: 50px;
-            }
+            }     
+            /* For Logo border*/
+            .d-inline-block-align-top {border-radius: 5px;}
 
         </style>
 
     </head>
     <body>
+    
+     <!-- For navbar -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <!-- Brand LOGO -->
         <a class="navbar-brand">
@@ -211,9 +213,8 @@ $noOfUsers = count($usersApplied);
                 echo("You are signed in as:&nbsp;" . $user->username . "&nbsp &nbsp");
             ?>
         </span>   
-
+    <!-- Links -->
         <ul class="navbar-nav" >
-            
             <form class="form-inline">
             
             <li class="nav-item">
@@ -233,27 +234,26 @@ $noOfUsers = count($usersApplied);
             </li> 
                  
             </form>
-            <!-- </div> -->
         </ul>
-        
     </nav>
 
         <!-- Main part -->
-        <div class="container">
+        <div class="container-fluid">
         <div class="d-flex flex-column">
 
         <div class="item1">
             <header>
             <h1>Add Users To Company</h1>
+            </header>
             <hr>
             <p>Please search for the account you're trying to add by </p>
             <p>their Username, Forename or Surname.</p>
-             </header>
+             
         </div>
             
         <div class="item2">
-            <form action="CompanyAddUsers.php" method="GET" name="searchForm" style="align-items: center;">
-                <table style=" margin-left: 5%; margin-top: 20px">
+            <form action="CompanyAddUsers.php" method="GET" name="searchForm" >
+                <table style=" margin-left: 5%; ">
                     <tr>
                         <td><input type="text" id="input1" name="txt" value="<?php echo isset($_GET['txt']) ? $_GET['txt'] : ''; ?>" placeholder="Enter account Username, Forename or Surname" /></td>
                         <td><input type="submit" id="input2" name="" value="Search" /></td>
@@ -290,7 +290,7 @@ $noOfUsers = count($usersApplied);
             ?>
 
         <div class="item4"> 
-                    <b><i><p id="errorMsg"></p></i></b>
+            <b><i><p id="errorMsg"></p></i></b>
         </div>
 
         <div class="overlay">
