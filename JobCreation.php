@@ -178,7 +178,7 @@ $user->get_user();
                 </li>
                 <form class="form-inline">
                 <li class="nav-item">
-                <a class="btn btn-danger" style="margin-left: 30%; padding: 11px; white-space: nowrap;"  href="index.php" >Log Out</a> 
+                <a class="btn btn-danger" style="margin-left: 30%; padding: 11px; white-space: nowrap;"  href="api/logout.php" >Log Out</a> 
                 </li>
                 </form>
         </ul>

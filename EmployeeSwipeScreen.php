@@ -454,7 +454,7 @@ usort($jobs, 'compare');
                     <a class="nav-link" href="JobList.php">Job List</a>
                     </li>
                     <li class="nav-item  active">
-                    <a class="btn-danger"  style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php">Log Out</a>
+                    <a class="btn-danger"  style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="api/logout.php">Log Out</a>
                     </li>
                 </form>
             </ul>
