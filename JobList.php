@@ -177,6 +177,23 @@ $jobs = $statement->fetchAll();
                     })
                 }
             )
+            $(".report").on("click", function (event) {
+                console.log(event)
+                let id = event.target.dataset["jobId"]
+                $.ajax({
+                        type:"POST",
+                        url:"api/report.php?JobID=" + id,
+                        success: function(data){
+                            if (data.hasOwnProperty("message")) {
+                                alert(data["message"]);
+                            }
+                        },
+                        error: function(xhr){
+                            alert("error\n" + xhr.responseJson);
+                        }
+                    })
+                }
+            )
         })
     </script>
 
@@ -306,7 +323,7 @@ $jobs = $statement->fetchAll();
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink<?=$num?>">
                             <button class="dropdown-item btn" data-toggle="modal" data-target="#jobDetailsModal" data-job-id="<?=$line["JobID"]?>">View details</button>
                             <button class="dropdown-item btn" data-toggle="modal" data-target="#jobUpdateModal" data-job-id="<?=$line["JobID"]?>">Change acceptance</button>
-                            <button class="dropdown-item btn btn-danger" href="">Report</button>
+                            <button class="dropdown-item btn btn-danger report" data-job-id="<?=$line["JobID"]?>">Report</button>
                         </div>
                     </div>
                 </td>
