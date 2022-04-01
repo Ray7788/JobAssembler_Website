@@ -79,7 +79,7 @@
             position: relative;
             width: 100vw;
             height: 120vh;
-            background: url(Images/gratisography-light-cloud-wisp-free-stock-photo.jpg) no-repeat
+            background: url(Images/pexels-cottonbro-7014764.jpg) no-repeat
             center fixed;
             background-size: cover;
             animation: gradient-move 30s ease alternate infinite;
@@ -95,22 +95,11 @@
             center fixed;
             background-size: cover;
             animation: gradient-move 20s ease alternate infinite;
-        }
-    
-        /* 3rd page */
-        .page3 {
-            position: relative;
-            width: 100vw;
-            height: 120vh;
-            border-width:0px ;
-            background: url(Images/pexels-pixabay-60504-F.jpg) no-repeat
-            center fixed;
-            background-size: cover;
-            animation: gradient-move 20s ease alternate infinite;
+            filter:brightness(90%)
         }
 
-        /* 4th page */
-        .page4 {
+        /* 3rd page */
+        .page3 {
             position: relative;
             width: 100vw;
             height: 120vh;
@@ -171,7 +160,7 @@
     <div class="container-fluid">
             <div class="page2">
             <br>
-            <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color:white;"> <b>Direct access to Employees and Employers </b></h1>
+            <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color:white; filter: brightness(100%);"> <b>Direct access to Employees and Employers </b></h1>
             <br>
             <h1 class="display-6" style="color:white;">Ideal for New Graduates!</h1>
             <hr class="my-4">
@@ -184,22 +173,7 @@
 
     <!-- page3 -->
     <div class="container-fluid">
-            <div class="page3">
-            <br>
-            <h1 class="display-4" style="vertical-align:-webkit-baseline-middle; color:white;"> <b>Direct access to Employees and Employers </b></h1>
-            <br>
-            <h1 class="display-6" style="color:white;">Ideal for New Graduates!</h1>
-            <hr class="my-4">
-            <br>
-            <p class="lead" style="color:white;"><b>Easier and more engaging than the Competition</b></p>
-            <br>
-            <p class="lead" style="color:white;"><b>DON'T MISS OUT, JOIN NOW!</b></p>
-        </div>
-    </div>
-    
-    <!-- page4 -->
-    <div class="container-fluid">
-            <div class="page4" style="vertical-align:center; padding:20px">
+            <div class="page3" style="vertical-align:center; padding:20px">
 
             <h1 class="display-4" style="color: #000000;"><b>Our Newest Jobs:</b></h1>
 
