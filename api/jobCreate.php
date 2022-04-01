@@ -73,6 +73,6 @@ try {
     }
     
 }
-catch (Exception $exception) {
+catch (Throwable $exception) {
     ApiResponseGenerator::generate_error_json(500, "There was an error with the database. {$exception->getMessage()} Please try again later.");
 }

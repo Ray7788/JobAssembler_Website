@@ -54,6 +54,6 @@ try {
         $userID = User::get_user_id($username);
         ApiResponseGenerator::generate_response_json(201, ["message" => "Successfully created user.", "id" => $userID]);
     }
-} catch (Exception $exception) {
+} catch (Throwable $exception) {
     ApiResponseGenerator::generate_error_json(500, "There was an error with the database. {$exception->getMessage()} Please try again later.");
 }

@@ -17,7 +17,7 @@ if (isset($_REQUEST["page"])) {
     try {
         $page = intval($_REQUEST["page"]);
     }
-    catch (Exception $e) {
+    catch (Throwable $e) {
         $page = 1;
     }
 }
@@ -109,6 +109,11 @@ $jobs = $statement->fetchAll();
                             marker.setLatLng({lat: data["Latitude"], lng: data["Longitude"]}).bindPopup(`<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(data["Latitude"] + "," + data["Longitude"])}">Latitude: ${data["Latitude"]}, Longitude: ${data["Longitude"]}</a>`).addTo(map);
                         } else {
                             $("#mapSection").hide();
+                        }
+                        if (data["Salary"] == "" || data["Salary"] == null) {
+                            $("#jobDetailsSalary").text("0");
+                        } else {
+                            $("#jobDetailsSalary").text(data["Salary"]);
                         }
                         console.log(data);
                     },
@@ -336,6 +341,7 @@ $jobs = $statement->fetchAll();
                 </div>
                 <div class="modal-body">
                     <p id="jobDetailsText" style="word-break: break-word;"></p>
+                    <p style="word-wrap: break-word"><span style="font-weight: bold">Monthly Salary:</span> £<a id="jobDetailsSalary">0</a></p>
                 </div>
                 <div class="modal-body" id="mapSection" style="border-top: 1px solid #e9ecef">
                     <div id="map" style="height: 200px;"></div>

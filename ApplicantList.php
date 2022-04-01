@@ -20,7 +20,7 @@ if (isset($_REQUEST["page"])) {
     try {
         $page = intval($_REQUEST["page"]);
     }
-    catch (Exception $e) {
+    catch (Throwable $e) {
         $page = 1;
     }
 }
@@ -213,6 +213,9 @@ $jobs = $statement->fetchAll();
             </li>
             <li class="nav-item">
             <a class="nav-link" href="JobCreation.php" style="margin-left:5%; white-space: nowrap;;">Job Creation</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="CompanyJobs.php" style="margin-left:5%; white-space: nowrap;;">Job Postings</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="JobSkills.php" style="margin-left:5%; white-space: nowrap;">Job Skills</a>
