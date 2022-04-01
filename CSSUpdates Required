@@ -1,7 +1,5 @@
 Updates required:
 
-    Resize Employee Swipe Screen
-    Update background for Company Add Users
     Style CompanyDetails    and JoinCompany.php ; do not add to navbar
 
 
@@ -12,7 +10,6 @@ Updates required:
         remove page 3
 
     JobSkills edit soft skills layout
-    Job Creation remove back button on top
 
     UserSkills edit soft skills layout
     Employee Form Update BUttons
