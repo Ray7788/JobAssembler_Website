@@ -102,11 +102,11 @@ $user->get_user();
         justify-content: center;
         background: url("Images/pedro-lastra-Nyvq2juw4_o-unsplash.jpg") no-repeat
             center fixed;
-
     }
+
     .container-fluid{
         background-color: #fff;
-        width: 50%;
+        width: 40%;
         height: 80%;
         position: relative;
         display: flex;
@@ -119,15 +119,12 @@ $user->get_user();
 
 	/* For navbar */        
         /* For Logo border*/
-        .d-inline-block-align-top {border-radius: 5px;}
-        /* For DownMenu */
-        .navbar-text{
-                color: yellow;
-            }
-       .navbar-nav{
-           position:absolute;
-           right: 50px;
-       } 
+    .d-inline-block-align-top {border-radius: 5px;}
+
+    .navbar-nav{
+        position:absolute;
+        right: 50px;
+    } 
 
 </style>
 
@@ -170,7 +167,6 @@ $user->get_user();
 
 <div class="container-fluid">
 
-
     <form id="employeeForm" name="employeeForm" enctype="multipart/form-data" action="api/EmployeeRegister.php" method="post" style="padding: 5%;">
         <h2>Edit information</h2>
         <hr>
@@ -181,7 +177,7 @@ $user->get_user();
         <textarea type="text" name="biography" placeholder="Enter any relevant information about yourself" id="biography" class="inputBox" value="<?=$user->biography?>"></textarea>
         <br><br>
         <label for="profilePic">Profile Pic: </label>
-        <input type="file" id="profilePic" name="profilePic" accept="image/*">
+        <input type="file" id="profilePic" name="profilePic" class="btn btn-info" accept="image/*">
         <br><br>
         <div id="map" style="height: 200px"></div>
         <button id="resetMap" class="btn btn-danger btn-sm" style="margin: 10px 0px;" type="button">Remove location</button>
@@ -195,8 +191,10 @@ $user->get_user();
         </div>
         <!-- button -->
         <p>By Creating an account you agree to our <a href="PrivacyPolicy.html">Terms and Conditions</a><p>
-        <button type="button" onclick="window.location.href='main.php';" class="button">Cancel</button>
-        <input type="submit" value="Confirm" class="button">
+        <div class="btn-group">
+        <button type="button" onclick="window.location.href='main.php';" class="btn btn-danger">Cancel</button>
+        <input type="submit" value="Confirm" class="btn btn-primary">
+        </div>
     </form>
 </div>
 </body>
