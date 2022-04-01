@@ -358,7 +358,7 @@ $jobs = $statement->fetchAll();
                 </div>
                 <div class="modal-body">
                     <p id="jobDetailsText" style="word-break: break-word;"></p>
-                    <p style="word-wrap: break-word"><span style="font-weight: bold">Monthly Salary:</span> £<a id="jobDetailsSalary">0</a></p>
+                    <p style="word-wrap: break-word"><span style="font-weight: bold">Yearly Salary:</span> £<a id="jobDetailsSalary">0</a></p>
                 </div>
                 <div class="modal-body" id="mapSection" style="border-top: 1px solid #e9ecef">
                     <div id="map" style="height: 200px;"></div>
