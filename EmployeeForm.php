@@ -174,7 +174,7 @@ $user->get_user();
         <input type="text" name="email" placeholder="Enter Email" id="email" class="inputBox" value="<?=$user->email?>">
         <br><br>
         <label for="biography">About you: </label>
-        <textarea type="text" name="biography" placeholder="Enter any relevant information about yourself" id="biography" class="inputBox" value="<?=$user->biography?>"></textarea>
+        <textarea type="text" name="biography" placeholder="Enter any relevant information about yourself" id="biography" class="inputBox"><?=$user->biography?></textarea>
         <br><br>
         <label for="profilePic">Profile Pic: </label>
         <input type="file" id="profilePic" name="profilePic" class="btn btn-info" accept="image/*">
