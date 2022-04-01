@@ -86,6 +86,13 @@ $jobs = $statement->fetchAll();
                         }
                         $("#userDetailsName").text(data["Forename"] + " " + data["Surname"]);
                         $("#userDetailsDescription").text(data["Biography"]);
+                        if (data["Email"] == "" || data["Email"] == null) {
+                            $("#userDetailsEmail").attr("href", "#");
+                            $("#userDetailsEmail").text("Not Given");
+                        } else {
+                            $("#userDetailsEmail").attr("href", "mailto:" + data["Email"]);
+                            $("#userDetailsEmail").text(data["Email"]);
+                        }
                         /**(data["Latitude"] != null && data["Longitude"] != null) {
                             $("#mapSection").show();
                             map.setView({lat: data["Latitude"], lng: data["Longitude"]}, 17);
@@ -297,6 +304,7 @@ $jobs = $statement->fetchAll();
                     <div>
                         <h6 id="userDetailsName">Unknown</h6>
                         <p id="userDetailsDescription">Unknown</p>
+                        <p style="word-wrap: break-word"><span style="font-weight: bold">Email Address:</span> <a id="userDetailsEmail">Unknown</a></p>
                     </div>
                 </div>
                 <div class="modal-body" id="mapSection" style="border-top: 1px solid #e9ecef" hidden>
