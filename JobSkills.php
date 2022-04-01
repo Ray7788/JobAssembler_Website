@@ -217,6 +217,9 @@ $jobs = $statement->fetchAll();
             <a class="nav-link" href="ApplicantList.php" style="margin-left:5%; white-space: nowrap;">Applicant List</a>
             </li>
             <li class="nav-item">
+            <a class="nav-link" href="CompanyJobs.php" style="margin-left:5%; white-space: nowrap;;">Job Postings</a>
+            </li>
+            <li class="nav-item">
             <a class="nav-link" href="CompanyAddUsers.php" style="margin-left:5%; white-space: nowrap;">Add Users</a>
             </li>
             <li class="nav-item">

@@ -41,6 +41,16 @@ class Job
 
     }
 
+    public function delete_job(int $id = null): bool {
+        if (isset($id)){
+            $this->id = $id;
+        }
+        $pdo = Database::connect();
+        $query = "DELETE FROM JobPostings WHERE JobID = ?";
+        $statement = $pdo->prepare($query);
+        return $statement->execute([$this->id]);
+    }
+
     public function get_job(int $id = null): array {
         if (isset($id)){
             $this->id = $id;

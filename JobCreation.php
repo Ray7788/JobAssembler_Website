@@ -171,6 +171,9 @@ $user->get_user();
                 <a class="nav-link" href="ApplicantList.php"  >Applicant List</a>
                 </li>
                 <li class="nav-item">
+                <a class="nav-link" href="CompanyJobs.php" style="margin-left:5%; white-space: nowrap;;">Job Postings</a>
+                </li>
+                <li class="nav-item">
                 <a class="nav-link" href="CompanyAddUsers.php"  >Add Users</a>
                 </li>
                 <form class="form-inline">

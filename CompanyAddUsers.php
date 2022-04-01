@@ -240,6 +240,9 @@ $noOfUsers = count($usersApplied);
             <a class="nav-link" href="ApplicantList.php" style="margin-left:5%; white-space: nowrap;">Applicant List</a>
             </li>
             <li class="nav-item">
+            <a class="nav-link" href="CompanyJobs.php" style="margin-left:5%; white-space: nowrap;;">Job Postings</a>
+            </li>
+            <li class="nav-item">
             <a class="btn-danger" style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>     
             </li> 
                  
