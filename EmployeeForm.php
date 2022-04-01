@@ -38,10 +38,6 @@ $user->get_user();
         $(function(){
                 $("#employeeForm").on("submit", function(event){
                         event.preventDefault();
-                        /**let formData = new FormData();
-                        formData.append("email", $("#email").val());
-                        formData.append("biography", $("#biography").val());
-                        formData.append("profilePic", )**/
                         $.ajax({
                                 type:"POST",
                                 url:"api/EmployeeRegister.php",
@@ -69,7 +65,11 @@ $user->get_user();
         var map;
         var marker = L.marker({lat: <?=$user->latitude?>, lng: <?=$user->longitude?>});
         $(function() {
+            <?php if ($user->latitude != 0 && $user->longitude != 0):?>
+            map = L.map("map").setView({lat: <?=$user->latitude?>, lng: <?=$user->longitude?>}, 13);
+            <?php else:?>
             map = L.map("map").setView({lat: 53.4808, lng: -2.2426}, 13);
+            <?php endif;?>
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
