@@ -1,10 +1,9 @@
 Updates required:
 
-    Update LOGOUT API for all pages
-    Make Employer Swipe Screen Fit
     Resize Employee Swipe Screen
     Update background for Company Add Users
-    Ask what companydetails.php and joincompany.php are
+    Style CompanyDetails    and JoinCompany.php ; do not add to navbar
+
 
     Pick GLobal Backgrounds for site/implement 
     Index Updates:

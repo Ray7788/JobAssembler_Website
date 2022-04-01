@@ -152,16 +152,14 @@ usort($userAccounts, 'compare');
 
         <style type="text/css">
             body {
-            width: 100vw;
+            width: 90%;
 			height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            /* background: linear-gradient(to left, #f9f586, #ace0f9); no-repeat*/
-            background: linear-gradient(288deg, #FFB6B9 0%, #FFB6B9 35%, #FAE3D9 calc(35% + 1px), #FAE3D9 45%, #BBDED6 calc(45% + 1px), #BBDED6 65%, #61C0BF calc(65% + 1px), #61C0BF 100%)  no-repeat ;
-            /* background-repeat: repeat-y;  */
-            overflow: hidden;
-            }
+            background: linear-gradient(288deg, #FFB6B9 0%, #FFB6B9 35%, #FAE3D9 calc(35% + 1px), #FAE3D9 45%, #BBDED6 calc(45% + 1px), #BBDED6 65%, #61C0BF calc(65% + 1px), #61C0BF 100%) ;
+            overflow-x: hidden;
+        }
 
             .container{
             width: 85vw;
@@ -188,7 +186,7 @@ usort($userAccounts, 'compare');
             .card {
                 border-radius: 15px;
                 width: 800px;
-                height: 600px;
+                height: 700px;
                 padding: 50px 30px;
                 background: #ffffff;
                 box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
