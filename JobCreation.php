@@ -191,7 +191,6 @@ $user->get_user();
         <form name="jobCreateForm" id="jobCreateForm">
             <p>
             <!-- button -->
-            <<a class="btn" href="EmployerSwipeScreen.php">Back</a>
             <h1 class="display-1">Enter Job Detail</h1>
             <br>
             <h3 class="d">Job Title<br></h3>

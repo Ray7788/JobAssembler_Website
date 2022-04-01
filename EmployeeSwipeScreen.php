@@ -188,22 +188,22 @@ usort($jobs, 'compare');
 
         <style type="text/css">
             body {
-            width: 100vw;
+            width: 90%;
 			height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             background-image: url("Images/pedro-lastra-Nyvq2juw4_o-unsplash.jpg");
-            background-size: 100%;
-            /* background: linear-gradient(to left, #e1eec3, #f05053); */
-            overflow: hidden;
+            background-size: 190%;
+            overflow-x: hidden;
+            background-repeat: no-repeat;
             }
 
             .container{
             width: 85vw;
             height: 90vh;
             position: relative;  
-            margin: auto; 
+            margin: 10%; 
             justify-content: center;
             align-items: center;
             display: flex;
@@ -213,8 +213,7 @@ usort($jobs, 'compare');
 		.cards-wrap {
             border-radius: 15px;
             width: 950px;
-			height: 1000px;
-			height: 1100px;
+			height: 1500px;
 			margin: auto;
 			perspective: 100px;
 			perspective-origin: 50% 90%;
@@ -222,13 +221,14 @@ usort($jobs, 'compare');
 		.card {
             border-radius: 15px;
 			width: 800px;
-            height: 650px;
+            height: 720px;
 			padding: 50px 30px;
 			background: #ffffff;
 			box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 			position: absolute;
 			transform-origin: 50% 50%;
 			transition: all 0.8s;
+            
 		}
 		.card.first {
 			transform: translate3d(0, 0, 0px);
@@ -264,7 +264,7 @@ usort($jobs, 'compare');
 			font-size: 20px;
 			font-weight: 400;
 			margin-bottom: 20px;
-			margin-top: 0;
+			margin-top: 10px;
 		}
 
 /* ----------------------------------------------------------------------------------------------------------------- */
