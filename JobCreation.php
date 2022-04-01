@@ -92,8 +92,9 @@ $user->get_user();
     body {
         display: flex;
         justify-content: center;
-        background-image: linear-gradient(to left, #e1eec3, #f05053);
-    }
+        background-image: url("Images/pexels-burst-374870.jpg");
+		background-repeat:repeat-x;
+        }
     .container-fluid{
         background-color: #fff;
         width: 550px;

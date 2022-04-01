@@ -169,8 +169,10 @@ $jobs = $statement->fetchAll();
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: linear-gradient(to left, #e1eec3, #f05053);
-        }
+            background-image: url("Images/pexels-burst-374870.jpg");
+		    background-repeat:repeat-x;
+            }
+
         .container{
             background: white;
             position:relative;
@@ -181,10 +183,7 @@ $jobs = $statement->fetchAll();
         /* For navbar */        
         /* For Logo border*/
         .d-inline-block-align-top {border-radius: 5px;}
-        /* For DownMenu */
-        .navbar-text{
-                color: yellow;
-            }
+       
         .navbar-nav{
             position:absolute;
             right: 50px;
