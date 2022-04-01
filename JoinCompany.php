@@ -13,6 +13,9 @@ if(!$user->is_authenticated()){
     die(0);
 }
 $user->get_user();
+if ($user->company_id != 0) {
+    header("Location: main.php");
+}
 
 //Get the search entry
 $txt = isset($_GET['txt']) ? $_GET['txt'] : '';
