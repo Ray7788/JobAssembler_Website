@@ -39,28 +39,32 @@ $jobs = $statement->fetchAll();
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Bootstrap CSS -->
+	<!-- Bootstrap CSS 4.6.1 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Job Skills Form</title>
+	<title>Job Skills Form - JobAssembler</title>
 	<style>
     body {
         display: flex;
         justify-content: center;
-        background-image: linear-gradient(to left, #e1eec3, #f05053);
+		background-image: url("Images/pexels-burst-374870.jpg");
+		background-repeat:repeat-x;
+        /* background-image: linear-gradient(to left, #e1eec3, #f05053); */
 
     }
+
     .container-fluid{
         background-color: #fff;
-        width: 650px;
-        height: 1700px;
+        width: 40%;
+        height: 90%;
         position: relative;
         display: flex;
         border-radius: 20px;
         justify-content: center;
         align-items: center;
-        top: 50px;
+        margin-top: 5%;
     }
+
     .b{
         width: 500px;
         overflow: hidden;
@@ -176,7 +180,7 @@ $jobs = $statement->fetchAll();
 <body>
 
 <!-- Nav bar -->
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <!-- Brand LOGO -->
         <a class="navbar-brand">
             <img src="Images/Logo1.png" width="30" height="30" class="d-inline-block-align-top" alt="Logo";>
@@ -202,9 +206,9 @@ $jobs = $statement->fetchAll();
                                     ?>
                         </a>
                     </div>
-            </li>    
+            </li> 
+
             <!-- Links -->
-            
             <form class="form-inline">
             
             <li class="nav-item">
@@ -227,20 +231,19 @@ $jobs = $statement->fetchAll();
             </li> 
                  
             </form>
-            <!-- </div> -->
         </ul>
         
-        </nav>
+    </nav>
 
 
 	<div class="container-fluid" style="margin-bottom: 100px">
     <div class="b">
 
 <form id="userSkillsForm" name="UserSkills">
-	<h1 class="display-1">Job Skills Form</h1>
+	<h1 class="display-1" style="margin-top: 20px">Job Skills Form</h1>
     <br>
-    <p id="jobName"></p>
-    <br>
+    <p id="jobName" style="color: blue"></p>
+    <!-- <br> -->
 	<h5 class="d" >Please be as precise as possible to make sure you see the most suitable candidates. <br></h5>
 	<hr>
     <h2>Programming languages experience: </h2>
@@ -369,8 +372,9 @@ $jobs = $statement->fetchAll();
 	<label for="decisiveness">Decisiveness: </label>
 	<input type="checkbox" name="decisiveness" id="soft7" value="decisiveness">
 	<br><hr>
-     <button type="button" onclick="window.location.href='EmployerSwipeScreen.php';" class="button">Cancel</button>
-     <input type="submit" value="Submit" class="button">
+	<input type="submit" value="Submit" class="btn btn-primary btn-block">
+	<!-- <br> -->
+    <button type="button" onclick="window.location.href='EmployerSwipeScreen.php';" class="btn btn-secondary btn-block">Cancel</button>
 	</form>
     </div>
     </div>
