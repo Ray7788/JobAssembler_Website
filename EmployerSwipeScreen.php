@@ -28,7 +28,7 @@ $jobs = $statement->fetchAll();
 
 if(count($jobs) == 0){
     //If they have no jobs, send then to create job screen.
-    header("Location: /JobCreation.php");
+    header("Location: JobCreation.php");
     die(0);
 }
 $jobID = $jobs[0][0];
