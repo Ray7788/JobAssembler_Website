@@ -56,19 +56,21 @@ $noOfCompanies = count($companies);
 
         .container-fluid{
                 
-                position: relative;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin: 5%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5%;
         }
 
         .b{
             background-color: #fff;
             font-family:"Helvetica";
-            padding: 10%;
+            padding: 7%;
+            border-radius: 80px;
 
-            }
+        }
+
         </style>
         <script>
             var userID = <?php echo($userID); ?>;
@@ -101,9 +103,11 @@ $noOfCompanies = count($companies);
     
     <body>
     <div class="container-fluid">
-    <div class="b">  
-
-        <form action="JoinCompany.php" method="GET" name="searchForm" class="form-inline">
+    <div class="b">
+        
+        <h1 style="text-align:center"> Join A Company </h1>
+        <br>
+        <form action="JoinCompany.php" method="GET" name="searchForm" class="form-inline" style="align-items: center;">
         <div class="form-group mb-2">
         
         <table>
