@@ -119,40 +119,49 @@ $noOfUsers = count($usersApplied);
             justify-content: center;
             align-items: center;
             overflow: hidden;
-             /* background:yellow; */
+            /* background:white; */
             }
 
             .d-flex flex-column{
                 display: flex;
                 position: relative;
+                align-content: center;
+                text-align: center;
             }
 
             .item1{
-            align-content: center;
-            text-align: center;
-            font-family:"Helvetica";
-            color: black;
+                align-content: center;
+                text-align: center;
+                font-family:"Helvetica";
+                color: black;
             }
             
-            /* .item2{
-                
-            } */
+            .item2{
+                align-content: center;
+                text-align: center;
+                position:relative;
+                /* background:blue;  */
+                /* -webkit-backdrop-filter: blur(10px); */
+            }
 
             .item3{
                 align-content: center;
                 text-align: center;
                 position: relative;
                 color: black;
-                backdrop-filter: blur(50px) saturate(180%);
-                backdrop-filter: blur(50px) saturate(180%);
-                /* vertical-align: center;  */
-                /* background: white; */
+                background: rgba(255, 255, 255, 0.6);
+                border-radius: 1rem;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(20px) saturate(180%);
+                -webkit-backdrop-filter: blur(20px) saturate(180%);
+                z-index: 1;
+                /* background: pink; */
             }
 
             .item4{
                 align-content: center;
                 text-align: center;
-                vertical-align: center;
+                /* vertical-align: center; */
             }
 /* ----------------------------------------------------------------------------------------------------------------- */
 /* search bar */
@@ -175,7 +184,8 @@ $noOfUsers = count($usersApplied);
             }
 
             #input2 {
-                width: 200px;  
+                margin-left: 50px; 
+                width: 100px;  
                 font-size: 1rem;
             }
 /* ----------------------------------------------------------------------------------------------------------------- */
@@ -243,7 +253,7 @@ $noOfUsers = count($usersApplied);
             <a class="nav-link" href="CompanyJobs.php" style="margin-left:5%; white-space: nowrap;;">Job Postings</a>
             </li>
             <li class="nav-item">
-            <a class="btn-danger" style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="index.php" >Log Out</a>     
+            <a class="btn-danger" style="margin-left: 30%; padding: 10px; white-space: nowrap;"  href="api/logout.php" >Log Out</a>     
             </li> 
                  
             </form>
@@ -264,18 +274,18 @@ $noOfUsers = count($usersApplied);
              
         </div>
             
-        <div class="item2" style="  margin-top: 5vh;">
+        <div class="item2" style="margin-left: 5%; margin-right: 5%; margin-top: 1vh; ">
             <form action="CompanyAddUsers.php" method="GET" name="searchForm" >
-                <table style=" margin-left: 5%; ">
+                <table>
                     <tr>
-                        <td><input type="text" id="input1" name="txt" value="<?php echo isset($_GET['txt']) ? $_GET['txt'] : ''; ?>" placeholder="Enter account Username, Forename or Surname" /></td>
+                        <td><input type="text" id="input1" name="txt" value="<?php echo isset($_GET['txt']) ? $_GET['txt'] : ''; ?>" placeholder="Enter a Username, Forename or Surname" /></td>
                         <td><input type="submit" id="input2" name="" value="Search" /></td>
                     </tr>
                 </table>
             </form> 
         </div>
        
-        <div class="item3" >
+        <div class="item3" style="margin-top: 1vh;" >
             <?php
                 //Show the user the keywords they have entered
                 //If the txt variable is empty then everything is displayed.
