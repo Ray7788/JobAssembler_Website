@@ -19,7 +19,7 @@ if ($user->company_id != 0) {
 
 //Get the search entry
 $txt = isset($_GET['txt']) ? $_GET['txt'] : '';
-$query = "SELECT * FROM Companies WHERE ";
+$query = "SELECT * FROM Companies WHERE CompanyID != 0 AND ";
 $wordsForDisplay = "";
 //Format each of the search keywords
 $keywords = explode(' ', $txt);     //Separates the text into an array
