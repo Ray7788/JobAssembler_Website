@@ -11,9 +11,6 @@ $user = $_SESSION["user"];
 if (!$user->is_authenticated()) {
     ApiResponseGenerator::generate_error_json(401, "User not logged in.");
 }
-if($_SERVER["REQUEST_METHOD"] !== "POST"){
-    ApiResponseGenerator::generate_error_json(405, "{$_SERVER["REQUEST_METHOD"]} method not allowed");
-}
 if ($_SERVER["REQUEST_METHOD"] !== "GET") {
     ApiResponseGenerator::generate_error_json(405, "{$_SERVER["REQUEST_METHOD"]} method not allowed");
 }
