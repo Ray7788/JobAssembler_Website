@@ -13,30 +13,32 @@
             body {
                 display: flex;
                 justify-content: center;
-                background-image: linear-gradient(to left, #5B86E5,#6DD5FA);
+                background-image: linear-gradient(to left, #e1eec3, #f05053);
             }
             .container-fluid{
                 background-color: #fff;
-                width: 80vw;
-                height: 110h;
+                width: 80%;
+                height: 110%;
                 position: relative;
                 display: flex;
-                border-radius: 20px;
+                border-radius: 80px;
                 justify-content: center;
                 align-items: center;
                 top: 50px;
-                font-size:40px;  
+                font-size:40px;
+                margin-bottom: 10%;  
             }
             .b{
-                width: 75vw;
-                height: 100vh;
+                width: 77%;
+                height: 90%;
                 overflow: hidden;
                 font-family:"Helvetica";
+                padding: 5%;
 
             }
             .display-1{
-            font: 900 24px '';
-            font-size:1.5em;
+            font: 900 15px '';
+            font-size:1.3em;
             font-family:"Helvetica";
             margin: 5px 0;
             text-align: center;
@@ -50,7 +52,7 @@
             padding: 5px;
             border-bottom: 2px solid rgb(60,60,70);
             font: 900 16px '';
-            font-size:40px;
+            font-size:30px;
             }
            
             label{
@@ -122,18 +124,21 @@
             <h1 class="display-1" align="center">Company Details</h1>
 
             <form id="companyForm" name="companyForm">
+                <br>
                 <label for="name">Company Name:</label>
                 <br>
                 <input type="text" name="name" id="name" class="inputBox">
+                <br>
                 <br>
                 <label for="description">Description:</label>
                 <br>
                 <textarea id="description" rows="3" cols="50" name="description" class="inputBox"></textarea>
                 <br>
+                <br>
                 <input type="hidden" name="userID" id="userID">
                 
-                <input type="submit" class="btn btn-primary btn-lg"  value="Submit">
-
+                <input type="submit" class="btn btn-primary btn-lg" style="margin-left:40%;"  value="Submit">
+                <br>
                 <a href="login.php">Or login to join a pre-existing company</a>
  
                 <p id="validationMsg"></p>
