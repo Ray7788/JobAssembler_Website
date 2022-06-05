@@ -62,11 +62,11 @@ Google Map API;
 Ajax
 
 ### Database Design
-![See more details about our Databse](Images\README\DBUML.png)
+![See more details about our Databse](Images/README/DBUML.png)
 
 ## Privacy and Ethical Guidelines
 ### Data Protection & Collection:
-![See more details about our Policy Statement](Images\README\data_privacy.png)
+![See more details about our Policy Statement](Images/README/data_privacy.png)
 
 ### Ethical Guidelines
 We follow [BCS Code of Conduct](https://www.bcs.org/membership-and-registrations/become-a-member/bcs-code-of-conduct/) and [The Ten Commandments of Computer Ethics](http://cpsr.org/issues/ethics/cei/) as our **ethical guidelines**.
